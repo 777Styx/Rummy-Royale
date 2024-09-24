@@ -10,7 +10,16 @@ package model;
  */
 public class Deck {
 
+    private static Deck instance;
+
     public Deck() {
+    }
+
+    public static Deck getInstance() {
+        if (instance == null) {
+            instance = new Deck();
+        }
+        return instance;
     }
 
     public void drawChip() {

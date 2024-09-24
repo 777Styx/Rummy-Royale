@@ -13,9 +13,10 @@ import model.Deck;
  */
 public class controlChip {
 
-    private Deck deck = new Deck();
-    
+    private Deck deck;
+
     public controlChip() {
+        this.deck = Deck.getInstance();
     }
 
     public void generateChip() {
