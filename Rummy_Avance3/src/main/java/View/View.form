@@ -601,7 +601,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="utils.Btn" name="btn1">
+        <Component class="utils.Btn" name="btnCombinacion">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -612,7 +612,7 @@
             <Property name="radius" type="int" value="10"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCombinacionActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -636,10 +636,10 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="163" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace pref="186" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -764,6 +764,9 @@
                 <Property name="roundTopLeft" type="int" value="10"/>
                 <Property name="roundTopRight" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelRound13MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -808,6 +811,9 @@
                 <Property name="roundTopLeft" type="int" value="10"/>
                 <Property name="roundTopRight" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelRound21MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -852,6 +858,9 @@
                 <Property name="roundTopLeft" type="int" value="10"/>
                 <Property name="roundTopRight" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelRound22MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -896,6 +905,9 @@
                 <Property name="roundTopLeft" type="int" value="10"/>
                 <Property name="roundTopRight" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelRound23MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -940,6 +952,9 @@
                 <Property name="roundTopLeft" type="int" value="10"/>
                 <Property name="roundTopRight" type="int" value="10"/>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="panelRound24KeyPressed"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -971,6 +986,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="8"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel9MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1015,6 +1033,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="8"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel10MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

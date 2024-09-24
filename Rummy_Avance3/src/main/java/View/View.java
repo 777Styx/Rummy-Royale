@@ -50,7 +50,7 @@ public class View extends javax.swing.JFrame {
         panelRound17 = new utils.PanelRound();
         panelRound20 = new utils.PanelRound();
         panelRound19 = new utils.PanelRound();
-        btn1 = new utils.Btn();
+        btnCombinacion = new utils.Btn();
         panelRound1 = new utils.PanelRound();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -417,15 +417,14 @@ public class View extends javax.swing.JFrame {
 
         ventanaPrincipal.add(panelRound19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
-        btn1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn1.setText("Hacer combinación");
-        btn1.setRadius(10);
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        btnCombinacion.setText("Hacer combinación");
+        btnCombinacion.setRadius(10);
+        btnCombinacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                btnCombinacionActionPerformed(evt);
             }
         });
-        ventanaPrincipal.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 130, 30));
+        ventanaPrincipal.add(btnCombinacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 130, 30));
 
         panelRound1.setRoundBottomLeft(10);
         panelRound1.setRoundBottomRight(10);
@@ -439,10 +438,10 @@ public class View extends javax.swing.JFrame {
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                .addContainerGap(163, Short.MAX_VALUE)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
                 .addComponent(jLabel11)
-                .addGap(160, 160, 160))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,13 +469,18 @@ public class View extends javax.swing.JFrame {
         ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 100, 40));
 
         contenedorFichas.setBackground(new java.awt.Color(33, 142, 64));
-        contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         panelRound13.setBackground(new java.awt.Color(0, 51, 204));
         panelRound13.setRoundBottomLeft(10);
         panelRound13.setRoundBottomRight(10);
         panelRound13.setRoundTopLeft(10);
         panelRound13.setRoundTopRight(10);
+        panelRound13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound13MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -503,6 +507,11 @@ public class View extends javax.swing.JFrame {
         panelRound21.setRoundBottomRight(10);
         panelRound21.setRoundTopLeft(10);
         panelRound21.setRoundTopRight(10);
+        panelRound21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound21MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -529,6 +538,11 @@ public class View extends javax.swing.JFrame {
         panelRound22.setRoundBottomRight(10);
         panelRound22.setRoundTopLeft(10);
         panelRound22.setRoundTopRight(10);
+        panelRound22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound22MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -555,6 +569,11 @@ public class View extends javax.swing.JFrame {
         panelRound23.setRoundBottomRight(10);
         panelRound23.setRoundTopLeft(10);
         panelRound23.setRoundTopRight(10);
+        panelRound23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound23MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -581,10 +600,20 @@ public class View extends javax.swing.JFrame {
         panelRound24.setRoundBottomRight(10);
         panelRound24.setRoundTopLeft(10);
         panelRound24.setRoundTopRight(10);
+        panelRound24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                panelRound24KeyPressed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("8");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound24Layout = new javax.swing.GroupLayout(panelRound24);
         panelRound24.setLayout(panelRound24Layout);
@@ -611,6 +640,11 @@ public class View extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("8");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound25Layout = new javax.swing.GroupLayout(panelRound25);
         panelRound25.setLayout(panelRound25Layout);
@@ -678,13 +712,49 @@ public class View extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+    private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn1ActionPerformed
+        System.out.println("Hacer combinacion");
+    }//GEN-LAST:event_btnCombinacionActionPerformed
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
-       // hola?
+        // hola?
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta ");
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void panelRound13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound13MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_panelRound13MouseClicked
+
+    private void panelRound21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound21MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_panelRound21MouseClicked
+
+    private void panelRound22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound22MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_panelRound22MouseClicked
+
+    private void panelRound23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound23MouseClicked
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_panelRound23MouseClicked
+
+    private void panelRound24KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelRound24KeyPressed
+        // TODO add your handling code here:
+        System.out.println("Selecciono carta");
+    }//GEN-LAST:event_panelRound24KeyPressed
 
     /**
      * @param args the command line arguments
@@ -722,7 +792,7 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
+    private utils.Btn btnCombinacion;
     private javax.swing.JPanel contenedorFichas;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
