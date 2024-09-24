@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
+import controller.controlChip;
 import utils.PanelRound;
 
 /**
@@ -17,6 +14,7 @@ public class View extends javax.swing.JFrame {
      */
     public View() {
         initComponents();
+
     }
 
     /**
@@ -719,6 +717,10 @@ public class View extends javax.swing.JFrame {
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         // hola?
+        controlChip controlChip = new controlChip();
+        controlChip.generateChip(deck);
+
+
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
