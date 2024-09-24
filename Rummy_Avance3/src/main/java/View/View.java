@@ -4,6 +4,8 @@
  */
 package View;
 
+import utils.PanelRound;
+
 /**
  *
  * @author carlo
@@ -26,48 +28,663 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        ventanaPrincipal = new javax.swing.JPanel();
+        playerNickname1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        panelRound2 = new utils.PanelRound();
+        panelRound3 = new utils.PanelRound();
+        panelRound4 = new utils.PanelRound();
+        panelRound5 = new utils.PanelRound();
+        panelRound6 = new utils.PanelRound();
+        panelRound10 = new utils.PanelRound();
+        panelRound11 = new utils.PanelRound();
+        panelRound9 = new utils.PanelRound();
+        panelRound8 = new utils.PanelRound();
+        panelRound12 = new utils.PanelRound();
+        panelRound16 = new utils.PanelRound();
+        panelRound18 = new utils.PanelRound();
+        panelRound15 = new utils.PanelRound();
+        panelRound14 = new utils.PanelRound();
+        panelRound17 = new utils.PanelRound();
+        panelRound20 = new utils.PanelRound();
+        panelRound19 = new utils.PanelRound();
+        btn1 = new utils.Btn();
+        panelRound1 = new utils.PanelRound();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tomarFichaBtn = new utils.Btn();
+        contenedorFichas = new javax.swing.JPanel();
+        panelRound13 = new utils.PanelRound();
+        jLabel5 = new javax.swing.JLabel();
+        panelRound21 = new utils.PanelRound();
+        jLabel6 = new javax.swing.JLabel();
+        panelRound22 = new utils.PanelRound();
+        jLabel7 = new javax.swing.JLabel();
+        panelRound23 = new utils.PanelRound();
+        jLabel8 = new javax.swing.JLabel();
+        panelRound24 = new utils.PanelRound();
+        jLabel9 = new javax.swing.JLabel();
+        panelRound25 = new utils.PanelRound();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(33, 142, 64));
+        ventanaPrincipal.setBackground(new java.awt.Color(33, 142, 64));
+        ventanaPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Jullian");
+        playerNickname1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        playerNickname1.setForeground(new java.awt.Color(255, 255, 255));
+        playerNickname1.setText("amos");
+        ventanaPrincipal.add(playerNickname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 239, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(359, 359, 359)
-                .addComponent(jLabel1)
-                .addContainerGap(379, Short.MAX_VALUE))
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("TeLesheo");
+        ventanaPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Wilber");
+        ventanaPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 241, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("hiiramsan");
+        ventanaPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
+
+        panelRound2.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound2.setRoundBottomLeft(10);
+        panelRound2.setRoundBottomRight(10);
+        panelRound2.setRoundTopLeft(10);
+        panelRound2.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
+        panelRound2.setLayout(panelRound2Layout);
+        panelRound2Layout.setHorizontalGroup(
+            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addContainerGap(454, Short.MAX_VALUE))
+        panelRound2Layout.setVerticalGroup(
+            panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
         );
+
+        ventanaPrincipal.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
+
+        panelRound3.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound3.setRoundBottomLeft(10);
+        panelRound3.setRoundBottomRight(10);
+        panelRound3.setRoundTopLeft(10);
+        panelRound3.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
+        panelRound3.setLayout(panelRound3Layout);
+        panelRound3Layout.setHorizontalGroup(
+            panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound3Layout.setVerticalGroup(
+            panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
+
+        panelRound4.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound4.setRoundBottomLeft(10);
+        panelRound4.setRoundBottomRight(10);
+        panelRound4.setRoundTopLeft(10);
+        panelRound4.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
+        panelRound4.setLayout(panelRound4Layout);
+        panelRound4Layout.setHorizontalGroup(
+            panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound4Layout.setVerticalGroup(
+            panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+
+        panelRound5.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound5.setRoundBottomLeft(10);
+        panelRound5.setRoundBottomRight(10);
+        panelRound5.setRoundTopLeft(10);
+        panelRound5.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound5Layout = new javax.swing.GroupLayout(panelRound5);
+        panelRound5.setLayout(panelRound5Layout);
+        panelRound5Layout.setHorizontalGroup(
+            panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound5Layout.setVerticalGroup(
+            panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        panelRound6.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound6.setRoundBottomLeft(10);
+        panelRound6.setRoundBottomRight(10);
+        panelRound6.setRoundTopLeft(10);
+        panelRound6.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
+        panelRound6.setLayout(panelRound6Layout);
+        panelRound6Layout.setHorizontalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound6Layout.setVerticalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
+
+        panelRound10.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound10.setRoundBottomLeft(10);
+        panelRound10.setRoundBottomRight(10);
+        panelRound10.setRoundTopLeft(10);
+        panelRound10.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound10Layout = new javax.swing.GroupLayout(panelRound10);
+        panelRound10.setLayout(panelRound10Layout);
+        panelRound10Layout.setHorizontalGroup(
+            panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound10Layout.setVerticalGroup(
+            panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, -1, -1));
+
+        panelRound11.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound11.setRoundBottomLeft(10);
+        panelRound11.setRoundBottomRight(10);
+        panelRound11.setRoundTopLeft(10);
+        panelRound11.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound11Layout = new javax.swing.GroupLayout(panelRound11);
+        panelRound11.setLayout(panelRound11Layout);
+        panelRound11Layout.setHorizontalGroup(
+            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound11Layout.setVerticalGroup(
+            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, -1, -1));
+
+        panelRound9.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound9.setRoundBottomLeft(10);
+        panelRound9.setRoundBottomRight(10);
+        panelRound9.setRoundTopLeft(10);
+        panelRound9.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound9Layout = new javax.swing.GroupLayout(panelRound9);
+        panelRound9.setLayout(panelRound9Layout);
+        panelRound9Layout.setHorizontalGroup(
+            panelRound9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound9Layout.setVerticalGroup(
+            panelRound9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
+
+        panelRound8.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound8.setRoundBottomLeft(10);
+        panelRound8.setRoundBottomRight(10);
+        panelRound8.setRoundTopLeft(10);
+        panelRound8.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
+        panelRound8.setLayout(panelRound8Layout);
+        panelRound8Layout.setHorizontalGroup(
+            panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound8Layout.setVerticalGroup(
+            panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, -1, -1));
+
+        panelRound12.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound12.setRoundBottomLeft(10);
+        panelRound12.setRoundBottomRight(10);
+        panelRound12.setRoundTopLeft(10);
+        panelRound12.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound12Layout = new javax.swing.GroupLayout(panelRound12);
+        panelRound12.setLayout(panelRound12Layout);
+        panelRound12Layout.setHorizontalGroup(
+            panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound12Layout.setVerticalGroup(
+            panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound12, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 270, -1, -1));
+
+        panelRound16.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound16.setRoundBottomLeft(10);
+        panelRound16.setRoundBottomRight(10);
+        panelRound16.setRoundTopLeft(10);
+        panelRound16.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound16Layout = new javax.swing.GroupLayout(panelRound16);
+        panelRound16.setLayout(panelRound16Layout);
+        panelRound16Layout.setHorizontalGroup(
+            panelRound16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound16Layout.setVerticalGroup(
+            panelRound16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+
+        panelRound18.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound18.setRoundBottomLeft(10);
+        panelRound18.setRoundBottomRight(10);
+        panelRound18.setRoundTopLeft(10);
+        panelRound18.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound18Layout = new javax.swing.GroupLayout(panelRound18);
+        panelRound18.setLayout(panelRound18Layout);
+        panelRound18Layout.setHorizontalGroup(
+            panelRound18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound18Layout.setVerticalGroup(
+            panelRound18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+
+        panelRound15.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound15.setRoundBottomLeft(10);
+        panelRound15.setRoundBottomRight(10);
+        panelRound15.setRoundTopLeft(10);
+        panelRound15.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound15Layout = new javax.swing.GroupLayout(panelRound15);
+        panelRound15.setLayout(panelRound15Layout);
+        panelRound15Layout.setHorizontalGroup(
+            panelRound15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound15Layout.setVerticalGroup(
+            panelRound15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+
+        panelRound14.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound14.setRoundBottomLeft(10);
+        panelRound14.setRoundBottomRight(10);
+        panelRound14.setRoundTopLeft(10);
+        panelRound14.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound14Layout = new javax.swing.GroupLayout(panelRound14);
+        panelRound14.setLayout(panelRound14Layout);
+        panelRound14Layout.setHorizontalGroup(
+            panelRound14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound14Layout.setVerticalGroup(
+            panelRound14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+
+        panelRound17.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound17.setRoundBottomLeft(10);
+        panelRound17.setRoundBottomRight(10);
+        panelRound17.setRoundTopLeft(10);
+        panelRound17.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound17Layout = new javax.swing.GroupLayout(panelRound17);
+        panelRound17.setLayout(panelRound17Layout);
+        panelRound17Layout.setHorizontalGroup(
+            panelRound17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound17Layout.setVerticalGroup(
+            panelRound17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
+
+        panelRound20.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound20.setRoundBottomLeft(10);
+        panelRound20.setRoundBottomRight(10);
+        panelRound20.setRoundTopLeft(10);
+        panelRound20.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound20Layout = new javax.swing.GroupLayout(panelRound20);
+        panelRound20.setLayout(panelRound20Layout);
+        panelRound20Layout.setHorizontalGroup(
+            panelRound20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound20Layout.setVerticalGroup(
+            panelRound20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound20, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
+
+        panelRound19.setBackground(new java.awt.Color(62, 23, 22));
+        panelRound19.setRoundBottomLeft(10);
+        panelRound19.setRoundBottomRight(10);
+        panelRound19.setRoundTopLeft(10);
+        panelRound19.setRoundTopRight(10);
+
+        javax.swing.GroupLayout panelRound19Layout = new javax.swing.GroupLayout(panelRound19);
+        panelRound19.setLayout(panelRound19Layout);
+        panelRound19Layout.setHorizontalGroup(
+            panelRound19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 27, Short.MAX_VALUE)
+        );
+        panelRound19Layout.setVerticalGroup(
+            panelRound19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 39, Short.MAX_VALUE)
+        );
+
+        ventanaPrincipal.add(panelRound19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
+
+        btn1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn1.setText("Hacer combinación");
+        btn1.setRadius(10);
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
+        ventanaPrincipal.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 130, 30));
+
+        panelRound1.setRoundBottomLeft(10);
+        panelRound1.setRoundBottomRight(10);
+        panelRound1.setRoundTopLeft(10);
+        panelRound1.setRoundTopRight(10);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Tablero");
+
+        javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
+        panelRound1.setLayout(panelRound1Layout);
+        panelRound1Layout.setHorizontalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
+                .addContainerGap(163, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(160, 160, 160))
+        );
+        panelRound1Layout.setVerticalGroup(
+            panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+
+        ventanaPrincipal.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 370, 200));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Turno: hiiramsan");
+        ventanaPrincipal.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+
+        tomarFichaBtn.setBackground(new java.awt.Color(102, 0, 0));
+        tomarFichaBtn.setForeground(new java.awt.Color(255, 255, 255));
+        tomarFichaBtn.setText("Tomar ficha");
+        tomarFichaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tomarFichaBtnActionPerformed(evt);
+            }
+        });
+        ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 100, 40));
+
+        contenedorFichas.setBackground(new java.awt.Color(33, 142, 64));
+        contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        panelRound13.setBackground(new java.awt.Color(0, 51, 204));
+        panelRound13.setRoundBottomLeft(10);
+        panelRound13.setRoundBottomRight(10);
+        panelRound13.setRoundTopLeft(10);
+        panelRound13.setRoundTopRight(10);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("5");
+
+        javax.swing.GroupLayout panelRound13Layout = new javax.swing.GroupLayout(panelRound13);
+        panelRound13.setLayout(panelRound13Layout);
+        panelRound13Layout.setHorizontalGroup(
+            panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound13Layout.setVerticalGroup(
+            panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound13Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        panelRound21.setBackground(new java.awt.Color(51, 255, 51));
+        panelRound21.setRoundBottomLeft(10);
+        panelRound21.setRoundBottomRight(10);
+        panelRound21.setRoundTopLeft(10);
+        panelRound21.setRoundTopRight(10);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("2");
+
+        javax.swing.GroupLayout panelRound21Layout = new javax.swing.GroupLayout(panelRound21);
+        panelRound21.setLayout(panelRound21Layout);
+        panelRound21Layout.setHorizontalGroup(
+            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound21Layout.setVerticalGroup(
+            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound21Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        panelRound22.setBackground(new java.awt.Color(255, 0, 0));
+        panelRound22.setRoundBottomLeft(10);
+        panelRound22.setRoundBottomRight(10);
+        panelRound22.setRoundTopLeft(10);
+        panelRound22.setRoundTopRight(10);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("5");
+
+        javax.swing.GroupLayout panelRound22Layout = new javax.swing.GroupLayout(panelRound22);
+        panelRound22.setLayout(panelRound22Layout);
+        panelRound22Layout.setHorizontalGroup(
+            panelRound22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound22Layout.setVerticalGroup(
+            panelRound22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound22Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        panelRound23.setBackground(new java.awt.Color(255, 0, 0));
+        panelRound23.setRoundBottomLeft(10);
+        panelRound23.setRoundBottomRight(10);
+        panelRound23.setRoundTopLeft(10);
+        panelRound23.setRoundTopRight(10);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("6");
+
+        javax.swing.GroupLayout panelRound23Layout = new javax.swing.GroupLayout(panelRound23);
+        panelRound23.setLayout(panelRound23Layout);
+        panelRound23Layout.setHorizontalGroup(
+            panelRound23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound23Layout.setVerticalGroup(
+            panelRound23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound23Layout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        panelRound24.setBackground(new java.awt.Color(255, 204, 0));
+        panelRound24.setRoundBottomLeft(10);
+        panelRound24.setRoundBottomRight(10);
+        panelRound24.setRoundTopLeft(10);
+        panelRound24.setRoundTopRight(10);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("8");
+
+        javax.swing.GroupLayout panelRound24Layout = new javax.swing.GroupLayout(panelRound24);
+        panelRound24.setLayout(panelRound24Layout);
+        panelRound24Layout.setHorizontalGroup(
+            panelRound24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound24Layout.setVerticalGroup(
+            panelRound24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound24Layout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        panelRound25.setBackground(new java.awt.Color(0, 51, 204));
+        panelRound25.setRoundBottomLeft(10);
+        panelRound25.setRoundBottomRight(10);
+        panelRound25.setRoundTopLeft(10);
+        panelRound25.setRoundTopRight(10);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("8");
+
+        javax.swing.GroupLayout panelRound25Layout = new javax.swing.GroupLayout(panelRound25);
+        panelRound25.setLayout(panelRound25Layout);
+        panelRound25Layout.setHorizontalGroup(
+            panelRound25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        panelRound25Layout.setVerticalGroup(
+            panelRound25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound25Layout.createSequentialGroup()
+                .addComponent(jLabel10)
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout contenedorFichasLayout = new javax.swing.GroupLayout(contenedorFichas);
+        contenedorFichas.setLayout(contenedorFichasLayout);
+        contenedorFichasLayout.setHorizontalGroup(
+            contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedorFichasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelRound13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelRound21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelRound22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelRound23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelRound24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(panelRound25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        contenedorFichasLayout.setVerticalGroup(
+            contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedorFichasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelRound13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        ventanaPrincipal.add(contenedorFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 190, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ventanaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ventanaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
+       // hola?
+    }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,7 +722,45 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private utils.Btn btn1;
+    private javax.swing.JPanel contenedorFichas;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private utils.PanelRound panelRound1;
+    private utils.PanelRound panelRound10;
+    private utils.PanelRound panelRound11;
+    private utils.PanelRound panelRound12;
+    private utils.PanelRound panelRound13;
+    private utils.PanelRound panelRound14;
+    private utils.PanelRound panelRound15;
+    private utils.PanelRound panelRound16;
+    private utils.PanelRound panelRound17;
+    private utils.PanelRound panelRound18;
+    private utils.PanelRound panelRound19;
+    private utils.PanelRound panelRound2;
+    private utils.PanelRound panelRound20;
+    private utils.PanelRound panelRound21;
+    private utils.PanelRound panelRound22;
+    private utils.PanelRound panelRound23;
+    private utils.PanelRound panelRound24;
+    private utils.PanelRound panelRound25;
+    private utils.PanelRound panelRound3;
+    private utils.PanelRound panelRound4;
+    private utils.PanelRound panelRound5;
+    private utils.PanelRound panelRound6;
+    private utils.PanelRound panelRound8;
+    private utils.PanelRound panelRound9;
+    private javax.swing.JLabel playerNickname1;
+    private utils.Btn tomarFichaBtn;
+    private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
 }
