@@ -1,6 +1,6 @@
 package View;
 
-import controller.controlChip;
+import controller.controlDeck;
 import utils.PanelRound;
 
 /**
@@ -717,7 +717,7 @@ public class View extends javax.swing.JFrame {
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         // hola?
-        controlChip controlChip = new controlChip();
+        controlDeck controlChip = new controlDeck();
         controlChip.generateChip();
 
 
