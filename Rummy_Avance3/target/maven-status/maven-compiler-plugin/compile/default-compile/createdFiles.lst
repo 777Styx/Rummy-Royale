@@ -3,6 +3,8 @@ View\View$9.class
 View\View$10.class
 View\View.class
 utils\Btn$1.class
+model\Deck.class
+controller\controlChip.class
 utils\Btn.class
 View\View$4.class
 View\View$8.class

@@ -718,7 +718,7 @@ public class View extends javax.swing.JFrame {
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         // hola?
         controlChip controlChip = new controlChip();
-        controlChip.generateChip(deck);
+        controlChip.generateChip();
 
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed

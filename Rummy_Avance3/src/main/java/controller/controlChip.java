@@ -13,10 +13,12 @@ import model.Deck;
  */
 public class controlChip {
 
+    private Deck deck = new Deck();
+    
     public controlChip() {
     }
 
-    public void generateChip(Deck deck) {
+    public void generateChip() {
         deck.drawChip();
     }
 }
