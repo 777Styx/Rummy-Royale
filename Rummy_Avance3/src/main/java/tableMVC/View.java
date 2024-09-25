@@ -712,7 +712,7 @@ public class View extends javax.swing.JFrame {
 
     private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
         // TODO add your handling code here:
-        System.out.println("Hacer combinacion");
+        Controller controller = new Controller();
     }//GEN-LAST:event_btnCombinacionActionPerformed
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
