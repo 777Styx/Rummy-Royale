@@ -1,10 +1,11 @@
 View\View$3.class
 View\View$9.class
+controller\controlDeck.class
 View\View$10.class
+controller\controlTable.class
 View\View.class
 utils\Btn$1.class
 model\Deck.class
-controller\controlChip.class
 utils\Btn.class
 View\View$4.class
 View\View$8.class

@@ -1,6 +1,5 @@
-package View;
+package tableMVC;
 
-import controller.controlDeck;
 import utils.PanelRound;
 
 /**
@@ -415,6 +414,7 @@ public class View extends javax.swing.JFrame {
 
         ventanaPrincipal.add(panelRound19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
+        btnCombinacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCombinacion.setText("Hacer combinación");
         btnCombinacion.setRadius(10);
         btnCombinacion.addActionListener(new java.awt.event.ActionListener() {
@@ -467,7 +467,7 @@ public class View extends javax.swing.JFrame {
         ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 100, 40));
 
         contenedorFichas.setBackground(new java.awt.Color(33, 142, 64));
-        contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         panelRound13.setBackground(new java.awt.Color(0, 51, 204));
         panelRound13.setRoundBottomLeft(10);
@@ -717,8 +717,8 @@ public class View extends javax.swing.JFrame {
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         // hola?
-        controlDeck controlChip = new controlDeck();
-        controlChip.generateChip();
+        // controlDeck controlChip = new controlDeck();
+        // controlChip.generateChip();
 
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
