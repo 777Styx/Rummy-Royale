@@ -2,7 +2,7 @@ package tableMVC;
 
 /**
  *
- * @author julli
+ * @author puerta
  */
 public class Controller {
 
