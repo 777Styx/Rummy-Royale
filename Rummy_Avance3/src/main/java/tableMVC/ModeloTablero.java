@@ -18,6 +18,7 @@ public class ModeloTablero implements Observable<ModeloObservador> {
     private int indiceJugadorActual;
     private Random random;
     private ColorFicha color;
+    private List<ModeloObservador> observadores;
 
     public ModeloTablero() {
         jugadores = new ArrayList<>();
@@ -29,10 +30,11 @@ public class ModeloTablero implements Observable<ModeloObservador> {
         barajarFichas();
     }
 
-   /**
-    * Reparte las fichas iniciales para cada jugador
-    * @param cantidad: numero de fichas que se le dara a cada jugador
-    */
+    /**
+     * Reparte las fichas iniciales para cada jugador
+     *
+     * @param cantidad: numero de fichas que se le dara a cada jugador
+     */
     public void repartirFichasIniciales(int cantidad) {
         for (Jugador jugador : jugadores) {
             for (int i = 0; i < cantidad; i++) {
@@ -128,40 +130,19 @@ public class ModeloTablero implements Observable<ModeloObservador> {
 
     @Override
     public void agregarObservador(ModeloObservador t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        observadores.add(t);
     }
 
     @Override
     public void removerObservador(ModeloObservador t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        observadores.remove(t);
     }
 
-//    private Deck deck;
-//    public ModelolDeck() {
-//        this.deck = Deck.getInstance();
-//    }
-//
-//    public void generateChip() {
-//        deck.drawChip();
-//    }
-//      private int number;
-//    private String color;
-//
-//    public Chip(int numero, String color) {
-//        this.number = numero;
-//        this.color = color;
-//    }
-//
-//    public int getNumero() {
-//        return number;
-//    }
-//
-//    public String getColor() {
-//        return color;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Carta: " + number + " de " + color;
-//    }
+    @Override
+    public void notificarObservadores() {
+        for (ModeloObservador o : observadores) {
+
+        }
+    }
+
 }

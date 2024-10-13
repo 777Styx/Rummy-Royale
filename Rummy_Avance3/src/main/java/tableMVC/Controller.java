@@ -73,14 +73,9 @@ public class Controller {
 
             return;
         }
-
         //Colocar las fichas en el tablero
-        for (Ficha ficha : fichas) {
-            model.colocarFichaEnTablero(ficha);
-        }
+        model.colocarFichasEnTablero(fichas);
 
-        // Actualizar la vista 
-        view.actualizarTablero(model.obtenerTablero());
     }
 
     /**
