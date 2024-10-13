@@ -1,5 +1,8 @@
 package tableMVC;
 
+import modelo.IFicha;
+import modelo.Jugador;
+import modelo.Combinacion;
 import java.util.List;
 
 /**

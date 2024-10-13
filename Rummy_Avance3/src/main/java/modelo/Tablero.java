@@ -1,5 +1,6 @@
-package tableMVC;
+package modelo;
 
+import modelo.Combinacion;
 import java.util.List;
 
 /**

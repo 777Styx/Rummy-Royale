@@ -1,4 +1,4 @@
-package tableMVC;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.List;

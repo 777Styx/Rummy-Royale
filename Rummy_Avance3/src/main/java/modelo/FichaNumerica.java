@@ -1,4 +1,4 @@
-package tableMVC;
+package modelo;
 
 import java.awt.Color;
 
