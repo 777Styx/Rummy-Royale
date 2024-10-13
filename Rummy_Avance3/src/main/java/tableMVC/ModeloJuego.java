@@ -10,30 +10,30 @@ import java.util.Random;
  *
  * @author puerta
  */
-public class ModeloTablero implements Observable<ModeloObservador> {
+public class ModeloJuego implements Observable<ModeloObservador> {
 
     private ArrayList<Jugador> jugadores;
     private ArrayList<Ficha> fichas;
-    private ArrayList<Ficha> tablero;
+    private Tablero tablero;
     private int indiceJugadorActual;
     private Random random;
     private ColorFicha color;
     private List<ModeloObservador> observadores;
 
-    public ModeloTablero() {
+    public ModeloJuego() {
         jugadores = new ArrayList<>();
         fichas = new ArrayList<>();
-        tablero = new ArrayList<>();
+        tablero = new Tablero();
         indiceJugadorActual = 0;
         random = new Random();
-        inicializarFichas();
-        barajarFichas();
+        // inicializarFichas();
+        // barajarFichas();
     }
 
     /**
      * Reparte las fichas iniciales para cada jugador
      *
-     * @param cantidad: numero de fichas que se le dara a cada jugador
+     * @param cantidad: numero de fichas que se le dará a cada jugador
      */
     public void repartirFichasIniciales(int cantidad) {
         for (Jugador jugador : jugadores) {
@@ -41,6 +41,7 @@ public class ModeloTablero implements Observable<ModeloObservador> {
                 jugador.agregarFicha(tomarFicha());
             }
         }
+        notificarObservadores(); // Notifica después de repartir fichas
     }
 
     // Mezcla las fichas aleatoriamente
@@ -52,6 +53,7 @@ public class ModeloTablero implements Observable<ModeloObservador> {
     public void agregarJugador(Jugador jugador) {
         if (jugadores.size() < 4) { // Máximo de 4 jugadores
             jugadores.add(jugador);
+            notificarObservadores(); // Notifica al agregar un jugador
         }
     }
 
@@ -63,15 +65,7 @@ public class ModeloTablero implements Observable<ModeloObservador> {
     // Pasar al siguiente jugador
     public void siguienteTurno() {
         indiceJugadorActual = (indiceJugadorActual + 1) % jugadores.size();
-    }
-
-    // Dar fichas iniciales a cada jugador (14 fichas)
-    public void repartirFichasIniciales() {
-        for (Jugador jugador : jugadores) {
-            for (int i = 0; i < 14; i++) {
-                jugador.agregarFicha(tomarFicha());
-            }
-        }
+        notificarObservadores(); // Notifica al pasar el turno
     }
 
     // Tomar una ficha aleatoria del mazo
@@ -82,29 +76,29 @@ public class ModeloTablero implements Observable<ModeloObservador> {
         return fichas.remove(0);
     }
 
-    // Colocar una ficha en el tablero
-    public void colocarFichasEnTablero(List<Ficha> fichas) {
-        if (fichas.size() < 3) {
-            //Hay qeu poner un error
-            return;
+    // Colocar una combinación en el tablero
+    public void colocarCombinacionEnTablero(Combinacion combinacion) {
+        if (combinacion != null && combinacion.esValida()) {
+            tablero.agregarCombinacion(combinacion);
+            notificarObservadores(); // Notifica al colocar una combinación
+        } else {
+            System.out.println("Combinación no válida: " + combinacion);
         }
-
-        tablero.addAll(fichas);
     }
 
     /**
      *
      * @return
      */
-    public List<Ficha> obtenerTablero() {
-        return tablero;
+    public List<Combinacion> obtenerCombinaciones() {
+        return tablero.obtenerCombinaciones(); // Devuelve las combinaciones del tablero
     }
 
     /**
      * Verificar si el juego ha terminado (cuando un jugador pone todas sus
      * fichas)
      *
-     * @return boolean indicando si el juega termina o continua
+     * @return boolean indicando si el juego termina o continúa
      */
     public boolean verificarFinDelJuego() {
         for (Jugador jugador : jugadores) {
@@ -117,7 +111,7 @@ public class ModeloTablero implements Observable<ModeloObservador> {
         return false;
     }
 
-    // Obtener al jugador ganador (el que se quedo sin fichas)
+    // Obtener al jugador ganador (el que se quedó sin fichas)
     public Jugador obtenerGanador() {
         for (Jugador jugador : jugadores) {
             if (jugador.obtenerTamanoDeMano() == 0) {
@@ -144,5 +138,4 @@ public class ModeloTablero implements Observable<ModeloObservador> {
 
         }
     }
-
 }

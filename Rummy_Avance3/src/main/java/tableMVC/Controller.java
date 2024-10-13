@@ -11,7 +11,7 @@ public class Controller {
     // Instancia del controlador (Singleton)
     private static Controller instance;
     // Modelo que contiene la logica del juego
-    private ModeloTablero model;
+    private ModeloJuego model;
     // Vista que presenta la interfaz de usuario
     private View view;
 
@@ -29,7 +29,7 @@ public class Controller {
      *
      * @param model el modelo a establecer
      */
-    public void setModel(ModeloTablero model) {
+    public void setModel(ModeloJuego model) {
         this.model = model;
     }
 
