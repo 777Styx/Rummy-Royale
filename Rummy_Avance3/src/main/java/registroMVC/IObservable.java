@@ -1,7 +1,5 @@
 package registroMVC;
 
-import tableMVC.*;
-
 /**
  *
  * @author puerta

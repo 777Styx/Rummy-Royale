@@ -1,8 +1,5 @@
 package unsirseMVC;
 
-import registroMVC.*;
-import tableMVC.*;
-
 /**
  *
  * @author puerta

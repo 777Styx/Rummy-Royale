@@ -1,7 +1,5 @@
 package inicioJuegoMVC;
 
-import tableMVC.*;
-
 /**
  *
  * @author puerta
