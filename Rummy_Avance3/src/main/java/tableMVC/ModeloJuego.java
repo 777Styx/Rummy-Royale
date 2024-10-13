@@ -82,7 +82,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
             tablero.agregarCombinacion(combinacion);
             notificarObservadores(); // Notifica al colocar una combinación
         } else {
-            System.out.println("Combinación no válida: " + combinacion);
+           //Poner el error
         }
     }
 
@@ -137,5 +137,9 @@ public class ModeloJuego implements Observable<ModeloObservador> {
         for (ModeloObservador o : observadores) {
 
         }
+    }
+
+    void colocarFichasEnTablero(List<Ficha> fichas) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
