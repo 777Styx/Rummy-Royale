@@ -38,7 +38,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     public void repartirFichasIniciales(int cantidad) {
         for (Jugador jugador : jugadores) {
             for (int i = 0; i < cantidad; i++) {
-                Ficha ficha = tomarFicha(); // Llama al método tomarFicha()
+                Ficha ficha = darFicha(); // Llama al método tomarFicha()
                 if (ficha != null) { // Verifica si se pudo tomar una ficha
                     jugador.agregarFicha(ficha);
                 } else {
@@ -49,6 +49,19 @@ public class ModeloJuego implements Observable<ModeloObservador> {
             }
         }
         notificarObservadores(); // Notifica después de repartir fichas
+    }
+
+    /**
+     * Toma una ficha del conjunto de fichas disponibles y la devuelve.
+     *
+     * @return La ficha tomada, o null si no quedan fichas.
+     */
+    public Ficha darFicha() {
+        if (fichas.isEmpty()) {
+            System.out.println("No hay fichas pana");
+            return null; // Devuelve null si no hay más fichas
+        }
+        return fichas.remove(0); // Devuelve la ficha tomada
     }
 
     // Mezcla las fichas aleatoriamente
@@ -148,8 +161,9 @@ public class ModeloJuego implements Observable<ModeloObservador> {
 
     @Override
     public void notificarObservadores() {
-        for (ModeloObservador o : observadores) {
-
+        for (ModeloObservador observador : observadores) {
+            observador.actualizarTablero(tablero.obtenerCombinaciones()); // Notifica el estado del tablero a las vistas.
+            observador.actualizarJugadorActual(obtenerJugadorActual()); // Notifica el jugador actual a las vistas.
         }
     }
 

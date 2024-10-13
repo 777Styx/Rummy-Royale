@@ -14,7 +14,7 @@ public interface ModeloObservador {
      * @param tablero: lista de fichas que representa el nuevo estado del
      * tablero.
      */
-    void actualizarTablero(List<Ficha> tablero);
+    void actualizarTablero(List<Combinacion> tablero);
 
     /**
      * Notifica quién es el jugador en turno.
