@@ -2,6 +2,7 @@ package tableMVC;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -9,7 +10,7 @@ import java.util.Random;
  *
  * @author puerta
  */
-public class Model implements Observable<ModeloObservador> {
+public class ModeloTablero implements Observable<ModeloObservador> {
 
     private ArrayList<Jugador> jugadores;
     private ArrayList<Ficha> fichas;
@@ -18,7 +19,7 @@ public class Model implements Observable<ModeloObservador> {
     private Random random;
     private ColorFicha color;
 
-    public ModeloJuegoRummy() {
+    public ModeloTablero() {
         jugadores = new ArrayList<>();
         fichas = new ArrayList<>();
         tablero = new ArrayList<>();
@@ -28,19 +29,16 @@ public class Model implements Observable<ModeloObservador> {
         barajarFichas();
     }
 
-    // Inicializa las fichas del juego (números del 1 al 13 en 4 colores y 2 comodines)
-    private void inicializarFichas() {
-        for (int i = 1; i <= 13; i++) {
-            for (Color color : Color.values()) {
-                if (color != Color.COMODIN) { // Evitar agregar color de comodín
-                    fichas.add(new Ficha(i, color));
-                    fichas.add(new Ficha(i, color)); // Dos sets de fichas
-                }
+   /**
+    * Reparte las fichas iniciales para cada jugador
+    * @param cantidad: numero de fichas que se le dara a cada jugador
+    */
+    public void repartirFichasIniciales(int cantidad) {
+        for (Jugador jugador : jugadores) {
+            for (int i = 0; i < cantidad; i++) {
+                jugador.agregarFicha(tomarFicha());
             }
         }
-        // Añadir comodines
-        fichas.add(new Ficha(0, Color.COMODIN)); // Comodín
-        fichas.add(new Ficha(0, Color.COMODIN)); // Comodín
     }
 
     // Mezcla las fichas aleatoriamente
@@ -85,16 +83,17 @@ public class Model implements Observable<ModeloObservador> {
     // Colocar una ficha en el tablero
     public void colocarFichasEnTablero(List<Ficha> fichas) {
         if (fichas.size() < 3) {
-            throw new IllegalArgumentException("Debes colocar al menos 3 fichas en el tablero.");
+            //Hay qeu poner un error
+            return;
         }
 
         tablero.addAll(fichas);
     }
 
-   /**
-    * 
-    * @return 
-    */
+    /**
+     *
+     * @return
+     */
     public List<Ficha> obtenerTablero() {
         return tablero;
     }
@@ -107,7 +106,7 @@ public class Model implements Observable<ModeloObservador> {
      */
     public boolean verificarFinDelJuego() {
         for (Jugador jugador : jugadores) {
-            if (jugador.obtenerTamañoDeMano() == 0) {
+            if (jugador.obtenerTamanoDeMano() == 0) {
                 // Juego terminado
                 return true;
             }
@@ -119,7 +118,7 @@ public class Model implements Observable<ModeloObservador> {
     // Obtener al jugador ganador (el que se quedo sin fichas)
     public Jugador obtenerGanador() {
         for (Jugador jugador : jugadores) {
-            if (jugador.obtenerTamañoDeMano() == 0) {
+            if (jugador.obtenerTamanoDeMano() == 0) {
                 return jugador;
             }
         }

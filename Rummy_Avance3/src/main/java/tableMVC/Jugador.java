@@ -11,11 +11,14 @@ public class Jugador {
 
     // Nombre del jugador
     private String nombre;
+    //Avatar del jugador
+    private String avatar;
     // Fichas que tiene el jugador en su mano      
     private ArrayList<Ficha> mano;
 
-    public Jugador(String nombre, ColorFicha color) {
+    public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
+        this.avatar = avatar;
         this.mano = new ArrayList<>();
     }
 
@@ -32,7 +35,7 @@ public class Jugador {
      *
      * @return cantidad de fichas pertenecientes al jugador
      */
-    public int obtenerTamañoDeMano() {
+    public int obtenerTamanoDeMano() {
         return mano.size();
     }
 
@@ -42,6 +45,14 @@ public class Jugador {
      */
     public String getNombre() {
         return nombre;
+    }
+
+    /**
+     * 
+     * @return avatar del jugador
+     */
+    public String getAvatar() {
+        return avatar;
     }
 
 }

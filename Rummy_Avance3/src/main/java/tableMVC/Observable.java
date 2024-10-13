@@ -19,4 +19,9 @@ public interface Observable<T> {
      * @param t: observador a remover
      */
     public void removerObservador(T t);
+
+    /**
+     * Notifica a todos los observadores sobre un cambio.
+     */
+    void notificarObservadores();
 }

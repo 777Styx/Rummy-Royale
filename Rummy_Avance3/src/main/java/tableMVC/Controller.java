@@ -1,17 +1,17 @@
 package tableMVC;
 
-import java.awt.List;
+import java.util.List;
 
 /**
  *
  * @author puerta
  */
 public class Controller {
-    
+
     // Instancia del controlador (Singleton)
     private static Controller instance;
     // Modelo que contiene la logica del juego
-    private Model model;
+    private ModeloTablero model;
     // Vista que presenta la interfaz de usuario
     private View view;
 
@@ -29,7 +29,7 @@ public class Controller {
      *
      * @param model el modelo a establecer
      */
-    public void setModel(Model model) {
+    public void setModel(ModeloTablero model) {
         this.model = model;
     }
 
@@ -47,18 +47,18 @@ public class Controller {
      *
      * @param nombre: nombre del jugador
      */
-    public void agregarJugador(String nombre) {
-        Jugador jugador = new Jugador(nombre);
+    public void agregarJugador(String nombre, String avatar) {
+        Jugador jugador = new Jugador(nombre, avatar);
         model.agregarJugador(jugador);
     }
 
     /**
-     * Inicia el juego repartiendo las fichas iniciales Actualiza la vista para
-     * reflejar el estado inicial del juego.
+     * Iniciar el juego y repartir fichas iniciales
+     *
+     * @param cantidad Cantidad de fichas a repartir
      */
-    public void iniciarJuego() {
-        model.repartirFichasIniciales();
-
+    public void iniciarJuego(int cantidad) {
+        model.repartirFichasIniciales(cantidad);
     }
 
     /**
