@@ -38,7 +38,14 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     public void repartirFichasIniciales(int cantidad) {
         for (Jugador jugador : jugadores) {
             for (int i = 0; i < cantidad; i++) {
-                jugador.agregarFicha(tomarFicha());
+                Ficha ficha = tomarFicha(); // Llama al método tomarFicha()
+                if (ficha != null) { // Verifica si se pudo tomar una ficha
+                    jugador.agregarFicha(ficha);
+                } else {
+                    // Si no hay más fichas, puedes decidir qué hacer (e.g., lanzar una excepción o salir del bucle)
+                    System.out.println("No hay suficientes fichas para repartir.");
+                    return; // Termina el método si no hay más fichas
+                }
             }
         }
         notificarObservadores(); // Notifica después de repartir fichas
@@ -68,13 +75,19 @@ public class ModeloJuego implements Observable<ModeloObservador> {
         notificarObservadores(); // Notifica al pasar el turno
     }
 
-    // Tomar una ficha aleatoria del mazo
+    /**
+     *
+     */
     public void tomarFicha() {
         if (fichas.isEmpty()) {
-            return ; // Si no hay más fichas disponibles
+            System.out.println("No hay fichas pana");
+            return;
         }
-      // jugador. fichas.remove(0);
-       // return fichas.remove(random.nextInt(fichas.size()));
+        Jugador jugador = obtenerJugadorActual();
+        jugador.agregarFicha(fichas.remove(0));
+
+        // jugador. fichas.remove(0);
+        // return fichas.remove(random.nextInt(fichas.size()));
     }
 
     // Colocar una combinación en el tablero
