@@ -6,10 +6,10 @@ import java.util.List;
  *
  * @author puerta
  */
-public class Controller {
+public class Controlador {
 
     // Instancia del controlador (Singleton)
-    private static Controller instance;
+    private static Controlador instance;
     // Modelo que contiene la logica del juego
     private ModeloJuego model;
     // Vista que presenta la interfaz de usuario
@@ -20,8 +20,8 @@ public class Controller {
      *
      * @return la instancia del controlador
      */
-    public static Controller getInstance() {
-        return instance == null ? instance = new Controller() : instance;
+    public static Controlador getInstance() {
+        return instance == null ? instance = new Controlador() : instance;
     }
 
     /**
@@ -59,6 +59,13 @@ public class Controller {
      */
     public void iniciarJuego(int cantidad) {
         model.repartirFichasIniciales(cantidad);
+    }
+
+    /**
+     * toma una ficha aleatora del ModeloJuego
+     */
+    public void tomarFicha() {
+        model.tomarFicha();
     }
 
     /**

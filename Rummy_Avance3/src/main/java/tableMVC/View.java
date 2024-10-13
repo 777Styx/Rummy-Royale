@@ -8,11 +8,14 @@ import utils.PanelRound;
  */
 public class View extends javax.swing.JFrame {
 
+    private Controlador controlador;
+
     /**
      * Creates new form View
      */
-    public View() {
+    public View(Controlador controlador) {
         initComponents();
+        this.controlador = controlador;
 
     }
 
@@ -432,14 +435,14 @@ public class View extends javax.swing.JFrame {
 
     private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
         // TODO add your handling code here:
-        Controller controller = new Controller();
+
     }//GEN-LAST:event_btnCombinacionActionPerformed
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         // hola?
         // controlDeck controlChip = new controlDeck();
         // controlChip.generateChip();
-
+        controlador.tomarFicha();
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
@@ -508,7 +511,7 @@ public class View extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View().setVisible(true);
+                //       new View().setVisible(true);
             }
         });
     }

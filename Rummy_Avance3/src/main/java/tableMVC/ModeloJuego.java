@@ -69,11 +69,12 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     }
 
     // Tomar una ficha aleatoria del mazo
-    public Ficha tomarFicha() {
+    public void tomarFicha() {
         if (fichas.isEmpty()) {
-            return null; // Si no hay más fichas disponibles
+            return ; // Si no hay más fichas disponibles
         }
-        return fichas.remove(0);
+      // jugador. fichas.remove(0);
+       // return fichas.remove(random.nextInt(fichas.size()));
     }
 
     // Colocar una combinación en el tablero
@@ -82,7 +83,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
             tablero.agregarCombinacion(combinacion);
             notificarObservadores(); // Notifica al colocar una combinación
         } else {
-           //Poner el error
+            //Poner el error
         }
     }
 
@@ -135,7 +136,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     @Override
     public void notificarObservadores() {
         for (ModeloObservador o : observadores) {
-            
+
         }
     }
 
