@@ -1,7 +1,7 @@
 package tableMVC;
 
-import modelo.IFicha;
-import modelo.Jugador;
+import entidades.IFicha;
+import entidades.Jugador;
 import java.util.List;
 
 /**

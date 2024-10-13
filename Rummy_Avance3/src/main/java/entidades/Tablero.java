@@ -1,6 +1,6 @@
-package modelo;
+package entidades;
 
-import modelo.Combinacion;
+import entidades.Combinacion;
 import java.util.List;
 
 /**

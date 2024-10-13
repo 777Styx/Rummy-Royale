@@ -1,10 +1,10 @@
 package tableMVC;
 
-import modelo.IFicha;
-import modelo.Tablero;
-import modelo.Jugador;
-import modelo.Combinacion;
-import modelo.ColorFicha;
+import entidades.IFicha;
+import entidades.Tablero;
+import entidades.Jugador;
+import entidades.Combinacion;
+import entidades.ColorFicha;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
