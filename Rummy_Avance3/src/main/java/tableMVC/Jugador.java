@@ -55,4 +55,17 @@ public class Jugador {
         return avatar;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Jugador{");
+        sb.append("nombre=").append(nombre);
+        sb.append(", avatar=").append(avatar);
+        sb.append(", mano=").append(mano);
+        sb.append('}');
+        return sb.toString();
+    }
+    
+    
+
 }

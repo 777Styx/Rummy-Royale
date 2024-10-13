@@ -8,8 +8,8 @@ import java.awt.Color;
  */
 public class FichaNumerica implements Ficha {
 
-    private int numero; 
-    private Color color; 
+    private int numero;
+    private Color color;
 
     public FichaNumerica(int numero, Color color) {
         this.numero = numero;
@@ -24,6 +24,16 @@ public class FichaNumerica implements Ficha {
         return color;
     }
 
-  
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("FichaNumerica{");
+        sb.append("numero=").append(numero);
+        sb.append(", color=").append(color);
+        sb.append('}');
+        return sb.toString();
+    }
+
+   
 
 }

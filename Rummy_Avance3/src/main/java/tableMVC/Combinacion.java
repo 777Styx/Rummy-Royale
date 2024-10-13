@@ -38,4 +38,13 @@ public class Combinacion {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Combinacion{");
+        sb.append("fichas=").append(fichas);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

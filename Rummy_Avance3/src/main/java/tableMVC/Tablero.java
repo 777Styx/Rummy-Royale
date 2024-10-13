@@ -51,4 +51,11 @@ public class Tablero {
         return combinaciones;
     }
 
+    @Override
+    public String toString() {
+        return "Tablero{" + "combinaciones=" + combinaciones + '}';
+    }
+    
+    
+
 }

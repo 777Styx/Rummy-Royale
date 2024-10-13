@@ -135,7 +135,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     @Override
     public void notificarObservadores() {
         for (ModeloObservador o : observadores) {
-
+            
         }
     }
 
