@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author puerta
  */
-public interface ModeloObservador {
+public interface IModeloObservador {
 
     /**
      * Notifica la actualizacion del estado del tablero.
@@ -36,7 +36,7 @@ public interface ModeloObservador {
      * @param jugador El jugador que ha tomado la ficha.
      * @param ficha La ficha que fue tomada por el jugador.
      */
-    void fichaTomada(Jugador jugador, Ficha ficha);
+    void fichaTomada(Jugador jugador, IFicha ficha);
 
     /**
      * Notifica que se ha agregado un nuevo jugador al juego.

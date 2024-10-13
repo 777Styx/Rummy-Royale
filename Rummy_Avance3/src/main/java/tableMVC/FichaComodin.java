@@ -4,7 +4,7 @@ package tableMVC;
  *
  * @author julli
  */
-public class FichaComodin implements Ficha {
+public class FichaComodin implements IFicha {
         
     
 }

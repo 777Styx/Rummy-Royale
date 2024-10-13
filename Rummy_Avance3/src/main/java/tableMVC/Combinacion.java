@@ -10,7 +10,7 @@ import java.util.List;
 public class Combinacion {
 
     // Fichas que forman la combinación
-    private List<Ficha> fichas;
+    private List<IFicha> fichas;
 
     /**
      * Inicializa la lista de fichas
@@ -24,7 +24,7 @@ public class Combinacion {
      *
      * @param ficha: ficha que se agregara a la combinacion
      */
-    public void agregarFicha(Ficha ficha) {
+    public void agregarFicha(IFicha ficha) {
         fichas.add(ficha);
     }
 

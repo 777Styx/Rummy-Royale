@@ -6,7 +6,7 @@ import java.awt.Color;
  *
  * @author julli
  */
-public class FichaNumerica implements Ficha {
+public class FichaNumerica implements IFicha {
 
     private int numero;
     private Color color;

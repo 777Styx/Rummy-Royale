@@ -74,7 +74,7 @@ public class Controlador {
      *
      * @param fichas la lista de fichas a colocar en el tablero
      */
-    public void colocarFichas(List<Ficha> fichas) {
+    public void colocarFichas(List<IFicha> fichas) {
         // Verificar que la lista de fichas tenga al menos 3 elementos
         if (fichas.size() < 3) {
 

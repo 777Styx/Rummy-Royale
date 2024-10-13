@@ -1,10 +1,12 @@
-package tableMVC;
+package registroMVC;
+
+import tableMVC.*;
 
 /**
  *
  * @author puerta
  */
-public interface Observable<T> {
+public interface IObservable<T> {
 
     /**
      * Agrega observadores al observable

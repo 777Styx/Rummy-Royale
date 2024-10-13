@@ -14,7 +14,7 @@ public class Jugador {
     //Avatar del jugador
     private String avatar;
     // Fichas que tiene el jugador en su mano      
-    private ArrayList<Ficha> mano;
+    private ArrayList<IFicha> mano;
 
     public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
@@ -27,7 +27,7 @@ public class Jugador {
      * @param ficha: ficha que se agregara a la mano(fichas pertenecientes) del
      * jugador
      */
-    public void agregarFicha(Ficha ficha) {
+    public void agregarFicha(IFicha ficha) {
         mano.add(ficha);
     }
 

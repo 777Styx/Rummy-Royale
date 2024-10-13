@@ -10,15 +10,15 @@ import java.util.Random;
  *
  * @author puerta
  */
-public class ModeloJuego implements Observable<ModeloObservador> {
+public class ModeloJuego implements IObservable<IModeloObservador> {
 
     private ArrayList<Jugador> jugadores;
-    private ArrayList<Ficha> fichas;
+    private ArrayList<IFicha> fichas;
     private Tablero tablero;
     private int indiceJugadorActual;
     private Random random;
     private ColorFicha color;
-    private List<ModeloObservador> observadores;
+    private List<IModeloObservador> observadores;
 
     public ModeloJuego() {
         jugadores = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     public void repartirFichasIniciales(int cantidad) {
         for (Jugador jugador : jugadores) {
             for (int i = 0; i < cantidad; i++) {
-                Ficha ficha = darFicha(); // Llama al método tomarFicha()
+                IFicha ficha = darFicha(); // Llama al método tomarFicha()
                 if (ficha != null) { // Verifica si se pudo tomar una ficha
                     jugador.agregarFicha(ficha);
                 } else {
@@ -56,7 +56,7 @@ public class ModeloJuego implements Observable<ModeloObservador> {
      *
      * @return La ficha tomada, o null si no quedan fichas.
      */
-    public Ficha darFicha() {
+    public IFicha darFicha() {
         if (fichas.isEmpty()) {
             System.out.println("No hay fichas pana");
             return null; // Devuelve null si no hay más fichas
@@ -150,24 +150,24 @@ public class ModeloJuego implements Observable<ModeloObservador> {
     }
 
     @Override
-    public void agregarObservador(ModeloObservador t) {
+    public void agregarObservador(IModeloObservador t) {
         observadores.add(t);
     }
 
     @Override
-    public void removerObservador(ModeloObservador t) {
+    public void removerObservador(IModeloObservador t) {
         observadores.remove(t);
     }
 
     @Override
     public void notificarObservadores() {
-        for (ModeloObservador observador : observadores) {
+        for (IModeloObservador observador : observadores) {
             observador.actualizarTablero(tablero.obtenerCombinaciones()); // Notifica el estado del tablero a las vistas.
             observador.actualizarJugadorActual(obtenerJugadorActual()); // Notifica el jugador actual a las vistas.
         }
     }
 
-    void colocarFichasEnTablero(List<Ficha> fichas) {
+    void colocarFichasEnTablero(List<IFicha> fichas) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

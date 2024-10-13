@@ -4,6 +4,6 @@ package tableMVC;
  *
  * @author julli
  */
-public interface Ficha {
+public interface IFicha {
 
 }
