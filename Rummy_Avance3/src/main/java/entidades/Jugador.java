@@ -23,7 +23,6 @@ public class Jugador {
         this.avatar = avatar;
         this.listaColores = new ArrayList<>();
         this.mano = new ArrayList<>();
-
     }
 
     /**

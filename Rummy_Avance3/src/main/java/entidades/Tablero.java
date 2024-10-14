@@ -28,6 +28,7 @@ public class Tablero {
             combinaciones.add(combinacion);
         } else {
             System.out.println("Combinación no válida: " + combinacion);
+            // eventually throw Exception here
         }
     }
 

@@ -28,6 +28,7 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
     private List<IModeloObservador> observadores;
 
     public ModeloJuego() {
+        observadores = new ArrayList<>();
         jugadores = new ArrayList<>();
         fichas = new ArrayList<>();
         tablero = new Tablero();

@@ -1,5 +1,6 @@
 tableMVC\IModeloObservador.class
 tableMVC\View$8.class
+registroMVC\Controlador.class
 entidades\FichaComodin.class
 registroMVC\Vista.class
 configuracioJuegoMVC\modelo.class
@@ -24,6 +25,7 @@ utils\Btn$1.class
 entidades\ColorFicha.class
 tableMVC\View$9.class
 entidades\IFicha.class
+registroMVC\Modelo.class
 configuracioJuegoMVC\Vista.class
 entidades\Juego.class
 registroMVC\IObservable.class
@@ -31,7 +33,6 @@ unsirseCrearMVC\IObservable.class
 tableMVC\View$4.class
 tableMVC\IObservable.class
 inicioJuegoMVC\IObservable.class
-registroMVC\modelo.class
 tableMVC\Controlador.class
 tableMVC\View.class
 entidades\Tablero.class

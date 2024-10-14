@@ -63,22 +63,22 @@ public class View extends javax.swing.JFrame {
         playerNickname1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         playerNickname1.setForeground(new java.awt.Color(255, 255, 255));
         playerNickname1.setText("amos");
-        ventanaPrincipal.add(playerNickname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 239, -1, -1));
+        ventanaPrincipal.add(playerNickname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("TeLesheo");
-        ventanaPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
+        ventanaPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Wilber");
-        ventanaPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 241, -1, -1));
+        ventanaPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("hiiramsan");
-        ventanaPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
+        ventanaPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 490, -1, -1));
 
         panelRound14.setBackground(new java.awt.Color(255, 255, 255));
         panelRound14.setRoundBottomLeft(10);
@@ -97,10 +97,12 @@ public class View extends javax.swing.JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        ventanaPrincipal.add(panelRound14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        ventanaPrincipal.add(panelRound14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         btnCombinacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCombinacion.setText("Hacer combinación");
+        btnCombinacion.setColorClick(new java.awt.Color(51, 153, 255));
+        btnCombinacion.setColorOver(new java.awt.Color(0, 153, 255));
         btnCombinacion.setRadius(10);
         btnCombinacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,35 +123,38 @@ public class View extends javax.swing.JFrame {
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound1Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
+                .addContainerGap(293, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGap(260, 260, 260))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
-        ventanaPrincipal.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 370, 200));
+        ventanaPrincipal.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 600, 240));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Turno: hiiramsan");
         ventanaPrincipal.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
-        tomarFichaBtn.setBackground(new java.awt.Color(102, 0, 0));
+        tomarFichaBtn.setBackground(new java.awt.Color(51, 153, 255));
         tomarFichaBtn.setForeground(new java.awt.Color(255, 255, 255));
         tomarFichaBtn.setText("Tomar ficha");
+        tomarFichaBtn.setColor(new java.awt.Color(51, 153, 255));
+        tomarFichaBtn.setColorClick(new java.awt.Color(0, 102, 204));
+        tomarFichaBtn.setColorOver(new java.awt.Color(0, 102, 255));
         tomarFichaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tomarFichaBtnActionPerformed(evt);
             }
         });
-        ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 100, 40));
+        ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 100, 40));
 
         contenedorFichas.setBackground(new java.awt.Color(33, 142, 64));
         contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -378,7 +383,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        ventanaPrincipal.add(contenedorFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 190, 60));
+        ventanaPrincipal.add(contenedorFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 380, 60));
 
         panelRound26.setBackground(new java.awt.Color(255, 255, 255));
         panelRound26.setRoundBottomLeft(10);
@@ -397,7 +402,7 @@ public class View extends javax.swing.JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        ventanaPrincipal.add(panelRound26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
+        ventanaPrincipal.add(panelRound26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         panelRound27.setBackground(new java.awt.Color(255, 255, 255));
         panelRound27.setRoundBottomLeft(10);
@@ -416,7 +421,7 @@ public class View extends javax.swing.JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        ventanaPrincipal.add(panelRound27, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, -1, -1));
+        ventanaPrincipal.add(panelRound27, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -511,7 +516,9 @@ public class View extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //       new View().setVisible(true);
+                Controlador controlador = Controlador.getInstance();
+                View vista = new View(controlador);
+                vista.setVisible(true);
             }
         });
     }
