@@ -6,4 +6,6 @@ package registroMVC;
  */
 public interface IModeloObservador {
 
+    public void actulizarCantidadJugadores(int cantidadJugadores);
+
 }
