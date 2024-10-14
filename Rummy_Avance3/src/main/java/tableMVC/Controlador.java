@@ -11,7 +11,7 @@ import java.util.List;
 public class Controlador {
 
     // Instancia del controlador (Singleton)
-    private static Controlador instance;
+    private static Controlador controlador;
     // Modelo que contiene la logica del juego
     private ModeloJuego model;
     // Vista que presenta la interfaz de usuario
@@ -23,7 +23,7 @@ public class Controlador {
      * @return la instancia del controlador
      */
     public static Controlador getInstance() {
-        return instance == null ? instance = new Controlador() : instance;
+        return controlador == null ? controlador = new Controlador() : controlador;
     }
 
     /**
@@ -53,7 +53,6 @@ public class Controlador {
 //        Jugador jugador = new Jugador(nombre, avatar);
 //        model.agregarJugador(jugador);
 //    }
-
     /**
      * Iniciar el juego y repartir fichas iniciales
      *

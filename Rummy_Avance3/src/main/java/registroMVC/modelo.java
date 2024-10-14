@@ -9,12 +9,12 @@ import java.util.List;
  *
  * @author puerta
  */
-public class modelo implements IObservable<IModeloObservador> {
+public class Modelo implements IObservable<IModeloObservador> {
 
     private ArrayList<Jugador> jugadores;
     private List<IModeloObservador> observadores;
 
-    public modelo() {
+    public Modelo() {
         jugadores = new ArrayList<>();
     }
 
