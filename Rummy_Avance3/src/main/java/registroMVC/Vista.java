@@ -61,12 +61,32 @@ public class Vista extends javax.swing.JPanel {
         btnStart.setText("Start");
 
         comBoxColor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comBoxColor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comBoxColor2ActionPerformed(evt);
+            }
+        });
 
         comBoxColor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comBoxColor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comBoxColor1ActionPerformed(evt);
+            }
+        });
 
         comBoxColor4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comBoxColor4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comBoxColor4ActionPerformed(evt);
+            }
+        });
 
         comBoxColor3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comBoxColor3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comBoxColor3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,6 +183,22 @@ public class Vista extends javax.swing.JPanel {
         // TODO add your handling code here:
         nombre = txtNombre.getText();
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void comBoxColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comBoxColor1ActionPerformed
+
+    private void comBoxColor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comBoxColor2ActionPerformed
+
+    private void comBoxColor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comBoxColor3ActionPerformed
+
+    private void comBoxColor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comBoxColor4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
