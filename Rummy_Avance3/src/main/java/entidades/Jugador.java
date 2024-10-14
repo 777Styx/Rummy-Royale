@@ -12,13 +12,19 @@ public class Jugador {
     // Nombre del jugador
     private String nombre;
     //Avatar del jugador
-    private String avatar;
+    private String avatar = "";
     //Colores que vera por fichas
     private ArrayList<ColorFicha> listaColores;
     // Fichas que tiene el jugador en su mano      
     private ArrayList<IFicha> mano;
 
-    public Jugador(String nombre, String avatar) {
+//    public Jugador(String nombre, String avatar) {
+//        this.nombre = nombre;
+//        this.avatar = avatar;
+//        this.listaColores = new ArrayList<>();
+//        this.mano = new ArrayList<>();
+//    }
+    public Jugador(String nombre) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.listaColores = new ArrayList<>();

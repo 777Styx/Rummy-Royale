@@ -4,6 +4,9 @@
  */
 package registroMVC;
 
+import entidades.Jugador;
+import java.util.ArrayList;
+
 /**
  *
  * @author julli
@@ -188,7 +191,7 @@ public class Vista extends javax.swing.JPanel {
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-        nombre = txtNombre.getText();
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void comBoxColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor1ActionPerformed
@@ -209,7 +212,9 @@ public class Vista extends javax.swing.JPanel {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
-
+        nombre = txtNombre.getText();
+        
+        Jugador jugador = new Jugador(nombre);
     }//GEN-LAST:event_btnStartActionPerformed
 
 
