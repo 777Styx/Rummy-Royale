@@ -13,8 +13,11 @@ public class Vista extends javax.swing.JPanel {
     /**
      * Creates new form Vista
      */
+    private String nombre = "";
+
     public Vista() {
         initComponents();
+        this.nombre = nombre;
     }
 
     /**
@@ -48,6 +51,12 @@ public class Vista extends javax.swing.JPanel {
 
         lblRegistro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblRegistro.setText("Registro");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
 
         btnStart.setText("Start");
 
@@ -149,6 +158,11 @@ public class Vista extends javax.swing.JPanel {
                     .addContainerGap(390, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+        nombre = txtNombre.getText();
+    }//GEN-LAST:event_txtNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
