@@ -13,10 +13,12 @@ public class Vista extends javax.swing.JPanel {
     /**
      * Creates new form Vista
      */
+    private Controlador controlador;
     private String nombre = "";
 
-    public Vista() {
+    public Vista(Controlador controlador) {
         initComponents();
+        this.controlador = controlador;
         this.nombre = nombre;
     }
 
@@ -59,6 +61,11 @@ public class Vista extends javax.swing.JPanel {
         });
 
         btnStart.setText("Start");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
 
         comBoxColor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comBoxColor2.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +206,11 @@ public class Vista extends javax.swing.JPanel {
     private void comBoxColor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comBoxColor4ActionPerformed
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnStartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
