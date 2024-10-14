@@ -44,15 +44,15 @@ public class Controlador {
         this.view = view;
     }
 
-    /**
-     * Agrega un jugador
-     *
-     * @param nombre: nombre del jugador
-     */
-    public void agregarJugador(String nombre, String avatar) {
-        Jugador jugador = new Jugador(nombre, avatar);
-        model.agregarJugador(jugador);
-    }
+//    /**
+//     * Agrega un jugador
+//     *
+//     * @param nombre: nombre del jugador
+//     */
+//    public void agregarJugador(String nombre, String avatar) {
+//        Jugador jugador = new Jugador(nombre, avatar);
+//        model.agregarJugador(jugador);
+//    }
 
     /**
      * Iniciar el juego y repartir fichas iniciales

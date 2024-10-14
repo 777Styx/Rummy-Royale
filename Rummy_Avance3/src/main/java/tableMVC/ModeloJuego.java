@@ -14,6 +14,8 @@ import java.util.Random;
 /**
  *
  * @author puerta
+import entidades.Jugador;
+import entidades.Combinacion;
  */
 public class ModeloJuego implements IObservable<IModeloObservador> {
 

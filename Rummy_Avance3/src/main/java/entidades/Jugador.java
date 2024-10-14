@@ -13,13 +13,17 @@ public class Jugador {
     private String nombre;
     //Avatar del jugador
     private String avatar;
+    //Colores que vera por fichas
+    private ArrayList<ColorFicha> listaColores;
     // Fichas que tiene el jugador en su mano      
     private ArrayList<IFicha> mano;
 
     public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
+        this.listaColores = new ArrayList<>();
         this.mano = new ArrayList<>();
+
     }
 
     /**
@@ -48,11 +52,19 @@ public class Jugador {
     }
 
     /**
-     * 
+     *
      * @return avatar del jugador
      */
     public String getAvatar() {
         return avatar;
+    }
+
+    public ArrayList<ColorFicha> getListaColores() {
+        return listaColores;
+    }
+
+    public void setListaColores(ArrayList<ColorFicha> listaColores) {
+        this.listaColores = listaColores;
     }
 
     @Override
@@ -65,7 +77,5 @@ public class Jugador {
         sb.append('}');
         return sb.toString();
     }
-    
-    
 
 }
