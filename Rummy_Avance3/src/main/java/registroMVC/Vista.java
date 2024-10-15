@@ -1,7 +1,14 @@
 package registroMVC;
 
 import entidades.Jugador;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +21,7 @@ public class Vista extends javax.swing.JPanel {
      */
     private Controlador controlador;
     private String nombre = "";
+    private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
     public Vista(Controlador controlador) {
         initComponents();
@@ -31,200 +39,244 @@ public class Vista extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
-        lblColores = new javax.swing.JLabel();
-        lblRegistro = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        btnStart = new javax.swing.JButton();
-        comBoxColor2 = new javax.swing.JComboBox<>();
-        comBoxColor1 = new javax.swing.JComboBox<>();
-        comBoxColor4 = new javax.swing.JComboBox<>();
-        comBoxColor3 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        panelRound1 = new utils.PanelRound();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        colorButton1 = new javax.swing.JButton();
+        colorPanel1 = new javax.swing.JPanel();
+        colorButton2 = new javax.swing.JButton();
+        colorPanel2 = new javax.swing.JPanel();
+        colorButton3 = new javax.swing.JButton();
+        colorPanel3 = new javax.swing.JPanel();
+        colorButton4 = new javax.swing.JButton();
+        colorPanel4 = new javax.swing.JPanel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombre.setText("Nombre");
+        jPanel1.setBackground(new java.awt.Color(128, 175, 167));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 500));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblColores.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblColores.setText("Colores");
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(233, 243, 125));
+        jLabel1.setText("RUMMY ROYALE");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        lblRegistro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblRegistro.setText("Registro");
+        panelRound1.setBackground(new java.awt.Color(82, 107, 103));
+        panelRound1.setRoundBottomLeft(15);
+        panelRound1.setRoundBottomRight(15);
+        panelRound1.setRoundTopLeft(15);
+        panelRound1.setRoundTopRight(15);
+        panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("colores:");
+        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ReGISTRO");
+        panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        jTextField1.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jTextField1.setBorder(null);
+        panelRound1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 310, 40));
+
+        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("nombre:");
+        panelRound1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(225, 240, 67));
+        jButton1.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
+        jButton1.setText("start");
+        panelRound1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 40));
+
+        colorButton1.setText("Color 1");
+        colorButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                colorButton1ActionPerformed(evt);
             }
         });
+        panelRound1.add(colorButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        btnStart.setText("Start");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
-
-        comBoxColor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comBoxColor2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comBoxColor2ActionPerformed(evt);
-            }
-        });
-
-        comBoxColor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comBoxColor1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comBoxColor1ActionPerformed(evt);
-            }
-        });
-
-        comBoxColor4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comBoxColor4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comBoxColor4ActionPerformed(evt);
-            }
-        });
-
-        comBoxColor3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comBoxColor3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comBoxColor3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(comBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblNombre)
-                            .addGap(215, 215, 215))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblColores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(179, 179, 179))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(164, 164, 164))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnStart)
-                            .addGap(203, 203, 203)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(comBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(comBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(comBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(210, Short.MAX_VALUE)
-                    .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(179, 179, 179)))
+        javax.swing.GroupLayout colorPanel1Layout = new javax.swing.GroupLayout(colorPanel1);
+        colorPanel1.setLayout(colorPanel1Layout);
+        colorPanel1Layout.setHorizontalGroup(
+            colorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(lblNombre)
-                .addGap(17, 17, 17)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblColores, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comBoxColor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comBoxColor4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comBoxColor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comBoxColor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnStart)
-                .addGap(31, 31, 31))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(251, Short.MAX_VALUE)))
+        colorPanel1Layout.setVerticalGroup(
+            colorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel2.setText("Rummy Royale");
+        panelRound1.add(colorPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 70, 20));
+
+        colorButton2.setText("Color 2");
+        colorButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorButton2ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(colorButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        javax.swing.GroupLayout colorPanel2Layout = new javax.swing.GroupLayout(colorPanel2);
+        colorPanel2.setLayout(colorPanel2Layout);
+        colorPanel2Layout.setHorizontalGroup(
+            colorPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        colorPanel2Layout.setVerticalGroup(
+            colorPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+
+        colorButton3.setText("Color 3");
+        colorButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorButton3ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(colorButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+
+        javax.swing.GroupLayout colorPanel3Layout = new javax.swing.GroupLayout(colorPanel3);
+        colorPanel3.setLayout(colorPanel3Layout);
+        colorPanel3Layout.setHorizontalGroup(
+            colorPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        colorPanel3Layout.setVerticalGroup(
+            colorPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+
+        colorButton4.setText("Color 4");
+        colorButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorButton4ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(colorButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+
+        javax.swing.GroupLayout colorPanel4Layout = new javax.swing.GroupLayout(colorPanel4);
+        colorPanel4.setLayout(colorPanel4Layout);
+        colorPanel4Layout.setHorizontalGroup(
+            colorPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        colorPanel4Layout.setVerticalGroup(
+            colorPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+
+        jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 520, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(193, 193, 193)
-                    .addComponent(jLabel2)
-                    .addContainerGap(243, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(390, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void colorButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton3ActionPerformed
         // TODO add your handling code here:
+        new ColorChooserListener(3);
+    }//GEN-LAST:event_colorButton3ActionPerformed
 
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void comBoxColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor1ActionPerformed
+    private void colorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comBoxColor1ActionPerformed
+        new ColorChooserListener(1);
+    }//GEN-LAST:event_colorButton1ActionPerformed
 
-    private void comBoxColor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor2ActionPerformed
+    private void colorButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comBoxColor2ActionPerformed
+        new ColorChooserListener(2);
+    }//GEN-LAST:event_colorButton2ActionPerformed
 
-    private void comBoxColor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor3ActionPerformed
+    private void colorButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comBoxColor3ActionPerformed
+        new ColorChooserListener(4);
+    }//GEN-LAST:event_colorButton4ActionPerformed
 
-    private void comBoxColor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBoxColor4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comBoxColor4ActionPerformed
+    
+    private class ColorChooserListener implements ActionListener {
+        private int colorIndex;
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
-        nombre = txtNombre.getText();
-        
-      
-    }//GEN-LAST:event_btnStartActionPerformed
+        public ColorChooserListener(int index) {
+            this.colorIndex = index;
+        }
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // mostrar selector
+            Color newColor = JColorChooser.showDialog(null, "Seleccionar un color", Color.WHITE);
+
+            if (newColor != null && isColorUnique(newColor)) {
+                switch (colorIndex) {
+                    case 1:
+                        selectedColor1 = newColor;
+                        colorPanel1.setBackground(selectedColor1);
+                        break;
+                    case 2:
+                        selectedColor2 = newColor;
+                        colorPanel2.setBackground(selectedColor2);
+                        break;
+                    case 3:
+                        selectedColor3 = newColor;
+                        colorPanel3.setBackground(selectedColor3);
+                        break;
+                    case 4:
+                        selectedColor4 = newColor;
+                        colorPanel4.setBackground(selectedColor4);
+                        break;
+                }
+            } else if (newColor != null) {
+                JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
+            }
+        }
+        private boolean isColorUnique(Color newColor) {
+            Set<Color> selectedColors = new HashSet<>();
+            if (selectedColor1 != null) selectedColors.add(selectedColor1);
+            if (selectedColor2 != null) selectedColors.add(selectedColor2);
+            if (selectedColor3 != null) selectedColors.add(selectedColor3);
+            if (selectedColor4 != null) selectedColors.add(selectedColor4);
+            return !selectedColors.contains(newColor);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnStart;
-    private javax.swing.JComboBox<String> comBoxColor1;
-    private javax.swing.JComboBox<String> comBoxColor2;
-    private javax.swing.JComboBox<String> comBoxColor3;
-    private javax.swing.JComboBox<String> comBoxColor4;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton colorButton1;
+    private javax.swing.JButton colorButton2;
+    private javax.swing.JButton colorButton3;
+    private javax.swing.JButton colorButton4;
+    private javax.swing.JPanel colorPanel1;
+    private javax.swing.JPanel colorPanel2;
+    private javax.swing.JPanel colorPanel3;
+    private javax.swing.JPanel colorPanel4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblColores;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblRegistro;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField jTextField1;
+    private utils.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
 }
