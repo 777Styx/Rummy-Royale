@@ -1,22 +1,24 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package configuracioJuegoMVC;
 
-import registroMVC.*;
-
 /**
  *
- * @author julli
+ * @author carlo
  */
-public class Vista extends javax.swing.JPanel {
-
+public class Vista extends javax.swing.JFrame {
+    
+    int comodines = 4;
+    
     /**
      * Creates new form Vista
      */
     public Vista() {
         initComponents();
+        comodines = 4;
+        jRadioButton1.setSelected(true);
     }
 
     /**
@@ -28,122 +30,193 @@ public class Vista extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        lblRegistro = new javax.swing.JLabel();
-        spinnerFicha = new javax.swing.JSpinner();
-        lblFichas = new javax.swing.JLabel();
-        spinnerFicha1 = new javax.swing.JSpinner();
-        lblFichas1 = new javax.swing.JLabel();
-        lblRegistro1 = new javax.swing.JLabel();
-        btnStart1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        panelRound1 = new utils.PanelRound();
+        comodinesTxt = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lessBtn = new utils.Btn();
+        moreBtn = new utils.Btn();
+        btn3 = new utils.Btn();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblRegistro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblRegistro.setText("Rango de fichas:");
+        jPanel1.setBackground(new java.awt.Color(128, 175, 167));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 500));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFichas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblFichas.setText("1-13");
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(233, 243, 125));
+        jLabel1.setText("RUMMY ROYALE");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
-        lblFichas1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblFichas1.setText("1-6");
+        panelRound1.setBackground(new java.awt.Color(82, 107, 103));
+        panelRound1.setRoundBottomLeft(15);
+        panelRound1.setRoundBottomRight(15);
+        panelRound1.setRoundTopLeft(15);
+        panelRound1.setRoundTopRight(15);
+        panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblRegistro1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblRegistro1.setText("Comodines:");
+        comodinesTxt.setFont(new java.awt.Font("Showcard Gothic", 0, 36)); // NOI18N
+        comodinesTxt.setForeground(new java.awt.Color(233, 243, 125));
+        comodinesTxt.setText("4");
+        panelRound1.add(comodinesTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
 
-        btnStart1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnStart1.setText("Crear Juego");
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("1-13");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(145, 145, 145)
-                            .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(184, 184, 184)
-                            .addComponent(spinnerFicha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(lblFichas)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblRegistro1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(spinnerFicha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblFichas1))))
-                        .addGap(30, 30, 30)))
-                .addGap(0, 152, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lblRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinnerFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFichas))
-                .addGap(44, 44, 44)
-                .addComponent(lblRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinnerFicha1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFichas1))
-                .addGap(39, 39, 39)
-                .addComponent(btnStart1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton2.setText("1-10");
+        panelRound1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel2.setText("Rummy Royale");
+        jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Rango de fichas:");
+        panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Comodines:");
+        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+
+        lessBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        lessBtn.setText("-");
+        lessBtn.setRadius(5);
+        lessBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lessBtnActionPerformed(evt);
+            }
+        });
+        panelRound1.add(lessBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 30, -1));
+
+        moreBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
+        moreBtn.setText("+");
+        moreBtn.setRadius(5);
+        moreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreBtnActionPerformed(evt);
+            }
+        });
+        panelRound1.add(moreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 30, -1));
+
+        btn3.setBackground(new java.awt.Color(132, 145, 231));
+        btn3.setBorder(null);
+        btn3.setText("<html>\n<h1>Crear nuevo juego</h1>\n</html>");
+        btn3.setBorderPainted(false);
+        btn3.setColor(new java.awt.Color(132, 145, 231));
+        btn3.setColorClick(new java.awt.Color(132, 118, 227));
+        btn3.setColorOver(new java.awt.Color(132, 145, 231));
+        btn3.setRadius(10);
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 290, 50));
+
+        jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 520, 300));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(193, 193, 193)
-                    .addComponent(jLabel2)
-                    .addContainerGap(243, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(408, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void moreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreBtnActionPerformed
+        
+        if(comodines < 8) {
+            comodines++;
+            comodinesTxt.setText(String.valueOf(comodines));
+        }
+        
+    }//GEN-LAST:event_moreBtnActionPerformed
+
+    private void lessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessBtnActionPerformed
+       if(comodines > 2) {
+           comodines--;
+           comodinesTxt.setText(String.valueOf(comodines));
+       }
+        
+    }//GEN-LAST:event_lessBtnActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Vista().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnStart1;
-    private javax.swing.JLabel jLabel2;
+    private utils.Btn btn3;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel comodinesTxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblFichas;
-    private javax.swing.JLabel lblFichas1;
-    private javax.swing.JLabel lblRegistro;
-    private javax.swing.JLabel lblRegistro1;
-    private javax.swing.JSpinner spinnerFicha;
-    private javax.swing.JSpinner spinnerFicha1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private utils.Btn lessBtn;
+    private utils.Btn moreBtn;
+    private utils.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
 }
