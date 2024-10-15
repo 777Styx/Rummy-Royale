@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package registroMVC;
 
 import entidades.Jugador;
@@ -214,7 +210,7 @@ public class Vista extends javax.swing.JPanel {
         // TODO add your handling code here:
         nombre = txtNombre.getText();
         
-        Jugador jugador = new Jugador(nombre);
+      
     }//GEN-LAST:event_btnStartActionPerformed
 
 
