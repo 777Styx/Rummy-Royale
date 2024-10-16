@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author carlo
+ * @author carloq
  */
-public class pruebaFrame extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame {
 
     private Controlador controlador;
     private String nombre = "";
@@ -27,9 +27,9 @@ public class pruebaFrame extends javax.swing.JFrame {
     /**
      * Creates new form pruebaFrame
      */
-    public pruebaFrame() {
-        initComponents();
+    public View(Controlador controlador) {
         this.controlador = controlador;
+        initComponents();
         this.nombre = nombre;
     }
 
@@ -95,7 +95,7 @@ public class pruebaFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        startBtn = new javax.swing.JButton();
         colorButton1 = new javax.swing.JButton();
         colorPanel1 = new javax.swing.JPanel();
         colorButton2 = new javax.swing.JButton();
@@ -104,6 +104,7 @@ public class pruebaFrame extends javax.swing.JFrame {
         colorPanel3 = new javax.swing.JPanel();
         colorButton4 = new javax.swing.JButton();
         colorPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,27 +126,32 @@ public class pruebaFrame extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("colores:");
-        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jLabel3.setText("AVAtar:");
+        panelRound1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ReGISTRO");
         panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
         jTextField1.setBorder(null);
-        panelRound1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 310, 40));
+        panelRound1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 310, 40));
 
         jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("nombre:");
-        panelRound1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        panelRound1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(225, 240, 67));
-        jButton1.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
-        jButton1.setText("start");
-        panelRound1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 40));
+        startBtn.setBackground(new java.awt.Color(225, 240, 67));
+        startBtn.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
+        startBtn.setText("start");
+        startBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startBtnActionPerformed(evt);
+            }
+        });
+        panelRound1.add(startBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 100, 40));
 
         colorButton1.setText("Color 1");
         colorButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +159,7 @@ public class pruebaFrame extends javax.swing.JFrame {
                 colorButton1ActionPerformed(evt);
             }
         });
-        panelRound1.add(colorButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        panelRound1.add(colorButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         javax.swing.GroupLayout colorPanel1Layout = new javax.swing.GroupLayout(colorPanel1);
         colorPanel1.setLayout(colorPanel1Layout);
@@ -166,7 +172,7 @@ public class pruebaFrame extends javax.swing.JFrame {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 70, 20));
+        panelRound1.add(colorPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, 20));
 
         colorButton2.setText("Color 2");
         colorButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +180,7 @@ public class pruebaFrame extends javax.swing.JFrame {
                 colorButton2ActionPerformed(evt);
             }
         });
-        panelRound1.add(colorButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+        panelRound1.add(colorButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         javax.swing.GroupLayout colorPanel2Layout = new javax.swing.GroupLayout(colorPanel2);
         colorPanel2.setLayout(colorPanel2Layout);
@@ -187,7 +193,7 @@ public class pruebaFrame extends javax.swing.JFrame {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+        panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         colorButton3.setText("Color 3");
         colorButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +201,7 @@ public class pruebaFrame extends javax.swing.JFrame {
                 colorButton3ActionPerformed(evt);
             }
         });
-        panelRound1.add(colorButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+        panelRound1.add(colorButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
         javax.swing.GroupLayout colorPanel3Layout = new javax.swing.GroupLayout(colorPanel3);
         colorPanel3.setLayout(colorPanel3Layout);
@@ -208,7 +214,7 @@ public class pruebaFrame extends javax.swing.JFrame {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         colorButton4.setText("Color 4");
         colorButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +222,7 @@ public class pruebaFrame extends javax.swing.JFrame {
                 colorButton4ActionPerformed(evt);
             }
         });
-        panelRound1.add(colorButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+        panelRound1.add(colorButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         javax.swing.GroupLayout colorPanel4Layout = new javax.swing.GroupLayout(colorPanel4);
         colorPanel4.setLayout(colorPanel4Layout);
@@ -229,7 +235,12 @@ public class pruebaFrame extends javax.swing.JFrame {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+        panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("colores:");
+        panelRound1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 520, 360));
 
@@ -245,70 +256,78 @@ public class pruebaFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void colorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton1ActionPerformed
-        // TODO add your handling code here:
-        //ColorChooserListener colorChooserListener = new ColorChooserListener(1);
-        JColorChooser colorChooser = new JColorChooser();
-        Color color = JColorChooser.showDialog(null, "Pick a color...I guess", Color.black);
+        Color color = JColorChooser.showDialog(null, "Color de Ficha 1", Color.black);
         colorPanel1.setBackground(color);
-        int choosenColor = color.getRGB();
-        Color colorFromInt = new Color(choosenColor);
-        colorPanel2.setBackground(colorFromInt);
+        //int choosenColor = color.getRGB();
+        // crear color con int: Color colorFromInt = new Color(choosenColor);
     }//GEN-LAST:event_colorButton1ActionPerformed
     
     private void colorButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton2ActionPerformed
-        // TODO add your handling code here:
-        ColorChooserListener colorChooserListener = new ColorChooserListener(2);
+        Color color = JColorChooser.showDialog(null, "Color de Ficha 2", Color.black);
+        colorPanel2.setBackground(color);
+        //int choosenColor = color.getRGB();
     }//GEN-LAST:event_colorButton2ActionPerformed
 
     private void colorButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton3ActionPerformed
-        // TODO add your handling code here:
-        ColorChooserListener colorChooserListener = new ColorChooserListener(3);
+        Color color = JColorChooser.showDialog(null, "Color de Ficha 3", Color.black);
+        colorPanel3.setBackground(color);
+        //int choosenColor = color.getRGB();
     }//GEN-LAST:event_colorButton3ActionPerformed
 
     private void colorButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton4ActionPerformed
-        // TODO add your handling code here:
-        ColorChooserListener colorChooserListener = new ColorChooserListener(4);
+        Color color = JColorChooser.showDialog(null, "Color de Ficha 3", Color.black);
+        colorPanel4.setBackground(color);
+        //int choosenColor = color.getRGB();
     }//GEN-LAST:event_colorButton4ActionPerformed
+
+    private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
+        // crear el jugador
+        
+        
+    }//GEN-LAST:event_startBtnActionPerformed
 
     
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new pruebaFrame().setVisible(true);
-            }
-        });
-    }
+    
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new View().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton colorButton1;
@@ -319,13 +338,14 @@ public class pruebaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel colorPanel2;
     private javax.swing.JPanel colorPanel3;
     private javax.swing.JPanel colorPanel4;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private utils.PanelRound panelRound1;
+    private javax.swing.JButton startBtn;
     // End of variables declaration//GEN-END:variables
 }

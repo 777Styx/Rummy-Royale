@@ -1,4 +1,5 @@
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\ColorFicha.java
+C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\registroMVC\View.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\configuracioJuegoMVC\IModeloObservador.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\unsirseCrearMVC\IObservable.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\configuracioJuegoMVC\IObservable.java
@@ -11,8 +12,10 @@ C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\e
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\FichaNumerica.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\utils\PanelRound.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\registroMVC\Vista.java
+C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\configuracioJuegoMVC\View.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\tableMVC\View.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\Tablero.java
+C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\registroMVC\Main.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\Mazo.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\FichaComodin.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\IFicha.java
@@ -24,7 +27,6 @@ C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\r
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\unsirseCrearMVC\Vista.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\tableMVC\IModeloObservador.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\registroMVC\IModeloObservador.java
-C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\configuracioJuegoMVC\Vista.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\tableMVC\IObservable.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\entidades\Jugador.java
 C:\Users\carlo\OneDrive\Documents\GitHub\3erAvance\Rummy_Avance3\src\main\java\unsirseCrearMVC\IModeloObservador.java

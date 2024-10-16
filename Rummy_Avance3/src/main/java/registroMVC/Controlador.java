@@ -8,7 +8,7 @@ public class Controlador {
 
     private static Controlador controlador;
     private Modelo modelo;
-    private Vista vista;
+    private View view;
 
     public static Controlador getInsatnce() {
         return controlador == null ? controlador = new Controlador() : controlador;
@@ -18,8 +18,8 @@ public class Controlador {
         this.modelo = modelo;
     }
 
-    public void setVista(Vista vista) {
-        this.vista = vista;
+    public void setView(View view) {
+        this.view = view;
     }
 
 }
