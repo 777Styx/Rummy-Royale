@@ -1,34 +1,84 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package registroMVC;
 
-import entidades.Jugador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
+
+
 /**
  *
- * @author julli
+ * @author carlo
  */
-public class Vista extends javax.swing.JPanel {
+public class pruebaFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Vista
-     */
     private Controlador controlador;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
-
-    public Vista(Controlador controlador) {
+    
+    /**
+     * Creates new form pruebaFrame
+     */
+    public pruebaFrame() {
         initComponents();
         this.controlador = controlador;
         this.nombre = nombre;
     }
 
+    private class ColorChooserListener implements ActionListener {
+        private int colorIndex;
+
+        public ColorChooserListener(int index) {
+            this.colorIndex = index;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // mostrar selector
+            Color newColor = JColorChooser.showDialog(null, "Seleccionar un color", Color.WHITE);
+
+            if (newColor != null && isColorUnique(newColor)) {
+                switch (colorIndex) {
+                    case 1:
+                        selectedColor1 = newColor;
+                        colorPanel1.setBackground(selectedColor1);
+                        break;
+                    case 2:
+                        selectedColor2 = newColor;
+                        colorPanel2.setBackground(selectedColor2);
+                        break;
+                    case 3:
+                        selectedColor3 = newColor;
+                        colorPanel3.setBackground(selectedColor3);
+                        break;
+                    case 4:
+                        selectedColor4 = newColor;
+                        colorPanel4.setBackground(selectedColor4);
+                        break;
+                }
+            } else if (newColor != null) {
+                JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
+            }
+        }
+        private boolean isColorUnique(Color newColor) {
+            Set<Color> selectedColors = new HashSet<>();
+            if (selectedColor1 != null) selectedColors.add(selectedColor1);
+            if (selectedColor2 != null) selectedColors.add(selectedColor2);
+            if (selectedColor3 != null) selectedColors.add(selectedColor3);
+            if (selectedColor4 != null) selectedColors.add(selectedColor4);
+            return !selectedColors.contains(newColor);
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +105,7 @@ public class Vista extends javax.swing.JPanel {
         colorButton4 = new javax.swing.JButton();
         colorPanel4 = new javax.swing.JPanel();
 
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(128, 175, 167));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 500));
@@ -183,8 +233,8 @@ public class Vista extends javax.swing.JPanel {
 
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 520, 360));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
@@ -193,75 +243,71 @@ public class Vista extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void colorButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton3ActionPerformed
-        // TODO add your handling code here:
-        new ColorChooserListener(3);
-    }//GEN-LAST:event_colorButton3ActionPerformed
-
     private void colorButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton1ActionPerformed
-
-        // new ColorChooserListener(1);
+        // TODO add your handling code here:
+        //ColorChooserListener colorChooserListener = new ColorChooserListener(1);
         JColorChooser colorChooser = new JColorChooser();
         Color color = JColorChooser.showDialog(null, "Pick a color...I guess", Color.black);
         colorPanel1.setBackground(color);
+        int choosenColor = color.getRGB();
+        Color colorFromInt = new Color(choosenColor);
+        colorPanel2.setBackground(colorFromInt);
     }//GEN-LAST:event_colorButton1ActionPerformed
-
+    
     private void colorButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton2ActionPerformed
         // TODO add your handling code here:
-        new ColorChooserListener(2);
+        ColorChooserListener colorChooserListener = new ColorChooserListener(2);
     }//GEN-LAST:event_colorButton2ActionPerformed
+
+    private void colorButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton3ActionPerformed
+        // TODO add your handling code here:
+        ColorChooserListener colorChooserListener = new ColorChooserListener(3);
+    }//GEN-LAST:event_colorButton3ActionPerformed
 
     private void colorButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton4ActionPerformed
         // TODO add your handling code here:
-        new ColorChooserListener(4);
+        ColorChooserListener colorChooserListener = new ColorChooserListener(4);
     }//GEN-LAST:event_colorButton4ActionPerformed
 
     
-    private class ColorChooserListener implements ActionListener {
-        private int colorIndex;
-
-        public ColorChooserListener(int index) {
-            this.colorIndex = index;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // mostrar selector
-            Color newColor = JColorChooser.showDialog(null, "Seleccionar un color", Color.WHITE);
-
-            if (newColor != null && isColorUnique(newColor)) {
-                switch (colorIndex) {
-                    case 1:
-                        selectedColor1 = newColor;
-                        colorPanel1.setBackground(selectedColor1);
-                        break;
-                    case 2:
-                        selectedColor2 = newColor;
-                        colorPanel2.setBackground(selectedColor2);
-                        break;
-                    case 3:
-                        selectedColor3 = newColor;
-                        colorPanel3.setBackground(selectedColor3);
-                        break;
-                    case 4:
-                        selectedColor4 = newColor;
-                        colorPanel4.setBackground(selectedColor4);
-                        break;
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-            } else if (newColor != null) {
-                JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(pruebaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        private boolean isColorUnique(Color newColor) {
-            Set<Color> selectedColors = new HashSet<>();
-            if (selectedColor1 != null) selectedColors.add(selectedColor1);
-            if (selectedColor2 != null) selectedColors.add(selectedColor2);
-            if (selectedColor3 != null) selectedColors.add(selectedColor3);
-            if (selectedColor4 != null) selectedColors.add(selectedColor4);
-            return !selectedColors.contains(newColor);
-        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new pruebaFrame().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
