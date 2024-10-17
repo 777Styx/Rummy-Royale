@@ -447,7 +447,7 @@ public class View extends javax.swing.JFrame {
         // hola?
         // controlDeck controlChip = new controlDeck();
         // controlChip.generateChip();
-        controlador.tomarFicha();
+        //controlador.tomarFicha();
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 

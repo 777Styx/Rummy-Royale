@@ -9,5 +9,4 @@ package entidades;
  * @author carlo
  */
 public class TipoFicha {
-    
 }
