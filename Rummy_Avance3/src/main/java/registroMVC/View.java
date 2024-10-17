@@ -12,8 +12,6 @@ import java.util.Set;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author carloq
@@ -23,7 +21,7 @@ public class View extends javax.swing.JFrame {
     private Controlador controlador;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
-    
+
     /**
      * Creates new form pruebaFrame
      */
@@ -34,6 +32,7 @@ public class View extends javax.swing.JFrame {
     }
 
     private class ColorChooserListener implements ActionListener {
+
         private int colorIndex;
 
         public ColorChooserListener(int index) {
@@ -68,17 +67,25 @@ public class View extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
             }
         }
+
         private boolean isColorUnique(Color newColor) {
             Set<Color> selectedColors = new HashSet<>();
-            if (selectedColor1 != null) selectedColors.add(selectedColor1);
-            if (selectedColor2 != null) selectedColors.add(selectedColor2);
-            if (selectedColor3 != null) selectedColors.add(selectedColor3);
-            if (selectedColor4 != null) selectedColors.add(selectedColor4);
+            if (selectedColor1 != null) {
+                selectedColors.add(selectedColor1);
+            }
+            if (selectedColor2 != null) {
+                selectedColors.add(selectedColor2);
+            }
+            if (selectedColor3 != null) {
+                selectedColors.add(selectedColor3);
+            }
+            if (selectedColor4 != null) {
+                selectedColors.add(selectedColor4);
+            }
             return !selectedColors.contains(newColor);
         }
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,12 +95,13 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelRound1 = new utils.PanelRound();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombreTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         startBtn = new javax.swing.JButton();
         colorButton1 = new javax.swing.JButton();
@@ -105,6 +113,10 @@ public class View extends javax.swing.JFrame {
         colorButton4 = new javax.swing.JButton();
         colorPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        avatar1 = new javax.swing.JRadioButton();
+        avatar2 = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,9 +146,9 @@ public class View extends javax.swing.JFrame {
         jLabel4.setText("ReGISTRO");
         panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
-        jTextField1.setBorder(null);
-        panelRound1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 310, 40));
+        nombreTxt.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
+        nombreTxt.setBorder(null);
+        panelRound1.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 310, 40));
 
         jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,6 +254,27 @@ public class View extends javax.swing.JFrame {
         jLabel6.setText("colores:");
         panelRound1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
+        avatar1.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(avatar1);
+        avatar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avatar1ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(avatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        avatar2.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(avatar2);
+        panelRound1.add(avatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\OneDrive\\Documents\\GitHub\\3erAvance\\Rummy_Avance3\\src\\main\\res\\creeper.png")); // NOI18N
+        jLabel8.setText(".");
+        panelRound1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\OneDrive\\Documents\\GitHub\\3erAvance\\Rummy_Avance3\\src\\main\\res\\steve.png")); // NOI18N
+        jLabel2.setText(".");
+        panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 520, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,7 +298,7 @@ public class View extends javax.swing.JFrame {
         //int choosenColor = color.getRGB();
         // crear color con int: Color colorFromInt = new Color(choosenColor);
     }//GEN-LAST:event_colorButton1ActionPerformed
-    
+
     private void colorButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorButton2ActionPerformed
         Color color = JColorChooser.showDialog(null, "Color de Ficha 2", Color.black);
         colorPanel2.setBackground(color);
@@ -286,16 +319,39 @@ public class View extends javax.swing.JFrame {
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         // crear el jugador
+
+        String nombreJugador = nombreTxt.getText();
+
+        Color color1 = colorPanel1.getBackground();
+        Color color2 = colorPanel2.getBackground();
+        Color color3 = colorPanel3.getBackground();
+        Color color4 = colorPanel4.getBackground();
+
+        String avatarSeleccionado = obtenerAvatarSeleccionado();
+        if (avatarSeleccionado == null) {
+            // no se selecciono avatar
+        }
         
-        
+        System.out.println(nombreJugador);
+        System.out.println(avatarSeleccionado);
     }//GEN-LAST:event_startBtnActionPerformed
 
-    
-    
+    private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_avatar1ActionPerformed
+
+    private String obtenerAvatarSeleccionado() {
+        if (avatar1.isSelected()) {
+            return "avatar1";
+        } else if (avatar2.isSelected()) {
+            return "avatar2";
+        }
+        return null;
+    }
+
     /**
      * @param args the command line arguments
      */
-    
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -330,6 +386,9 @@ public class View extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton avatar1;
+    private javax.swing.JRadioButton avatar2;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton colorButton1;
     private javax.swing.JButton colorButton2;
     private javax.swing.JButton colorButton3;
@@ -339,12 +398,14 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel colorPanel3;
     private javax.swing.JPanel colorPanel4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nombreTxt;
     private utils.PanelRound panelRound1;
     private javax.swing.JButton startBtn;
     // End of variables declaration//GEN-END:variables
