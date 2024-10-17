@@ -49,6 +49,11 @@ public class Vista extends javax.swing.JPanel {
 
         btnStart1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnStart1.setText("Crear Juego");
+        btnStart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStart1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,6 +123,10 @@ public class Vista extends javax.swing.JPanel {
                     .addContainerGap(325, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStart1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStart1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

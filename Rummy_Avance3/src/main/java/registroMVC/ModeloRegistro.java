@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author puerta
  */
-public class Modelo implements IObservable<IModeloObservador> {
+public class ModeloRegistro implements IObservable<IModeloObservador> {
 
     private ArrayList<Jugador> jugadores; // C: yo creo que esto deberia ser la info directamente de la entidad
     private List<IModeloObservador> observadores;
     private Juego juego;
 
-    public Modelo() {
+    public ModeloRegistro() {
         jugadores = new ArrayList<>();
     }
 

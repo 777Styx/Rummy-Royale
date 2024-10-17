@@ -16,16 +16,16 @@ import javax.swing.JOptionPane;
  *
  * @author carloq
  */
-public class View extends javax.swing.JFrame {
+public class ViewRegistro extends javax.swing.JFrame {
 
-    private Controlador controlador;
+    private ControladorRegistro controlador;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
     /**
      * Creates new form pruebaFrame
      */
-    public View(Controlador controlador) {
+    public ViewRegistro(ControladorRegistro controlador) {
         this.controlador = controlador;
         initComponents();
         this.nombre = nombre;
@@ -267,11 +267,9 @@ public class View extends javax.swing.JFrame {
         buttonGroup1.add(avatar2);
         panelRound1.add(avatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\OneDrive\\Documents\\GitHub\\3erAvance\\Rummy_Avance3\\src\\main\\res\\creeper.png")); // NOI18N
         jLabel8.setText(".");
         panelRound1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlo\\OneDrive\\Documents\\GitHub\\3erAvance\\Rummy_Avance3\\src\\main\\res\\steve.png")); // NOI18N
         jLabel2.setText(".");
         panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
@@ -366,13 +364,13 @@ public class View extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ViewRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ViewRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ViewRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ViewRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -380,7 +378,7 @@ public class View extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new View().setVisible(true);
+//                new ViewRegistro().setVisible(true);
 //            }
 //        });
 //    }

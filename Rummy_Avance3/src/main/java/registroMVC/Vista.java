@@ -19,11 +19,11 @@ public class Vista extends javax.swing.JPanel {
     /**
      * Creates new form Vista
      */
-    private Controlador controlador;
+    private ControladorRegistro controlador;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
-    public Vista(Controlador controlador) {
+    public Vista(ControladorRegistro controlador) {
         initComponents();
         this.controlador = controlador;
         this.nombre = nombre;
