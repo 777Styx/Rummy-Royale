@@ -1,7 +1,10 @@
 package registroMVC;
 
-import entidades.ColorFicha;
+import entidades.Juego;
 import entidades.Jugador;
+import entidades.ManejadorColor;
+import entidades.TipoFicha;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +14,9 @@ import java.util.List;
  */
 public class Modelo implements IObservable<IModeloObservador> {
 
-    private ArrayList<Jugador> jugadores;
+    private ArrayList<Jugador> jugadores; // C: yo creo que esto deberia ser la info directamente de la entidad
     private List<IModeloObservador> observadores;
+    private Juego juego;
 
     public Modelo() {
         jugadores = new ArrayList<>();
@@ -25,11 +29,13 @@ public class Modelo implements IObservable<IModeloObservador> {
      * @return
      */
     public boolean registrarJugador(Jugador jugador) {
-        if (jugadores.size() >= 4) {
-            System.out.println("Aqui no pana ya ta' lleno");
-            return false;
+        if (!juego.validarAvatarNoUsado(jugador.getAvatar())) {
+            if (jugadores.size() >= 4) {
+                System.out.println("Aqui no pana ya ta' lleno");
+                return false;
+            }
         }
-
+        
         jugadores.add(jugador);
         return true;
     }
@@ -59,4 +65,30 @@ public class Modelo implements IObservable<IModeloObservador> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Jugador crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4){
+        // crear instancia de jugador??
+        
+        //validaciones i guess
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del jugador no puede estar vacio");
+        }
+        if (avatar == null || avatar.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debes seleccionar un avatar");
+        }
+        if (color1 == null || color2 == null || color3 == null || color4 == null) {
+            throw new IllegalArgumentException("Selecciona todos los colores porfavorcito");
+        }
+        
+        Jugador jugador = new Jugador(nombre, avatar);
+        ManejadorColor manejadorColor = jugador.getManejadorColor();
+        
+        manejadorColor.setColor(TipoFicha.TIPO1, color1);
+        manejadorColor.setColor(TipoFicha.TIPO2, color2);
+        manejadorColor.setColor(TipoFicha.TIPO3, color3);
+        manejadorColor.setColor(TipoFicha.TIPO4, color4);
+        
+        return jugador;
+    }
+    
+    
 }

@@ -9,25 +9,15 @@ import java.util.ArrayList;
  */
 public class Jugador {
 
-    // Nombre del jugador
     private String nombre;
-    //Avatar del jugador
     private String avatar = "";
-    //Colores que vera por fichas
-    private ArrayList<ColorFicha> listaColores;
-    // Fichas que tiene el jugador en su mano      
+    private ManejadorColor manejadorColor;   
     private ArrayList<IFicha> mano;
 
-//    public Jugador(String nombre, String avatar) {
-//        this.nombre = nombre;
-//        this.avatar = avatar;
-//        this.listaColores = new ArrayList<>();
-//        this.mano = new ArrayList<>();
-//    }
-    public Jugador(String nombre) {
+    public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
         this.avatar = avatar;
-        this.listaColores = new ArrayList<>();
+        this.manejadorColor = new ManejadorColor();
         this.mano = new ArrayList<>();
     }
 
@@ -64,12 +54,8 @@ public class Jugador {
         return avatar;
     }
 
-    public ArrayList<ColorFicha> getListaColores() {
-        return listaColores;
-    }
-
-    public void setListaColores(ArrayList<ColorFicha> listaColores) {
-        this.listaColores = listaColores;
+    public ManejadorColor getManejadorColor() {
+        return manejadorColor;
     }
 
     @Override

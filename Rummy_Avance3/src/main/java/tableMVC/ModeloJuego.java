@@ -4,8 +4,7 @@ import entidades.IFicha;
 import entidades.Tablero;
 import entidades.Jugador;
 import entidades.Combinacion;
-import entidades.ColorFicha;
-import java.awt.Color;
+import entidades.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +23,6 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
     private Tablero tablero;
     private int indiceJugadorActual;
     private Random random;
-    private ColorFicha color;
     private List<IModeloObservador> observadores;
 
     public ModeloJuego() {

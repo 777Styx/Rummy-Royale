@@ -321,7 +321,7 @@ public class View extends javax.swing.JFrame {
         // crear el jugador
 
         String nombreJugador = nombreTxt.getText();
-
+        
         Color color1 = colorPanel1.getBackground();
         Color color2 = colorPanel2.getBackground();
         Color color3 = colorPanel3.getBackground();
@@ -330,10 +330,10 @@ public class View extends javax.swing.JFrame {
         String avatarSeleccionado = obtenerAvatarSeleccionado();
         if (avatarSeleccionado == null) {
             // no se selecciono avatar
-        }
+        } 
         
-        System.out.println(nombreJugador);
-        System.out.println(avatarSeleccionado);
+        controlador.crearJugador(nombre, nombre, color1, color2, color3, color4);
+        //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed

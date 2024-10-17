@@ -13,5 +13,18 @@ import java.util.Map;
  * @author carlo
  */
 public class ManejadorColor {
+    private Map<TipoFicha, Color> colorMap;
+    
+    public ManejadorColor() {
+        colorMap = new HashMap<>();
+    }
+    
+    public void setColor(TipoFicha tipoFicha, Color color) {
+        colorMap.put(tipoFicha, color);
+    }
+    
+    public Color getColor(TipoFicha tipoFicha) {
+        return colorMap.get(tipoFicha);
+    }
     
  }
