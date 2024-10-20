@@ -16,7 +16,7 @@ import java.util.Random;
 import entidades.Jugador;
 import entidades.Combinacion;
  */
-public class ModeloMesa implements IObservable<IModeloObservador> {
+public class ModeloJuego implements IObservable<IModeloObservador> {
 
     private ArrayList<Jugador> jugadores;
     private ArrayList<IFicha> fichas;
@@ -25,7 +25,7 @@ public class ModeloMesa implements IObservable<IModeloObservador> {
     private Random random;
     private List<IModeloObservador> observadores;
 
-    public ModeloMesa() {
+    public ModeloJuego() {
         observadores = new ArrayList<>();
         jugadores = new ArrayList<>();
         fichas = new ArrayList<>();

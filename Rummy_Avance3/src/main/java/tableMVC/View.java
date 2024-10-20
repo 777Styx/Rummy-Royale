@@ -6,14 +6,14 @@ import utils.PanelRound;
  *
  * @author carlo
  */
-public class MesaView extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame {
 
     private Controlador controlador;
 
     /**
      * Creates new form View
      */
-    public MesaView(Controlador controlador) {
+    public View(Controlador controlador) {
         initComponents();
         this.controlador = controlador;
 
@@ -503,22 +503,21 @@ public class MesaView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MesaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MesaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MesaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MesaView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Controlador controlador = Controlador.getInstance();
-                MesaView vista = new MesaView(controlador);
+                View vista = new View(controlador);
                 vista.setVisible(true);
             }
         });

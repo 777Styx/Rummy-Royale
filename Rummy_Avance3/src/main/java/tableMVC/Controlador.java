@@ -13,9 +13,9 @@ public class Controlador {
     // Instancia del controlador (Singleton)
     private static Controlador controlador;
     // Modelo que contiene la logica del juego
-    private ModeloMesa model;
+    private ModeloJuego model;
     // Vista que presenta la interfaz de usuario
-    private MesaView view;
+    private View view;
 
     /**
      * Obtiene la instancia del controlador (singleton)
@@ -31,7 +31,7 @@ public class Controlador {
      *
      * @param model el modelo a establecer
      */
-    public void setModel(ModeloMesa model) {
+    public void setModel(ModeloJuego model) {
         this.model = model;
     }
 
@@ -40,7 +40,7 @@ public class Controlador {
      *
      * @param view la vista a establecer
      */
-    public void setView(MesaView view) {
+    public void setView(View view) {
         this.view = view;
     }
 
@@ -63,7 +63,7 @@ public class Controlador {
     }
 
     /**
-     * toma una ficha aleatora del ModeloMesa
+     * toma una ficha aleatora del ModeloJuego
      */
     public void tomarFicha() {
         model.tomarFicha();
