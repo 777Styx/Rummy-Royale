@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package configuracioJuegoMVC;
+package unsirseCrearMVC;
 
 /**
  *
  * @author carlo
  */
-public class View extends javax.swing.JPanel {
+public class VistaConfiguracion extends javax.swing.JPanel {
 
     int comodines;
     
     /**
      * Creates new form View
      */
-    public View() {
+    public VistaConfiguracion() {
         initComponents();
     }
 

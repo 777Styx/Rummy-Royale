@@ -26,9 +26,10 @@ public class ViewRegistro extends javax.swing.JFrame {
      * Creates new form pruebaFrame
      */
     public ViewRegistro(ControladorRegistro controlador) {
-        this.controlador = controlador;
+
         initComponents();
         this.nombre = nombre;
+        this.controlador = controlador;
     }
 
     private class ColorChooserListener implements ActionListener {
@@ -319,7 +320,7 @@ public class ViewRegistro extends javax.swing.JFrame {
         // crear el jugador
 
         String nombreJugador = nombreTxt.getText();
-        
+
         Color color1 = colorPanel1.getBackground();
         Color color2 = colorPanel2.getBackground();
         Color color3 = colorPanel3.getBackground();
@@ -328,8 +329,8 @@ public class ViewRegistro extends javax.swing.JFrame {
         String avatarSeleccionado = obtenerAvatarSeleccionado();
         if (avatarSeleccionado == null) {
             // no se selecciono avatar
-        } 
-        
+        }
+
         controlador.crearJugador(nombre, nombre, color1, color2, color3, color4);
         //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
     }//GEN-LAST:event_startBtnActionPerformed

@@ -15,12 +15,14 @@ public class Main {
      */
     public static void main(String[] args) {
         ModeloRegistro modelo = new ModeloRegistro();
-        ControladorRegistro controlador = ControladorRegistro.getInsatnce();
+        //   ControladorRegistro controlador = ControladorRegistro.getInsatnce();
+        ControladorRegistro controlador = new ControladorRegistro(modelo);
+        
         ViewRegistro vistaRegistro = new ViewRegistro(controlador);
         controlador.setModelo(modelo);
-        controlador.setView(vistaRegistro);
-        
+        // controlador.setView(vistaRegistro);
+    
         vistaRegistro.setVisible(true);
     }
-    
+
 }
