@@ -1,4 +1,4 @@
-package inicioJuegoMVC;
+package partidaMVC;
 
 /**
  *

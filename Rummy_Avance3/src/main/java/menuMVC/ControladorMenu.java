@@ -1,20 +1,19 @@
-package unsirseCrearMVC;
+package menuMVC;
 
-import registroMVC.ControladorRegistro;
-import registroMVC.ViewRegistro;
+import java.awt.Color;
 
 /**
  *
  * @author puerta
  */
-public class ControladorUnirse {
+public class ControladorMenu {
 
     // Variable estática que contiene la única instancia del controlador
-    private static ControladorUnirse instancia;
-    private final ModeloUnirse modelo;
+    private static ControladorMenu instancia;
+    private final ModeloMenu modelo;
 
     // Constructor privado para evitar la creación de nuevas instancias
-    public ControladorUnirse(ModeloUnirse modelo) {
+    public ControladorMenu(ModeloMenu modelo) {
         // Inicializar si es necesario
         this.modelo = modelo;
 
@@ -22,9 +21,9 @@ public class ControladorUnirse {
 
 //
 //    // Método estático para obtener la instancia única del controlador
-//    public static ControladorUnirse getInstancia() {
+//    public static ControladorMenu getInstancia() {
 //        if (instancia == null) {
-//            instancia = new ControladorUnirse(ModeloUnirse modelo);
+//            instancia = new ControladorMenu(ModeloMenu modelo);
 //        }
 //        return instancia;
 //    }
@@ -53,6 +52,21 @@ public class ControladorUnirse {
 //        // Mostrar la vista asociada
 //        controladorRegistro.mostrarVista();
     }
+    
+ 
+
+//    public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
+//        modeloRegistro.crearJugador(nombre, avatar, color1, color2, color3, color4);
+//    }
+//
+//    public void setModelo(ModeloRegistro modeloRegistro) {
+//        this.modeloRegistro = modeloRegistro;
+//    }
+//
+//    public void setView(ViewRegistro view) {
+//        this.view = view;
+//    }
+
 
     public void crearJuego() {
         

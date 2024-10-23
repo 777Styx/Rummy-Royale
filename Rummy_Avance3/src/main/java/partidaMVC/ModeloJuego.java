@@ -1,4 +1,4 @@
-package tableMVC;
+package partidaMVC;
 
 import entidades.IFicha;
 import entidades.Tablero;

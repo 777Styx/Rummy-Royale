@@ -1,9 +1,9 @@
 package origin;
 
-import tableMVC.Controlador;
-import unsirseCrearMVC.ControladorUnirse;
-import unsirseCrearMVC.ModeloUnirse;
-import unsirseCrearMVC.VistaUnirse;
+import partidaMVC.Controlador;
+import menuMVC.ControladorMenu;
+import menuMVC.ModeloMenu;
+import menuMVC.VistaUnirse;
 
 /**
  *
@@ -13,14 +13,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ModeloUnirse modeloUnirse = new ModeloUnirse();
+        ModeloMenu modeloUnirse = new ModeloMenu();
 
-        //ControladorUnirse controladorUnirse = ControladorUnirse.getInstancia();
-        ControladorUnirse controladorUnirse = new ControladorUnirse(modeloUnirse);
-
+        //ControladorUnirse controladorUnirse = ControladorMenu.getInstancia();
+        ControladorMenu controladorUnirse = new ControladorMenu(modeloUnirse);
         VistaUnirse vistaUnirse = new VistaUnirse(controladorUnirse);
-
         modeloUnirse.addObserver(vistaUnirse);
+        
+        
+        
 
         java.awt.EventQueue.invokeLater(() -> {
             vistaUnirse.setVisible(true);

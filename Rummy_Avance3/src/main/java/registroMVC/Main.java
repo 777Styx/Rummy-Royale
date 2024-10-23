@@ -4,6 +4,10 @@
  */
 package registroMVC;
 
+import menuMVC.VistaRegistro;
+import menuMVC.ControladorRegistro;
+import menuMVC.ModeloRegistro;
+
 /**
  *
  * @author carlo
@@ -18,7 +22,7 @@ public class Main {
         //   ControladorRegistro controlador = ControladorRegistro.getInsatnce();
         ControladorRegistro controlador = new ControladorRegistro(modelo);
         
-        ViewRegistro vistaRegistro = new ViewRegistro(controlador);
+        VistaRegistro vistaRegistro = new VistaRegistro(controlador);
         controlador.setModelo(modelo);
         // controlador.setView(vistaRegistro);
     

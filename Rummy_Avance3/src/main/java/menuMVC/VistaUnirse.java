@@ -1,11 +1,8 @@
-package unsirseCrearMVC;
+package menuMVC;
 
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
-import registroMVC.ControladorRegistro;
-import registroMVC.ModeloRegistro;
-import registroMVC.ViewRegistro;
 
 /**
  *
@@ -13,12 +10,12 @@ import registroMVC.ViewRegistro;
  */
 public class VistaUnirse extends javax.swing.JFrame implements Observer {
 
-    private ControladorUnirse controlador;
+    private ControladorMenu controlador;
 
     /**
      * Creates new form VistaUnirse
      */
-    public VistaUnirse(ControladorUnirse controlador) {
+    public VistaUnirse(ControladorMenu controlador) {
         initComponents();
         this.controlador = controlador;
     }
@@ -65,7 +62,7 @@ public class VistaUnirse extends javax.swing.JFrame implements Observer {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
 
-//        ControladorUnirse controladorUnirse = ControladorUnirse.getInstancia();
+//        ControladorMenu controladorUnirse = ControladorMenu.getInstancia();
 //        controladorUnirse.unirseAPartidaView("Carlitos");
 //        this.dispose();
         System.out.println("control");
@@ -81,13 +78,13 @@ public class VistaUnirse extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("hola");
 
-        if (o instanceof ModeloUnirse) {  // Asegura que o es ModeloUnirse
-            ModeloUnirse modeloUnirse = (ModeloUnirse) o;
+        if (o instanceof ModeloMenu) {  // Asegura que o es ModeloMenu
+            ModeloMenu modeloUnirse = (ModeloMenu) o;
 
             if (modeloUnirse.getJuego() != null) {
                 ModeloRegistro modeloRegistro = new ModeloRegistro();
                 ControladorRegistro controlRegistro = new ControladorRegistro(modeloRegistro);
-                ViewRegistro viewRegistro = new ViewRegistro(controlRegistro);
+                VistaRegistro viewRegistro = new VistaRegistro(controlRegistro);
 
                 java.awt.EventQueue.invokeLater(    () -> {
                     viewRegistro.setVisible(true);

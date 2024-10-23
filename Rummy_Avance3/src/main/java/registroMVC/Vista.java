@@ -1,5 +1,6 @@
 package registroMVC;
 
+import menuMVC.ControladorRegistro;
 import entidades.Jugador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -95,6 +96,11 @@ public class Vista extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(225, 240, 67));
         jButton1.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
         jButton1.setText("start");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         panelRound1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 100, 40));
 
         colorButton1.setText("Color 1");
@@ -217,6 +223,10 @@ public class Vista extends javax.swing.JPanel {
         // TODO add your handling code here:
         new ColorChooserListener(4);
     }//GEN-LAST:event_colorButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private class ColorChooserListener implements ActionListener {
