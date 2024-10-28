@@ -35,17 +35,6 @@ public class ModeloMenu extends Observable {
 }
 
 //
-//
-//public class ModeloRegistro implements IObservable<IModeloObservador> {
-//
-//    private ArrayList<Jugador> jugadores; // C: yo creo que esto deberia ser la info directamente de la entidad
-//    private List<IModeloObservador> observadores;
-//    private Juego juego;
-//
-//    public ModeloRegistro() {
-//        jugadores = new ArrayList<>();
-//    }
-//
 //    /**
 //     * Se registra un jugador
 //     *

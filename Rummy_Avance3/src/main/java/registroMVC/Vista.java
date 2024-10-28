@@ -1,6 +1,5 @@
 package registroMVC;
 
-import menuMVC.ControladorRegistro;
 import entidades.Jugador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -10,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import menuMVC.ControladorMenu;
 
 /**
  *
@@ -20,13 +20,13 @@ public class Vista extends javax.swing.JPanel {
     /**
      * Creates new form Vista
      */
-    private ControladorRegistro controlador;
+    private ControladorMenu controladorMenu;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
-    public Vista(ControladorRegistro controlador) {
+    public Vista(ControladorMenu controladorMenu) {
         initComponents();
-        this.controlador = controlador;
+        this.controladorMenu = controladorMenu;
         this.nombre = nombre;
     }
 
@@ -228,8 +228,8 @@ public class Vista extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     private class ColorChooserListener implements ActionListener {
+
         private int colorIndex;
 
         public ColorChooserListener(int index) {
@@ -264,12 +264,21 @@ public class Vista extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
             }
         }
+
         private boolean isColorUnique(Color newColor) {
             Set<Color> selectedColors = new HashSet<>();
-            if (selectedColor1 != null) selectedColors.add(selectedColor1);
-            if (selectedColor2 != null) selectedColors.add(selectedColor2);
-            if (selectedColor3 != null) selectedColors.add(selectedColor3);
-            if (selectedColor4 != null) selectedColors.add(selectedColor4);
+            if (selectedColor1 != null) {
+                selectedColors.add(selectedColor1);
+            }
+            if (selectedColor2 != null) {
+                selectedColors.add(selectedColor2);
+            }
+            if (selectedColor3 != null) {
+                selectedColors.add(selectedColor3);
+            }
+            if (selectedColor4 != null) {
+                selectedColors.add(selectedColor4);
+            }
             return !selectedColors.contains(newColor);
         }
     }

@@ -1,22 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package menuMVC;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author carlo
  */
-public class VistaConfiguracion extends javax.swing.JPanel {
+public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
 
     int comodines;
-    
+    private static ControladorMenu controladorMenu;
+
     /**
      * Creates new form View
      */
-    public VistaConfiguracion() {
+    public VistaConfiguracion(ControladorMenu controladorMenu) {
         initComponents();
+        this.controladorMenu = controladorMenu;
     }
 
     /**
@@ -140,7 +141,7 @@ public class VistaConfiguracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void lessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessBtnActionPerformed
-        if(comodines > 2) {
+        if (comodines > 2) {
             comodines--;
             comodinesTxt.setText(String.valueOf(comodines));
         }
@@ -149,7 +150,7 @@ public class VistaConfiguracion extends javax.swing.JPanel {
 
     private void moreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreBtnActionPerformed
 
-        if(comodines < 8) {
+        if (comodines < 8) {
             comodines++;
             comodinesTxt.setText(String.valueOf(comodines));
         }
@@ -174,4 +175,9 @@ public class VistaConfiguracion extends javax.swing.JPanel {
     private utils.Btn moreBtn;
     private utils.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
