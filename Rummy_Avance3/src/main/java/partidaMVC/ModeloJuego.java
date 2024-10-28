@@ -13,20 +13,17 @@ import java.util.Random;
 /**
  *
  * @author puerta
-import entidades.Jugador;
-import entidades.Combinacion;
  */
-public class ModeloJuego implements IObservable<IModeloObservador> {
+public class ModeloJuego {
 
     private ArrayList<Jugador> jugadores;
     private ArrayList<IFicha> fichas;
     private Tablero tablero;
     private int indiceJugadorActual;
     private Random random;
-    private List<IModeloObservador> observadores;
 
     public ModeloJuego() {
-        observadores = new ArrayList<>();
+
         jugadores = new ArrayList<>();
         fichas = new ArrayList<>();
         tablero = new Tablero();
@@ -54,7 +51,7 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
                 }
             }
         }
-        notificarObservadores(); // Notifica después de repartir fichas
+        // notificarObservadores(); // Notifica después de repartir fichas
     }
 
     /**
@@ -79,7 +76,7 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
     public void agregarJugador(Jugador jugador) {
         if (jugadores.size() < 4) { // Máximo de 4 jugadores
             jugadores.add(jugador);
-            notificarObservadores(); // Notifica al agregar un jugador
+            //  notificarObservadores(); // Notifica al agregar un jugador
         }
     }
 
@@ -91,7 +88,7 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
     // Pasar al siguiente jugador
     public void siguienteTurno() {
         indiceJugadorActual = (indiceJugadorActual + 1) % jugadores.size();
-        notificarObservadores(); // Notifica al pasar el turno
+        // notificarObservadores(); // Notifica al pasar el turno
     }
 
     /**
@@ -113,7 +110,7 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
     public void colocarCombinacionEnTablero(Combinacion combinacion) {
         if (combinacion != null && combinacion.esValida()) {
             tablero.agregarCombinacion(combinacion);
-            notificarObservadores(); // Notifica al colocar una combinación
+            //  notificarObservadores(); // Notifica al colocar una combinación
         } else {
             //Poner el error
         }
@@ -155,25 +152,4 @@ public class ModeloJuego implements IObservable<IModeloObservador> {
         return null;
     }
 
-    @Override
-    public void agregarObservador(IModeloObservador t) {
-        observadores.add(t);
-    }
-
-    @Override
-    public void removerObservador(IModeloObservador t) {
-        observadores.remove(t);
-    }
-
-    @Override
-    public void notificarObservadores() {
-        for (IModeloObservador observador : observadores) {
-            observador.actualizarTablero(tablero.obtenerCombinaciones()); // Notifica el estado del tablero a las vistas.
-            observador.actualizarJugadorActual(obtenerJugadorActual()); // Notifica el jugador actual a las vistas.
-        }
-    }
-
-    void colocarFichasEnTablero(List<IFicha> fichas) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

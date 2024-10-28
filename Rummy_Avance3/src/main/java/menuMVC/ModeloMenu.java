@@ -1,6 +1,7 @@
 package menuMVC;
 
 import entidades.Juego;
+import java.awt.Color;
 import java.util.Observable;
 
 /**
@@ -32,10 +33,6 @@ public class ModeloMenu extends Observable {
     }
 
 }
-
-
-
-
 
 //
 //
@@ -116,7 +113,4 @@ public class ModeloMenu extends Observable {
 //        
 //        return jugador;
 //    }
-//    
-//    
-//}
 

@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
@@ -16,20 +18,26 @@ import javax.swing.JOptionPane;
  *
  * @author carloq
  */
-public class VistaRegistro extends javax.swing.JFrame {
+public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
-    private ControladorRegistro controlador;
+    // private ControladorRegistro controlador;
+    private ControladorMenu controladorMenu;
     private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
     /**
      * Creates new form pruebaFrame
      */
-    public VistaRegistro(ControladorRegistro controlador) {
+    public VistaRegistro(ControladorMenu controladorMenu) {
 
         initComponents();
         this.nombre = nombre;
-        this.controlador = controlador;
+        this.controladorMenu = controladorMenu;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     private class ColorChooserListener implements ActionListener {
@@ -331,7 +339,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             // no se selecciono avatar
         }
 
-        controlador.crearJugador(nombre, nombre, color1, color2, color3, color4);
+        controladorMenu.crearJugador(nombre, nombre, color1, color2, color3, color4);
         //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
     }//GEN-LAST:event_startBtnActionPerformed
 

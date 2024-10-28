@@ -10,14 +10,14 @@ import java.util.Observer;
  */
 public class VistaUnirse extends javax.swing.JFrame implements Observer {
 
-    private ControladorMenu controlador;
+    private ControladorMenu controladorMenu;
 
     /**
      * Creates new form VistaUnirse
      */
-    public VistaUnirse(ControladorMenu controlador) {
+    public VistaUnirse(ControladorMenu controladorMenu) {
         initComponents();
-        this.controlador = controlador;
+        this.controladorMenu = controladorMenu;
     }
 
     /**
@@ -66,7 +66,7 @@ public class VistaUnirse extends javax.swing.JFrame implements Observer {
 //        controladorUnirse.unirseAPartidaView("Carlitos");
 //        this.dispose();
         System.out.println("control");
-        controlador.crearJuego();
+        controladorMenu.crearJuego();
     }//GEN-LAST:event_btnStartActionPerformed
 
 
@@ -76,19 +76,17 @@ public class VistaUnirse extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("hola");
+        System.out.println("Actualización recibida en VistaUnirse");
 
-        if (o instanceof ModeloMenu) {  // Asegura que o es ModeloMenu
+        if (o instanceof ModeloMenu) {
             ModeloMenu modeloUnirse = (ModeloMenu) o;
 
             if (modeloUnirse.getJuego() != null) {
-                ModeloRegistro modeloRegistro = new ModeloRegistro();
-                ControladorRegistro controlRegistro = new ControladorRegistro(modeloRegistro);
-                VistaRegistro viewRegistro = new VistaRegistro(controlRegistro);
-
-                java.awt.EventQueue.invokeLater(    () -> {
-                    viewRegistro.setVisible(true);
+                VistaRegistro vistaRegistro = new VistaRegistro(controladorMenu);
+                java.awt.EventQueue.invokeLater(() -> {
+                    vistaRegistro.setVisible(true);
                 });
+                //this.dispose(); 
             }
         }
     }

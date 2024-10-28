@@ -3,6 +3,7 @@ package origin;
 import partidaMVC.Controlador;
 import menuMVC.ControladorMenu;
 import menuMVC.ModeloMenu;
+import menuMVC.VistaRegistro;
 import menuMVC.VistaUnirse;
 
 /**
@@ -13,15 +14,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ModeloMenu modeloUnirse = new ModeloMenu();
-
-        //ControladorUnirse controladorUnirse = ControladorMenu.getInstancia();
-        ControladorMenu controladorUnirse = new ControladorMenu(modeloUnirse);
-        VistaUnirse vistaUnirse = new VistaUnirse(controladorUnirse);
-        modeloUnirse.addObserver(vistaUnirse);
-        
-        
-        
+        ModeloMenu modeloMenu = new ModeloMenu();
+        ControladorMenu controladorMenu = new ControladorMenu(modeloMenu);
+        VistaUnirse vistaUnirse = new VistaUnirse(controladorMenu); 
+        modeloMenu.addObserver(vistaUnirse); // Agregar vistaUnirse como observador de modeloMenu
 
         java.awt.EventQueue.invokeLater(() -> {
             vistaUnirse.setVisible(true);

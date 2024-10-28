@@ -9,13 +9,13 @@ import java.awt.Color;
 public class ControladorMenu {
 
     // Variable estática que contiene la única instancia del controlador
-    private static ControladorMenu instancia;
-    private final ModeloMenu modelo;
+    private static ControladorMenu controladorMenu;
+    private final ModeloMenu modeloMenu;
 
     // Constructor privado para evitar la creación de nuevas instancias
-    public ControladorMenu(ModeloMenu modelo) {
+    public ControladorMenu(ModeloMenu modeloMenu) {
         // Inicializar si es necesario
-        this.modelo = modelo;
+        this.modeloMenu = modeloMenu;
 
     }
 
@@ -41,7 +41,7 @@ public class ControladorMenu {
 
         // Aquí es donde controlamos la lógica para interactuar con el ControladorRegistro y la vista
         // Obtener el controlador de registro (singleton)
-      //  ControladorRegistro controladorRegistro = ControladorRegistro.getInsatnce();
+        //  ControladorRegistro controladorRegistro = ControladorRegistro.getInsatnce();
 //
 //        // Crear la vista de registro y asociarla con el controlador
 //        ViewRegistro vistaRegistro = new ViewRegistro(controladorRegistro);
@@ -52,24 +52,19 @@ public class ControladorMenu {
 //        // Mostrar la vista asociada
 //        controladorRegistro.mostrarVista();
     }
-    
- 
 
-//    public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
-//        modeloRegistro.crearJugador(nombre, avatar, color1, color2, color3, color4);
+    public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
+        //  modeloMenu.crearJugador(nombre, avatar, color1, color2, color3, color4);
+    }
+
+//    public void setModelo(ModeloMenu modeloMenu) {
+//        this.modeloMenu = modeloMenu;
 //    }
-//
-//    public void setModelo(ModeloRegistro modeloRegistro) {
-//        this.modeloRegistro = modeloRegistro;
-//    }
-//
 //    public void setView(ViewRegistro view) {
 //        this.view = view;
 //    }
-
-
     public void crearJuego() {
-        
-        modelo.crearJuego();
+
+        modeloMenu.crearJuego();
     }
 }
