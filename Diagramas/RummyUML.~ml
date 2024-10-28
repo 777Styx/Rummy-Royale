@@ -2479,7 +2479,7 @@
 <XPD:ATTR name="Top" type="integer">344</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">32</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">23</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">1
+<XPD:ATTR name="Text" type="string">4
 </XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedViews[36]" type="UMLTextView" guid="qTJjy9FbJEGJ8wB+bjg9TwAA">
