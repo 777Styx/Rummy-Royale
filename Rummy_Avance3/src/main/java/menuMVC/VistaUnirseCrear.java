@@ -67,6 +67,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
 //        this.dispose();
         System.out.println("control");
         controladorMenu.crearJuego();
+
     }//GEN-LAST:event_btnStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -75,19 +76,14 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-//        System.out.println("Actualización recibida en VistaUnirse");
-//
-//        if (o instanceof ModeloMenu) {
-//            ModeloMenu modeloUnirse = (ModeloMenu) o;
-//
-//            if (modeloUnirse.getJuego() != null) {
-//                VistaRegistro vistaRegistro = new VistaRegistro(controladorMenu);
-//                java.awt.EventQueue.invokeLater(() -> {
-//                    vistaRegistro.setVisible(true);
-//                });
-//                //this.dispose(); 
-//            }
-//        }
+        System.out.println("Actualización recibida en VistaUnirse");
+
+        if (o instanceof ModeloMenu) {
+            ModeloMenu modeloUnirse = (ModeloMenu) o;
+            if (modeloUnirse.getJuego() != null) {
+                this.dispose();
+            }
+        }
     }
 
 }
