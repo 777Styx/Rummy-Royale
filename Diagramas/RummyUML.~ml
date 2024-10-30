@@ -8316,7 +8316,7 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">308</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">308</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">473</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">573</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">205</XPD:ATTR>
 <XPD:REF name="Model">YcSoQoCYP0OPWVZWid97DQAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="LabelView" guid="+sNd+7PTFkKAhT5Ja+me6gAA">
@@ -8332,7 +8332,7 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">308</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">328</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">473</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">573</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">73</XPD:ATTR>
 <XPD:REF name="Model">u1yF7R11jE2Op+BPknLhyAAA</XPD:REF>
 <XPD:REF name="ContainerView">mD7FxTZ+30yUJ48QGLr7jwAA</XPD:REF>
@@ -8345,7 +8345,7 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">308</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">400</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">473</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">573</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">113</XPD:ATTR>
 <XPD:REF name="Model">9Xt1UUkWMUaRf9A+AiurKAAA</XPD:REF>
 <XPD:REF name="ContainerView">mD7FxTZ+30yUJ48QGLr7jwAA</XPD:REF>
