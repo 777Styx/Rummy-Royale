@@ -37,6 +37,11 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("Recibi actualización en Vista");
+
+        if (o instanceof ModeloMenu modeloMenu && modeloMenu.getJuego() != null) {
+            this.setVisible(true);
+        }
     }
 
     private class ColorChooserListener implements ActionListener {

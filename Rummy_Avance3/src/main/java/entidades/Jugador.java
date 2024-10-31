@@ -11,8 +11,12 @@ public class Jugador {
 
     private String nombre;
     private String avatar = "";
-    private ManejadorColor manejadorColor;   
+    private ManejadorColor manejadorColor;
     private ArrayList<IFicha> mano;
+
+    public Jugador() {
+
+    }
 
     public Jugador(String nombre, String avatar) {
         this.nombre = nombre;
