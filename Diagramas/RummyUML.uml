@@ -1064,6 +1064,7 @@
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="gFIzOGT8hkWlIMUuSWV50wAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">&lt;&lt;entity&gt;&gt;</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="PropertyLabel" type="LabelView" guid="BwXkJdRAA0Sf3KwWOZ2iTgAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -1157,6 +1158,7 @@
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="03bb7H99GEK6RS6/oWoC/gAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">&lt;&lt;entity&gt;&gt;</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="PropertyLabel" type="LabelView" guid="ad6FJJlmhkW8CTR/vai6kQAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -8073,7 +8075,7 @@
 <XPD:REF name="Context">C4SVK46ZukeTd1zTqjjtUAAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="LDhMBbmqQkSjahXtkyWnzQAA">
-<XPD:ATTR name="Name" type="string">EjercerTurno[FALTA HACER]</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">EjercerTurno</XPD:ATTR>
 <XPD:REF name="DiagramOwner">S5UOP9rt5kCJSg41KbHvPAAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="Df7f8AyxYEu10ZXzne+qMgAA">
 <XPD:REF name="Model">LDhMBbmqQkSjahXtkyWnzQAA</XPD:REF>

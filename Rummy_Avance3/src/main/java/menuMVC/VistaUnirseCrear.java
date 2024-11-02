@@ -29,9 +29,13 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnStart.setText("Start");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -39,25 +43,21 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
                 btnStartActionPerformed(evt);
             }
         });
+        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 200, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
-                .addComponent(btnStart)
-                .addGap(134, 134, 134))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
-                .addComponent(btnStart)
-                .addGap(53, 53, 53))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
@@ -66,24 +66,30 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
 //        controladorUnirse.unirseAPartidaView("Carlitos");
 //        this.dispose();
         System.out.println("control");
-        controladorMenu.crearJuego();
+        controladorMenu.mostrarRegistro();
 
     }//GEN-LAST:event_btnStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Actualización recibida en VistaUnirse");
-
-        if (o instanceof ModeloMenu) {
-            ModeloMenu modeloUnirse = (ModeloMenu) o;
-            if (modeloUnirse.getJuego() != null) {
-                this.dispose();
-            }
+        if(arg instanceof Boolean && (Boolean) arg) {
+            dispose();
         }
+        
+
+
+//        if (o instanceof ModeloMenu) {
+//            ModeloMenu modeloUnirse = (ModeloMenu) o;
+//            if (modeloUnirse.getJuego() != null) {
+//                this.dispose();
+//            }
+//        }
     }
 
 }

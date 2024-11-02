@@ -63,8 +63,15 @@ public class ControladorMenu {
 //    public void setView(ViewRegistro view) {
 //        this.view = view;
 //    }
-    public void crearJuego() {
-
-        modeloMenu.crearJuego();
+    
+    
+    
+//    public void crearJuego() {
+//
+//        modeloMenu.crearJuego();
+//    }
+    
+    public void mostrarRegistro() {
+        modeloMenu.mostrarRegistro(true);
     }
 }

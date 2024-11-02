@@ -11,18 +11,26 @@ import java.util.Observable;
 public class ModeloMenu extends Observable {
 
     private Juego juego = null;
-
-    public void crearJuego() {
-        if (juego != null) {
-            System.out.println("Ya esta hecho pana");
-        } else {
-            juego = new Juego();
-
-        }
-        System.out.println("modelo");
+    private boolean registroVisible = false;
+    
+    public void mostrarRegistro(boolean visible) {
+        this.registroVisible = visible;
         setChanged();
-        notifyObservers(juego);
+        notifyObservers(visible);
     }
+    
+    
+//    public void crearJuego() {
+//        if (juego != null) {
+//            System.out.println("Ya esta hecho pana");
+//        } else {
+//            juego = new Juego();
+//
+//        }
+//        System.out.println("modelo");
+//        setChanged();
+//        notifyObservers(juego);
+//    }
 
     public Juego getJuego() {
         return juego;

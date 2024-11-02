@@ -22,7 +22,6 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
     // private ControladorRegistro controlador;
     private ControladorMenu controladorMenu;
-    private String nombre = "";
     private Color selectedColor1, selectedColor2, selectedColor3, selectedColor4;
 
     /**
@@ -31,17 +30,15 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     public VistaRegistro(ControladorMenu controladorMenu) {
 
         initComponents();
-        this.nombre = nombre;
         this.controladorMenu = controladorMenu;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Recibi actualización en Vista");
-
-        if (o instanceof ModeloMenu modeloMenu && modeloMenu.getJuego() != null) {
-            this.setVisible(true);
+        if(arg instanceof Boolean) {
+            this.setVisible((Boolean) arg);
         }
+        
     }
 
     private class ColorChooserListener implements ActionListener {
@@ -190,11 +187,11 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         colorPanel1.setLayout(colorPanel1Layout);
         colorPanel1Layout.setHorizontalGroup(
             colorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         colorPanel1Layout.setVerticalGroup(
             colorPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panelRound1.add(colorPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, 20));
@@ -211,11 +208,11 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         colorPanel2.setLayout(colorPanel2Layout);
         colorPanel2Layout.setHorizontalGroup(
             colorPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         colorPanel2Layout.setVerticalGroup(
             colorPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
@@ -232,11 +229,11 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         colorPanel3.setLayout(colorPanel3Layout);
         colorPanel3Layout.setHorizontalGroup(
             colorPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         colorPanel3Layout.setVerticalGroup(
             colorPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
@@ -253,11 +250,11 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         colorPanel4.setLayout(colorPanel4Layout);
         colorPanel4Layout.setHorizontalGroup(
             colorPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         colorPanel4Layout.setVerticalGroup(
             colorPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
@@ -269,6 +266,8 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
         avatar1.setBackground(new java.awt.Color(82, 107, 103));
         buttonGroup1.add(avatar1);
+        avatar1.setForeground(new java.awt.Color(255, 255, 255));
+        avatar1.setText("avatar 1");
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -278,7 +277,14 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
         avatar2.setBackground(new java.awt.Color(82, 107, 103));
         buttonGroup1.add(avatar2);
-        panelRound1.add(avatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, -1));
+        avatar2.setForeground(new java.awt.Color(255, 255, 255));
+        avatar2.setText("avatar 2");
+        avatar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avatar2ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(avatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel8.setText(".");
         panelRound1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
@@ -332,7 +338,6 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         // crear el jugador
 
         String nombreJugador = nombreTxt.getText();
-
         Color color1 = colorPanel1.getBackground();
         Color color2 = colorPanel2.getBackground();
         Color color3 = colorPanel3.getBackground();
@@ -343,13 +348,17 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
             // no se selecciono avatar
         }
 
-        controladorMenu.crearJugador(nombre, nombre, color1, color2, color3, color4);
+        controladorMenu.crearJugador(nombreJugador, nombreJugador, color1, color2, color3, color4);
         //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_avatar1ActionPerformed
+
+    private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_avatar2ActionPerformed
 
     private String obtenerAvatarSeleccionado() {
         if (avatar1.isSelected()) {
