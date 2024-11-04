@@ -43,7 +43,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
                 btnStartActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 200, 40));
+        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 200, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
