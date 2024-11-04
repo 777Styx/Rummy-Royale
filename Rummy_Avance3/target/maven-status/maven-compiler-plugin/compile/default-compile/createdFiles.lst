@@ -7,6 +7,7 @@ entidades\TipoFicha.class
 utils\Btn.class
 entidades\FichaNumerica.class
 partidaMVC\VistaJuego$5.class
+cliente\jframeCliente$1.class
 origin\Main.class
 partidaMVC\VistaJuego$2.class
 registroMVC\Vista$ColorChooserListener.class
@@ -14,8 +15,11 @@ entidades\ManejadorColor.class
 menuMVC\VistaUnirseCrear.class
 menuMVC\VistaConfiguracion$3.class
 menuMVC\VistaRegistro$ColorChooserListener.class
+cliente\jframeCliente$4.class
 menuMVC\VistaRegistro$4.class
 menuMVC\VistaConfiguracion$4.class
+cliente\Cliente.class
+cliente\jframeCliente$3.class
 menuMVC\VistaRegistro$7.class
 menuMVC\Vista.class
 partidaMVC\VistaJuego$9.class
@@ -33,6 +37,8 @@ entidades\Combinacion.class
 entidades\Mazo.class
 registroMVC\Vista$5.class
 entidades\Jugador.class
+cliente\jframeCliente$2.class
+cliente\jframeCliente.class
 partidaMVC\VistaJuego$7.class
 menuMVC\VistaConfiguracion$1.class
 entidades\Color.class
