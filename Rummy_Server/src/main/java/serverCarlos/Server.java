@@ -17,6 +17,7 @@ import servidor.Servidor;
  * @author carlo
  */
 public class Server {
+
     private static final int MAX_JUGADORES = 4;
     private final Set<ClientHandler> jugadoresConectados = Collections.synchronizedSet(new HashSet<>());
     private ServerSocket servidorSocket;
@@ -31,12 +32,11 @@ public class Server {
                 Socket socket = servidorSocket.accept();
                 System.out.println("Un nuevo jugador se ha conectado!");
 
-                
-                    ClientHandler jugador = new ClientHandler(socket);
-                    jugadoresConectados.add(jugador);
-                    Thread thread = new Thread(jugador);
-                    thread.start();
-                
+                ClientHandler jugador = new ClientHandler(socket);
+                jugadoresConectados.add(jugador);
+                Thread thread = new Thread(jugador);
+                thread.start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(2020);
+        ServerSocket serverSocket = new ServerSocket(2222);
         Server servidor = new Server(serverSocket);
         servidor.iniciar(); // Inicia el servidor
         System.out.println("Server running...");

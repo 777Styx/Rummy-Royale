@@ -12,14 +12,13 @@ public class ModeloMenu extends Observable {
 
     private Juego juego = null;
     private boolean registroVisible = false;
-    
+
     public void mostrarRegistro(boolean visible) {
         this.registroVisible = visible;
         setChanged();
         notifyObservers(visible);
     }
-    
-    
+
 //    public void crearJuego() {
 //        if (juego != null) {
 //            System.out.println("Ya esta hecho pana");
@@ -31,7 +30,6 @@ public class ModeloMenu extends Observable {
 //        setChanged();
 //        notifyObservers(juego);
 //    }
-
     public Juego getJuego() {
         return juego;
     }
