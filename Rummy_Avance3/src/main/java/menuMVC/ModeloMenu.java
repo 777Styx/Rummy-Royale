@@ -1,6 +1,7 @@
 package menuMVC;
 
-import entidades.Juego;
+import dto.JuegoDTO;
+
 import java.awt.Color;
 import java.util.Observable;
 
@@ -10,7 +11,7 @@ import java.util.Observable;
  */
 public class ModeloMenu extends Observable {
 
-    private Juego juego = null;
+    private JuegoDTO juegoDTO = null;
     private boolean registroVisible = false;
 
     public void mostrarRegistro(boolean visible) {
@@ -30,12 +31,12 @@ public class ModeloMenu extends Observable {
 //        setChanged();
 //        notifyObservers(juego);
 //    }
-    public Juego getJuego() {
-        return juego;
+    public JuegoDTO getJuego() {
+        return juegoDTO;
     }
 
-    public void setJuego(Juego juego) {
-        this.juego = juego;
+    public void setJuego(JuegoDTO juegoDTO) {
+        this.juegoDTO = juegoDTO;
     }
 
 }
