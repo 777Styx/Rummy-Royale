@@ -128,7 +128,6 @@ public class Vista extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnStart1ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btnStart1;

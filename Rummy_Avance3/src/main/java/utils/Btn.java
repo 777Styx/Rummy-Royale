@@ -10,9 +10,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 /**
- * Clase que extiende JButton para proporcionar botones personalizados con colores y efectos visuales.
+ * Clase que extiende JButton para proporcionar botones personalizados con
+ * colores y efectos visuales.
  */
-
 public class Btn extends JButton {
 
     // Atributos
@@ -24,7 +24,8 @@ public class Btn extends JButton {
     private int radius = 0;
 
     /**
-     * Método constructor que inicializa los atributos y establece el comportamiento del botón.
+     * Método constructor que inicializa los atributos y establece el
+     * comportamiento del botón.
      */
     public Btn() {
         //  Inicializar Color
@@ -66,6 +67,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve si el cursor está sobre el botón.
+     *
      * @return true si el cursor está sobre el botón, false de lo contrario.
      */
     public boolean isOver() {
@@ -74,7 +76,9 @@ public class Btn extends JButton {
 
     /**
      * Establece si el cursor está sobre el botón.
-     * @param over true para indicar que el cursor está sobre el botón, false de lo contrario.
+     *
+     * @param over true para indicar que el cursor está sobre el botón, false de
+     * lo contrario.
      */
     public void setOver(boolean over) {
         this.over = over;
@@ -82,6 +86,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve el color de fondo del botón.
+     *
      * @return El color de fondo del botón.
      */
     public Color getColor() {
@@ -90,6 +95,7 @@ public class Btn extends JButton {
 
     /**
      * Establece el color de fondo del botón.
+     *
      * @param color El color de fondo del botón.
      */
     public void setColor(Color color) {
@@ -99,6 +105,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve el color de fondo cuando el cursor está sobre el botón.
+     *
      * @return El color de fondo cuando el cursor está sobre el botón.
      */
     public Color getColorOver() {
@@ -107,6 +114,7 @@ public class Btn extends JButton {
 
     /**
      * Establece el color de fondo cuando el cursor está sobre el botón.
+     *
      * @param colorOver El color de fondo cuando el cursor está sobre el botón.
      */
     public void setColorOver(Color colorOver) {
@@ -115,6 +123,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve el color de fondo cuando el botón está siendo presionado.
+     *
      * @return El color de fondo cuando el botón está siendo presionado.
      */
     public Color getColorClick() {
@@ -123,7 +132,9 @@ public class Btn extends JButton {
 
     /**
      * Establece el color de fondo cuando el botón está siendo presionado.
-     * @param colorClick El color de fondo cuando el botón está siendo presionado.
+     *
+     * @param colorClick El color de fondo cuando el botón está siendo
+     * presionado.
      */
     public void setColorClick(Color colorClick) {
         this.colorClick = colorClick;
@@ -131,6 +142,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve el color del borde del botón.
+     *
      * @return El color del borde del botón.
      */
     public Color getBorderColor() {
@@ -139,6 +151,7 @@ public class Btn extends JButton {
 
     /**
      * Establece el color del borde del botón.
+     *
      * @param borderColor El color del borde del botón.
      */
     public void setBorderColor(Color borderColor) {
@@ -147,6 +160,7 @@ public class Btn extends JButton {
 
     /**
      * Devuelve el radio de redondeo de las esquinas del botón.
+     *
      * @return El radio de redondeo de las esquinas del botón.
      */
     public int getRadius() {
@@ -155,6 +169,7 @@ public class Btn extends JButton {
 
     /**
      * Establece el radio de redondeo de las esquinas del botón.
+     *
      * @param radius El radio de redondeo de las esquinas del botón.
      */
     public void setRadius(int radius) {
@@ -163,6 +178,7 @@ public class Btn extends JButton {
 
     /**
      * Método para dibujar el componente del botón.
+     *
      * @param grphcs El contexto gráfico en el que se dibuja el componente.
      */
     @Override

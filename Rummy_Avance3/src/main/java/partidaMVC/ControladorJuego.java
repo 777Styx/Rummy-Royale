@@ -82,7 +82,7 @@ public class ControladorJuego {
             return;
         }
         //Colocar las fichas en el tablero
-     //   model.colocarFichasEnTablero(fichas);
+        //   model.colocarFichasEnTablero(fichas);
 
     }
 

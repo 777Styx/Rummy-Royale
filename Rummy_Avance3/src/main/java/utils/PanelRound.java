@@ -28,7 +28,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para obtener el radio de redondeo de la esquina superior izquierda.
+     * Método para obtener el radio de redondeo de la esquina superior
+     * izquierda.
+     *
      * @return El radio de redondeo de la esquina superior izquierda.
      */
     public int getRoundTopLeft() {
@@ -36,8 +38,11 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para establecer el radio de redondeo de la esquina superior izquierda.
-     * @param roundTopLeft El radio de redondeo de la esquina superior izquierda.
+     * Método para establecer el radio de redondeo de la esquina superior
+     * izquierda.
+     *
+     * @param roundTopLeft El radio de redondeo de la esquina superior
+     * izquierda.
      */
     public void setRoundTopLeft(int roundTopLeft) {
         this.roundTopLeft = roundTopLeft;
@@ -46,6 +51,7 @@ public class PanelRound extends JPanel {
 
     /**
      * Método para obtener el radio de redondeo de la esquina superior derecha.
+     *
      * @return El radio de redondeo de la esquina superior derecha.
      */
     public int getRoundTopRight() {
@@ -53,7 +59,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para establecer el radio de redondeo de la esquina superior derecha.
+     * Método para establecer el radio de redondeo de la esquina superior
+     * derecha.
+     *
      * @param roundTopRight El radio de redondeo de la esquina superior derecha.
      */
     public void setRoundTopRight(int roundTopRight) {
@@ -62,7 +70,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para obtener el radio de redondeo de la esquina inferior izquierda.
+     * Método para obtener el radio de redondeo de la esquina inferior
+     * izquierda.
+     *
      * @return El radio de redondeo de la esquina inferior izquierda.
      */
     public int getRoundBottomLeft() {
@@ -70,8 +80,11 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para establecer el radio de redondeo de la esquina inferior izquierda.
-     * @param roundBottomLeft El radio de redondeo de la esquina inferior izquierda.
+     * Método para establecer el radio de redondeo de la esquina inferior
+     * izquierda.
+     *
+     * @param roundBottomLeft El radio de redondeo de la esquina inferior
+     * izquierda.
      */
     public void setRoundBottomLeft(int roundBottomLeft) {
         this.roundBottomLeft = roundBottomLeft;
@@ -80,6 +93,7 @@ public class PanelRound extends JPanel {
 
     /**
      * Método para obtener el radio de redondeo de la esquina inferior derecha.
+     *
      * @return El radio de redondeo de la esquina inferior derecha.
      */
     public int getRoundBottomRight() {
@@ -87,8 +101,11 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método para establecer el radio de redondeo de la esquina inferior derecha.
-     * @param roundBottomRight El radio de redondeo de la esquina inferior derecha.
+     * Método para establecer el radio de redondeo de la esquina inferior
+     * derecha.
+     *
+     * @param roundBottomRight El radio de redondeo de la esquina inferior
+     * derecha.
      */
     public void setRoundBottomRight(int roundBottomRight) {
         this.roundBottomRight = roundBottomRight;
@@ -97,6 +114,7 @@ public class PanelRound extends JPanel {
 
     /**
      * Método que se invoca cuando es necesario pintar el componente.
+     *
      * @param grphcs El contexto gráfico en el que se pinta el componente.
      */
     @Override
@@ -123,7 +141,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método privado para crear la forma de la esquina superior izquierda redondeada.
+     * Método privado para crear la forma de la esquina superior izquierda
+     * redondeada.
+     *
      * @return La forma de la esquina superior izquierda redondeada.
      */
     private Shape createRoundTopLeft() {
@@ -138,7 +158,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método privado para crear la forma de la esquina superior derecha redondeada.
+     * Método privado para crear la forma de la esquina superior derecha
+     * redondeada.
+     *
      * @return La forma de la esquina superior derecha redondeada.
      */
     private Shape createRoundTopRight() {
@@ -153,7 +175,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método privado para crear la forma de la esquina inferior izquierda redondeada.
+     * Método privado para crear la forma de la esquina inferior izquierda
+     * redondeada.
+     *
      * @return La forma de la esquina inferior izquierda redondeada.
      */
     private Shape createRoundBottomLeft() {
@@ -168,7 +192,9 @@ public class PanelRound extends JPanel {
     }
 
     /**
-     * Método privado para crear la forma de la esquina inferior derecha redondeada.
+     * Método privado para crear la forma de la esquina inferior derecha
+     * redondeada.
+     *
      * @return La forma de la esquina inferior derecha redondeada.
      */
     private Shape createRoundBottomRight() {

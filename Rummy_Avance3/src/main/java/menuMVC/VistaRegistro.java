@@ -35,10 +35,10 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg instanceof Boolean) {
+        if (arg instanceof Boolean) {
             this.setVisible((Boolean) arg);
         }
-        
+
     }
 
     private class ColorChooserListener implements ActionListener {
@@ -404,7 +404,6 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 //            }
 //        });
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton avatar1;
     private javax.swing.JRadioButton avatar2;
