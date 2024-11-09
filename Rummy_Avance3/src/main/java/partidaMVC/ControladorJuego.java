@@ -1,5 +1,7 @@
 package partidaMVC;
 
+import dto.FichaDTO;
+import dto.JugadorDTO;
 import entidades.IFicha;
 import entidades.Jugador;
 import java.util.List;
@@ -98,9 +100,9 @@ public class ControladorJuego {
      * Verifica si el juego ha terminado. Si un jugador ha ganado, muestra el
      * ganador en la vista.
      */
-    public void verificarFinDelJuego() {
-        if (model.verificarFinDelJuego()) {
-            Jugador ganador = model.obtenerGanador();
-        }
-    }
+//    public void verificarFinDelJuego() {
+//        if (model.verificarFinDelJuego()) {
+//            Jugador ganador = model.obtenerGanador();
+//        }
+//    }
 }

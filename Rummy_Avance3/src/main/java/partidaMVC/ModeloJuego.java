@@ -1,10 +1,6 @@
 package partidaMVC;
 
-import entidades.IFicha;
-import entidades.Tablero;
-import entidades.Jugador;
-import entidades.Combinacion;
-import entidades.Color;
+import entidades.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

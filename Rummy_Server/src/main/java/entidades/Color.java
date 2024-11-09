@@ -4,10 +4,10 @@ package entidades;
  *
  * @author puerta
  */
-public class Color {
+public class ColorCustom {
     private String nombre;
     
-    public Color(String nombre) {
+    public ColorCustom(String nombre) {
         this.nombre = nombre;
     }
     

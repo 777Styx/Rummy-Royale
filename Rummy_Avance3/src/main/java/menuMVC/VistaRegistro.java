@@ -4,10 +4,15 @@
  */
 package menuMVC;
 
+import entidades.ColorCustom;
+import entidades.ManejadorColor;
+import entidades.TipoFicha;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -173,7 +178,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
                 startBtnActionPerformed(evt);
             }
         });
-        panelRound1.add(startBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 100, 40));
+        panelRound1.add(startBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, 40));
 
         colorButton1.setText("Color 1");
         colorButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +220,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        panelRound1.add(colorPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 70, 20));
 
         colorButton3.setText("Color 3");
         colorButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +241,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        panelRound1.add(colorPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 70, 20));
 
         colorButton4.setText("Color 4");
         colorButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +262,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        panelRound1.add(colorPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 70, 20));
 
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -335,20 +340,19 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_colorButton4ActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        // crear el jugador
+        
+        List<ManejadorColor> manejadoresColor = new ArrayList<>();
+        Color colorSeleccionado1 = colorPanel1.getBackground();
+        Color colorSeleccionado2 = colorPanel1.getBackground();
+        Color colorSeleccionado3 = colorPanel1.getBackground();
+        Color colorSeleccionado4 = colorPanel1.getBackground();
+        
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO1, new ColorCustom(colorSeleccionado1)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO2, new ColorCustom(colorSeleccionado2)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(colorSeleccionado3)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(colorSeleccionado4)));
 
-        String nombreJugador = nombreTxt.getText();
-        Color color1 = colorPanel1.getBackground();
-        Color color2 = colorPanel2.getBackground();
-        Color color3 = colorPanel3.getBackground();
-        Color color4 = colorPanel4.getBackground();
-
-        String avatarSeleccionado = obtenerAvatarSeleccionado();
-        if (avatarSeleccionado == null) {
-            // no se selecciono avatar
-        }
-
-        controladorMenu.crearJugador(nombreJugador, nombreJugador, color1, color2, color3, color4);
+        
         //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
     }//GEN-LAST:event_startBtnActionPerformed
 
