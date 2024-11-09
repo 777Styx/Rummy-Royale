@@ -1,8 +1,11 @@
 package menuMVC;
 
 import dto.JuegoDTO;
+import entidades.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -11,8 +14,10 @@ import java.util.Observable;
  */
 public class ModeloMenu extends Observable {
 
-    private JuegoDTO juegoDTO = null;
+    List<Jugador> jugadores = new ArrayList<>();
+    private Juego juego = null;
     private boolean registroVisible = false;
+    
 
     public void mostrarRegistro(boolean visible) {
         this.registroVisible = visible;
@@ -31,15 +36,46 @@ public class ModeloMenu extends Observable {
 //        setChanged();
 //        notifyObservers(juego);
 //    }
-    public JuegoDTO getJuego() {
-        return juegoDTO;
+    public Juego getJuego() {
+        return juego;
     }
 
-    public void setJuego(JuegoDTO juegoDTO) {
-        this.juegoDTO = juegoDTO;
+    public void setJuego(Juego juego) {
+        this.juego = juego;
     }
 
+    
+    public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {  
+           
+        
+        List<ManejadorColor> manejadoresColor = new ArrayList<>();
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO1, new ColorCustom(color1)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO2, new ColorCustom(color2)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(color3)));
+        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(color4)));
+        
+        
+        Jugador jugador = new Jugador(nombre, avatar, manejadoresColor);
+        
+        if(jugadores.size() < 4) {
+            jugadores.add(jugador);
+            return true;
+        } else {
+            System.out.println("Juego lleno");
+            return false;
+        }
+    }
+    
+    public void imprimirJugadores() {
+        System.out.println("Jugdaroes en el juego: ");
+        for (Jugador jugador : jugadores) {
+            System.out.println(jugador.getNombre() + " " + jugador.getAvatar());
+        }
+    }
+    
 }
+
+
 
 //
 //    /**
@@ -48,17 +84,11 @@ public class ModeloMenu extends Observable {
 //     * @param jugador: jugador que se unira al juego
 //     * @return
 //     */
-//    public boolean registrarJugador(Jugador jugador) {
-//        if (!juego.validarAvatarNoUsado(jugador.getAvatar())) {
-//            if (jugadores.size() >= 4) {
-//                System.out.println("Aqui no pana ya ta' lleno");
-//                return false;
-//            }
-//        }
-//        
-//        jugadores.add(jugador);
-//        return true;
-//    }
+
+
+    
+
+
 //
 //    public int obtenerCantidadJugadores() {
 //        return jugadores.size();

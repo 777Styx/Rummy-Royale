@@ -1,3 +1,4 @@
+entidades\ColorCustom.class
 entidades\Juego.class
 entidades\ManejadorColor.class
 com\mycompany\rummydominio\RummyDominio.class
@@ -5,7 +6,6 @@ entidades\FichaComodin.class
 entidades\Combinacion.class
 entidades\Mazo.class
 entidades\TipoFicha.class
-entidades\Color.class
 entidades\IFicha.class
 entidades\Jugador.class
 entidades\Tablero.class

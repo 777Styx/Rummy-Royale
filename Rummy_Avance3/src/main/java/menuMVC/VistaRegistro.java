@@ -3,10 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package menuMVC;
-
-import entidades.ColorCustom;
-import entidades.ManejadorColor;
-import entidades.TipoFicha;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -132,6 +128,12 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         avatar2 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        avatar3 = new javax.swing.JRadioButton();
+        avatar4 = new javax.swing.JRadioButton();
+        lblAvatar2 = new javax.swing.JLabel();
+        lblAvatar1 = new javax.swing.JLabel();
+        lblAvatar3 = new javax.swing.JLabel();
+        lblAvatar4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,7 +274,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         avatar1.setBackground(new java.awt.Color(82, 107, 103));
         buttonGroup1.add(avatar1);
         avatar1.setForeground(new java.awt.Color(255, 255, 255));
-        avatar1.setText("avatar 1");
+        avatar1.setText("Creeper");
         avatar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar1ActionPerformed(evt);
@@ -283,7 +285,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         avatar2.setBackground(new java.awt.Color(82, 107, 103));
         buttonGroup1.add(avatar2);
         avatar2.setForeground(new java.awt.Color(255, 255, 255));
-        avatar2.setText("avatar 2");
+        avatar2.setText("Pig");
         avatar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avatar2ActionPerformed(evt);
@@ -296,6 +298,35 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
         jLabel2.setText(".");
         panelRound1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+
+        avatar3.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(avatar3);
+        avatar3.setForeground(new java.awt.Color(255, 255, 255));
+        avatar3.setText("Steve");
+        avatar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avatar3ActionPerformed(evt);
+            }
+        });
+        panelRound1.add(avatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+
+        avatar4.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(avatar4);
+        avatar4.setForeground(new java.awt.Color(255, 255, 255));
+        avatar4.setText("Villager");
+        panelRound1.add(avatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
+
+        lblAvatar2.setText("lblAvatar2");
+        panelRound1.add(lblAvatar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
+
+        lblAvatar1.setText("lblAvatar1");
+        panelRound1.add(lblAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+
+        lblAvatar3.setText("lblAvatar2");
+        panelRound1.add(lblAvatar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+
+        lblAvatar4.setText("lblAvatar2");
+        panelRound1.add(lblAvatar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 520, 360));
 
@@ -341,19 +372,28 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         
-        List<ManejadorColor> manejadoresColor = new ArrayList<>();
         Color colorSeleccionado1 = colorPanel1.getBackground();
         Color colorSeleccionado2 = colorPanel1.getBackground();
         Color colorSeleccionado3 = colorPanel1.getBackground();
         Color colorSeleccionado4 = colorPanel1.getBackground();
         
-        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO1, new ColorCustom(colorSeleccionado1)));
-        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO2, new ColorCustom(colorSeleccionado2)));
-        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(colorSeleccionado3)));
-        manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(colorSeleccionado4)));
-
+        String nombre = nombreTxt.getText();
         
-        //player1.getColorManager().setColor(ChipType.TYPE1, new Color("Blue"));
+        String avatar = "";
+        
+        if(avatar1.isSelected()) {
+            avatar = "creeper";
+        } else if(avatar2.isSelected()) {
+            avatar = "pig";
+        } else if(avatar3.isSelected()) {
+            avatar = "steve";
+        } else if(avatar4.isSelected()) {
+            avatar = "villager";
+        } else {
+            System.out.println("No fue seleccionado avatar");
+        }
+        
+        controladorMenu.crearJugador(nombre, avatar, colorSeleccionado1, colorSeleccionado2, colorSeleccionado3, colorSeleccionado4);
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
@@ -363,6 +403,10 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     private void avatar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_avatar2ActionPerformed
+
+    private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_avatar3ActionPerformed
 
     private String obtenerAvatarSeleccionado() {
         if (avatar1.isSelected()) {
@@ -411,6 +455,8 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton avatar1;
     private javax.swing.JRadioButton avatar2;
+    private javax.swing.JRadioButton avatar3;
+    private javax.swing.JRadioButton avatar4;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton colorButton1;
     private javax.swing.JButton colorButton2;
@@ -428,6 +474,10 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAvatar1;
+    private javax.swing.JLabel lblAvatar2;
+    private javax.swing.JLabel lblAvatar3;
+    private javax.swing.JLabel lblAvatar4;
     private javax.swing.JTextField nombreTxt;
     private utils.PanelRound panelRound1;
     private javax.swing.JButton startBtn;

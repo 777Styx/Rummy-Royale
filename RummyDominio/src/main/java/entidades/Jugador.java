@@ -11,10 +11,10 @@ import java.util.List;
 public class Jugador {
 
     private String nombre;
-    private String avatar = "";
     private List<ManejadorColor> preferenciasColor;
     private ArrayList<IFicha> mano;
-
+    private String avatar;
+    
     public Jugador() {
 
     }
