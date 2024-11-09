@@ -71,4 +71,9 @@ public class ControladorMenu {
     public void mostrarRegistro() {
         modeloMenu.mostrarRegistro(true);
     }
+    
+    // carlos version
+    public void conectarAPartida() {
+        
+    }
 }

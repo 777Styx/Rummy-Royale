@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MainServidor {
 
-    private static List<Entidad> entidades = new ArrayList<>();
+    //private static List<Entidad> entidades = new ArrayList<>();
 
     public static void main(String[] args) {
 

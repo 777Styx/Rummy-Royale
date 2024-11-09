@@ -31,9 +31,11 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
 
         jPanel1 = new javax.swing.JPanel();
         btnStart = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -43,7 +45,11 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
                 btnStartActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 200, 40));
+        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 200, 40));
+
+        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
+        jLabel1.setText("Rummy Royale");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,17 +67,14 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-
-//        ControladorMenu controladorUnirse = ControladorMenu.getInstancia();
-//        controladorUnirse.unirseAPartidaView("Carlitos");
-//        this.dispose();
         System.out.println("control");
-        controladorMenu.mostrarRegistro();
+        controladorMenu.conectarAPartida();
 
     }//GEN-LAST:event_btnStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
