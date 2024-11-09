@@ -69,7 +69,11 @@ public class ModeloMenu extends Observable {
     public void imprimirJugadores() {
         System.out.println("Jugdaroes en el juego: ");
         for (Jugador jugador : jugadores) {
-            System.out.println(jugador.getNombre() + " " + jugador.getAvatar());
+            System.out.println("El jugador " + jugador.getNombre() + " usara la skin de " + jugador.getAvatar());
+            System.out.println("Colores del jugador:");
+            for(ManejadorColor mc : jugador.getPreferenciasColor()) {
+                System.out.println("Ficha " + mc.getTipoFicha() + " sera color " + mc.getColor().getColor());
+            }
         }
     }
     

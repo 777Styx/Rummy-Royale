@@ -373,9 +373,9 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         
         Color colorSeleccionado1 = colorPanel1.getBackground();
-        Color colorSeleccionado2 = colorPanel1.getBackground();
-        Color colorSeleccionado3 = colorPanel1.getBackground();
-        Color colorSeleccionado4 = colorPanel1.getBackground();
+        Color colorSeleccionado2 = colorPanel2.getBackground();
+        Color colorSeleccionado3 = colorPanel3.getBackground();
+        Color colorSeleccionado4 = colorPanel4.getBackground();
         
         String nombre = nombreTxt.getText();
         
@@ -392,7 +392,6 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         } else {
             System.out.println("No fue seleccionado avatar");
         }
-        
         controladorMenu.crearJugador(nombre, avatar, colorSeleccionado1, colorSeleccionado2, colorSeleccionado3, colorSeleccionado4);
     }//GEN-LAST:event_startBtnActionPerformed
 
