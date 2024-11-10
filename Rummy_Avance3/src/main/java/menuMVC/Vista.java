@@ -4,7 +4,6 @@
  */
 package menuMVC;
 
-import registroMVC.*;
 
 /**
  *

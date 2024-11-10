@@ -67,8 +67,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        System.out.println("control");
-        controladorMenu.conectarAPartida();
+        controladorMenu.conectarAPartida("localhost", 2222);
 
     }//GEN-LAST:event_btnStartActionPerformed
 

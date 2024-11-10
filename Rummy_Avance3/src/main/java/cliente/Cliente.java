@@ -16,7 +16,7 @@ public class Cliente {
     public static void main(String[] args) {
 
         try {
-            Socket socket = new Socket("localhost", 3000);
+            Socket socket = new Socket("localhost", 2222);
             System.out.println("Server connected papu :v");
 
             //input outpu

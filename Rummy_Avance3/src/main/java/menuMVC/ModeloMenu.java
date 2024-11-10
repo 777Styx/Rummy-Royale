@@ -1,9 +1,11 @@
 package menuMVC;
 
+import clienteCarlitos.Cliente;
 import dto.JuegoDTO;
 import entidades.*;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -17,8 +19,20 @@ public class ModeloMenu extends Observable {
     List<Jugador> jugadores = new ArrayList<>();
     private Juego juego = null;
     private boolean registroVisible = false;
+    private EstadoJuego estadoJuego;
+    private Cliente cliente;
     
+    public enum EstadoJuego {       
+        DESCONECTADO,
+        CONECTADO,
+        EN_REGISTRO
+    }
+    
+    public ModeloMenu () {
+        this.estadoJuego = EstadoJuego.DESCONECTADO;
+    }
 
+    // se supone que esto no se deberia de usar
     public void mostrarRegistro(boolean visible) {
         this.registroVisible = visible;
         setChanged();
@@ -76,71 +90,16 @@ public class ModeloMenu extends Observable {
             }
         }
     }
-    
+
+    public EstadoJuego getEstadoJuego() {
+        return estadoJuego;
+    }
+
+    public void setEstadoJuego(EstadoJuego estadoJuego) {
+        this.estadoJuego = estadoJuego;
+    }
+   
+   
 }
 
-
-
-//
-//    /**
-//     * Se registra un jugador
-//     *
-//     * @param jugador: jugador que se unira al juego
-//     * @return
-//     */
-
-
-    
-
-
-//
-//    public int obtenerCantidadJugadores() {
-//        return jugadores.size();
-//    }
-//
-//    @Override
-//    public void agregarObservador(IModeloObservador t) {
-//        observadores.add(t);
-//    }
-//
-//    /**
-//     * Notifica a todos los observadores que la cantidad de jugadores ha
-//     * cambiado.
-//     */
-//    @Override
-//    public void notificarObservadores() {
-//        for (IModeloObservador observador : observadores) {
-//            observador.actulizarCantidadJugadores(obtenerCantidadJugadores());
-//        }
-//    }
-//
-//    @Override
-//    public void removerObservador(IModeloObservador t) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-//
-//    public Jugador crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4){
-//        // crear instancia de jugador??
-//        
-//        //validaciones i guess
-//        if (nombre == null || nombre.trim().isEmpty()) {
-//            throw new IllegalArgumentException("El nombre del jugador no puede estar vacio");
-//        }
-//        if (avatar == null || avatar.trim().isEmpty()) {
-//            throw new IllegalArgumentException("Debes seleccionar un avatar");
-//        }
-//        if (color1 == null || color2 == null || color3 == null || color4 == null) {
-//            throw new IllegalArgumentException("Selecciona todos los colores porfavorcito");
-//        }
-//        
-//        Jugador jugador = new Jugador(nombre, avatar);
-//        ManejadorColor manejadorColor = jugador.getManejadorColor();
-//        
-//        manejadorColor.setColor(TipoFicha.TIPO1, color1);
-//        manejadorColor.setColor(TipoFicha.TIPO2, color2);
-//        manejadorColor.setColor(TipoFicha.TIPO3, color3);
-//        manejadorColor.setColor(TipoFicha.TIPO4, color4);
-//        
-//        return jugador;
-//    }
 

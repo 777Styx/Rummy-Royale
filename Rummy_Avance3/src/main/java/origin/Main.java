@@ -26,6 +26,7 @@ public class Main {
         modeloMenu.addObserver(vistaUnirseCrear);
         modeloMenu.addObserver(vistaConfiguracion);
         modeloMenu.addObserver(vistaRegistro);
+        
 
         //Mostramos la primera vista
         java.awt.EventQueue.invokeLater(() -> {

@@ -29,14 +29,17 @@ public class Server {
     public void iniciar() {
         try {
             while (!servidorSocket.isClosed()) {
-                Socket socket = servidorSocket.accept();
-                System.out.println("Un nuevo jugador se ha conectado!");
+                if (jugadoresConectados.size() < MAX_JUGADORES) {
+                    Socket socket = servidorSocket.accept();
+                    System.out.println("Un nuevo jugador se ha conectado!");
 
-                ClientHandler jugador = new ClientHandler(socket);
-                jugadoresConectados.add(jugador);
-                Thread thread = new Thread(jugador);
-                thread.start();
-
+                    ClientHandler jugador = new ClientHandler(socket);
+                    jugadoresConectados.add(jugador);
+                    Thread thread = new Thread(jugador);
+                    thread.start();
+                } else {
+                    System.out.println("Servidor lleno. No se pueden conectar más jugadores.");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
