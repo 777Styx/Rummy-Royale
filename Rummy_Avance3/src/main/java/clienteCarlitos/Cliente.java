@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package clienteCarlitos;
 
 import dto.JuegoDTO;
@@ -139,8 +135,8 @@ public class Cliente extends Observable implements Runnable {
 
         try {
             this.input = new ObjectInputStream(socket.getInputStream());
-           JuegoDTO juegoD =   (JuegoDTO) input.readObject();
-          
+            JuegoDTO juegoD = (JuegoDTO) input.readObject();
+            System.out.println("SE HIZO");
         } catch (Exception e) {
         }
 

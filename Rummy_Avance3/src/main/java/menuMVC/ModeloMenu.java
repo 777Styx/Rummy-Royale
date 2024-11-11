@@ -50,7 +50,9 @@ public class ModeloMenu extends Observable {
     }
 
     public void crearPartida() {
+        JuegoDTO juegoDTO = new JuegoDTO();
 
+        cliente.sendMessageObject(juegoDTO);
     }
 
 //    public void crearJuego() {
@@ -89,6 +91,7 @@ public class ModeloMenu extends Observable {
             System.out.println("Juego lleno");
             return false;
         }
+
     }
 
     public void imprimirJugadores() {

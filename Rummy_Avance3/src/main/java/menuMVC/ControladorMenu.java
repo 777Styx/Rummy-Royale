@@ -14,7 +14,6 @@ public class ControladorMenu {
     private static ControladorMenu controladorMenu;
     private final ModeloMenu modeloMenu;
     private Cliente cliente;
-    
 
     public ControladorMenu(ModeloMenu modeloMenu) {
         // Inicializar si es necesario      
@@ -64,10 +63,13 @@ public class ControladorMenu {
         modeloMenu.imprimirJugadores();
     }
 
-    public void crearPartida(JuegoDTO juegoDTO) {
-        cliente.sendMessageObject(juegoDTO);
-        
-        
+//    public void crearPartida(JuegoDTO juegoDTO) {
+//        cliente.sendMessageObject(juegoDTO);
+//        
+//        
+//    }
+    public void crearPartida() {
+        modeloMenu.crearPartida();
     }
 
     // se supone que esto no debe de usarse
