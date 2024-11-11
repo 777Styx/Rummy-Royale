@@ -9,28 +9,32 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Observable;
 import java.util.Scanner;
-
 
 /**
  *
  * @author carlo
  */
 public class Cliente extends Observable {
+
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+    private ObjectOutputStream outpuStream;
+    private ObjectInputStream input;
     private Jugador jugador;
-    
+
     public Cliente(String serverAddress, int port) {
         try {
             this.socket = new Socket(serverAddress, port);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            listenForMessage(); 
+            listenForMessage();
             sendMessage();
         } catch (IOException e) {
             System.out.println("No se pudo conectar al servidor: " + e.getMessage());
@@ -43,14 +47,20 @@ public class Cliente extends Observable {
 
     public void close() {
         try {
-            if (bufferedReader != null) bufferedReader.close();
-            if (bufferedWriter != null) bufferedWriter.close();
-            if (socket != null) socket.close();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
@@ -75,17 +85,23 @@ public class Cliente extends Observable {
             }
         }).start();
     }
-    
+
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         try {
-            if (bufferedReader != null) bufferedReader.close();
-            if (bufferedWriter != null) bufferedWriter.close();
-            if (socket != null) socket.close();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void sendMessage() {
         new Thread(new Runnable() {
             @Override
@@ -97,6 +113,21 @@ public class Cliente extends Observable {
                         bufferedWriter.newLine();
                         bufferedWriter.flush();
                     }
+                } catch (IOException e) {
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                }
+            }
+        }).start();
+    }
+
+    public void sendMessageObject(Object objectoDTO) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (Scanner scanner = new Scanner(System.in)) {
+
+                    outpuStream.writeObject(objectoDTO);
+
                 } catch (IOException e) {
                     closeEverything(socket, bufferedReader, bufferedWriter);
                 }

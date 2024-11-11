@@ -1,5 +1,6 @@
 package menuMVC;
 
+import dto.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,6 +33,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         btnStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +53,14 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jLabel1.setText("Rummy Royale");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
+        jTextField1.setText("PUERTO");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 180, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,19 +79,27 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         controladorMenu.conectarAPartida("localhost", 2222);
 
+
     }//GEN-LAST:event_btnStartActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Actualización recibida en VistaUnirse");
-        if (arg instanceof Boolean && (Boolean) arg) {
+        if (arg instanceof Integer && ((Integer) arg) == 1) {
             dispose();
+            JuegoDTO juegooDTO = new JuegoDTO();
+            
         }
 
 //        if (o instanceof ModeloMenu) {

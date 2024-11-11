@@ -39,8 +39,18 @@ public class ModeloMenu extends Observable {
         notifyObservers(visible);
     }
 
+    public void crearConexion(String direccion, int puerto) {
+        cliente = new Cliente(direccion, puerto);
+
+        if (cliente.isConnected()) {
+            setChanged();
+            notifyObservers(1);
+
+        }
+    }
+
     public void crearPartida() {
-        
+
     }
 
 //    public void crearJuego() {

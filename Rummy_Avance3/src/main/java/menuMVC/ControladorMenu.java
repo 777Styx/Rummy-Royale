@@ -1,6 +1,7 @@
 package menuMVC;
 
 import clienteCarlitos.Cliente;
+import dto.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
 
@@ -13,6 +14,7 @@ public class ControladorMenu {
     private static ControladorMenu controladorMenu;
     private final ModeloMenu modeloMenu;
     private Cliente cliente;
+    
 
     public ControladorMenu(ModeloMenu modeloMenu) {
         // Inicializar si es necesario      
@@ -57,11 +59,13 @@ public class ControladorMenu {
     public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
         modeloMenu.registrarJugador(nombre, avatar, color1, color2, color3, color4);
 
+        //Prueba con server ajua
         // prueba
         modeloMenu.imprimirJugadores();
     }
 
-    public void crearPartida() {
+    public void crearPartida(JuegoDTO juegoDTO) {
+        cliente.sendMessageObject(juegoDTO);
     }
 
     // se supone que esto no debe de usarse
@@ -71,10 +75,12 @@ public class ControladorMenu {
 
     // carlos version
     public void conectarAPartida(String direccion, int puerto) {
-        cliente = new Cliente(direccion, puerto);
-        // esto esta mal pero pues no hay de otra, soy un estupido
-        if (cliente.isConnected()) {
-            modeloMenu.mostrarRegistro(true);
-        }
+//        cliente = new Cliente(direccion, puerto);
+//        // esto esta mal pero pues no hay de otra, soy un estupido
+//        if (cliente.isConnected()) {
+//            modeloMenu.mostrarRegistro(true);
+//        }
+
+        modeloMenu.crearConexion(direccion, puerto);
     }
 }
