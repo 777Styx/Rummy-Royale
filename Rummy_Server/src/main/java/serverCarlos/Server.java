@@ -21,6 +21,7 @@ public class Server {
     private static final int MAX_JUGADORES = 4;
     private final Set<ClientHandler> jugadoresConectados = Collections.synchronizedSet(new HashSet<>());
     private ServerSocket servidorSocket;
+    private Board board;
 
     public Server(ServerSocket serverSocket) {
         this.servidorSocket = serverSocket;
@@ -64,6 +65,10 @@ public class Server {
     public void removerJugador(ClientHandler jugador) {
         jugadoresConectados.remove(jugador);
         System.out.println("Jugador desconectado. Jugadores activos: " + jugadoresConectados.size());
+    }
+
+    public void crearJuego() {
+        board.ponerJuego();
     }
 
     public static void main(String[] args) throws IOException {

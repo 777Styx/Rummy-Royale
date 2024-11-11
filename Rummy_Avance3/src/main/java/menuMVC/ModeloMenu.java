@@ -21,14 +21,14 @@ public class ModeloMenu extends Observable {
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
     private Cliente cliente;
-    
-    public enum EstadoJuego {       
+
+    public enum EstadoJuego {
         DESCONECTADO,
         CONECTADO,
         EN_REGISTRO
     }
-    
-    public ModeloMenu () {
+
+    public ModeloMenu() {
         this.estadoJuego = EstadoJuego.DESCONECTADO;
     }
 
@@ -37,6 +37,10 @@ public class ModeloMenu extends Observable {
         this.registroVisible = visible;
         setChanged();
         notifyObservers(visible);
+    }
+
+    public void crearPartida() {
+        
     }
 
 //    public void crearJuego() {
@@ -58,20 +62,17 @@ public class ModeloMenu extends Observable {
         this.juego = juego;
     }
 
-    
-    public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {  
-           
-        
+    public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
+
         List<ManejadorColor> manejadoresColor = new ArrayList<>();
         manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO1, new ColorCustom(color1)));
         manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO2, new ColorCustom(color2)));
         manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(color3)));
         manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(color4)));
-        
-        
+
         Jugador jugador = new Jugador(nombre, avatar, manejadoresColor);
-        
-        if(jugadores.size() < 4) {
+
+        if (jugadores.size() < 4) {
             jugadores.add(jugador);
             return true;
         } else {
@@ -79,13 +80,13 @@ public class ModeloMenu extends Observable {
             return false;
         }
     }
-    
+
     public void imprimirJugadores() {
         System.out.println("Jugdaroes en el juego: ");
         for (Jugador jugador : jugadores) {
             System.out.println("El jugador " + jugador.getNombre() + " usara la skin de " + jugador.getAvatar());
             System.out.println("Colores del jugador:");
-            for(ManejadorColor mc : jugador.getPreferenciasColor()) {
+            for (ManejadorColor mc : jugador.getPreferenciasColor()) {
                 System.out.println("Ficha " + mc.getTipoFicha() + " sera color " + mc.getColor().getColor());
             }
         }
@@ -98,8 +99,5 @@ public class ModeloMenu extends Observable {
     public void setEstadoJuego(EstadoJuego estadoJuego) {
         this.estadoJuego = estadoJuego;
     }
-   
-   
+
 }
-
-

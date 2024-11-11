@@ -9,11 +9,11 @@ import java.util.Observable;
  * @author puerta
  */
 public class ControladorMenu {
-    
+
     private static ControladorMenu controladorMenu;
     private final ModeloMenu modeloMenu;
     private Cliente cliente;
-            
+
     public ControladorMenu(ModeloMenu modeloMenu) {
         // Inicializar si es necesario      
         this.modeloMenu = modeloMenu;
@@ -56,22 +56,25 @@ public class ControladorMenu {
 
     public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
         modeloMenu.registrarJugador(nombre, avatar, color1, color2, color3, color4);
-       
+
         // prueba
         modeloMenu.imprimirJugadores();
     }
-    
+
+    public void crearPartida() {
+    }
+
     // se supone que esto no debe de usarse
     public void mostrarRegistro() {
         modeloMenu.mostrarRegistro(true);
     }
-    
+
     // carlos version
     public void conectarAPartida(String direccion, int puerto) {
         cliente = new Cliente(direccion, puerto);
         // esto esta mal pero pues no hay de otra, soy un estupido
-        if(cliente.isConnected()) {
+        if (cliente.isConnected()) {
             modeloMenu.mostrarRegistro(true);
         }
-    } 
+    }
 }

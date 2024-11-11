@@ -1,6 +1,9 @@
 package partidaMVC;
 
-import entidades.*;
+import entidades.Combinacion;
+import entidades.IFicha;
+import entidades.Jugador;
+import entidades.Tablero;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

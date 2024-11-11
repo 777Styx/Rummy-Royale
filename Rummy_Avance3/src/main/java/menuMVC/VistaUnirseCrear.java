@@ -39,17 +39,17 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnStart.setText("Start");
+        btnStart.setText("Crear Partida");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 200, 40));
+        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 200, 40));
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel1.setText("Rummy Royale");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
