@@ -4,6 +4,8 @@
  */
 package clienteCarlitos;
 
+import dto.JuegoDTO;
+import entidades.Juego;
 import entidades.Jugador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,12 +17,14 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Observable;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author carlo
  */
-public class Cliente extends Observable {
+public class Cliente extends Observable implements Runnable {
 
     private Socket socket;
     private BufferedReader bufferedReader;
@@ -121,17 +125,29 @@ public class Cliente extends Observable {
     }
 
     public void sendMessageObject(Object objectoDTO) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try (Scanner scanner = new Scanner(System.in)) {
 
-                    outpuStream.writeObject(objectoDTO);
+        try {
+            this.outpuStream = new ObjectOutputStream(socket.getOutputStream());
+            outpuStream.writeObject(objectoDTO);
+            System.out.println("ENVIADO PANA");
+            //this.input = new ObjectInputStream(socket.getInputStream());
+//            outpuStream.writeObject(objectoDTO);
 
-                } catch (IOException e) {
-                    closeEverything(socket, bufferedReader, bufferedWriter);
-                }
-            }
-        }).start();
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            this.input = new ObjectInputStream(socket.getInputStream());
+           JuegoDTO juegoD =   (JuegoDTO) input.readObject();
+          
+        } catch (Exception e) {
+        }
+
+    }
+
+    @Override
+    public void run() {
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

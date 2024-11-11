@@ -66,6 +66,8 @@ public class ControladorMenu {
 
     public void crearPartida(JuegoDTO juegoDTO) {
         cliente.sendMessageObject(juegoDTO);
+        
+        
     }
 
     // se supone que esto no debe de usarse

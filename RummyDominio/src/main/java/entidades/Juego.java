@@ -33,4 +33,21 @@ public class Juego {
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public boolean isPartidaActiva() {
+        return partidaActiva;
+    }
+
+    public void setPartidaActiva(boolean partidaActiva) {
+        this.partidaActiva = partidaActiva;
+    }
+
 }
