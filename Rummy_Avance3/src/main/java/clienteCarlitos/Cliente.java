@@ -26,9 +26,9 @@ public class Cliente {
     private BufferedWriter bufferedWriter;
     private Jugador jugador;
 
-    public Cliente(String serverAddress, int port) {
+    public Cliente(Socket socket) {
         try {
-            this.socket = new Socket(serverAddress, port);
+            this.socket = socket;
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (IOException e) {
@@ -68,11 +68,7 @@ public class Cliente {
                 while (socket.isConnected()) {
                     try {
                         msgFromGroupChat = bufferedReader.readLine();
-                        if (msgFromGroupChat != null) {
-                            System.out.println(msgFromGroupChat);
-                        } else {
-                            closeEverything(socket, bufferedReader, bufferedWriter);
-                        }
+                        System.out.println(msgFromGroupChat);
                     } catch (IOException e) {
                         closeEverything(socket, bufferedReader, bufferedWriter);
                     }
@@ -105,7 +101,7 @@ public class Cliente {
             Scanner scanner = new Scanner(System.in);
             while (socket.isConnected()) {
                 String messageToSend = scanner.nextLine();
-                bufferedWriter.write(messageToSend);
+                bufferedWriter.write("Client: " + messageToSend);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }

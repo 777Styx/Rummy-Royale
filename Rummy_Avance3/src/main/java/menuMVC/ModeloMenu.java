@@ -6,9 +6,12 @@ import entidades.*;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Scanner;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -20,7 +23,6 @@ public class ModeloMenu extends Observable {
     private Juego juego = null;
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
-    private Cliente cliente;
 
     public enum EstadoJuego {
         DESCONECTADO,
@@ -41,23 +43,24 @@ public class ModeloMenu extends Observable {
 
     public void crearConexion(String direccion, int puerto) {
         System.out.println("Modelo: creando conexion");
+
         try {
-            cliente = new Cliente(direccion, puerto);
-            System.out.println("algo paso aqui");
-
-            if (cliente.isConnected()) {
-                cliente.listenForMessage();
-                cliente.sendMessage();
-                setChanged();
-                notifyObservers(1);
-                System.out.println("apparently this didnt work");
-            } else {
-                System.out.println("No se pudo conectar! Estoy en Modelo");
-            }
-        } catch(Exception e) {
+            new Thread(() -> {
+                try {
+                    Socket socket = new Socket(direccion, puerto);
+                    Cliente cliente = new Cliente(socket);
+                    cliente.listenForMessage();
+                    cliente.sendMessage();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            }).start();
+        } catch (Exception e) {
             System.out.println(e);
+        } finally {
+            setChanged();
+            notifyObservers(1);
         }
-
     }
 
     public void crearPartida() {
