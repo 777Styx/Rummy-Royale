@@ -10,7 +10,6 @@ import java.net.Socket;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import servidor.Servidor;
 
 /**
  *
@@ -74,7 +73,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(2222);
         Server servidor = new Server(serverSocket);
-        servidor.iniciar(); // Inicia el servidor
+        servidor.iniciar(); 
         System.out.println("Server running...");
     }
 }
