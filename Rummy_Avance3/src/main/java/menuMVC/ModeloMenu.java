@@ -40,19 +40,30 @@ public class ModeloMenu extends Observable {
     }
 
     public void crearConexion(String direccion, int puerto) {
-        cliente = new Cliente(direccion, puerto);
+        System.out.println("Modelo: creando conexion");
+        try {
+            cliente = new Cliente(direccion, puerto);
+            System.out.println("algo paso aqui");
 
-        if (cliente.isConnected()) {
-            setChanged();
-            notifyObservers(1);
-
+            if (cliente.isConnected()) {
+                cliente.listenForMessage();
+                cliente.sendMessage();
+                setChanged();
+                notifyObservers(1);
+                System.out.println("apparently this didnt work");
+            } else {
+                System.out.println("No se pudo conectar! Estoy en Modelo");
+            }
+        } catch(Exception e) {
+            System.out.println(e);
         }
+
     }
 
     public void crearPartida() {
         JuegoDTO juegoDTO = new JuegoDTO();
 
-        cliente.sendMessageObject(juegoDTO);
+//        cliente.sendMessageObject(juegoDTO);
     }
 
 //    public void crearJuego() {

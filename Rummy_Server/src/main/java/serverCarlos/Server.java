@@ -19,23 +19,23 @@ public class Server {
 
     private static final int MAX_JUGADORES = 4;
     private final Set<ClientHandler> jugadoresConectados = Collections.synchronizedSet(new HashSet<>());
-    private ServerSocket servidorSocket;
+    private ServerSocket serverSocket;
     private Board board;
 
     public Server(ServerSocket serverSocket) {
-        this.servidorSocket = serverSocket;
+        this.serverSocket = serverSocket;
     }
 
     public void iniciar() {
         try {
-            while (!servidorSocket.isClosed()) {
+            while (!serverSocket.isClosed()) {
                 if (jugadoresConectados.size() < MAX_JUGADORES) {
-                    Socket socket = servidorSocket.accept();
+                    Socket socket = serverSocket.accept();
                     System.out.println("Un nuevo jugador se ha conectado!");
 
-                    ClientHandler jugador = new ClientHandler(socket);
-                    jugadoresConectados.add(jugador);
-                    Thread thread = new Thread(jugador);
+                    ClientHandler clientHandler = new ClientHandler(socket);
+                    jugadoresConectados.add(clientHandler);
+                    Thread thread = new Thread(clientHandler);
                     thread.start();
                 } else {
                     System.out.println("Servidor lleno. No se pueden conectar más jugadores.");
@@ -48,8 +48,8 @@ public class Server {
 
     public void detener() {
         try {
-            if (servidorSocket != null) {
-                servidorSocket.close();
+            if (serverSocket != null) {
+                serverSocket.close();
             }
             System.out.println("Servidor detenido.");
         } catch (IOException e) {
@@ -72,8 +72,8 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(2222);
-        Server servidor = new Server(serverSocket);
-        servidor.iniciar(); 
+        Server server = new Server(serverSocket);
+        server.iniciar(); 
         System.out.println("Server running...");
     }
 }

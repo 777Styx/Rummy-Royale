@@ -78,7 +78,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         controladorMenu.conectarAPartida("localhost", 2222);
-        controladorMenu.crearPartida();
+        //controladorMenu.crearPartida();
 
     }//GEN-LAST:event_btnStartActionPerformed
 
@@ -97,17 +97,12 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("Actualización recibida en VistaUnirse");
         if (arg instanceof Integer && ((Integer) arg) == 1) {
-            dispose();
-            JuegoDTO juegooDTO = new JuegoDTO();
+            this.dispose();
+            //JuegoDTO juegooDTO = new JuegoDTO();
 
+        } else {
+            
         }
-
-//        if (o instanceof ModeloMenu) {
-//            ModeloMenu modeloUnirse = (ModeloMenu) o;
-//            if (modeloUnirse.getJuego() != null) {
-//                this.dispose();
-//            }
-//        }
     }
 
 }

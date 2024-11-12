@@ -79,12 +79,7 @@ public class ControladorMenu {
 
     // carlos version
     public void conectarAPartida(String direccion, int puerto) {
-//        cliente = new Cliente(direccion, puerto);
-//        // esto esta mal pero pues no hay de otra, soy un estupido
-//        if (cliente.isConnected()) {
-//            modeloMenu.mostrarRegistro(true);
-//        }
-
+        System.out.println("Controlador: creando conexion");
         modeloMenu.crearConexion(direccion, puerto);
     }
 }

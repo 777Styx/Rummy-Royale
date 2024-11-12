@@ -11,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.util.Observable;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,13 +19,11 @@ import java.util.logging.Logger;
  *
  * @author carlo
  */
-public class Cliente extends Observable implements Runnable {
+public class Cliente {
 
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    private ObjectOutputStream outpuStream;
-    private ObjectInputStream input;
     private Jugador jugador;
 
     public Cliente(String serverAddress, int port) {
@@ -34,18 +31,16 @@ public class Cliente extends Observable implements Runnable {
             this.socket = new Socket(serverAddress, port);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            listenForMessage();
-            sendMessage();
         } catch (IOException e) {
             System.out.println("No se pudo conectar al servidor: " + e.getMessage());
         }
     }
 
     public boolean isConnected() {
-        return socket != null && socket.isConnected();
+        return socket.isConnected();
     }
 
-    public void close() {
+    public void closeEverything() {
         try {
             if (bufferedReader != null) {
                 bufferedReader.close();
@@ -103,47 +98,42 @@ public class Cliente extends Observable implements Runnable {
     }
 
     public void sendMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try (Scanner scanner = new Scanner(System.in)) {
-                    while (socket.isConnected()) {
-                        String messageToSend = scanner.nextLine();
-                        bufferedWriter.write("Mensaje: " + messageToSend);
-                        bufferedWriter.newLine();
-                        bufferedWriter.flush();
-                    }
-                } catch (IOException e) {
-                    closeEverything(socket, bufferedReader, bufferedWriter);
-                }
+        try {
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+
+            Scanner scanner = new Scanner(System.in);
+            while (socket.isConnected()) {
+                String messageToSend = scanner.nextLine();
+                bufferedWriter.write(messageToSend);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
             }
-        }).start();
+        } catch (IOException e) {
+            closeEverything(socket, bufferedReader, bufferedWriter);
+        }
     }
 
-    public void sendMessageObject(Object objectoDTO) {
-
-        try {
-            this.outpuStream = new ObjectOutputStream(socket.getOutputStream());
-            outpuStream.writeObject(objectoDTO);
-            System.out.println("ENVIADO PANA");
-            //this.input = new ObjectInputStream(socket.getInputStream());
+//    public void sendMessageObject(Object objectoDTO) {
+//
+//        try {
+//            this.outpuStream = new ObjectOutputStream(socket.getOutputStream());
 //            outpuStream.writeObject(objectoDTO);
+//            System.out.println("ENVIADO PANA");
+//            //this.input = new ObjectInputStream(socket.getInputStream());
+////            outpuStream.writeObject(objectoDTO);
+//
+//        } catch (IOException ex) {
+//            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        try {
+//            this.input = new ObjectInputStream(socket.getInputStream());
+//            JuegoDTO juegoD = (JuegoDTO) input.readObject();
+//            System.out.println("SE HIZO");
+//        } catch (Exception e) {
+//        }
+//
+//    }
 
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            this.input = new ObjectInputStream(socket.getInputStream());
-            JuegoDTO juegoD = (JuegoDTO) input.readObject();
-            System.out.println("SE HIZO");
-        } catch (Exception e) {
-        }
-
-    }
-
-    @Override
-    public void run() {
-        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

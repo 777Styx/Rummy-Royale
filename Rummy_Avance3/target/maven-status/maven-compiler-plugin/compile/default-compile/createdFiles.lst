@@ -4,10 +4,10 @@ menuMVC\VistaConfiguracion.class
 clienteCarlitos\Cliente.class
 utils\Btn.class
 partidaMVC\VistaJuego$5.class
+clienteCarlitos\NetworkMessage.class
 cliente\jframeCliente$1.class
 origin\Main.class
 partidaMVC\VistaJuego$2.class
-clienteCarlitos\ClienteHandler.class
 menuMVC\VistaUnirseCrear$2.class
 menuMVC\VistaUnirseCrear.class
 menuMVC\VistaConfiguracion$3.class
@@ -33,7 +33,6 @@ cliente\jframeCliente.class
 partidaMVC\VistaJuego$7.class
 menuMVC\VistaConfiguracion$1.class
 clienteCarlitos\Cliente$1.class
-clienteCarlitos\Cliente$2.class
 partidaMVC\VistaJuego$4.class
 menuMVC\ControladorMenu.class
 menuMVC\Vista$1.class

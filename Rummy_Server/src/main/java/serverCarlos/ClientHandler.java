@@ -15,19 +15,18 @@ import java.util.List;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
+
     private static final List<ClientHandler> clientHandlers = Collections.synchronizedList(new ArrayList<>());
     private final Socket socket;
     private final BufferedReader bufferedReader;
     private final BufferedWriter bufferedWriter;
-    private final String clientUsername;
 
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
         this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.clientUsername = bufferedReader.readLine(); // El nombre de usuario se lee al conectarse
         clientHandlers.add(this);
-        broadcastMessage("SERVER: " + clientUsername + " has entered the chat.");
+        broadcastMessage("SERVER: Un nuevo jugador se ha conectado!");
     }
 
     @Override
@@ -37,9 +36,7 @@ public class ClientHandler implements Runnable {
             try {
                 messageFromClient = bufferedReader.readLine();
                 if (messageFromClient != null) {
-                    broadcastMessage(clientUsername + ": " + messageFromClient);
-                } else {
-                    closeEverything(socket, bufferedReader, bufferedWriter);
+                    broadcastMessage(": " + messageFromClient);
                 }
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
@@ -49,33 +46,36 @@ public class ClientHandler implements Runnable {
     }
 
     public void broadcastMessage(String messageToSend) {
-        synchronized (clientHandlers) {
-            for (ClientHandler clientHandler : clientHandlers) {
-                try {
-                    if (clientHandler != this) {
-                        clientHandler.bufferedWriter.write(messageToSend);
-                        clientHandler.bufferedWriter.newLine();
-                        clientHandler.bufferedWriter.flush();
-                    }
-                } catch (IOException e) {
-                    closeEverything(socket, bufferedReader, bufferedWriter);
+        for (ClientHandler clientHandler : clientHandlers) {
+            try {
+                if (clientHandler != this) {
+                    clientHandler.bufferedWriter.write(messageToSend);
+                    clientHandler.bufferedWriter.newLine();
+                    clientHandler.bufferedWriter.flush();
                 }
+            } catch (IOException e) {
+                closeEverything(socket, bufferedReader, bufferedWriter);
             }
         }
     }
 
     public void removeClientHandler() {
         clientHandlers.remove(this);
-        broadcastMessage("SERVER: " + clientUsername + " has left the chat.");
-        System.out.println(clientUsername + " se salió del juego.");
+        broadcastMessage("SERVER: Un jugador se desconectó.");
     }
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
         removeClientHandler();
         try {
-            if (bufferedReader != null) bufferedReader.close();
-            if (bufferedWriter != null) bufferedWriter.close();
-            if (socket != null) socket.close();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
