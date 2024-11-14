@@ -1,5 +1,6 @@
 package clienteCarlitos;
 
+import common.NetworkMessage;
 import dto.JuegoDTO;
 import entidades.Juego;
 import entidades.Jugador;
@@ -110,18 +111,20 @@ public class Cliente {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
-    
+
     public void sendNetworkMessage(NetworkMessage networkMessage) {
         try {
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-            while (socket.isConnected()) {
-                out.writeObject(networkMessage);
-                out.flush();
-            }
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(networkMessage);
+            out.flush();
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
+    }
+
+    public void sendStartCommand() {
+        NetworkMessage drawCommand = new NetworkMessage("DRAW", null, null);
+        sendNetworkMessage(drawCommand);
     }
 
 //    public void sendMessageObject(Object objectoDTO) {
@@ -145,5 +148,4 @@ public class Cliente {
 //        }
 //
 //    }
-
 }

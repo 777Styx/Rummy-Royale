@@ -13,7 +13,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>RummyDominio</artifactId>
+            <artifactId>RummyCommon</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

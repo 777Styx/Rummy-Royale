@@ -1,7 +1,6 @@
 package menuMVC;
 
 import clienteCarlitos.Cliente;
-import clienteCarlitos.NetworkMessage;
 import dto.JuegoDTO;
 import entidades.*;
 
@@ -72,17 +71,17 @@ public class ModeloMenu extends Observable {
     }
 
     // prueba de caros 12nov
-    public void crearJuego(int rangoFichas, int comodines) {
-        try {
-            JuegoDTO juegoDTO = new JuegoDTO();
-            juegoDTO.setNumComodines(comodines);
-            juegoDTO.setRangoFichas(rangoFichas);
-            NetworkMessage message = new NetworkMessage(NetworkMessage.CREAR_PARTIDA, juegoDTO);
-            cliente.sendNetworkMessage(message);
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-    }
+//    public void crearJuego(int rangoFichas, int comodines) {
+//        try {
+//            JuegoDTO juegoDTO = new JuegoDTO();
+//            juegoDTO.setNumComodines(comodines);
+//            juegoDTO.setRangoFichas(rangoFichas);
+//            NetworkMessage message = new NetworkMessage(NetworkMessage.CREAR_PARTIDA, juegoDTO);
+//            cliente.sendNetworkMessage(message);
+//        } catch(Exception e) {
+//            System.out.println(e);
+//        }
+//    }
     
 
     public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
