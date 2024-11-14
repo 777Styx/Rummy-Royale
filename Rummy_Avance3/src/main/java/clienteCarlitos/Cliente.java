@@ -24,6 +24,7 @@ public class Cliente {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+    private ObjectOutputStream out;
     private Jugador jugador;
 
     public Cliente(Socket socket) {
@@ -104,6 +105,19 @@ public class Cliente {
                 bufferedWriter.write("Client: " + messageToSend);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
+            }
+        } catch (IOException e) {
+            closeEverything(socket, bufferedReader, bufferedWriter);
+        }
+    }
+    
+    public void sendNetworkMessage(NetworkMessage networkMessage) {
+        try {
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+            while (socket.isConnected()) {
+                out.writeObject(networkMessage);
+                out.flush();
             }
         } catch (IOException e) {
             closeEverything(socket, bufferedReader, bufferedWriter);

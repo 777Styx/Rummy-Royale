@@ -20,15 +20,14 @@ public class ClientHandler implements Runnable {
     private final Socket socket;
     private final BufferedReader bufferedReader;
     private final BufferedWriter bufferedWriter;
-    private String clientUsername;
+  
 
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
         this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.clientUsername = bufferedReader.readLine();
         clientHandlers.add(this);
-        broadcastMessage("SERVER " + clientUsername + " has entered");
+        broadcastMessage("SERVER: Un nuevo jugador entroooo");
     }
 
     @Override
@@ -50,7 +49,7 @@ public class ClientHandler implements Runnable {
     public void broadcastMessage(String messageToSend) {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
-                if (!clientHandler.clientUsername.equals(clientUsername)) {
+                if (clientHandler != this) {
                     clientHandler.bufferedWriter.write(messageToSend);
                     clientHandler.bufferedWriter.newLine();
                     clientHandler.bufferedWriter.flush();
@@ -63,7 +62,7 @@ public class ClientHandler implements Runnable {
 
     public void removeClientHandler(){
         clientHandlers.remove(this);
-        broadcastMessage("SERVER: " + clientUsername + " has left the chat!");
+        broadcastMessage("SERVER: Alguien c fue!");
     }
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {

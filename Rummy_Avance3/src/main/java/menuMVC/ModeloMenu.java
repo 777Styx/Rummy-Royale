@@ -1,6 +1,7 @@
 package menuMVC;
 
 import clienteCarlitos.Cliente;
+import clienteCarlitos.NetworkMessage;
 import dto.JuegoDTO;
 import entidades.*;
 
@@ -23,6 +24,7 @@ public class ModeloMenu extends Observable {
     private Juego juego = null;
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
+    Cliente cliente;
 
     public enum EstadoJuego {
         DESCONECTADO,
@@ -48,7 +50,7 @@ public class ModeloMenu extends Observable {
             new Thread(() -> {
                 try {
                     Socket socket = new Socket(direccion, puerto);
-                    Cliente cliente = new Cliente(socket);
+                    cliente = new Cliente(socket);
                     cliente.listenForMessage();
                     cliente.sendMessage();
                 } catch (IOException e) {
@@ -69,24 +71,19 @@ public class ModeloMenu extends Observable {
 //        cliente.sendMessageObject(juegoDTO);
     }
 
-//    public void crearJuego() {
-//        if (juego != null) {
-//            System.out.println("Ya esta hecho pana");
-//        } else {
-//            juego = new Juego();
-//
-//        }
-//        System.out.println("modelo");
-//        setChanged();
-//        notifyObservers(juego);
-//    }
-    public Juego getJuego() {
-        return juego;
+    // prueba de caros 12nov
+    public void crearJuego(int rangoFichas, int comodines) {
+        try {
+            JuegoDTO juegoDTO = new JuegoDTO();
+            juegoDTO.setNumComodines(comodines);
+            juegoDTO.setRangoFichas(rangoFichas);
+            NetworkMessage message = new NetworkMessage(NetworkMessage.CREAR_PARTIDA, juegoDTO);
+            cliente.sendNetworkMessage(message);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }
-
-    public void setJuego(Juego juego) {
-        this.juego = juego;
-    }
+    
 
     public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 
@@ -119,6 +116,14 @@ public class ModeloMenu extends Observable {
         }
     }
 
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
+    
     public EstadoJuego getEstadoJuego() {
         return estadoJuego;
     }
