@@ -1,12 +1,14 @@
 entidades\ColorCustom.class
-entidades\Juego.class
-entidades\ManejadorColor.class
 com\mycompany\rummydominio\RummyDominio.class
 entidades\FichaComodin.class
 entidades\Combinacion.class
 entidades\Mazo.class
 entidades\TipoFicha.class
+common\NetworkMessage.class
 entidades\IFicha.class
 entidades\Jugador.class
-entidades\Tablero.class
 entidades\FichaNumerica.class
+entidades\Juego.class
+entidades\ManejadorColor.class
+common\Command.class
+entidades\Tablero.class

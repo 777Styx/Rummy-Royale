@@ -12,25 +12,20 @@ import java.util.Map;
  * @author carlo
  */
 public class NetworkMessage implements Serializable {
-     private String command;
+    private Command command;
     private Map<String, Object> params;
-    private Object payload;
 
-    public NetworkMessage(String command, Map<String, Object> params, Object payload) {
+    public NetworkMessage(Command command, Map<String, Object> params) {
         this.command = command;
         this.params = params;
-        this.payload = payload;
     }
 
-    public String getCommand() {
+    public Command getCommand() {
         return command;
     }
 
     public Map<String, Object> getParams() {
         return params;
     }
-
-    public Object getPayload() {
-        return payload;
-    }
 }
+

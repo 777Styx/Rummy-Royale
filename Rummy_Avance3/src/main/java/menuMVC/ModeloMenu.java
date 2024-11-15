@@ -1,6 +1,7 @@
 package menuMVC;
 
 import clienteCarlitos.Cliente;
+import common.Command;
 import dto.JuegoDTO;
 import entidades.*;
 
@@ -8,7 +9,9 @@ import java.awt.Color;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Scanner;
 import javax.swing.SwingUtilities;
@@ -23,6 +26,7 @@ public class ModeloMenu extends Observable {
     private Juego juego = null;
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
+    private boolean clienteInicializado = false;
     Cliente cliente;
 
     public enum EstadoJuego {
@@ -33,6 +37,7 @@ public class ModeloMenu extends Observable {
 
     public ModeloMenu() {
         this.estadoJuego = EstadoJuego.DESCONECTADO;
+        
     }
 
     // se supone que esto no se deberia de usar
@@ -40,6 +45,10 @@ public class ModeloMenu extends Observable {
         this.registroVisible = visible;
         setChanged();
         notifyObservers(visible);
+    }
+
+    public boolean isClienteInicializado() {
+        return clienteInicializado;
     }
 
     public void crearConexion(String direccion, int puerto) {
@@ -52,22 +61,38 @@ public class ModeloMenu extends Observable {
                     cliente = new Cliente(socket);
                     cliente.listenForMessage();
                     cliente.sendMessage();
+
+                    setChanged();
+                    notifyObservers(1);
+
                 } catch (IOException e) {
                     System.out.println(e);
                 }
             }).start();
         } catch (Exception e) {
             System.out.println(e);
-        } finally {
-            setChanged();
-            notifyObservers(1);
         }
     }
 
+//    public void crearPartida() {
+//        JuegoDTO juegoDTO = new JuegoDTO();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("game", juegoDTO);
+//        cliente.sendCommand(Command.CREAR_PARTIDA, map);
+//
+////        cliente.sendMessageObject(juegoDTO);
+//    }
     public void crearPartida() {
-        JuegoDTO juegoDTO = new JuegoDTO();
-
-//        cliente.sendMessageObject(juegoDTO);
+        if (isClienteInicializado()) {
+            // Ahora el cliente está listo para ser usado
+            JuegoDTO juegoDTO = new JuegoDTO();
+            Map<String, Object> map = new HashMap<>();
+            map.put("game", juegoDTO);
+            cliente.sendCommand(Command.CREAR_PARTIDA, map);
+        } else {
+            System.out.println("El cliente aún no está listo. Esperando...");
+            // Podrías agregar lógica aquí para manejar la espera (como una notificación al usuario)
+        }
     }
 
     // prueba de caros 12nov
@@ -82,8 +107,6 @@ public class ModeloMenu extends Observable {
 //            System.out.println(e);
 //        }
 //    }
-    
-
     public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 
         List<ManejadorColor> manejadoresColor = new ArrayList<>();
@@ -122,7 +145,7 @@ public class ModeloMenu extends Observable {
     public void setJuego(Juego juego) {
         this.juego = juego;
     }
-    
+
     public EstadoJuego getEstadoJuego() {
         return estadoJuego;
     }

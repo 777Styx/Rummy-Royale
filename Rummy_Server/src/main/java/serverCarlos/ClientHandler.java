@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,6 +25,7 @@ public class ClientHandler implements Runnable {
     private final BufferedReader bufferedReader;
     private final BufferedWriter bufferedWriter;
     private final ObjectInputStream objectInputStream;
+    private final ObjectInputStream in;
   
 
     public ClientHandler(Socket socket) throws IOException {
@@ -30,22 +33,24 @@ public class ClientHandler implements Runnable {
         this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+        this.in = new ObjectInputStream(socket.getInputStream());
         clientHandlers.add(this);
         broadcastMessage("SERVER: Un nuevo jugador entroooo");
     }
 
-    @Override
+     @Override
     public void run() {
         try {
             while (socket.isConnected()) {
-                NetworkMessage networkMessage = (NetworkMessage) objectInputStream.readObject();
-                handleNetworkMessage(networkMessage);
+                NetworkMessage message = (NetworkMessage) in.readObject();
+                handleCommand(message);
             }
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             closeEverything(socket, bufferedReader, bufferedWriter);
         }
     }
-
+    
     public void broadcastMessage(String messageToSend) {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
@@ -83,23 +88,17 @@ public class ClientHandler implements Runnable {
     }
     
     
-    private void handleNetworkMessage(NetworkMessage networkMessage) {
-        String command = networkMessage.getCommand();
-        
-        switch (command) {
-            case "DRAW":
-                // Maneja la acción DRAW
+    private void handleCommand(NetworkMessage message) {
+        switch (message.getCommand()) {
+            case CREAR_PARTIDA:
+                System.out.println("Crear partida");
                 break;
-            case "PLAY":
-                // Maneja la acción PLAY
-                break;
-            case "END_TURN":
-                // Maneja la acción END_TURN
+            case CREAR_JUGADOR:
+                System.out.println("Creando jugadorrr...");
                 break;
             default:
-                System.out.println("Comando no reconocido: " + command);
+                System.out.println("Comando desconocido");
+                break;
         }
-        
-        broadcastMessage("Comando recibido: " + command);
     }
 }

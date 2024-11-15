@@ -1,5 +1,6 @@
 package clienteCarlitos;
 
+import common.Command;
 import common.NetworkMessage;
 import dto.JuegoDTO;
 import entidades.Juego;
@@ -12,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,13 +28,16 @@ public class Cliente {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private ObjectOutputStream out;
+    private ObjectInputStream in;
     private Jugador jugador;
 
     public Cliente(Socket socket) {
         try {
             this.socket = socket;
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            //  this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            // this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.in = new ObjectInputStream(socket.getInputStream());
+            this.out = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             System.out.println("No se pudo conectar al servidor: " + e.getMessage());
         }
@@ -114,7 +119,7 @@ public class Cliente {
 
     public void sendNetworkMessage(NetworkMessage networkMessage) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            //ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             out.writeObject(networkMessage);
             out.flush();
         } catch (IOException e) {
@@ -122,9 +127,15 @@ public class Cliente {
         }
     }
 
-    public void sendStartCommand() {
-        NetworkMessage drawCommand = new NetworkMessage("DRAW", null, null);
-        sendNetworkMessage(drawCommand);
+    public void sendCommand(Command command, Map<String, Object> params) {
+        try {
+            NetworkMessage message = new NetworkMessage(command, params);
+            out.writeObject(message);
+            out.flush();
+        } catch (IOException e) {
+            System.out.println("Error al enviar comando: " + e.getMessage());
+            closeEverything();
+        }
     }
 
 //    public void sendMessageObject(Object objectoDTO) {
