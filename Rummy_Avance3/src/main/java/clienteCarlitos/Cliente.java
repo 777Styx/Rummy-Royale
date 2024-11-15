@@ -2,16 +2,12 @@ package clienteCarlitos;
 
 import common.Command;
 import common.NetworkMessage;
-import dto.JuegoDTO;
-import entidades.Juego;
 import entidades.Jugador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
@@ -30,19 +26,18 @@ public class Cliente {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private Jugador jugador;
+    private ClientListener listener;
 
     public Cliente(Socket socket) {
         try {
             this.socket = socket;
-            //  this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            // this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.in = new ObjectInputStream(socket.getInputStream());
             this.out = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             System.out.println("No se pudo conectar al servidor: " + e.getMessage());
         }
     }
-
+    
     public boolean isConnected() {
         return socket.isConnected();
     }
@@ -68,20 +63,31 @@ public class Cliente {
     }
 
     public void listenForMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String msgFromGroupChat;
-                while (socket.isConnected()) {
-                    try {
-                        msgFromGroupChat = bufferedReader.readLine();
-                        System.out.println(msgFromGroupChat);
-                    } catch (IOException e) {
-                        closeEverything(socket, bufferedReader, bufferedWriter);
+        new Thread(() -> {
+            while (socket.isConnected()) {
+                try {
+                    Object message = in.readObject();
+                    if (message instanceof NetworkMessage) {
+                        handleNetworkMessage((NetworkMessage) message);
+                    } else {
+                        // Para mantener compatibilidad con mensajes de texto existentes
+                        String messageFromServer = (String) message;
+                        if (listener != null) {
+                            listener.onMessageReceived(messageFromServer);
+                        }
                     }
+                } catch (IOException | ClassNotFoundException e) {
+                    closeEverything();
+                    break;
                 }
             }
         }).start();
+    }
+    
+    private void handleNetworkMessage(NetworkMessage message) {
+        if (listener != null) {
+            listener.onNetworkMessageReceived(message);
+        }
     }
 
     public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
@@ -118,8 +124,7 @@ public class Cliente {
     }
 
     public void sendNetworkMessage(NetworkMessage networkMessage) {
-        try {
-            //ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+        try{
             out.writeObject(networkMessage);
             out.flush();
         } catch (IOException e) {

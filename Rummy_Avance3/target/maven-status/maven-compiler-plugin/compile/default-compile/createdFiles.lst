@@ -30,6 +30,7 @@ menuMVC\VistaRegistro$2.class
 partidaMVC\ControladorJuego.class
 partidaMVC\VistaJuego$1.class
 partidaMVC\ModeloJuego.class
+clienteCarlitos\MessageQueue.class
 menuMVC\VistaConfiguracion$2.class
 partidaMVC\VistaJuego$8.class
 partidaMVC\VistaJuego.class

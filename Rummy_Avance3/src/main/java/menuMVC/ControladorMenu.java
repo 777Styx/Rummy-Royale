@@ -56,11 +56,11 @@ public class ControladorMenu {
     }
 
     public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
-        modeloMenu.registrarJugador(nombre, avatar, color1, color2, color3, color4);
+        //modeloMenu.registrarJugador(nombre, avatar, color1, color2, color3, color4);
 
         //Prueba con server ajua
         // prueba
-        modeloMenu.imprimirJugadores();
+        //modeloMenu.imprimirJugadores();
     }
 
 //    public void crearPartida(JuegoDTO juegoDTO) {
@@ -74,7 +74,7 @@ public class ControladorMenu {
 
     // se supone que esto no debe de usarse
     public void mostrarRegistro() {
-        modeloMenu.mostrarRegistro(true);
+       // modeloMenu.mostrarRegistro(true);
     }
 
     // carlos version
