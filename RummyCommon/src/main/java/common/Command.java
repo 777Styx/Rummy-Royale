@@ -8,7 +8,11 @@ package common;
  *
  * @author carlo
  */
-public enum Command {
-    CREAR_PARTIDA,
-    CREAR_JUGADOR
+public class Command {
+    public static final String CREAR_PARTIDA = "CREAR_PARTIDA";
+    public static final String UNIRSE_PARTIDA = "UNIRSE_PARTIDA";
+    public static final String MOVER_FICHA = "MOVER_FICHA";
+    public static final String INICIAR_JUEGO = "INICIAR_JUEGO";
+    public static final String TERMINAR_JUEGO = "TERMINAR_JUEGO";
+    
 }

@@ -6,8 +6,10 @@ import entidades.Jugador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
@@ -19,149 +21,78 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class Cliente {
-
     private Socket socket;
-    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;
-    private ObjectOutputStream out;
-    private ObjectInputStream in;
-    private Jugador jugador;
-    private ClientListener listener;
+    private PrintWriter out;
+    private BufferedReader in;
+    private boolean connected;
+    private static final String HOST = "localhost";
+    private static final int PORT = 5000;
 
-    public Cliente(Socket socket) {
-        try {
-            this.socket = socket;
-            this.in = new ObjectInputStream(socket.getInputStream());
-            this.out = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            System.out.println("No se pudo conectar al servidor: " + e.getMessage());
-        }
+    private MessageListener messageListener;
+
+    public Cliente() {
+        connected = false;
     }
-    
+
     public boolean isConnected() {
-        return socket.isConnected();
-    }
-
-    public void closeEverything() {
-        try {
-            if (bufferedReader != null) {
-                bufferedReader.close();
-            }
-            if (bufferedWriter != null) {
-                bufferedWriter.close();
-            }
-            if (socket != null) {
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
-    }
-
-    public void listenForMessage() {
-        new Thread(() -> {
-            while (socket.isConnected()) {
-                try {
-                    Object message = in.readObject();
-                    if (message instanceof NetworkMessage) {
-                        handleNetworkMessage((NetworkMessage) message);
-                    } else {
-                        // Para mantener compatibilidad con mensajes de texto existentes
-                        String messageFromServer = (String) message;
-                        if (listener != null) {
-                            listener.onMessageReceived(messageFromServer);
-                        }
-                    }
-                } catch (IOException | ClassNotFoundException e) {
-                    closeEverything();
-                    break;
-                }
-            }
-        }).start();
+        return connected;
     }
     
-    private void handleNetworkMessage(NetworkMessage message) {
-        if (listener != null) {
-            listener.onNetworkMessageReceived(message);
-        }
-    }
-
-    public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
+    public void connectToServer() {
         try {
-            if (bufferedReader != null) {
-                bufferedReader.close();
-            }
-            if (bufferedWriter != null) {
-                bufferedWriter.close();
-            }
-            if (socket != null) {
-                socket.close();
-            }
+            socket = new Socket(HOST, PORT);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            connected = true;
+            System.out.println("Conectado al servidor");
+
+            // Iniciar thread para escuchar mensajes del servidor
+            messageListener = new MessageListener();
+            new Thread(messageListener).start();
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("No se pudo conectar al servidor");
         }
     }
 
-    public void sendMessage() {
-        try {
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
+    // Métodos para interactuar con el juego
+    public void crearPartida() {
+        sendMessage(Command.CREAR_PARTIDA);
+    }
 
-            Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()) {
-                String messageToSend = scanner.nextLine();
-                bufferedWriter.write("Client: " + messageToSend);
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
+    public void moverFicha() {
+        sendMessage(Command.MOVER_FICHA);
+    }
+
+    private void sendMessage(String message) {
+        if (connected && out != null) {
+            out.println(message);
+        }
+    }
+
+    // Clase interna para escuchar mensajes del servidor
+    private class MessageListener implements Runnable {
+        private boolean running = true;
+
+        @Override
+        public void run() {
+            try {
+                String message;
+                while (running && (message = in.readLine()) != null) {
+                    // Procesar mensaje recibido del servidor
+                    System.out.println("Mensaje del servidor: " + message);
+                    // Aquí puedes agregar la lógica para actualizar la UI o el estado del juego
+                }
+            } catch (IOException e) {
+                System.out.println("Desconectado del servidor");
+                connected = false;
             }
-        } catch (IOException e) {
-            closeEverything(socket, bufferedReader, bufferedWriter);
         }
-    }
 
-    public void sendNetworkMessage(NetworkMessage networkMessage) {
-        try{
-            out.writeObject(networkMessage);
-            out.flush();
-        } catch (IOException e) {
-            closeEverything(socket, bufferedReader, bufferedWriter);
+        public void stop() {
+            running = false;
         }
+        
+        
     }
-
-    public void sendCommand(Command command, Map<String, Object> params) {
-        try {
-            NetworkMessage message = new NetworkMessage(command, params);
-            out.writeObject(message);
-            out.flush();
-        } catch (IOException e) {
-            System.out.println("Error al enviar comando: " + e.getMessage());
-            closeEverything();
-        }
-    }
-
-//    public void sendMessageObject(Object objectoDTO) {
-//
-//        try {
-//            this.outpuStream = new ObjectOutputStream(socket.getOutputStream());
-//            outpuStream.writeObject(objectoDTO);
-//            System.out.println("ENVIADO PANA");
-//            //this.input = new ObjectInputStream(socket.getInputStream());
-////            outpuStream.writeObject(objectoDTO);
-//
-//        } catch (IOException ex) {
-//            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        try {
-//            this.input = new ObjectInputStream(socket.getInputStream());
-//            JuegoDTO juegoD = (JuegoDTO) input.readObject();
-//            System.out.println("SE HIZO");
-//        } catch (Exception e) {
-//        }
-//
-//    }
 }

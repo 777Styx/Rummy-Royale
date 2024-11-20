@@ -1,5 +1,6 @@
 package serverCarlos;
 
+import common.Command;
 import common.NetworkMessage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,86 +21,80 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
+    private Socket clientSocket;
+    private BufferedReader in;
+    private PrintWriter out;
+    private Server server;
+    private boolean running;
 
-    private static final List<ClientHandler> clientHandlers = Collections.synchronizedList(new ArrayList<>());
-    private final Socket socket;
-    private final BufferedReader bufferedReader;
-    private final BufferedWriter bufferedWriter;
-    private final ObjectInputStream objectInputStream;
-    private final ObjectInputStream in;
-  
-
-    public ClientHandler(Socket socket) throws IOException {
-        this.socket = socket;
-        this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.objectInputStream = new ObjectInputStream(socket.getInputStream());
-        this.in = new ObjectInputStream(socket.getInputStream());
-        clientHandlers.add(this);
-        broadcastMessage("SERVER: Un nuevo jugador entroooo");
-    }
-
-     @Override
-    public void run() {
+    public ClientHandler(Socket socket, Server server) {
+        this.clientSocket = socket;
+        this.server = server;
+        this.running = true;
         try {
-            while (socket.isConnected()) {
-                NetworkMessage message = (NetworkMessage) in.readObject();
-                handleCommand(message);
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            closeEverything(socket, bufferedReader, bufferedWriter);
-        }
-    }
-    
-    public void broadcastMessage(String messageToSend) {
-        for (ClientHandler clientHandler : clientHandlers) {
-            try {
-                if (clientHandler != this) {
-                    clientHandler.bufferedWriter.write(messageToSend);
-                    clientHandler.bufferedWriter.newLine();
-                    clientHandler.bufferedWriter.flush();
-                }
-            } catch (IOException e) {
-                closeEverything(socket, bufferedReader, bufferedWriter);
-            }
-        }
-    }
-
-    public void removeClientHandler(){
-        clientHandlers.remove(this);
-        broadcastMessage("SERVER: Alguien c fue!");
-    }
-
-    public void closeEverything(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter) {
-        removeClientHandler();
-        try {
-            if (bufferedReader != null) {
-                bufferedReader.close();
-            }
-            if (bufferedWriter != null) {
-                bufferedWriter.close();
-            }
-            if (socket != null) {
-                socket.close();
-            }
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    
-    private void handleCommand(NetworkMessage message) {
-        switch (message.getCommand()) {
-            case CREAR_PARTIDA:
-                System.out.println("Crear partida");
+
+    @Override
+    public void run() {
+        try {
+            while (running && !clientSocket.isClosed()) {
+                String inputLine = in.readLine();
+                if (inputLine == null) {
+                    break; // Cliente se desconectó
+                }
+                processMessage(inputLine);
+            }
+        } catch (IOException e) {
+            System.out.println("Cliente desconectado");
+        } finally {
+            disconnect();
+        }
+    }
+
+    private void processMessage(String message) {
+        // Aquí procesamos los mensajes según el protocolo
+        switch (message) {
+            case Command.CREAR_PARTIDA:
+                handleCrearPartida();
                 break;
-            case CREAR_JUGADOR:
-                System.out.println("Creando jugadorrr...");
+            case Command.MOVER_FICHA:
+                handleMoverFicha();
                 break;
-            default:
-                System.out.println("Comando desconocido");
-                break;
+            // Agrega más casos según necesites
+        }
+    }
+
+    private void handleCrearPartida() {
+        // Implementa la lógica para crear partida
+        System.out.println("Creando partida...");
+        sendMessage("Partida creada exitosamente");
+    }
+
+    private void handleMoverFicha() {
+        System.out.println("Moviendo ficha...");
+        sendMessage("Ficha movida exitosamente");
+    }
+
+    public void sendMessage(String message) {
+        if (out != null && !clientSocket.isClosed()) {
+            out.println(message);
+        }
+    }
+
+    private void disconnect() {
+        running = false;
+        server.removeClient(this);
+        try {
+            if (clientSocket != null && !clientSocket.isClosed()) {
+                clientSocket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

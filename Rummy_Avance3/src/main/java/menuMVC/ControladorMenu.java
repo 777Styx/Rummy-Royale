@@ -80,6 +80,6 @@ public class ControladorMenu {
     // carlos version
     public void conectarAPartida(String direccion, int puerto) {
         System.out.println("Controlador: creando conexion");
-        modeloMenu.crearConexion(direccion, puerto);
+        modeloMenu.crearConexion();
     }
 }
