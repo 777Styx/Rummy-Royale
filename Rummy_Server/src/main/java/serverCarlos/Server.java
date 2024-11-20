@@ -4,6 +4,7 @@
  */
 package serverCarlos;
 
+import entidades.Juego;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,6 +21,7 @@ import java.util.concurrent.Executors;
  * @author carlo
  */
 public class Server {
+
     private ServerSocket serverSocket;
     private ExecutorService pool;
     private boolean running;
@@ -27,7 +29,7 @@ public class Server {
     private List<ClientHandler> clients;
 
     public Server() {
-        pool = Executors.newFixedThreadPool(10);
+        pool = Executors.newFixedThreadPool(4);
         clients = new CopyOnWriteArrayList<>(); // Thread-safe list
     }
 
@@ -60,11 +62,16 @@ public class Server {
     public void removeClient(ClientHandler client) {
         clients.remove(client);
     }
-    
+
     public static void main(String[] args) {
-         Server server = new Server();
+        Server server = new Server();
         server.startServer();
+
+        Juego juego = Juego.getInstance();
+        Controlador controlador = new Controlador();
+
+        juego.addObserver(controlador);
+
     }
-    
-    
+
 }

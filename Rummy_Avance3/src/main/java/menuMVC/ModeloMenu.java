@@ -3,7 +3,7 @@ package menuMVC;
 import clienteCarlitos.Cliente;
 import common.Command;
 import dto.JuegoDTO;
-import entidades.*;
+import dto.JugadorDTO;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -22,8 +22,8 @@ import javax.swing.SwingUtilities;
  */
 public class ModeloMenu extends Observable {
 
-    List<Jugador> jugadores = new ArrayList<>();
-    private Juego juego = null;
+    List<JugadorDTO> jugadores = new ArrayList<>();
+    private JuegoDTO juegoDTO = null;
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
     private Cliente cliente;
@@ -38,15 +38,17 @@ public class ModeloMenu extends Observable {
     public ModeloMenu() {
         this.estadoJuego = EstadoJuego.DESCONECTADO;
     }
-    
+
     public void crearConexion() {
         cliente = new Cliente();
         cliente.connectToServer();
     }
-    
-    public void crearPartida(){
-        if(cliente.isConnected()) {
+
+    public void crearPartida() {
+        if (cliente.isConnected()) {
             cliente.crearPartida();
+        } else {
+            System.out.println("Not Connected createPartida");
         }
     }
 
@@ -55,7 +57,6 @@ public class ModeloMenu extends Observable {
 //            return cliente != null && cliente.isConnected();
 //        }
 //    }
-    
 //    public void crearConexion(String direccion, int puerto) {
 //        System.out.println("Modelo: creando conexion");
 //
@@ -80,7 +81,6 @@ public class ModeloMenu extends Observable {
 //            System.out.println(e);
 //        }
 //    }
-
 //     public void crearPartida() {
 //        synchronized (clienteLock) {
 //            if (cliente != null && cliente.isConnected()) {
@@ -93,13 +93,12 @@ public class ModeloMenu extends Observable {
 //            }
 //        }
 //    }
-
-    public Juego getJuego() {
-        return juego;
+    public JuegoDTO getJuego() {
+        return juegoDTO;
     }
 
-    public void setJuego(Juego juego) {
-        this.juego = juego;
+    public void setJuego(JuegoDTO juegoDTO) {
+        this.juegoDTO = juegoDTO;
     }
 
     public EstadoJuego getEstadoJuego() {
@@ -120,9 +119,7 @@ public class ModeloMenu extends Observable {
 //
 ////        cliente.sendMessageObject(juegoDTO);
 //    }
-
-
-    // prueba de caros 12nov
+// prueba de caros 12nov
 //    public void crearJuego(int rangoFichas, int comodines) {
 //        try {
 //            JuegoDTO juegoDTO = new JuegoDTO();
@@ -134,17 +131,12 @@ public class ModeloMenu extends Observable {
 //            System.out.println(e);
 //        }
 //    }
-
 //public void mostrarRegistro(boolean visible) {
 //        this.registroVisible = visible;
 //        setChanged();
 //        notifyObservers(visible);
 //    }
-
-
-
 // NO BORRARRR
-
 //public boolean registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 //
 //        List<ManejadorColor> manejadoresColor = new ArrayList<>();
@@ -163,8 +155,6 @@ public class ModeloMenu extends Observable {
 //            return false;
 //        }
 //    }
-
-
 //public void imprimirJugadores() {
 //        System.out.println("Jugdaroes en el juego: ");
 //        for (Jugador jugador : jugadores) {

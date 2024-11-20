@@ -1,9 +1,9 @@
 package partidaMVC;
 
-import entidades.Combinacion;
-import entidades.IFicha;
-import entidades.Jugador;
-import entidades.Tablero;
+import dto.CombinacionDTO;
+import dto.FichaDTO;
+import dto.JugadorDTO;
+import dto.TableroDTO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,17 +15,17 @@ import java.util.Random;
  */
 public class ModeloJuego {
 
-    private ArrayList<Jugador> jugadores;
-    private ArrayList<IFicha> fichas;
-    private Tablero tablero;
+    private ArrayList<JugadorDTO> jugadoresDTO;
+    private ArrayList<FichaDTO> fichasDTO;
+    private TableroDTO tableroDTO;
     private int indiceJugadorActual;
     private Random random;
 
     public ModeloJuego() {
 
-        jugadores = new ArrayList<>();
-        fichas = new ArrayList<>();
-        tablero = new Tablero();
+        jugadoresDTO = new ArrayList<>();
+        fichasDTO = new ArrayList<>();
+        tableroDTO = new TableroDTO();
         indiceJugadorActual = 0;
         random = new Random();
         // inicializarFichas();
@@ -38,11 +38,11 @@ public class ModeloJuego {
      * @param cantidad: numero de fichas que se le dará a cada jugador
      */
     public void repartirFichasIniciales(int cantidad) {
-        for (Jugador jugador : jugadores) {
+        for (JugadorDTO jugador : jugadoresDTO) {
             for (int i = 0; i < cantidad; i++) {
-                IFicha ficha = darFicha(); // Llama al método tomarFicha()
-                if (ficha != null) { // Verifica si se pudo tomar una ficha
-                    jugador.agregarFicha(ficha);
+                FichaDTO fichaDTO = darFicha(); // Llama al método tomarFicha()
+                if (fichaDTO != null) { // Verifica si se pudo tomar una ficha
+                    jugador.agregarFicha(fichaDTO);
                 } else {
                     // Si no hay más fichas, puedes decidir qué hacer (e.g., lanzar una excepción o salir del bucle)
                     System.out.println("No hay suficientes fichas para repartir.");
@@ -58,35 +58,35 @@ public class ModeloJuego {
      *
      * @return La ficha tomada, o null si no quedan fichas.
      */
-    public IFicha darFicha() {
-        if (fichas.isEmpty()) {
+    public FichaDTO darFicha() {
+        if (fichasDTO.isEmpty()) {
             System.out.println("No hay fichas pana");
             return null; // Devuelve null si no hay más fichas
         }
-        return fichas.remove(0); // Devuelve la ficha tomada
+        return fichasDTO.remove(0); // Devuelve la ficha tomada
     }
 
     // Mezcla las fichas aleatoriamente
     private void barajarFichas() {
-        Collections.shuffle(fichas, random);
+        Collections.shuffle(fichasDTO, random);
     }
 
     // Añadir un jugador al juego
-    public void agregarJugador(Jugador jugador) {
-        if (jugadores.size() < 4) { // Máximo de 4 jugadores
-            jugadores.add(jugador);
+    public void agregarJugador(JugadorDTO jugadorDTO) {
+        if (jugadoresDTO.size() < 4) { // Máximo de 4 jugadores
+            jugadoresDTO.add(jugadorDTO);
             //  notificarObservadores(); // Notifica al agregar un jugador
         }
     }
 
     // Obtener el jugador actual
-    public Jugador obtenerJugadorActual() {
-        return jugadores.get(indiceJugadorActual);
+    public JugadorDTO obtenerJugadorActual() {
+        return jugadoresDTO.get(indiceJugadorActual);
     }
 
     // Pasar al siguiente jugador
     public void siguienteTurno() {
-        indiceJugadorActual = (indiceJugadorActual + 1) % jugadores.size();
+        indiceJugadorActual = (indiceJugadorActual + 1) % jugadoresDTO.size();
         // notificarObservadores(); // Notifica al pasar el turno
     }
 
@@ -94,21 +94,21 @@ public class ModeloJuego {
      *
      */
     public void tomarFicha() {
-        if (fichas.isEmpty()) {
+        if (fichasDTO.isEmpty()) {
             System.out.println("No hay fichas pana");
             return;
         }
-        Jugador jugador = obtenerJugadorActual();
-        jugador.agregarFicha(fichas.remove(0));
+        JugadorDTO jugadorDTO = obtenerJugadorActual();
+        jugadorDTO.agregarFicha(fichasDTO.remove(0));
 
         // jugador. fichas.remove(0);
         // return fichas.remove(random.nextInt(fichas.size()));
     }
 
     // Colocar una combinación en el tablero
-    public void colocarCombinacionEnTablero(Combinacion combinacion) {
-        if (combinacion != null && combinacion.esValida()) {
-            tablero.agregarCombinacion(combinacion);
+    public void colocarCombinacionEnTablero(CombinacionDTO combinacionDTO) {
+        if (combinacionDTO != null && combinacionDTO.esValida()) {
+            tableroDTO.agregarCombinacion(combinacionDTO);
             //  notificarObservadores(); // Notifica al colocar una combinación
         } else {
             //Poner el error
@@ -119,8 +119,8 @@ public class ModeloJuego {
      *
      * @return
      */
-    public List<Combinacion> obtenerCombinaciones() {
-        return tablero.obtenerCombinaciones(); // Devuelve las combinaciones del tablero
+    public List<CombinacionDTO> obtenerCombinaciones() {
+        return tableroDTO.obtenerCombinaciones(); // Devuelve las combinaciones del tablero
     }
 
     /**
@@ -130,8 +130,8 @@ public class ModeloJuego {
      * @return boolean indicando si el juego termina o continúa
      */
     public boolean verificarFinDelJuego() {
-        for (Jugador jugador : jugadores) {
-            if (jugador.obtenerTamanoDeMano() == 0) {
+        for (JugadorDTO jugadorDTO : jugadoresDTO) {
+            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
                 // Juego terminado
                 return true;
             }
@@ -141,10 +141,10 @@ public class ModeloJuego {
     }
 
     // Obtener al jugador ganador (el que se quedó sin fichas)
-    public Jugador obtenerGanador() {
-        for (Jugador jugador : jugadores) {
-            if (jugador.obtenerTamanoDeMano() == 0) {
-                return jugador;
+    public JugadorDTO obtenerGanador() {
+        for (JugadorDTO jugadorDTO : jugadoresDTO) {
+            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
+                return jugadorDTO;
             }
         }
         // No hay ganador aún

@@ -2,7 +2,6 @@ package clienteCarlitos;
 
 import common.Command;
 import common.NetworkMessage;
-import entidades.Jugador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,6 +20,7 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class Cliente {
+
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -37,7 +37,7 @@ public class Cliente {
     public boolean isConnected() {
         return connected;
     }
-    
+
     public void connectToServer() {
         try {
             socket = new Socket(HOST, PORT);
@@ -72,6 +72,7 @@ public class Cliente {
 
     // Clase interna para escuchar mensajes del servidor
     private class MessageListener implements Runnable {
+
         private boolean running = true;
 
         @Override
@@ -92,7 +93,6 @@ public class Cliente {
         public void stop() {
             running = false;
         }
-        
-        
+
     }
 }

@@ -21,16 +21,19 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
+
     private Socket clientSocket;
     private BufferedReader in;
     private PrintWriter out;
     private Server server;
     private boolean running;
+    private Controlador controlador;
 
     public ClientHandler(Socket socket, Server server) {
         this.clientSocket = socket;
         this.server = server;
         this.running = true;
+        this.controlador = new Controlador();
         try {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -72,6 +75,7 @@ public class ClientHandler implements Runnable {
     private void handleCrearPartida() {
         // Implementa la lógica para crear partida
         System.out.println("Creando partida...");
+        this.controlador.crearJuego();
         sendMessage("Partida creada exitosamente");
     }
 

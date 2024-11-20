@@ -12,9 +12,8 @@ public class ExpertoJuego {
 
     }
 
-    public void ponerJuego() {
-        Juego juego = new Juego();
-
+    public void crearJuego() {
+        Juego juego = Juego.getInstance();
     }
 
 }

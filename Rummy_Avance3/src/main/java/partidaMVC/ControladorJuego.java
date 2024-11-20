@@ -2,8 +2,6 @@ package partidaMVC;
 
 import dto.FichaDTO;
 import dto.JugadorDTO;
-import entidades.IFicha;
-import entidades.Jugador;
 import java.util.List;
 
 /**
@@ -77,7 +75,7 @@ public class ControladorJuego {
      *
      * @param fichas la lista de fichas a colocar en el tablero
      */
-    public void colocarFichas(List<IFicha> fichas) {
+    public void colocarFichas(List<FichaDTO> fichas) {
         // Verificar que la lista de fichas tenga al menos 3 elementos
         if (fichas.size() < 3) {
 

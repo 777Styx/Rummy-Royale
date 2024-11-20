@@ -1,20 +1,32 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import serverCarlos.Controlador;
 
 /**
  *
  * @author julli
  */
-public class Juego {
+public class Juego extends Observable {
 
     private ArrayList<Jugador> jugadores;
     private Tablero tablero;
     private boolean partidaActiva = false;
+    private static Juego instance;
 
-    public Juego() {
+    private static Controlador controlador = new Controlador();
+
+    private Juego() {
         this.jugadores = new ArrayList<>();
         this.partidaActiva = false;
+    }
+
+    public static Juego getInstance() {
+        if (instance == null) {
+            instance = new Juego();
+        }
+        return instance;
     }
 
     public boolean validarAvatarNoUsado(String avatar) {
