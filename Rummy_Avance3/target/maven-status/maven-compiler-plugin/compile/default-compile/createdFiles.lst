@@ -8,13 +8,13 @@ menuMVC\VistaRegistro.class
 menuMVC\ModeloMenu$EstadoJuego.class
 utils\Btn.class
 partidaMVC\VistaJuego$5.class
+clienteCarlitos\Cliente$MessageListener.class
 partidaMVC\VistaJuego$7.class
 menuMVC\VistaConfiguracion$1.class
 origin\Main.class
 partidaMVC\VistaJuego$2.class
 menuMVC\VistaUnirseCrear$2.class
 menuMVC\VistaUnirseCrear.class
-clienteCarlitos\Cliente$1.class
 menuMVC\VistaConfiguracion$3.class
 menuMVC\VistaRegistro$ColorChooserListener.class
 menuMVC\VistaRegistro$4.class
@@ -30,7 +30,6 @@ menuMVC\VistaRegistro$2.class
 partidaMVC\ControladorJuego.class
 partidaMVC\VistaJuego$1.class
 partidaMVC\ModeloJuego.class
-clienteCarlitos\MessageQueue.class
 menuMVC\VistaConfiguracion$2.class
 partidaMVC\VistaJuego$8.class
 partidaMVC\VistaJuego.class

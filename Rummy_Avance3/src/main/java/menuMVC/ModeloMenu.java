@@ -37,52 +37,62 @@ public class ModeloMenu extends Observable {
 
     public ModeloMenu() {
         this.estadoJuego = EstadoJuego.DESCONECTADO;
-        
-    }
-
-     public boolean isClienteInicializado() {
-        synchronized (clienteLock) {
-            return cliente != null && cliente.isConnected();
-        }
     }
     
-    public void crearConexion(String direccion, int puerto) {
-        System.out.println("Modelo: creando conexion");
-
-        try {
-            new Thread(() -> {
-                try {
-                    Socket socket = new Socket(direccion, puerto);
-                    cliente = new Cliente(socket);
-                    cliente.listenForMessage();
-                    cliente.sendMessage();
-
-                    estadoJuego = EstadoJuego.CONECTADO;
-                    setChanged();
-                    notifyObservers(1);
-
-                } catch (IOException e) {
-                    System.out.println(e);
-                    estadoJuego = EstadoJuego.DESCONECTADO;
-                }
-            }).start();
-        } catch (Exception e) {
-            System.out.println(e);
+    public void crearConexion() {
+        cliente = new Cliente();
+        cliente.connectToServer();
+    }
+    
+    public void crearPartida(){
+        if(cliente.isConnected()) {
+            cliente.crearPartida();
         }
     }
 
-     public void crearPartida() {
-        synchronized (clienteLock) {
-            if (cliente != null && cliente.isConnected()) {
-                JuegoDTO juegoDTO = new JuegoDTO();
-                Map<String, Object> map = new HashMap<>();
-                map.put("game", juegoDTO);
-                cliente.sendCommand(Command.CREAR_PARTIDA, map);
-            } else {
-                System.out.println("No se puede crear partida: el cliente no está conectado.");
-            }
-        }
-    }
+//     public boolean isClienteInicializado() {
+//        synchronized (clienteLock) {
+//            return cliente != null && cliente.isConnected();
+//        }
+//    }
+    
+//    public void crearConexion(String direccion, int puerto) {
+//        System.out.println("Modelo: creando conexion");
+//
+//        try {
+//            new Thread(() -> {
+//                try {
+//                    Socket socket = new Socket(direccion, puerto);
+//                    cliente = new Cliente(socket);
+//                    cliente.listenForMessage();
+//                    cliente.sendMessage();
+//
+//                    estadoJuego = EstadoJuego.CONECTADO;
+//                    setChanged();
+//                    notifyObservers(1);
+//
+//                } catch (IOException e) {
+//                    System.out.println(e);
+//                    estadoJuego = EstadoJuego.DESCONECTADO;
+//                }
+//            }).start();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
+
+//     public void crearPartida() {
+//        synchronized (clienteLock) {
+//            if (cliente != null && cliente.isConnected()) {
+//                JuegoDTO juegoDTO = new JuegoDTO();
+//                Map<String, Object> map = new HashMap<>();
+//                map.put("game", juegoDTO);
+//                cliente.sendCommand(Command.CREAR_PARTIDA, map);
+//            } else {
+//                System.out.println("No se puede crear partida: el cliente no está conectado.");
+//            }
+//        }
+//    }
 
     public Juego getJuego() {
         return juego;
