@@ -40,15 +40,21 @@ public class ModeloMenu extends Observable {
     }
 
     public void crearConexion() {
-        cliente = new Cliente();
-        cliente.connectToServer();
+        cliente = new Cliente(); 
+        try {
+            cliente.connectToServer();
+            estadoJuego = EstadoJuego.CONECTADO;
+        } catch(Exception e) {
+            e.printStackTrace();
+        } 
+        
     }
 
     public void crearPartida() {
         if (cliente.isConnected()) {
             cliente.crearPartida();
         } else {
-            System.out.println("Not Connected createPartida");
+            System.out.println("No conectado");
         }
     }
 

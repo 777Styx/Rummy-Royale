@@ -1,5 +1,6 @@
 package serverCarlos;
 
+import entidades.Juego;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,18 +10,51 @@ import java.util.Observer;
  */
 public class Controlador implements Observer {
 
+    private static Controlador instance;
+    private EstadoJuego estadoActual;
+    ClientHandler clientHandler;
+    
+    
+    public enum EstadoJuego {
+        ESPERANDO_JUGADORES,
+        CONFIGURANDO,
+        REGISTRO,
+        LISTO,
+        EN_PROGRESO
+    }
+
     private static ExpertoJuego expertJuego = new ExpertoJuego();
 
-    public Controlador() {
+    private Controlador() {
 
     }
 
-    public void crearJuego() {
+    public static synchronized Controlador getInstance() {
+        if (instance == null) {
+            instance = new Controlador();
+        }
+        return instance;
+    }
+    
+    public void crearJuego(ClientHandler ch) {
+        this.clientHandler = ch;
+        System.out.println("Creando juego en controlador BB");
         expertJuego.crearJuego();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println("El controlador fue notificado: " + arg);
+        if (arg instanceof String) {
+            String mensaje = (String) arg;
+
+            if (mensaje.equals("creado")) {
+                if(clientHandler != null) {
+                    clientHandler.sendMessage("Juego creado (desde Blackboard)");
+                }
+            } else if (mensaje.equals("yaestacreado")) {
+                clientHandler.sendMessage("alguien ya creo la partida papi, pero te puedes unir");
+            }
+        }
     }
 }

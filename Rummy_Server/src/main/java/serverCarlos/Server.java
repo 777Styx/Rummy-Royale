@@ -30,7 +30,7 @@ public class Server {
 
     public Server() {
         pool = Executors.newFixedThreadPool(4);
-        clients = new CopyOnWriteArrayList<>(); // Thread-safe list
+        clients = new CopyOnWriteArrayList<>();
     }
 
     public void startServer() {
@@ -64,14 +64,12 @@ public class Server {
     }
 
     public static void main(String[] args) {
+        Juego juego = Juego.getInstance();
+        Controlador controlador = Controlador.getInstance();
+        juego.addObserver(controlador);
+        
         Server server = new Server();
         server.startServer();
-
-        Juego juego = Juego.getInstance();
-        Controlador controlador = new Controlador();
-
-        juego.addObserver(controlador);
-
     }
 
 }

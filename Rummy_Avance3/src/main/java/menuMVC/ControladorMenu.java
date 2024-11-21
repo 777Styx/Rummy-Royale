@@ -71,15 +71,8 @@ public class ControladorMenu {
     public void crearPartida() {
         modeloMenu.crearPartida();
     }
-
-    // se supone que esto no debe de usarse
-    public void mostrarRegistro() {
-       // modeloMenu.mostrarRegistro(true);
-    }
-
-    // carlos version
+    
     public void conectarAPartida(String direccion, int puerto) {
-        System.out.println("Controlador: creando conexion");
         modeloMenu.crearConexion();
     }
 }

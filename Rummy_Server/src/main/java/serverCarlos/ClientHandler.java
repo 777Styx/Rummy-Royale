@@ -21,7 +21,8 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
-
+    
+    public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket clientSocket;
     private BufferedReader in;
     private PrintWriter out;
@@ -33,7 +34,8 @@ public class ClientHandler implements Runnable {
         this.clientSocket = socket;
         this.server = server;
         this.running = true;
-        this.controlador = new Controlador();
+        clientHandlers.add(this);
+        this.controlador = Controlador.getInstance();
         try {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -48,19 +50,18 @@ public class ClientHandler implements Runnable {
             while (running && !clientSocket.isClosed()) {
                 String inputLine = in.readLine();
                 if (inputLine == null) {
-                    break; // Cliente se desconectó
+                    break; 
                 }
                 processMessage(inputLine);
             }
         } catch (IOException e) {
-            System.out.println("Cliente desconectado");
+            System.out.println("Error: Cliente desconectado");
         } finally {
             disconnect();
         }
     }
 
     private void processMessage(String message) {
-        // Aquí procesamos los mensajes según el protocolo
         switch (message) {
             case Command.CREAR_PARTIDA:
                 handleCrearPartida();
@@ -68,15 +69,20 @@ public class ClientHandler implements Runnable {
             case Command.MOVER_FICHA:
                 handleMoverFicha();
                 break;
-            // Agrega más casos según necesites
+                
         }
     }
 
+    private void notifyClients(String message) {
+    for (ClientHandler client : clientHandlers) { 
+        client.sendMessage(message);
+    }
+}
+    
     private void handleCrearPartida() {
-        // Implementa la lógica para crear partida
         System.out.println("Creando partida...");
-        this.controlador.crearJuego();
-        sendMessage("Partida creada exitosamente");
+        this.controlador.crearJuego(this);
+        //notifyClients(Command.PARTIDA_CREADA);
     }
 
     private void handleMoverFicha() {

@@ -15,16 +15,15 @@ public class Juego extends Observable {
     private boolean partidaActiva = false;
     private static Juego instance;
 
-    private static Controlador controlador = new Controlador();
-
     private Juego() {
         this.jugadores = new ArrayList<>();
         this.partidaActiva = false;
     }
 
-    public static Juego getInstance() {
+    public static synchronized Juego getInstance() {
         if (instance == null) {
             instance = new Juego();
+            System.out.println("Nueva instancia de Juego creada.");
         }
         return instance;
     }
@@ -58,8 +57,16 @@ public class Juego extends Observable {
         return partidaActiva;
     }
 
-    public void setPartidaActiva(boolean partidaActiva) {
-        this.partidaActiva = partidaActiva;
+    public synchronized void setPartidaActiva(boolean flag) {
+        if (partidaActiva == true) {
+            setChanged();
+            notifyObservers("yaestacreado");
+        } else {
+            this.partidaActiva = flag;
+            setChanged();
+            String estado = "creado";
+            notifyObservers(estado);
+        }
     }
 
 }
