@@ -69,7 +69,7 @@ public class ClientHandler implements Runnable {
             case Command.MOVER_FICHA:
                 handleMoverFicha();
                 break;
-                
+                // mas acciones
         }
     }
 

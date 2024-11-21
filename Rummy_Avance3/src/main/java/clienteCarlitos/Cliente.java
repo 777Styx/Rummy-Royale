@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import menuMVC.ModeloMenu;
 
 /**
  *
@@ -27,10 +28,12 @@ public class Cliente {
     private boolean connected;
     private static final String HOST = "localhost";
     private static final int PORT = 5000;
-
+    private ModeloMenu modeloMenu;
+    
     private MessageListener messageListener;
 
-    public Cliente() {
+    public Cliente(ModeloMenu modeloMenu) {
+        this.modeloMenu = modeloMenu;
         connected = false;
     }
 
@@ -69,10 +72,7 @@ public class Cliente {
             out.println(message);
         }
     }
-
-    // Clase interna para escuchar mensajes del servidor
     private class MessageListener implements Runnable {
-
         private boolean running = true;
 
         @Override
@@ -80,9 +80,11 @@ public class Cliente {
             try {
                 String message;
                 while (running && (message = in.readLine()) != null) {
-                    // Procesar mensaje recibido del servidor
                     System.out.println("Mensaje del servidor: " + message);
-                    // Aquí puedes agregar la lógica para actualizar la UI o el estado del juego
+                    // aki se notifica al modelo del mvc
+                    if(modeloMenu != null) {
+                        modeloMenu.updateEstadoJuego(message);
+                    }
                 }
             } catch (IOException e) {
                 System.out.println("Desconectado del servidor");

@@ -27,9 +27,22 @@ public class ModeloMenu extends Observable {
     private boolean registroVisible = false;
     private EstadoJuego estadoJuego;
     private Cliente cliente;
-    private final Object clienteLock = new Object(); // prueba
+
+    public void updateEstadoJuego(String message) {
+        switch (message) {
+            case "CREADO":
+                this.estadoJuego = EstadoJuego.CREADO;
+                break;
+            case "YA_CREADO":
+                break;
+            default:
+        }
+        setChanged();
+        notifyObservers(message);
+    }
 
     public enum EstadoJuego {
+        CREADO,
         DESCONECTADO,
         CONECTADO,
         EN_REGISTRO
@@ -40,14 +53,14 @@ public class ModeloMenu extends Observable {
     }
 
     public void crearConexion() {
-        cliente = new Cliente(); 
+        cliente = new Cliente(this);
         try {
             cliente.connectToServer();
             estadoJuego = EstadoJuego.CONECTADO;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } 
-        
+        }
+
     }
 
     public void crearPartida() {
@@ -57,6 +70,27 @@ public class ModeloMenu extends Observable {
             System.out.println("No conectado");
         }
     }
+    
+      public JuegoDTO getJuego() {
+        return juegoDTO;
+    }
+
+    public void setJuego(JuegoDTO juegoDTO) {
+        this.juegoDTO = juegoDTO;
+    }
+
+    public EstadoJuego getEstadoJuego() {
+        return estadoJuego;
+    }
+
+    public void setEstadoJuego(EstadoJuego estadoJuego) {
+        this.estadoJuego = estadoJuego;
+    }
+
+}
+
+// MUCHO CODIGO POR SI SIRVEE
+
 
 //     public boolean isClienteInicializado() {
 //        synchronized (clienteLock) {
@@ -99,23 +133,7 @@ public class ModeloMenu extends Observable {
 //            }
 //        }
 //    }
-    public JuegoDTO getJuego() {
-        return juegoDTO;
-    }
-
-    public void setJuego(JuegoDTO juegoDTO) {
-        this.juegoDTO = juegoDTO;
-    }
-
-    public EstadoJuego getEstadoJuego() {
-        return estadoJuego;
-    }
-
-    public void setEstadoJuego(EstadoJuego estadoJuego) {
-        this.estadoJuego = estadoJuego;
-    }
-
-}
+  
 
 //    public void crearPartida() {
 //        JuegoDTO juegoDTO = new JuegoDTO();

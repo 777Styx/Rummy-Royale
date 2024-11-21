@@ -60,11 +60,11 @@ public class Juego extends Observable {
     public synchronized void setPartidaActiva(boolean flag) {
         if (partidaActiva == true) {
             setChanged();
-            notifyObservers("yaestacreado");
+            notifyObservers("YAEXISTE");
         } else {
             this.partidaActiva = flag;
             setChanged();
-            String estado = "creado";
+            String estado = "CREADO";
             notifyObservers(estado);
         }
     }

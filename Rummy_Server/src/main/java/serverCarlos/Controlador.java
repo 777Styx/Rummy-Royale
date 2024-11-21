@@ -48,12 +48,15 @@ public class Controlador implements Observer {
         if (arg instanceof String) {
             String mensaje = (String) arg;
 
-            if (mensaje.equals("creado")) {
+            if (mensaje.equals("CREADO")) {
                 if(clientHandler != null) {
-                    clientHandler.sendMessage("Juego creado (desde Blackboard)");
+                    clientHandler.sendMessage("Juego creado con exito");
                 }
-            } else if (mensaje.equals("yaestacreado")) {
-                clientHandler.sendMessage("alguien ya creo la partida papi, pero te puedes unir");
+            } else if (mensaje.equals("YAEXISTE")) {
+                if(clientHandler != null) {
+                    clientHandler.sendMessage("Alguien ya creo partida, pero te puedes unir");
+                }
+                
             }
         }
     }

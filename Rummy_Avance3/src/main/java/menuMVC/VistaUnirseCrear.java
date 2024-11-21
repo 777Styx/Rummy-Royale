@@ -98,17 +98,16 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    
     @Override
     public void update(Observable o, Object arg) {
+        if (arg instanceof String) {
+            String message = (String) arg;
 
-        System.out.println("Actualización recibida en VistaUnirse");
-        if (arg instanceof Integer && ((Integer) arg) == 1) {
-            this.dispose();
-            //JuegoDTO juegooDTO = new JuegoDTO();
-
-        } else {
-
+            if(message.equals("CREADO") || message.equals("YAEXISTE")) {
+                this.dispose();
+            }
         }
     }
-
+    
 }

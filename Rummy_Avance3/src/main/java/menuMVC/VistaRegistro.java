@@ -37,11 +37,13 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof Integer && ((Integer) arg) == 1) {
-            // this.setVisible((Boolean) arg);
-            this.setVisible(true);
+        if (arg instanceof String) {
+            String message = (String) arg;
+
+            if(message.equals("YAEXISTE") || message.equals("CONFIGURADO")) {
+                this.setVisible(true);
+            }
         }
-        
     }
     
     private class ColorChooserListener implements ActionListener {
