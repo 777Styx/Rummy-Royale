@@ -1,12 +1,14 @@
 package partidaMVC;
 
+import java.util.Observable;
+import java.util.Observer;
 import utils.PanelRound;
 
 /**
  *
  * @author carlo
  */
-public class VistaJuego extends javax.swing.JFrame {
+public class VistaJuego extends javax.swing.JFrame implements Observer{
 
     private ControladorJuego controlador;
 
@@ -550,4 +552,9 @@ public class VistaJuego extends javax.swing.JFrame {
     private utils.Btn tomarFichaBtn;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object o1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

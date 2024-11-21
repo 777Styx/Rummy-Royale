@@ -7,13 +7,14 @@ import dto.TableroDTO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 import java.util.Random;
 
 /**
  *
  * @author puerta
  */
-public class ModeloJuego {
+public class ModeloJuego extends Observable{
 
     private ArrayList<JugadorDTO> jugadoresDTO;
     private ArrayList<FichaDTO> fichasDTO;

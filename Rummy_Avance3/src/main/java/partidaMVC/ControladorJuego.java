@@ -13,18 +13,31 @@ public class ControladorJuego {
     // Instancia del controlador (Singleton)
     private static ControladorJuego controlador;
     // Modelo que contiene la logica del juego
-    private ModeloJuego model;
+    private ModeloJuego modeloJuego;
     // Vista que presenta la interfaz de usuario
     private VistaJuego view;
 
+    
+    
+    /**
+     * Constructor
+     * @param modeloJuego 
+     */
+    public ControladorJuego(ModeloJuego modeloJuego){
+           this.modeloJuego = modeloJuego; 
+    }
+    
     /**
      * Obtiene la instancia del controlador (singleton)
      *
      * @return la instancia del controlador
      */
-    public static ControladorJuego getInstance() {
-        return controlador == null ? controlador = new ControladorJuego() : controlador;
-    }
+    
+    //lo puse en comentarios porque no me dejaba tener el constructor de arriba
+    
+                        //    public static ControladorJuego getInstance() {
+                        //        return controlador == null ? controlador = new ControladorJuego() : controlador;
+                        //    }
 
     /**
      * Establece el modelo para el controlador.
@@ -32,7 +45,7 @@ public class ControladorJuego {
      * @param model el modelo a establecer
      */
     public void setModel(ModeloJuego model) {
-        this.model = model;
+        this.modeloJuego = modeloJuego;
     }
 
     /**
@@ -59,14 +72,14 @@ public class ControladorJuego {
      * @param cantidad Cantidad de fichas a repartir
      */
     public void iniciarJuego(int cantidad) {
-        model.repartirFichasIniciales(cantidad);
+        modeloJuego.repartirFichasIniciales(cantidad);
     }
 
     /**
      * toma una ficha aleatora del ModeloJuego
      */
     public void tomarFicha() {
-        model.tomarFicha();
+        modeloJuego.tomarFicha();
     }
 
     /**
@@ -90,7 +103,7 @@ public class ControladorJuego {
      * Avanza al siguiente turno del juego.
      */
     public void siguienteTurno() {
-        model.siguienteTurno();
+        modeloJuego.siguienteTurno();
 
     }
 

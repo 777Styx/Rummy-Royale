@@ -398,6 +398,8 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         }
         controladorMenu.crearJugador(nombre, avatar, colorSeleccionado1, colorSeleccionado2, colorSeleccionado3, colorSeleccionado4);
 
+       
+        
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
