@@ -50,11 +50,11 @@ public class Controlador implements Observer {
 
             if (mensaje.equals("CREADO")) {
                 if(clientHandler != null) {
-                    clientHandler.sendMessage("Juego creado con exito");
+                    clientHandler.sendMessage("CREADO");
                 }
-            } else if (mensaje.equals("YAEXISTE")) {
+            } else if (mensaje.equals("YA_CREADO")) {
                 if(clientHandler != null) {
-                    clientHandler.sendMessage("Alguien ya creo partida, pero te puedes unir");
+                    clientHandler.sendMessage("YA_CREADO");
                 }
                 
             }

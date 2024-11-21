@@ -104,7 +104,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         if (arg instanceof String) {
             String message = (String) arg;
 
-            if(message.equals("CREADO") || message.equals("YAEXISTE")) {
+            if(message.equals("CREADO") || message.equals("YA_CREADO")) {
                 this.dispose();
             }
         }

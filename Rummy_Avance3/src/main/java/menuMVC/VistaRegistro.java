@@ -40,7 +40,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         if (arg instanceof String) {
             String message = (String) arg;
 
-            if(message.equals("YAEXISTE") || message.equals("CONFIGURADO")) {
+            if(message.equals("YA_CREADO") || message.equals("CONFIGURADO")) {
                 this.setVisible(true);
             }
         }

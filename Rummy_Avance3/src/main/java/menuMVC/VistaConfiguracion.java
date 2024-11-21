@@ -177,7 +177,6 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Actualización recibida en VistaUnirse");
 
 //        if (o instanceof ModeloMenu) {
 //            ModeloMenu modeloUnirse = (ModeloMenu) o;

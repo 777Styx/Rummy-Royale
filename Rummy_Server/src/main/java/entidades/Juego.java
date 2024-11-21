@@ -60,7 +60,7 @@ public class Juego extends Observable {
     public synchronized void setPartidaActiva(boolean flag) {
         if (partidaActiva == true) {
             setChanged();
-            notifyObservers("YAEXISTE");
+            notifyObservers("YA_CREADO");
         } else {
             this.partidaActiva = flag;
             setChanged();
