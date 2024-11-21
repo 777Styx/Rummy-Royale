@@ -109,7 +109,6 @@ public class ClientHandler implements Runnable {
 }
     
     private void handleCrearPartida() {
-        System.out.println("Creando partida...");
         this.controlador.crearJuego(this);
     }
 
@@ -117,11 +116,12 @@ public class ClientHandler implements Runnable {
         Gson gson = new Gson();
         JugadorDTO jugadorDTO = gson.fromJson(data.toString(), JugadorDTO.class);
         System.out.println("REGISTRANDO JUGADOR: "  + jugadorDTO.getNombre());
+        this.controlador.registrarJugador(this, jugadorDTO);
+        
     } 
     
     private void handleMoverFicha() {
         System.out.println("Moviendo ficha...");
-        sendMessage("Ficha movida exitosamente");
     }
     
 

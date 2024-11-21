@@ -88,4 +88,14 @@ public class Jugador {
         return sb.toString();
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
+    
+
 }

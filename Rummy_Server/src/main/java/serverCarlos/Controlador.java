@@ -1,5 +1,6 @@
 package serverCarlos;
 
+import dto.JugadorDTO;
 import entidades.Juego;
 import java.util.Observable;
 import java.util.Observer;
@@ -13,7 +14,8 @@ public class Controlador implements Observer {
     private static Controlador instance;
     private EstadoJuego estadoActual;
     ClientHandler clientHandler;
-    
+    private static ExpertoJuego expertJuego = new ExpertoJuego();
+    private static ExpertoJugador expertJugador = new ExpertoJugador();
     
     public enum EstadoJuego {
         ESPERANDO_JUGADORES,
@@ -22,9 +24,7 @@ public class Controlador implements Observer {
         LISTO,
         EN_PROGRESO
     }
-
-    private static ExpertoJuego expertJuego = new ExpertoJuego();
-
+    
     private Controlador() {
 
     }
@@ -41,23 +41,45 @@ public class Controlador implements Observer {
         System.out.println("Creando juego en controlador BB");
         expertJuego.crearJuego();
     }
+    
+    public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {
+        this.clientHandler = aThis;
+        expertJugador.registrarJugador(jugador);
+    }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("El controlador fue notificado: " + arg);
         if (arg instanceof String) {
             String mensaje = (String) arg;
 
-            if (mensaje.equals("CREADO")) {
-                if(clientHandler != null) {
+             switch (mensaje) {
+            case "CREADO":
+                if (clientHandler != null) {
                     clientHandler.sendMessage("CREADO");
                 }
-            } else if (mensaje.equals("YA_CREADO")) {
-                if(clientHandler != null) {
+                break;
+
+            case "YA_CREADO":
+                if (clientHandler != null) {
                     clientHandler.sendMessage("YA_CREADO");
                 }
-                
-            }
+                break;
+
+            case "JUGADOR_CREADO":
+                if (clientHandler != null) {
+                    clientHandler.sendMessage("JUGADOR_CREADO");
+                }
+                break;
+
+            case "PARTIDA_LLENA":
+                if (clientHandler != null) {
+                    clientHandler.sendMessage("PARTIDA_LLENA");
+                }
+                break;
+
+            default:
+                System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
+        }
         }
     }
 }

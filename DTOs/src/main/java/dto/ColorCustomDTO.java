@@ -4,24 +4,22 @@
  */
 package dto;
 
-import java.awt.Color;
-
 /**
  *
  * @author carlo
  */
 public class ColorCustomDTO {
-    private Color color;
+    private int color;
     
-    public ColorCustomDTO(Color color) {
+    public ColorCustomDTO(int color) {
         this.color = color;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
     
