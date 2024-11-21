@@ -129,26 +129,26 @@ public class ModeloJuego {
      *
      * @return boolean indicando si el juego termina o continúa
      */
-    public boolean verificarFinDelJuego() {
-        for (JugadorDTO jugadorDTO : jugadoresDTO) {
-            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
-                // Juego terminado
-                return true;
-            }
-        }
-        // El juego sigue
-        return false;
-    }
+//    public boolean verificarFinDelJuego() {
+//        for (JugadorDTO jugadorDTO : jugadoresDTO) {
+//            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
+//                // Juego terminado
+//                return true;
+//            }
+//        }
+//        // El juego sigue
+//        return false;
+//    }
 
     // Obtener al jugador ganador (el que se quedó sin fichas)
-    public JugadorDTO obtenerGanador() {
-        for (JugadorDTO jugadorDTO : jugadoresDTO) {
-            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
-                return jugadorDTO;
-            }
-        }
-        // No hay ganador aún
-        return null;
-    }
+//    public JugadorDTO obtenerGanador() {
+//        for (JugadorDTO jugadorDTO : jugadoresDTO) {
+//            if (jugadorDTO.obtenerTamanoDeMano() == 0) {
+//                return jugadorDTO;
+//            }
+//        }
+//        // No hay ganador aún
+//        return null;
+//    }
 
 }

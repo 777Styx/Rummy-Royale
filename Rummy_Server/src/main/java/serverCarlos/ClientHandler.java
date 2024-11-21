@@ -1,7 +1,10 @@
 package serverCarlos;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import common.Command;
 import common.NetworkMessage;
+import dto.JugadorDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -13,6 +16,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,18 +64,43 @@ public class ClientHandler implements Runnable {
             disconnect();
         }
     }
-
+//
+//    private void processMessage(String message) {
+//        switch (message) {
+//            case Command.CREAR_PARTIDA:
+//                handleCrearPartida();
+//                break;
+//            case Command.MOVER_FICHA:
+//                handleMoverFicha();
+//                break;
+//                // mas acciones
+//        }
+//    }
+    
     private void processMessage(String message) {
-        switch (message) {
+    try {
+        // deserializar el mensaje
+        Gson gson = new Gson();
+        Map<String, Object> messageMap = gson.fromJson(message, Map.class);
+
+        String command = (String) messageMap.get("command");
+        Object data = messageMap.get("data");
+
+        switch (command) {
             case Command.CREAR_PARTIDA:
                 handleCrearPartida();
                 break;
             case Command.MOVER_FICHA:
                 handleMoverFicha();
                 break;
-                // mas acciones
+            case Command.REGISTRAR_JUGADOR:
+                handleRegistrarJugador(data);
         }
+    } catch (JsonSyntaxException e) {
+        System.out.println("Error al procesar mensaje: " + e.getMessage());
     }
+}
+
 
     private void notifyClients(String message) {
     for (ClientHandler client : clientHandlers) { 
@@ -82,13 +111,19 @@ public class ClientHandler implements Runnable {
     private void handleCrearPartida() {
         System.out.println("Creando partida...");
         this.controlador.crearJuego(this);
-        //notifyClients(Command.PARTIDA_CREADA);
     }
 
+    private void handleRegistrarJugador(Object data) {
+        Gson gson = new Gson();
+        JugadorDTO jugadorDTO = gson.fromJson(data.toString(), JugadorDTO.class);
+        System.out.println("REGISTRANDO JUGADOR: "  + jugadorDTO.getNombre());
+    } 
+    
     private void handleMoverFicha() {
         System.out.println("Moviendo ficha...");
         sendMessage("Ficha movida exitosamente");
     }
+    
 
     public void sendMessage(String message) {
         if (out != null && !clientSocket.isClosed()) {
@@ -107,4 +142,6 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
     }
+
+   
 }

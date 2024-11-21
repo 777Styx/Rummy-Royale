@@ -2,8 +2,11 @@ package menuMVC;
 
 import clienteCarlitos.Cliente;
 import common.Command;
+import dto.ColorCustomDTO;
 import dto.JuegoDTO;
 import dto.JugadorDTO;
+import dto.ManejadorColorDTO;
+import dto.TipoFichaDTO;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -87,6 +90,23 @@ public class ModeloMenu extends Observable {
         this.estadoJuego = estadoJuego;
     }
 
+    public void registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
+
+        List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(color1)));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2, new ColorCustomDTO(color2)));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3, new ColorCustomDTO(color3)));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4, new ColorCustomDTO(color4)));
+
+        JugadorDTO jugador = new JugadorDTO();
+        
+        jugador.setNombre(nombre);
+        jugador.setAvatar(avatar);
+        jugador.setPreferenciasColor(manejadoresColor);
+        
+        cliente.registrarJugador(jugador);
+    }
+    
 }
 
 // MUCHO CODIGO POR SI SIRVEE
