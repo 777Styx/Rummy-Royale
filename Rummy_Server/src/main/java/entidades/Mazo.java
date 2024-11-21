@@ -51,4 +51,9 @@ public class Mazo {
         return mazoFichas.isEmpty();
     }
 
+    @Override
+    public String toString() {
+        return "Mazo{" + "mazoFichas=" + mazoFichas + '}';
+    }
+
 }
