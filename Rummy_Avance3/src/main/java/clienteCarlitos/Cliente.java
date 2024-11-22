@@ -100,7 +100,6 @@ public class Cliente {
                 String message;
                 while (running && (message = in.readLine()) != null) {
                     System.out.println("Mensaje del servidor: " + message);
-                    // aki se notifica al modelo del mvc
                     if (modeloMenu != null) {
                         modeloMenu.updateEstadoJuego(message);
                     }

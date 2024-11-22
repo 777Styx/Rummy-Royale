@@ -88,7 +88,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void notifyClients(String message) {
+    private void broadcastMessage(String message) {
         for (ClientHandler client : clientHandlers) {
             client.sendMessage(message);
         }

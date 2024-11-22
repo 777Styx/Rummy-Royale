@@ -25,16 +25,13 @@ import javax.swing.SwingUtilities;
  */
 public class ModeloMenu extends Observable {
 
-    List<JugadorDTO> jugadores = new ArrayList<>();
     private JuegoDTO juegoDTO = null;
     private boolean registroVisible = false;
-    private EstadoJuego estadoJuego;
     private Cliente cliente;
 
     public void updateEstadoJuego(String message) {
         switch (message) {
             case "CREADO":
-                this.estadoJuego = EstadoJuego.CREADO;
                 break;
             case "YA_CREADO":
                 break;
@@ -44,22 +41,14 @@ public class ModeloMenu extends Observable {
         notifyObservers(message);
     }
 
-    public enum EstadoJuego {
-        CREADO,
-        DESCONECTADO,
-        CONECTADO,
-        EN_REGISTRO
-    }
-
     public ModeloMenu() {
-        this.estadoJuego = EstadoJuego.DESCONECTADO;
+        
     }
 
     public void crearConexion() {
         cliente = new Cliente(this);
         try {
             cliente.connectToServer();
-            estadoJuego = EstadoJuego.CONECTADO;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,23 +62,6 @@ public class ModeloMenu extends Observable {
             System.out.println("No conectado");
         }
     }
-    
-      public JuegoDTO getJuego() {
-        return juegoDTO;
-    }
-
-    public void setJuego(JuegoDTO juegoDTO) {
-        this.juegoDTO = juegoDTO;
-    }
-
-    public EstadoJuego getEstadoJuego() {
-        return estadoJuego;
-    }
-
-    public void setEstadoJuego(EstadoJuego estadoJuego) {
-        this.estadoJuego = estadoJuego;
-    }
-
     public void registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 
         List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
