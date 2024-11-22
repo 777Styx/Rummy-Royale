@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import common.Command;
 import common.NetworkMessage;
-import dto.JugadorDTO;
+import dtos.JugadorDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
-    
+
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket clientSocket;
     private BufferedReader in;
@@ -54,7 +54,7 @@ public class ClientHandler implements Runnable {
             while (running && !clientSocket.isClosed()) {
                 String inputLine = in.readLine();
                 if (inputLine == null) {
-                    break; 
+                    break;
                 }
                 processMessage(inputLine);
             }
@@ -64,50 +64,36 @@ public class ClientHandler implements Runnable {
             disconnect();
         }
     }
-//
-//    private void processMessage(String message) {
-//        switch (message) {
-//            case Command.CREAR_PARTIDA:
-//                handleCrearPartida();
-//                break;
-//            case Command.MOVER_FICHA:
-//                handleMoverFicha();
-//                break;
-//                // mas acciones
-//        }
-//    }
-    
+
     private void processMessage(String message) {
-    try {
-        // deserializar el mensaje
-        Gson gson = new Gson();
-        Map<String, Object> messageMap = gson.fromJson(message, Map.class);
+        try {
+            Gson gson = new Gson();
+            Map<String, Object> messageMap = gson.fromJson(message, Map.class);
 
-        String command = (String) messageMap.get("command");
-        Object data = messageMap.get("data");
+            String command = (String) messageMap.get("command");
+            Object data = messageMap.get("data");
 
-        switch (command) {
-            case Command.CREAR_PARTIDA:
-                handleCrearPartida();
-                break;
-            case Command.MOVER_FICHA:
-                handleMoverFicha();
-                break;
-            case Command.REGISTRAR_JUGADOR:
-                handleRegistrarJugador(data);
+            switch (command) {
+                case Command.CREAR_PARTIDA:
+                    handleCrearPartida();
+                    break;
+                case Command.MOVER_FICHA:
+                    handleMoverFicha();
+                    break;
+                case Command.REGISTRAR_JUGADOR:
+                    handleRegistrarJugador(data);
+            }
+        } catch (JsonSyntaxException e) {
+            System.out.println("Error al procesar mensaje: " + e.getMessage());
         }
-    } catch (JsonSyntaxException e) {
-        System.out.println("Error al procesar mensaje: " + e.getMessage());
     }
-}
-
 
     private void notifyClients(String message) {
-    for (ClientHandler client : clientHandlers) { 
-        client.sendMessage(message);
+        for (ClientHandler client : clientHandlers) {
+            client.sendMessage(message);
+        }
     }
-}
-    
+
     private void handleCrearPartida() {
         this.controlador.crearJuego(this);
     }
@@ -115,15 +101,14 @@ public class ClientHandler implements Runnable {
     private void handleRegistrarJugador(Object data) {
         Gson gson = new Gson();
         JugadorDTO jugadorDTO = gson.fromJson(data.toString(), JugadorDTO.class);
-        System.out.println("REGISTRANDO JUGADOR: "  + jugadorDTO.getNombre());
+        System.out.println("REGISTRANDO JUGADOR: " + jugadorDTO.getNombre());
         this.controlador.registrarJugador(this, jugadorDTO);
-        
-    } 
-    
+
+    }
+
     private void handleMoverFicha() {
         System.out.println("Moviendo ficha...");
     }
-    
 
     public void sendMessage(String message) {
         if (out != null && !clientSocket.isClosed()) {
@@ -143,5 +128,4 @@ public class ClientHandler implements Runnable {
         }
     }
 
-   
 }

@@ -1,6 +1,6 @@
 package menuMVC;
 
-import dto.JuegoDTO;
+import dtos.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;

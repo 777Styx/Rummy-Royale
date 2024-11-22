@@ -1,9 +1,0 @@
-dto\ColorCustomDTO.class
-dto\ManejadorColorDTO.class
-com\mycompany\dtos\DTOs.class
-dto\TipoFichaDTO.class
-dto\TableroDTO.class
-dto\CombinacionDTO.class
-dto\JuegoDTO.class
-dto\JugadorDTO.class
-dto\FichaDTO.class

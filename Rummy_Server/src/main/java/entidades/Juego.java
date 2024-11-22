@@ -1,7 +1,7 @@
 package entidades;
 
-import dto.JugadorDTO;
-import dto.ManejadorColorDTO;
+import dtos.JugadorDTO;
+import dtos.ManejadorColorDTO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;

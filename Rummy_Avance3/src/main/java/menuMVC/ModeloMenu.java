@@ -2,11 +2,11 @@ package menuMVC;
 
 import clienteCarlitos.Cliente;
 import common.Command;
-import dto.ColorCustomDTO;
-import dto.JuegoDTO;
-import dto.JugadorDTO;
-import dto.ManejadorColorDTO;
-import dto.TipoFichaDTO;
+import dtos.ColorCustomDTO;
+import dtos.JuegoDTO;
+import dtos.JugadorDTO;
+import dtos.ManejadorColorDTO;
+import dtos.TipoFichaDTO;
 
 import java.awt.Color;
 import java.io.IOException;

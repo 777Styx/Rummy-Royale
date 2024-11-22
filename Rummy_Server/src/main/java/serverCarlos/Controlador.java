@@ -1,6 +1,6 @@
 package serverCarlos;
 
-import dto.JugadorDTO;
+import dtos.JugadorDTO;
 import entidades.Juego;
 import java.util.Observable;
 import java.util.Observer;

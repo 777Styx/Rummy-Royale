@@ -1,9 +1,9 @@
 package partidaMVC;
 
-import dto.CombinacionDTO;
-import dto.FichaDTO;
-import dto.JugadorDTO;
-import dto.TableroDTO;
+import dtos.CombinacionDTO;
+import dtos.FichaDTO;
+import dtos.JugadorDTO;
+import dtos.TableroDTO;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

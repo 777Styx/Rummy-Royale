@@ -4,7 +4,7 @@
  */
 package serverCarlos;
 
-import dto.JugadorDTO;
+import dtos.JugadorDTO;
 import entidades.Juego;
 
 /**

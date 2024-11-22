@@ -1,7 +1,7 @@
 package partidaMVC;
 
-import dto.FichaDTO;
-import dto.JugadorDTO;
+import dtos.FichaDTO;
+import dtos.JugadorDTO;
 import java.util.List;
 
 /**

@@ -3,7 +3,7 @@ package clienteCarlitos;
 import com.google.gson.Gson;
 import common.Command;
 import common.NetworkMessage;
-import dto.JugadorDTO;
+import dtos.JugadorDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

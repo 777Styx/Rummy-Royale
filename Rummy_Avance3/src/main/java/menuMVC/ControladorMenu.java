@@ -1,7 +1,7 @@
 package menuMVC;
 
 import clienteCarlitos.Cliente;
-import dto.JuegoDTO;
+import dtos.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
 
