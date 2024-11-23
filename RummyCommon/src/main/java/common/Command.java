@@ -16,4 +16,5 @@ public class Command {
     public static final String TERMINAR_JUEGO = "TERMINAR_JUEGO";
     public static final String PARTIDA_CREADA = "PARTIDA_CREADA";
     public static final String REGISTRAR_JUGADOR = "REGISTRAR_JUGADOR";
+    public static final String CONFIGURAR_PARTIDA = "CONFIGURAR_PARTIDA";
 }
