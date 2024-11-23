@@ -16,6 +16,7 @@ public class Controlador implements Observer {
     ClientHandler clientHandler;
     private static ExpertoJuego expertJuego = new ExpertoJuego();
     private static ExpertoJugador expertJugador = new ExpertoJugador();
+    Server server = Server.getInstance();
     
     public enum EstadoJuego {
         ESPERANDO_JUGADORES,
@@ -55,25 +56,25 @@ public class Controlador implements Observer {
              switch (mensaje) {
             case "CREADO":
                 if (clientHandler != null) {
-                    clientHandler.sendMessage("CREADO");
+                    server.broadcastMessage("aLGUien Creo Una Partida", clientHandler);
                 }
                 break;
 
             case "YA_CREADO":
                 if (clientHandler != null) {
-                    clientHandler.sendMessage("YA_CREADO");
+                    server.broadcastMessage("aLGUien INTEnto CreaR Una Partida", clientHandler);
                 }
                 break;
 
             case "JUGADOR_CREADO":
                 if (clientHandler != null) {
-                    clientHandler.sendMessage("JUGADOR_CREADO");
+                    
                 }
                 break;
 
             case "PARTIDA_LLENA":
                 if (clientHandler != null) {
-                    clientHandler.sendMessage("PARTIDA_LLENA");
+                    
                 }
                 break;
 

@@ -91,7 +91,6 @@ public class Cliente {
     }
 
     private class MessageListener implements Runnable {
-
         private boolean running = true;
 
         @Override
@@ -99,8 +98,8 @@ public class Cliente {
             try {
                 String message;
                 while (running && (message = in.readLine()) != null) {
-                    System.out.println("Mensaje del servidor: " + message);
                     if (modeloMenu != null) {
+                        System.out.println("Soy cliente y recibi esto: " + message);
                         modeloMenu.updateEstadoJuego(message);
                     }
                 }

@@ -22,17 +22,25 @@ import java.util.concurrent.Executors;
  */
 public class Server {
 
+    private static Server instance;
     private ServerSocket serverSocket;
     private ExecutorService pool;
     private boolean running;
     private static final int PORT = 5000;
     private List<ClientHandler> clients;
 
-    public Server() {
+    private Server() {
         pool = Executors.newFixedThreadPool(4);
         clients = new CopyOnWriteArrayList<>();
     }
 
+    public static Server getInstance() {
+        if (instance == null) {
+            instance = new Server();
+        }
+        return instance;
+    }
+    
     public void startServer() {
         try {
             serverSocket = new ServerSocket(PORT);
@@ -52,13 +60,21 @@ public class Server {
     }
 
     public void broadcastMessage(String message, ClientHandler sender) {
+        System.out.println("brrrrrrr");
         for (ClientHandler client : clients) {
             if (client != sender) {
+                client.sendMessage(message);
+            } else {
+                // mensaje para el sender
                 client.sendMessage(message);
             }
         }
     }
 
+    public void addClient(ClientHandler client) {
+        clients.add(client);
+    }
+    
     public void removeClient(ClientHandler client) {
         clients.remove(client);
     }
@@ -68,7 +84,7 @@ public class Server {
         Controlador controlador = Controlador.getInstance();
         juego.addObserver(controlador);
         
-        Server server = new Server();
+        Server server = Server.getInstance();
         server.startServer();
     }
 
