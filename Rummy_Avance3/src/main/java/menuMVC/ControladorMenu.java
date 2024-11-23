@@ -13,7 +13,6 @@ public class ControladorMenu {
 
     private static ControladorMenu controladorMenu;
     private final ModeloMenu modeloMenu;
-    private Cliente cliente;
 
     public ControladorMenu(ModeloMenu modeloMenu) {
         this.modeloMenu = modeloMenu;
@@ -25,11 +24,7 @@ public class ControladorMenu {
 
     }
 
-    public void crearPartida() {
-        modeloMenu.crearPartida();
-    }
-    
-    public void conectarAPartida(String direccion, int puerto) {
-        modeloMenu.crearConexion();
+    public void crearPartida(int puerto) {
+        modeloMenu.crearPartida(puerto);
     }
 }

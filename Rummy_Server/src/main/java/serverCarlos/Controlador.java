@@ -56,13 +56,13 @@ public class Controlador implements Observer {
              switch (mensaje) {
             case "CREADO":
                 if (clientHandler != null) {
-                    server.broadcastMessage("aLGUien Creo Una Partida", clientHandler);
+                    server.broadcastMessage("CREADO", clientHandler);
                 }
                 break;
 
             case "YA_CREADO":
                 if (clientHandler != null) {
-                    server.broadcastMessage("aLGUien INTEnto CreaR Una Partida", clientHandler);
+                    server.broadcastMessage("YA_CREADO", clientHandler);
                 }
                 break;
 

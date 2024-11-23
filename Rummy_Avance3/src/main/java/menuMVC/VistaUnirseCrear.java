@@ -33,7 +33,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         btnStart = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        puertoTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,12 +55,12 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jLabel1.setText("Rummy Royale");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        puertoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                puertoTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 50));
+        jPanel1.add(puertoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Puerto:");
@@ -82,22 +82,22 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        controladorMenu.conectarAPartida("localhost", 2222);
-        controladorMenu.crearPartida();
+
+        controladorMenu.crearPartida(Integer.parseInt(puertoTxt.getText()));
         
        
     }//GEN-LAST:event_btnStartActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void puertoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puertoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_puertoTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField puertoTxt;
     // End of variables declaration//GEN-END:variables
 
     

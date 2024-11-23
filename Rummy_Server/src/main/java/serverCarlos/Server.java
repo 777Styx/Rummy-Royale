@@ -60,12 +60,10 @@ public class Server {
     }
 
     public void broadcastMessage(String message, ClientHandler sender) {
-        System.out.println("brrrrrrr");
         for (ClientHandler client : clients) {
             if (client != sender) {
                 client.sendMessage(message);
             } else {
-                // mensaje para el sender
                 client.sendMessage(message);
             }
         }

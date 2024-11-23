@@ -45,17 +45,15 @@ public class ModeloMenu extends Observable {
         
     }
 
-    public void crearConexion() {
+    public void crearPartida(int puerto) {
+        
         cliente = new Cliente(this);
         try {
-            cliente.connectToServer();
+            cliente.connectToServer(puerto);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void crearPartida() {
+        
         if (cliente.isConnected()) {
             cliente.crearPartida();
         } else {
