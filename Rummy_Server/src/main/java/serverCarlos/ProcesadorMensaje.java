@@ -5,7 +5,11 @@
 package serverCarlos;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.util.Map;
+import mensajes.Mensaje;
+import mensajes.MsgConfigurarPartida;
+import mensajes.MsgRegistroJugador;
 
 /**
  *
@@ -19,17 +23,15 @@ public class ProcesadorMensaje {
         this.clientHandler = clientHandler;
         this.manejadorComando = new ManejadorComando(clientHandler);
     }
-    public void procesarMensaje(String message) {
+    
+    public void procesarMensaje(String inputLine) {
         try {
-            Gson gson = new Gson();
-            Map<String, Object> messageMap = gson.fromJson(message, Map.class);
-
-            String command = (String) messageMap.get("command");
-            Object data = messageMap.get("data");
-
-            manejadorComando.manejarComando(command, data);
+            Mensaje mensaje = MessageDeserializer.deserializeMessage(inputLine);
+            manejadorComando.manejarComando(mensaje);
+            
         } catch (Exception e) {
-            System.out.println("Error al procesar mensaje: " + e.getMessage());
+            System.err.println("Error procesando mensaje: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     

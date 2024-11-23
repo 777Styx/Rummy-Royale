@@ -1,7 +1,9 @@
 package clienteCarlitos;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import common.Command;
+import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +12,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import mensajes.Mensaje;
+import mensajes.MsgConfigurarPartida;
+import mensajes.MsgCrearPartida;
+import mensajes.MsgRegistroJugador;
 import menuMVC.ModeloMenu;
 
 /**
@@ -55,32 +61,24 @@ public class Cliente {
     }
 
     // enviar mensajes al servidor
-    private void sendMessage(String command, Object data) {
-        if (connected && out != null) {
-            String message = serializableCommanWithData(command, data);
-            out.println(message);
-        }
+    private void sendMessage(Mensaje mensaje) {
+    if (connected && out != null) {
+        String message = MessageSerializer.serializableCommanWithData(mensaje);
+        out.println(message);
     }
+}
 
     // metodos para interactuar con el juego
     public void crearPartida() {
-        sendMessage(Command.CREAR_PARTIDA, null);
-    }
-
-    public void moverFicha() {
-        sendMessage(Command.MOVER_FICHA, null);
+        sendMessage(new MsgCrearPartida());
     }
 
     public void registrarJugador(JugadorDTO jugador) {
-        sendMessage(Command.REGISTRAR_JUGADOR, jugador);
+        sendMessage(new MsgRegistroJugador(jugador));
     }
 
-    private String serializableCommanWithData(String command, Object data) {
-        Map<String, Object> messageMap = new HashMap<>();
-        messageMap.put("command", command);
-        messageMap.put("data", data);
-
-        return new Gson().toJson(messageMap);
+    public void configurarPartida(JuegoDTO configuracion) {
+        sendMessage(new MsgConfigurarPartida(configuracion));
     }
 
     private class MessageListener implements Runnable {

@@ -7,6 +7,8 @@ package serverCarlos;
 import com.google.gson.Gson;
 import common.Command;
 import dtos.JugadorDTO;
+import mensajes.Mensaje;
+import mensajes.MsgRegistroJugador;
 
 /**
  *
@@ -21,16 +23,22 @@ public class ManejadorComando {
         this.controlador = Controlador.getInstance();
     }
     
-    public void manejarComando(String command, Object data) {
-        switch (command) {
+    public void manejarComando(Mensaje mensaje) {
+        
+        if(mensaje == null) {
+            clientHandler.sendMessage("Mensaje nulo");
+            return;
+        }
+        
+        switch (mensaje.getComando()) {
             case Command.CREAR_PARTIDA:
                 handleCrearPartida();
                 break;
             case Command.REGISTRAR_JUGADOR:
-                handleRegistrarJugador(data);
+                handleRegistrarJugador((MsgRegistroJugador) mensaje);
                 break;
             default:
-                clientHandler.sendMessage("Comando no reconocido: " + command);
+                clientHandler.sendMessage("Comando no reconocido: " + mensaje.getComando());
         }
     }
     
@@ -38,9 +46,8 @@ public class ManejadorComando {
         controlador.crearJuego(clientHandler);
     }
 
-    private void handleRegistrarJugador(Object data) {
-        Gson gson = new Gson();
-        JugadorDTO jugadorDTO = gson.fromJson(data.toString(), JugadorDTO.class);
-        controlador.registrarJugador(clientHandler, jugadorDTO);
+    private void handleRegistrarJugador(MsgRegistroJugador mensaje) {
+       JugadorDTO jugador = mensaje.getJugador();
+       controlador.registrarJugador(clientHandler, jugador);
     }
 }

@@ -1,3 +1,4 @@
+clienteCarlitos\MessageSerializer.class
 menuMVC\VistaRegistro$8.class
 menuMVC\VistaRegistro$1.class
 menuMVC\VistaConfiguracion.class
@@ -5,6 +6,7 @@ menuMVC\VistaRegistro$3.class
 clienteCarlitos\Cliente.class
 menuMVC\VistaRegistro$6.class
 menuMVC\VistaRegistro.class
+clienteCarlitos\MessageWrapper.class
 utils\Btn.class
 partidaMVC\VistaJuego$5.class
 clienteCarlitos\Cliente$MessageListener.class
