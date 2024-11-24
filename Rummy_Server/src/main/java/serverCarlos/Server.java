@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import mensajes.Mensaje;
+import mensajes.MessageManager;
 
 /**
  *
@@ -59,12 +61,15 @@ public class Server {
         }
     }
 
-    public void broadcastMessage(String message, ClientHandler sender) {
+    public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
+        
+        //String jsonMessage = MessageManager.toJson(mensaje);
+        
         for (ClientHandler client : clients) {
             if (client != sender) {
-                client.sendMessage(message);
+                client.sendMessage(mensaje);
             } else {
-                client.sendMessage(message);
+                client.sendMessage(mensaje);
             }
         }
     }

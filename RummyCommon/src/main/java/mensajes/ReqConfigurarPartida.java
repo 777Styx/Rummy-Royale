@@ -10,11 +10,11 @@ import dtos.JuegoDTO;
  *
  * @author carlo
  */
-public class MsgConfigurarPartida extends Mensaje{
+public class ReqConfigurarPartida extends Mensaje{
     
     private final JuegoDTO juego;
     
-    public MsgConfigurarPartida(JuegoDTO juego) {
+    public ReqConfigurarPartida(JuegoDTO juego) {
         super("CONFIGURAR_PARTIDA");
         this.juego = juego;
     }

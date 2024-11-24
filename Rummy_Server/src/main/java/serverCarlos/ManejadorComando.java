@@ -8,7 +8,8 @@ import com.google.gson.Gson;
 import common.Command;
 import dtos.JugadorDTO;
 import mensajes.Mensaje;
-import mensajes.MsgRegistroJugador;
+import mensajes.ReqRegistroJugador;
+
 
 /**
  *
@@ -26,7 +27,7 @@ public class ManejadorComando {
     public void manejarComando(Mensaje mensaje) {
         
         if(mensaje == null) {
-            clientHandler.sendMessage("Mensaje nulo");
+            System.out.println("mensaje nulo");
             return;
         }
         
@@ -35,10 +36,10 @@ public class ManejadorComando {
                 handleCrearPartida();
                 break;
             case Command.REGISTRAR_JUGADOR:
-                handleRegistrarJugador((MsgRegistroJugador) mensaje);
+                handleRegistrarJugador((ReqRegistroJugador) mensaje);
                 break;
             default:
-                clientHandler.sendMessage("Comando no reconocido: " + mensaje.getComando());
+                
         }
     }
     
@@ -46,7 +47,7 @@ public class ManejadorComando {
         controlador.crearJuego(clientHandler);
     }
 
-    private void handleRegistrarJugador(MsgRegistroJugador mensaje) {
+    private void handleRegistrarJugador(ReqRegistroJugador mensaje) {
        JugadorDTO jugador = mensaje.getJugador();
        controlador.registrarJugador(clientHandler, jugador);
     }

@@ -8,9 +8,15 @@ package mensajes;
  *
  * @author carlo
  */
-public class MsgCrearPartida extends Mensaje {
-    public MsgCrearPartida() {
-        super("CREAR_PARTIDA"); 
+public class ResCrearPartida extends Mensaje {
+    
+    public ResCrearPartida(String comando) {
+        super(comando);
     }
+    
+    public ResCrearPartida() {
+        super("");
+    }
+    
+    
 }
-

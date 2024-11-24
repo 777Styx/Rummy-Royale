@@ -4,11 +4,8 @@
  */
 package serverCarlos;
 
-import java.util.Map;
 import mensajes.Mensaje;
 import mensajes.MessageManager;
-import mensajes.MsgConfigurarPartida;
-import mensajes.MsgRegistroJugador;
 
 /**
  *
@@ -25,7 +22,6 @@ public class ProcesadorMensaje {
     
     public void procesarMensaje(String inputLine) {
         try {
-            //Mensaje mensaje = MessageDeserializer.deserializeMessage(inputLine);
             Mensaje mensaje = MessageManager.fromJson(inputLine);
             manejadorComando.manejarComando(mensaje);
             

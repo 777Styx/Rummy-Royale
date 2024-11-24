@@ -21,7 +21,7 @@ public class MessageAdapter implements JsonSerializer<Mensaje>, JsonDeserializer
     @Override
     public JsonElement serialize(Mensaje mensaje, Type type, JsonSerializationContext context) {
         return context.serialize(mensaje);
-    }
+    }   
     
     @Override
     public Mensaje deserialize(JsonElement json, Type type, JsonDeserializationContext context) 
@@ -31,9 +31,12 @@ public class MessageAdapter implements JsonSerializer<Mensaje>, JsonDeserializer
         
         try {
             Class<? extends Mensaje> messageClass = switch (comando) {
-                case "REGISTRO_JUGADOR" -> MsgRegistroJugador.class;
-                case "CREAR_PARTIDA" -> MsgCrearPartida.class;
-                // Agregar mas aki
+                // requestsss
+                case "REGISTRO_JUGADOR" -> ReqRegistroJugador.class;
+                case "CREAR_PARTIDA" -> ReqCrearPartida.class;
+                case "CONFIGURAR_PARTIDA" -> ReqConfigurarPartida.class;
+                 // responses
+                case "PARTIDA_CREADA", "PARTIDA_NO_CREADA" -> ResCrearPartida.class; 
                 default -> throw new JsonParseException("Comando desconocido: " + comando);
             };
             

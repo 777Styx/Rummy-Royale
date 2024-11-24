@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Map;
+import mensajes.Mensaje;
+import mensajes.MessageManager;
 
 /**
  *
@@ -54,9 +56,12 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(Mensaje mensaje) {
+        
+        String jsonMessage = MessageManager.toJson(mensaje);
+        
         if (out != null && !clientSocket.isClosed()) {
-            out.println(message);
+            out.println(jsonMessage);
         }
     }
 

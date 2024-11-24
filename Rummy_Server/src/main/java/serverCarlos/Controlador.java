@@ -4,6 +4,7 @@ import dtos.JugadorDTO;
 import entidades.Juego;
 import java.util.Observable;
 import java.util.Observer;
+import mensajes.ResCrearPartida;
 
 /**
  *
@@ -56,13 +57,13 @@ public class Controlador implements Observer {
              switch (mensaje) {
             case "CREADO":
                 if (clientHandler != null) {
-                    server.broadcastMessage("CREADO", clientHandler);
+                    server.broadcastMessage(new ResCrearPartida("PARTIDA_CREADA"), clientHandler);
                 }
                 break;
 
             case "YA_CREADO":
                 if (clientHandler != null) {
-                    server.broadcastMessage("YA_CREADO", clientHandler);
+                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
                 }
                 break;
 

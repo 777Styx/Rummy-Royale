@@ -14,9 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 import mensajes.Mensaje;
 import mensajes.MessageManager;
-import mensajes.MsgConfigurarPartida;
-import mensajes.MsgCrearPartida;
-import mensajes.MsgRegistroJugador;
+import mensajes.ReqConfigurarPartida;
+import mensajes.ReqCrearPartida;
+import mensajes.ReqRegistroJugador;
+import mensajes.ResCrearPartida;
 import menuMVC.ModeloMenu;
 
 /**
@@ -63,20 +64,21 @@ public class Cliente {
             out.println(jsonMessage);
         }
     }
-    
+
     public void crearPartida() {
-        sendMessage(new MsgCrearPartida());
+        sendMessage(new ReqCrearPartida());
     }
 
     public void registrarJugador(JugadorDTO jugador) {
-        sendMessage(new MsgRegistroJugador(jugador));
+        sendMessage(new ReqRegistroJugador(jugador));
     }
 
     public void configurarPartida(JuegoDTO configuracion) {
-        sendMessage(new MsgConfigurarPartida(configuracion));
+        sendMessage(new ReqConfigurarPartida(configuracion));
     }
 
     private class MessageListener implements Runnable {
+
         private boolean running = true;
 
         @Override
@@ -84,16 +86,24 @@ public class Cliente {
             try {
                 String message;
                 while (running && (message = in.readLine()) != null) {
-//                    if (modeloMenu != null) {
-//                        modeloMenu.updateEstadoJuego(message);
-//                    }
-                    
-
-                    //resManager.procesarMensaje
+                    Mensaje mensaje = MessageManager.fromJson(message);
+                    handleResponse(mensaje);
                 }
             } catch (IOException e) {
                 System.out.println("Desconectado del servidor");
                 connected = false;
+            }
+        }
+
+        private void handleResponse(Mensaje mensaje) {
+            if (mensaje instanceof ResCrearPartida) {
+                ResCrearPartida respuesta = (ResCrearPartida) mensaje;
+                if (respuesta.getComando().equals("PARTIDA_CREADA")) {
+                    System.out.println("La partida fue creada exitosamente.");
+                    modeloMenu.updateEstadoJuego(respuesta.getComando());
+                } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
+                    System.out.println("No se pudo crear la partida.");
+                }
             }
         }
 
