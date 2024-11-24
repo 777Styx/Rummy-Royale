@@ -13,7 +13,6 @@ import mensajes.ResCrearPartida;
 public class Controlador implements Observer {
 
     private static Controlador instance;
-    private EstadoJuego estadoActual;
     ClientHandler clientHandler;
     private static ExpertoJuego expertJuego = new ExpertoJuego();
     private static ExpertoJugador expertJugador = new ExpertoJugador();
@@ -41,7 +40,8 @@ public class Controlador implements Observer {
     public void crearJuego(ClientHandler ch) {
         this.clientHandler = ch;
         System.out.println("Creando juego en controlador BB");
-        expertJuego.crearJuego();
+        expertJuego.crearJuego(); // <- boolean 
+        //server.broadcastMessage(mensaje, ch);
     }
     
     public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {

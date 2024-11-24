@@ -29,7 +29,7 @@ public class ModeloMenu extends Observable {
     private boolean registroVisible = false;
     private Cliente cliente;
 
-    public void updateEstadoJuego(String message) {
+    public void updateEstadoJuego(String message) { // esto se cambia a notificarEstadoJuego()
         switch (message) {
             case "PARTIDA_CREADA":
                 System.out.println("Se creo una partida, soy chileno");

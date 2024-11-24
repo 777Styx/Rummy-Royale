@@ -17,4 +17,9 @@ public class ExpertoJuego {
         System.out.println("Creando juego en experto");
         juego.setPartidaActiva(true);
     }
+    
+    public void isEmpty() {
+        //Juego juego = juego.getInstance();
+        //return juego.getJugadores().size();
+    }
 }
