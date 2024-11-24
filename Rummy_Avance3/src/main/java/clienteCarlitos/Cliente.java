@@ -59,7 +59,6 @@ public class Cliente {
 
     private void sendMessage(Mensaje mensaje) {
         if (connected && out != null) {
-            //String message = MessageSerializer.serializableCommanWithData(mensaje);
             String jsonMessage = MessageManager.toJson(mensaje);
             out.println(jsonMessage);
         }
@@ -85,9 +84,12 @@ public class Cliente {
             try {
                 String message;
                 while (running && (message = in.readLine()) != null) {
-                    if (modeloMenu != null) {
-                        modeloMenu.updateEstadoJuego(message);
-                    }
+//                    if (modeloMenu != null) {
+//                        modeloMenu.updateEstadoJuego(message);
+//                    }
+                    
+
+                    //resManager.procesarMensaje
                 }
             } catch (IOException e) {
                 System.out.println("Desconectado del servidor");
