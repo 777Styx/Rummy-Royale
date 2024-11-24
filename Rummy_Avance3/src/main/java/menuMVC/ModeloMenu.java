@@ -32,8 +32,10 @@ public class ModeloMenu extends Observable {
     public void updateEstadoJuego(String message) {
         switch (message) {
             case "CREADO":
+                System.out.println("Se creo una partida");
                 break;
             case "YA_CREADO":
+                System.out.println("Ya estaba creada una partida");
                 break;
             default:
         }

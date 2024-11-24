@@ -4,10 +4,9 @@
  */
 package serverCarlos;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import java.util.Map;
 import mensajes.Mensaje;
+import mensajes.MessageManager;
 import mensajes.MsgConfigurarPartida;
 import mensajes.MsgRegistroJugador;
 
@@ -26,7 +25,8 @@ public class ProcesadorMensaje {
     
     public void procesarMensaje(String inputLine) {
         try {
-            Mensaje mensaje = MessageDeserializer.deserializeMessage(inputLine);
+            //Mensaje mensaje = MessageDeserializer.deserializeMessage(inputLine);
+            Mensaje mensaje = MessageManager.fromJson(inputLine);
             manejadorComando.manejarComando(mensaje);
             
         } catch (Exception e) {

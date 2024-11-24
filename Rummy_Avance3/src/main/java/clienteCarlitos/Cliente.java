@@ -13,6 +13,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import mensajes.Mensaje;
+import mensajes.MessageManager;
 import mensajes.MsgConfigurarPartida;
 import mensajes.MsgCrearPartida;
 import mensajes.MsgRegistroJugador;
@@ -29,8 +30,6 @@ public class Cliente {
     private BufferedReader in;
     private boolean connected;
     private ModeloMenu modeloMenu;
-    private String direccion;
-    private String puerto;
 
     private MessageListener messageListener;
 
@@ -50,8 +49,6 @@ public class Cliente {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             connected = true;
             System.out.println("Conectado al servidor");
-
-            // Iniciar thread para escuchar mensajes del servidor
             messageListener = new MessageListener();
             new Thread(messageListener).start();
         } catch (IOException e) {
@@ -60,15 +57,14 @@ public class Cliente {
         }
     }
 
-    // enviar mensajes al servidor
     private void sendMessage(Mensaje mensaje) {
-    if (connected && out != null) {
-        String message = MessageSerializer.serializableCommanWithData(mensaje);
-        out.println(message);
+        if (connected && out != null) {
+            //String message = MessageSerializer.serializableCommanWithData(mensaje);
+            String jsonMessage = MessageManager.toJson(mensaje);
+            out.println(jsonMessage);
+        }
     }
-}
-
-    // metodos para interactuar con el juego
+    
     public void crearPartida() {
         sendMessage(new MsgCrearPartida());
     }
@@ -82,7 +78,6 @@ public class Cliente {
     }
 
     private class MessageListener implements Runnable {
-
         private boolean running = true;
 
         @Override
@@ -91,7 +86,6 @@ public class Cliente {
                 String message;
                 while (running && (message = in.readLine()) != null) {
                     if (modeloMenu != null) {
-                        System.out.println("Soy cliente y recibi esto: " + message);
                         modeloMenu.updateEstadoJuego(message);
                     }
                 }
