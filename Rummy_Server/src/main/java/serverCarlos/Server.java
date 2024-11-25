@@ -62,9 +62,6 @@ public class Server {
     }
 
     public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
-        
-        //String jsonMessage = MessageManager.toJson(mensaje);
-        
         for (ClientHandler client : clients) {
             if (client != sender) {
                 client.sendMessage(mensaje);
