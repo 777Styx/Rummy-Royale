@@ -6,6 +6,7 @@ clienteCarlitos\Cliente.class
 menuMVC\VistaRegistro$6.class
 menuMVC\VistaRegistro.class
 utils\Btn.class
+menuMVC\VistaUnirseCrear$3.class
 partidaMVC\VistaJuego$5.class
 clienteCarlitos\Cliente$MessageListener.class
 partidaMVC\VistaJuego$7.class
@@ -15,6 +16,7 @@ partidaMVC\VistaJuego$2.class
 menuMVC\VistaUnirseCrear$2.class
 menuMVC\VistaUnirseCrear.class
 menuMVC\VistaConfiguracion$3.class
+clienteCarlitos\ResponseManager.class
 menuMVC\VistaRegistro$ColorChooserListener.class
 menuMVC\VistaRegistro$4.class
 menuMVC\VistaConfiguracion$4.class

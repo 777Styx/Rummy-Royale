@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package serverCarlos;
 
 import entidades.Juego;
@@ -42,7 +38,7 @@ public class Server {
         }
         return instance;
     }
-    
+
     public void startServer() {
         try {
             serverSocket = new ServerSocket(PORT);
@@ -74,7 +70,7 @@ public class Server {
     public void addClient(ClientHandler client) {
         clients.add(client);
     }
-    
+
     public void removeClient(ClientHandler client) {
         clients.remove(client);
     }
@@ -83,7 +79,7 @@ public class Server {
         Juego juego = Juego.getInstance();
         Controlador controlador = Controlador.getInstance();
         juego.addObserver(controlador);
-        
+
         Server server = Server.getInstance();
         server.startServer();
     }

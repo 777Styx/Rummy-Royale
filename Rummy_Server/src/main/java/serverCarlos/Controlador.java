@@ -14,10 +14,10 @@ public class Controlador implements Observer {
 
     private static Controlador instance;
     ClientHandler clientHandler;
-    private static ExpertoJuego expertJuego = new ExpertoJuego();
-    private static ExpertoJugador expertJugador = new ExpertoJugador();
+    private static ExpertoJuego expertoJuego = new ExpertoJuego();
+    private static ExpertoJugador expertoJugador = new ExpertoJugador();
     Server server = Server.getInstance();
-    
+
     public enum EstadoJuego {
         ESPERANDO_JUGADORES,
         CONFIGURANDO,
@@ -25,7 +25,7 @@ public class Controlador implements Observer {
         LISTO,
         EN_PROGRESO
     }
-    
+
     private Controlador() {
 
     }
@@ -36,17 +36,21 @@ public class Controlador implements Observer {
         }
         return instance;
     }
-    
+
     public void crearJuego(ClientHandler ch) {
         this.clientHandler = ch;
         System.out.println("Creando juego en controlador BB");
-        expertJuego.crearJuego(); // <- boolean 
+        expertoJuego.crearJuego(); // <- boolean 
         //server.broadcastMessage(mensaje, ch);
     }
-    
+
     public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {
         this.clientHandler = aThis;
-        expertJugador.registrarJugador(jugador);
+        if (expertoJuego.hasSpace()) {
+            expertoJugador.registrarJugador(jugador);
+         //   server.broadcastMessage(mensaje, aThis);
+        }
+
     }
 
     @Override
@@ -54,34 +58,34 @@ public class Controlador implements Observer {
         if (arg instanceof String) {
             String mensaje = (String) arg;
 
-             switch (mensaje) {
-            case "CREADO":
-                if (clientHandler != null) {
-                    server.broadcastMessage(new ResCrearPartida("PARTIDA_CREADA"), clientHandler);
-                }
-                break;
+            switch (mensaje) {
+                case "CREADO":
+                    if (clientHandler != null) {
+                        server.broadcastMessage(new ResCrearPartida("PARTIDA_CREADA"), clientHandler);
+                    }
+                    break;
 
-            case "YA_CREADO":
-                if (clientHandler != null) {
-                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
-                }
-                break;
+                case "YA_CREADO":
+                    if (clientHandler != null) {
+                        server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
+                    }
+                    break;
 
-            case "JUGADOR_CREADO":
-                if (clientHandler != null) {
-                    
-                }
-                break;
+                case "JUGADOR_CREADO":
+                    if (clientHandler != null) {
 
-            case "PARTIDA_LLENA":
-                if (clientHandler != null) {
-                    
-                }
-                break;
+                    }
+                    break;
 
-            default:
-                System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
-        }
+                case "PARTIDA_LLENA":
+                    if (clientHandler != null) {
+
+                    }
+                    break;
+
+                default:
+                    System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import dtos.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
+import mensajes.Mensaje;
 
 /**
  *
@@ -31,10 +32,12 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnStart = new javax.swing.JButton();
+        btnJoin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         puertoTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btnStart1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,13 +45,13 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnStart.setText("START");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
+        btnJoin.setText("JOIN");
+        btnJoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
+                btnJoinActionPerformed(evt);
             }
         });
-        jPanel1.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 200, 40));
+        jPanel1.add(btnJoin, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 110, 40));
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 204, 0));
@@ -63,8 +66,20 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1.add(puertoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 180, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Puerto:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+        jLabel2.setText("OR");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+
+        btnStart1.setText("START");
+        btnStart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStart1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnStart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 200, 40));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("PORT:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,35 +96,42 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+    private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
 
-        controladorMenu.crearPartida(Integer.parseInt(puertoTxt.getText()));
-        
-       
-    }//GEN-LAST:event_btnStartActionPerformed
+
+    }//GEN-LAST:event_btnJoinActionPerformed
 
     private void puertoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puertoTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_puertoTxtActionPerformed
 
+    private void btnStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStart1ActionPerformed
+        // TODO add your handling code here:
+        controladorMenu.crearPartida(Integer.parseInt(puertoTxt.getText()));
+    }//GEN-LAST:event_btnStart1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnJoin;
+    private javax.swing.JButton btnStart1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField puertoTxt;
     // End of variables declaration//GEN-END:variables
 
-    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof String) {
-            String message = (String) arg;
 
-            if(message.equals("CREADO") || message.equals("YA_CREADO")) {
+            String comando = (String) arg;
+            if (comando.equals("PARTIDA_CREADA")) {
                 this.dispose();
+            }
+            if (comando.equals("JUEGO_EXISTENTE")) {
+
             }
         }
     }
-    
+
 }

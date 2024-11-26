@@ -19,6 +19,7 @@ import mensajes.MessageManager;
  * @author carlo
  */
 public class ClientHandler implements Runnable {
+
     private Socket clientSocket;
     private BufferedReader in;
     private PrintWriter out;
@@ -30,7 +31,7 @@ public class ClientHandler implements Runnable {
         this.clientSocket = socket;
         this.server = server;
         this.running = true;
-        this.procesadorMensaje= new ProcesadorMensaje(this);
+        this.procesadorMensaje = new ProcesadorMensaje(this);
         try {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -57,9 +58,9 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendMessage(Mensaje mensaje) {
-        
+
         String jsonMessage = MessageManager.toJson(mensaje);
-        
+
         if (out != null && !clientSocket.isClosed()) {
             out.println(jsonMessage);
         }
@@ -76,7 +77,7 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
     }
-    
+
     public Server getServer() {
         return server;
     }

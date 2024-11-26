@@ -44,24 +44,25 @@ public class ModeloMenu extends Observable {
     }
 
     public ModeloMenu() {
-        
+
     }
 
     public void crearPartida(int puerto) {
-        
+
         cliente = new Cliente(this);
         try {
             cliente.connectToServer(puerto);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         if (cliente.isConnected()) {
             cliente.crearPartida();
         } else {
             System.out.println("No conectado");
         }
     }
+
     public void registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 
         List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
@@ -70,19 +71,17 @@ public class ModeloMenu extends Observable {
         manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3, new ColorCustomDTO(color3.getRGB())));
         manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4, new ColorCustomDTO(color4.getRGB())));
         JugadorDTO jugador = new JugadorDTO();
-        
+
         jugador.setNombre(nombre);
         jugador.setAvatar(avatar);
         jugador.setPreferenciasColor(manejadoresColor);
-        
+
         cliente.registrarJugador(jugador);
     }
-    
+
 }
 
 // MUCHO CODIGO POR SI SIRVEE
-
-
 //     public boolean isClienteInicializado() {
 //        synchronized (clienteLock) {
 //            return cliente != null && cliente.isConnected();
@@ -124,8 +123,6 @@ public class ModeloMenu extends Observable {
 //            }
 //        }
 //    }
-  
-
 //    public void crearPartida() {
 //        JuegoDTO juegoDTO = new JuegoDTO();
 //        Map<String, Object> map = new HashMap<>();

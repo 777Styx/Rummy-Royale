@@ -30,35 +30,35 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
      * Creates new form pruebaFrame
      */
     public VistaRegistro(ControladorMenu controladorMenu) {
-        
+
         initComponents();
         this.controladorMenu = controladorMenu;
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof String) {
-            String message = (String) arg;
+            String comando = (String) arg;
 
-            if(message.equals("YA_CREADO") || message.equals("CONFIGURADO")) {
+            if (comando.equals("PARTIDA_CREADA")) {
                 this.setVisible(true);
             }
         }
     }
-    
+
     private class ColorChooserListener implements ActionListener {
-        
+
         private int colorIndex;
-        
+
         public ColorChooserListener(int index) {
             this.colorIndex = index;
         }
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             // mostrar selector
             Color newColor = JColorChooser.showDialog(null, "Seleccionar un color", Color.WHITE);
-            
+
             if (newColor != null && isColorUnique(newColor)) {
                 switch (colorIndex) {
                     case 1:
@@ -82,7 +82,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
                 JOptionPane.showMessageDialog(null, "El color ya ha sido seleccionado.");
             }
         }
-        
+
         private boolean isColorUnique(Color newColor) {
             Set<Color> selectedColors = new HashSet<>();
             if (selectedColor1 != null) {
@@ -375,16 +375,16 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_colorButton4ActionPerformed
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
-        
+
         Color colorSeleccionado1 = colorPanel1.getBackground();
         Color colorSeleccionado2 = colorPanel2.getBackground();
         Color colorSeleccionado3 = colorPanel3.getBackground();
         Color colorSeleccionado4 = colorPanel4.getBackground();
-        
+
         String nombre = nombreTxt.getText();
-        
+
         String avatar = "";
-        
+
         if (avatar1.isSelected()) {
             avatar = "creeper";
         } else if (avatar2.isSelected()) {
@@ -398,8 +398,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         }
         controladorMenu.crearJugador(nombre, avatar, colorSeleccionado1, colorSeleccionado2, colorSeleccionado3, colorSeleccionado4);
 
-       
-        
+
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void avatar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar1ActionPerformed
@@ -413,7 +412,7 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
     private void avatar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatar3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_avatar3ActionPerformed
-    
+
     private String obtenerAvatarSeleccionado() {
         if (avatar1.isSelected()) {
             return "avatar1";
