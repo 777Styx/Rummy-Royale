@@ -19,6 +19,7 @@ import mensajes.ReqCrearPartida;
 import mensajes.ReqRegistroJugador;
 import mensajes.ResCrearPartida;
 import menuMVC.ModeloMenu;
+import partidaMVC.ModeloJuego;
 
 /**
  *
@@ -31,12 +32,14 @@ public class Cliente {
     private BufferedReader in;
     private boolean connected;
     private ModeloMenu modeloMenu;
-
+    private ModeloJuego modeloJuego;
     private MessageListener messageListener;
+    private ResponseManager responseManager = new ResponseManager();
 
-    public Cliente(ModeloMenu modeloMenu) {
-        this.modeloMenu = modeloMenu;
+    public Cliente() {
+
         connected = false;
+
     }
 
     public boolean isConnected() {
@@ -87,23 +90,11 @@ public class Cliente {
                 String message;
                 while (running && (message = in.readLine()) != null) {
                     Mensaje mensaje = MessageManager.fromJson(message);
-                    handleResponse(mensaje);
+                    responseManager.handleResponse(mensaje);
                 }
             } catch (IOException e) {
                 System.out.println("Desconectado del servidor");
                 connected = false;
-            }
-        }
-
-        private void handleResponse(Mensaje mensaje) {
-            if (mensaje instanceof ResCrearPartida) {
-                ResCrearPartida respuesta = (ResCrearPartida) mensaje;
-                if (respuesta.getComando().equals("PARTIDA_CREADA")) {
-                    System.out.println("La partida fue creada exitosamente.");
-                    modeloMenu.updateEstadoJuego(respuesta.getComando());
-                } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
-                    System.out.println("No se pudo crear la partida.");
-                }
             }
         }
 

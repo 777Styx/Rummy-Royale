@@ -10,6 +10,8 @@ import entidades.TipoFicha;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import mensajes.Mensaje;
+import mensajes.ResRegistroJugador;
 
 /**
  *
@@ -44,6 +46,10 @@ public class ExpertoJugador {
         );
 
         juego.getJugadores().add(jugador);
-        juego.notifyObservers("JUGADOR_REGISTRADO");
+
+        Mensaje mensaje = new ResRegistroJugador(jugadorDTO);
+        juego.notifyObservers(mensaje);
+        // juego.notifyObservers("JUGADOR_REGISTRADO");
+
     }
 }

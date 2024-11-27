@@ -28,6 +28,7 @@ public class ModeloMenu extends Observable {
     private JuegoDTO juegoDTO = null;
     private boolean registroVisible = false;
     private Cliente cliente;
+    private static ModeloMenu instance;
 
     public void updateEstadoJuego(String message) { // esto se cambia a notificarEstadoJuego()
         switch (message) {
@@ -37,19 +38,27 @@ public class ModeloMenu extends Observable {
             case "PARTIDA_NO_CREADA":
                 System.out.println("Ya estaba creada una partida");
                 break;
+
+            case "JUGADOR_REGISTRADO":
+                System.out.println("Se crea alv");
             default:
         }
         setChanged();
         notifyObservers(message);
     }
 
-    public ModeloMenu() {
+    private ModeloMenu() {
 
+    }
+
+    public static ModeloMenu getInstance() {
+
+        return instance == null ? (instance = new ModeloMenu()) : instance;
     }
 
     public void crearPartida(int puerto) {
 
-        cliente = new Cliente(this);
+        cliente = new Cliente();
         try {
             cliente.connectToServer(puerto);
         } catch (Exception e) {
@@ -77,8 +86,13 @@ public class ModeloMenu extends Observable {
         jugador.setPreferenciasColor(manejadoresColor);
 
         cliente.registrarJugador(jugador);
+
     }
 
+    public void seRegistroJugador() {
+        setChanged();
+        notifyObservers("JUGADOR_REGISTRADO");
+    }
 }
 
 // MUCHO CODIGO POR SI SIRVEE

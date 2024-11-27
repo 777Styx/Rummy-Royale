@@ -14,15 +14,16 @@ import java.util.Random;
  *
  * @author puerta
  */
-public class ModeloJuego extends Observable{
+public class ModeloJuego extends Observable {
 
     private ArrayList<JugadorDTO> jugadoresDTO;
     private ArrayList<FichaDTO> fichasDTO;
     private TableroDTO tableroDTO;
     private int indiceJugadorActual;
     private Random random;
+    private static ModeloJuego instance;
 
-    public ModeloJuego() {
+    private ModeloJuego() {
 
         jugadoresDTO = new ArrayList<>();
         fichasDTO = new ArrayList<>();
@@ -31,6 +32,11 @@ public class ModeloJuego extends Observable{
         random = new Random();
         // inicializarFichas();
         // barajarFichas();
+    }
+
+    public static ModeloJuego getInstance() {
+
+        return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
     /**
@@ -140,7 +146,6 @@ public class ModeloJuego extends Observable{
 //        // El juego sigue
 //        return false;
 //    }
-
     // Obtener al jugador ganador (el que se quedó sin fichas)
 //    public JugadorDTO obtenerGanador() {
 //        for (JugadorDTO jugadorDTO : jugadoresDTO) {
@@ -151,5 +156,4 @@ public class ModeloJuego extends Observable{
 //        // No hay ganador aún
 //        return null;
 //    }
-
 }

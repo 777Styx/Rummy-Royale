@@ -1,10 +1,13 @@
 package serverCarlos;
 
+import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import entidades.Juego;
 import java.util.Observable;
 import java.util.Observer;
+import mensajes.Mensaje;
 import mensajes.ResCrearPartida;
+import mensajes.ResRegistroJugador;
 
 /**
  *
@@ -48,15 +51,16 @@ public class Controlador implements Observer {
         this.clientHandler = aThis;
         if (expertoJuego.hasSpace()) {
             expertoJugador.registrarJugador(jugador);
-         //   server.broadcastMessage(mensaje, aThis);
+
         }
 
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof String) {
-            String mensaje = (String) arg;
+        if (arg instanceof Mensaje) {
+            Mensaje msj = (Mensaje) arg;
+            String mensaje = msj.getComando();
 
             switch (mensaje) {
                 case "CREADO":
@@ -71,9 +75,10 @@ public class Controlador implements Observer {
                     }
                     break;
 
-                case "JUGADOR_CREADO":
+                case "JUGADOR_REGISTRADO":
                     if (clientHandler != null) {
-
+                        JugadorDTO jugadorDTO = (JugadorDTO) arg;
+                        server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
                     }
                     break;
 
@@ -86,6 +91,11 @@ public class Controlador implements Observer {
                 default:
                     System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
             }
+        }
+
+        if (arg instanceof JugadorDTO) {
+            JugadorDTO jugadorDTO = (JugadorDTO) arg;
+            server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
         }
     }
 }

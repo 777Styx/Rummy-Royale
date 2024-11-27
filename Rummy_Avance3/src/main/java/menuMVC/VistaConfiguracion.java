@@ -8,7 +8,7 @@ import java.util.Observer;
  * @author carlo
  */
 public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
-
+    
     int comodines;
     private static ControladorMenu controladorMenu;
 
@@ -149,7 +149,7 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
     }//GEN-LAST:event_lessBtnActionPerformed
 
     private void moreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreBtnActionPerformed
-
+        
         if (comodines < 8) {
             comodines++;
             comodinesTxt.setText(String.valueOf(comodines));
@@ -177,12 +177,12 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
-//        if (o instanceof ModeloMenu) {
-//            ModeloMenu modeloUnirse = (ModeloMenu) o;
-//            if (modeloUnirse.getJuego() != null) {
-//
-//            }
-//        }
+        if (arg instanceof String) {
+            String comando = (String) arg;
+            
+            if (comando.equals("JUGADOR_REGISTRADO")) {
+                this.setVisible(true);
+            }
+        }
     }
 }
