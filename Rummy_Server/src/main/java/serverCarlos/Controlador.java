@@ -43,8 +43,7 @@ public class Controlador implements Observer {
     public void crearJuego(ClientHandler ch) {
         this.clientHandler = ch;
         System.out.println("Creando juego en controlador BB");
-        expertoJuego.crearJuego(); // <- boolean 
-        //server.broadcastMessage(mensaje, ch);
+        expertoJuego.crearJuego(); 
     }
 
     public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {

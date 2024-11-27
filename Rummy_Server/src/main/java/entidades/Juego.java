@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import mensajes.ResCrearPartida;
 import serverCarlos.Controlador;
 
 /**
@@ -64,7 +65,7 @@ public class Juego extends Observable {
     public synchronized void setPartidaActiva(boolean flag) {
         if (partidaActiva == true) {
             setChanged();
-            notifyObservers("YA_CREADO");
+            notifyObservers(new ResCrearPartida());
         } else {
             this.partidaActiva = flag;
             setChanged();

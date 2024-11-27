@@ -145,11 +145,10 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
             comodines--;
             comodinesTxt.setText(String.valueOf(comodines));
         }
-
     }//GEN-LAST:event_lessBtnActionPerformed
 
     private void moreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreBtnActionPerformed
-        
+
         if (comodines < 8) {
             comodines++;
             comodinesTxt.setText(String.valueOf(comodines));

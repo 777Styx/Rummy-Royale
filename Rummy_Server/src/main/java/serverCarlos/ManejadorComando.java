@@ -21,7 +21,6 @@ public class ManejadorComando {
     }
 
     public void manejarComando(Mensaje mensaje) {
-
         if (mensaje == null) {
             System.out.println("mensaje nulo");
             return;
