@@ -61,6 +61,8 @@ public class Controlador implements Observer {
         this.clientHandler = aThis;
         if (expertoJuego.hasSpace()) {
             expertoJugador.registrarJugador(jugador);
+        } else {
+            System.out.println("NO ZE REGISTRARA NADA PORKE NO AI ESPASIO");
         }
     }
 
@@ -95,12 +97,12 @@ public class Controlador implements Observer {
                     break;
                 case "JUGADOR_REGISTRADO":
                     JugadorDTO jugadorDTO = (JugadorDTO) arg;
+                    System.out.println("SEgun, si se registro en Juego");
                     server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
                     break;
                 case "PARTIDA_LLENA":
                     break;
                 case "PARTIDA_CONFIGURADA":
-                    System.out.println("si se configuro, soy el control");
                     server.broadcastMessage(mensaje, clientHandler);
                     break;
                 default:

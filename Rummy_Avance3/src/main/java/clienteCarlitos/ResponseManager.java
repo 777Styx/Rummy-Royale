@@ -40,6 +40,8 @@ public class ResponseManager {
         // Manejar el registro de jugador
         if (mensaje instanceof ResRegistroJugador) {
             ResRegistroJugador respuesta = (ResRegistroJugador) mensaje;
+            System.out.println("Cliente: tudo bem, novo jogador registrao");
+            System.out.println(((ResRegistroJugador) mensaje).getJugador().toString());
             modeloMenu.seRegistroJugador();
             modeloJuego.agregarJugador(respuesta.getJugador());
         }

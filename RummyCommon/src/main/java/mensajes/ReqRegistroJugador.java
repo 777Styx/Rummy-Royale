@@ -14,7 +14,7 @@ public class ReqRegistroJugador extends Mensaje {
     private final JugadorDTO jugador;
     
     public ReqRegistroJugador(JugadorDTO jugador) {
-        super("REGISTRO_JUGADOR");
+        super("REGISTRAR_JUGADOR");
         this.jugador = jugador;
     }
     

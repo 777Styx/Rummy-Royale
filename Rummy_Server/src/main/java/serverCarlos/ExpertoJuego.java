@@ -22,7 +22,7 @@ public class ExpertoJuego {
     }
 
     public boolean hasSpace() {
-        return juego.getJugadores().size() > 3;
+        return juego.getJugadores().size() < 3;
     }
     
     public void configurarPartida(Mazo mazo) {

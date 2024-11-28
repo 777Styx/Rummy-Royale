@@ -33,8 +33,9 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
             
             if (comando.equals("PARTIDA_CREADA")) {
                 this.setVisible(true);
-                System.out.println("mostrando config");
-            } 
+            } else if(comando.equals("PARTIDA_CONFIGURADA")) {
+                this.dispose();
+            }
         }
         
         if(arg instanceof Mensaje) {
@@ -55,6 +56,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,6 +94,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
         panelRound1.add(comodinesTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
 
         rango13.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(rango13);
         rango13.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         rango13.setForeground(new java.awt.Color(255, 255, 255));
         rango13.setText("1-13");
@@ -103,6 +106,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
         panelRound1.add(rango13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         rango10.setBackground(new java.awt.Color(82, 107, 103));
+        buttonGroup1.add(rango10);
         rango10.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         rango10.setForeground(new java.awt.Color(255, 255, 255));
         rango10.setText("1-10");
@@ -217,6 +221,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn btn3;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel comodinesTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
