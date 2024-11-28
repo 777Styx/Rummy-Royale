@@ -2,10 +2,19 @@ package serverCarlos;
 
 import dtos.JuegoDTO;
 import dtos.JugadorDTO;
+import entidades.FichaComodin;
+import entidades.FichaNumerica;
+import entidades.IFicha;
 import entidades.Juego;
+import entidades.Mazo;
+import entidades.TipoFicha;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import mensajes.Mensaje;
+import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
 
@@ -19,6 +28,8 @@ public class Controlador implements Observer {
     ClientHandler clientHandler;
     private static ExpertoJuego expertoJuego = new ExpertoJuego();
     private static ExpertoJugador expertoJugador = new ExpertoJugador();
+    private static ExpertoFicha expertoFicha = new ExpertoFicha();
+    private static ExpertoMazo expertoMazo = new ExpertoMazo();
     Server server = Server.getInstance();
 
     public enum EstadoJuego {
@@ -52,15 +63,19 @@ public class Controlador implements Observer {
             expertoJugador.registrarJugador(jugador);
         }
     }
-    
+
     public void unirse(ClientHandler aThis) {
         this.clientHandler = aThis;
         //expertoJuego.unirse();
     }
-    
+
     public void configurarPartida(ClientHandler aThis, JuegoDTO juego) {
-        this.clientHandler = aThis;
-        expertoJuego.configurarPartida(juego);
+        this.clientHandler = aThis;        
+        Map<String, List<IFicha>> fichas = expertoFicha.crearFichas(juego);
+        List<IFicha> comodines = fichas.get("comodines");
+        List<IFicha> fichasNumericas = fichas.get("fichasNumericas");
+        Mazo mazo = expertoMazo.crearMazo(fichasNumericas, comodines);
+        
     }
 
     @Override
@@ -83,7 +98,8 @@ public class Controlador implements Observer {
                     break;
                 case "PARTIDA_LLENA":
                     break;
-
+                case "PARTIDA_CONFIGURADA":
+                    server.broadcastMessage(new ResConfigurarPartida("PARTIDA_CONFIGURADA"), clientHandler);
                 default:
                     System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
             }

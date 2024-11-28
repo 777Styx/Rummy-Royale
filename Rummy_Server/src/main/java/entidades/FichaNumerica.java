@@ -9,31 +9,18 @@ import java.awt.Color;
 public class FichaNumerica implements IFicha {
 
     private int numero;
-    private Color color;
+    private final TipoFicha tipoFicha;
 
-    public FichaNumerica(int numero, Color color) {
+    public FichaNumerica(int numero, TipoFicha tipoFicha) {
         this.numero = numero;
-        this.color = color;
+        this.tipoFicha = tipoFicha;
     }
 
     public int getNumero() {
         return numero;
     }
 
-    public Color getColor() {
-        return color;
+    public TipoFicha getTipoFicha() {
+        return tipoFicha;
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("FichaNumerica{");
-        sb.append("numero=").append(numero);
-        sb.append(", color=").append(color);
-        sb.append('}');
-        return sb.toString();
-    }
-
-   
-
 }

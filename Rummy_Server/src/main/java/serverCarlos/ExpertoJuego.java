@@ -2,6 +2,7 @@ package serverCarlos;
 
 import dtos.JuegoDTO;
 import entidades.Juego;
+import entidades.Mazo;
 
 /**
  *
@@ -19,12 +20,12 @@ public class ExpertoJuego {
         System.out.println("Creando juego en experto");
         juego.setPartidaActiva(true);
     }
-    
-    public void configurarPartida(JuegoDTO juego) {
-        
-    }
 
     public boolean hasSpace() {
         return juego.getJugadores().size() > 3;
+    }
+    
+    public void configurarPartida(Mazo mazo) {
+        juego.setMazo(mazo);
     }
 }
