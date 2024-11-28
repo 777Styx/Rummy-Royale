@@ -4,6 +4,7 @@ import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import mensajes.ResCrearPartida;
@@ -19,10 +20,13 @@ public class Juego extends Observable {
     private Tablero tablero;
     private boolean partidaActiva = false;
     private static Juego instance;
+    private ArrayList<String> avatarsDisponibles;
+    private List<String> avatars = Arrays.asList("creeper", "pig", "steve", "villager");
 
     private Juego() {
         this.jugadores = new ArrayList<>();
         this.partidaActiva = false;
+        this.avatarsDisponibles = new ArrayList<>(avatars);
     }
 
     public static synchronized Juego getInstance() {
@@ -33,13 +37,8 @@ public class Juego extends Observable {
         return instance;
     }
 
-    public boolean validarAvatarNoUsado(String avatar) {
-        for (Jugador jugador : jugadores) {
-            if (jugador.getAvatar().equals(avatar)) {
-                return false;
-            }
-        }
-        return true;
+    public void removerAvatar(String avatar) {
+        avatarsDisponibles.remove(avatar);
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -63,14 +62,14 @@ public class Juego extends Observable {
     }
 
     public synchronized void setPartidaActiva(boolean flag) {
+
         if (partidaActiva == true) {
             setChanged();
-            notifyObservers(new ResCrearPartida());
+            notifyObservers(new ResCrearPartida("PARTIDA_NO_CREADA"));
         } else {
             this.partidaActiva = flag;
             setChanged();
-            String estado = "CREADO";
-            notifyObservers(estado);
+            notifyObservers(new ResCrearPartida("PARTIDA_CREADA"));
         }
     }
 

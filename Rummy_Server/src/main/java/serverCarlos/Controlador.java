@@ -43,48 +43,40 @@ public class Controlador implements Observer {
     public void crearJuego(ClientHandler ch) {
         this.clientHandler = ch;
         System.out.println("Creando juego en controlador BB");
-        expertoJuego.crearJuego(); 
+        expertoJuego.crearJuego();
     }
 
     public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {
         this.clientHandler = aThis;
         if (expertoJuego.hasSpace()) {
             expertoJugador.registrarJugador(jugador);
-
         }
-
+    }
+    
+    public void unirse(ClientHandler aThis) {
+        this.clientHandler = aThis;
+        //expertoJuego.unirse();
     }
 
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {
-            Mensaje msj = (Mensaje) arg;
-            String mensaje = msj.getComando();
 
-            switch (mensaje) {
-                case "CREADO":
-                    if (clientHandler != null) {
-                        server.broadcastMessage(new ResCrearPartida("PARTIDA_CREADA"), clientHandler);
-                    }
+            Mensaje mensaje = (Mensaje) arg;
+
+            switch (mensaje.getComando()) {
+                case "PARTIDA_CREADA":
+                    server.broadcastMessage(mensaje, clientHandler);
                     break;
 
-                case "YA_CREADO":
-                    if (clientHandler != null) {
-                        server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
-                    }
+                case "PARTIDA_NO_CREADA":
+                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
                     break;
-
                 case "JUGADOR_REGISTRADO":
-                    if (clientHandler != null) {
-                        JugadorDTO jugadorDTO = (JugadorDTO) arg;
-                        server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
-                    }
+                    JugadorDTO jugadorDTO = (JugadorDTO) arg;
+                    server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
                     break;
-
                 case "PARTIDA_LLENA":
-                    if (clientHandler != null) {
-
-                    }
                     break;
 
                 default:

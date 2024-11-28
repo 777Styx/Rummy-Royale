@@ -8,10 +8,8 @@ package mensajes;
  *
  * @author carlo
  */
-public class ResCrearPartida extends Mensaje {
-    
-    public ResCrearPartida(String comando) {
-        super(comando);
+public class ReqUnirse extends Mensaje {
+    public ReqUnirse() {
+        super("UNIRSE"); 
     }
-    
 }

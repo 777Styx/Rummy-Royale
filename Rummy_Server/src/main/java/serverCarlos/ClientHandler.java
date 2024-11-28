@@ -48,6 +48,7 @@ public class ClientHandler implements Runnable {
                 if (inputLine == null) {
                     break;
                 }
+                System.out.println(inputLine);
                 procesadorMensaje.procesarMensaje(inputLine);
             }
         } catch (IOException e) {

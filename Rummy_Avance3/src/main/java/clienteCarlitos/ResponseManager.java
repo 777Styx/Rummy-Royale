@@ -32,10 +32,11 @@ public class ResponseManager {
                 System.out.println("La partida fue creada exitosamente.");
                 modeloMenu.updateEstadoJuego(respuesta.getComando());
             } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
-                System.out.println("No se pudo crear la partida.");
+                modeloMenu.notificar(respuesta.getComando());
             }
         }
 
+        // Manejar el registro de jugador
         if (mensaje instanceof ResRegistroJugador) {
             ResRegistroJugador respuesta = (ResRegistroJugador) mensaje;
             modeloMenu.seRegistroJugador();

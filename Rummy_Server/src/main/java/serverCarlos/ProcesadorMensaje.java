@@ -20,6 +20,7 @@ public class ProcesadorMensaje {
     public void procesarMensaje(String inputLine) {
         try {
             Mensaje mensaje = MessageManager.fromJson(inputLine);
+            System.out.println("client handler: se recibio la peticion " + mensaje.getComando());
             manejadorComando.manejarComando(mensaje);
 
         } catch (Exception e) {

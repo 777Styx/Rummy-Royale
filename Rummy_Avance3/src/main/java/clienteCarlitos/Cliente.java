@@ -17,6 +17,7 @@ import mensajes.MessageManager;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqCrearPartida;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqUnirse;
 import mensajes.ResCrearPartida;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
@@ -59,19 +60,34 @@ public class Cliente {
             e.printStackTrace();
             System.out.println("No se pudo conectar al servidor");
         }
+        
+    }
+    
+    public void desconectar() throws IOException {
+        if (isConnected()) {
+            socket.close();
+            System.out.println("Desconectado del servidor.");
+        }
     }
 
     private void sendMessage(Mensaje mensaje) {
         if (connected && out != null) {
+            System.out.println("voy a mandarle al server esto: " + mensaje.getComando());
             String jsonMessage = MessageManager.toJson(mensaje);
             out.println(jsonMessage);
         }
     }
 
     public void crearPartida() {
-        sendMessage(new ReqCrearPartida());
+        ReqCrearPartida peticion = new ReqCrearPartida();
+        sendMessage(peticion);
     }
 
+    
+    public void unirse(){
+        sendMessage(new ReqUnirse());
+    }
+    
     public void registrarJugador(JugadorDTO jugador) {
         sendMessage(new ReqRegistroJugador(jugador));
     }

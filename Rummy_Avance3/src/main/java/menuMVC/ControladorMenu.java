@@ -27,4 +27,8 @@ public class ControladorMenu {
     public void crearPartida(int puerto) {
         modeloMenu.crearPartida(puerto);
     }
+    
+    public void unirseAPartida(int puerto) {
+        modeloMenu.unirseAPartida(puerto);
+    }
 }

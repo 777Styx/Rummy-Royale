@@ -101,7 +101,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnStart1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="START"/>
+            <Property name="text" type="java.lang.String" value="CREATE"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStart1ActionPerformed"/>

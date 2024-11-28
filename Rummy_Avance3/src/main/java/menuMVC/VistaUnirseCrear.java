@@ -69,7 +69,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jLabel2.setText("OR");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        btnStart1.setText("START");
+        btnStart1.setText("CREATE");
         btnStart1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStart1ActionPerformed(evt);
@@ -97,8 +97,7 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
-
-
+        controladorMenu.unirseAPartida(Integer.parseInt(puertoTxt.getText()));
     }//GEN-LAST:event_btnJoinActionPerformed
 
     private void puertoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puertoTxtActionPerformed

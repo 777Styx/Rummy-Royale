@@ -46,10 +46,11 @@ public class ExpertoJugador {
         );
 
         juego.getJugadores().add(jugador);
-
+        juego.removerAvatar(jugadorDTO.getAvatar());
+        
         Mensaje mensaje = new ResRegistroJugador(jugadorDTO);
         juego.notifyObservers(mensaje);
-        // juego.notifyObservers("JUGADOR_REGISTRADO");
+        
 
     }
 }

@@ -5,6 +5,7 @@ import common.Command;
 import dtos.JugadorDTO;
 import mensajes.Mensaje;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqUnirse;
 
 /**
  *
@@ -27,11 +28,14 @@ public class ManejadorComando {
         }
 
         switch (mensaje.getComando()) {
-            case Command.CREAR_PARTIDA:
+            case "CREAR_PARTIDA":
                 handleCrearPartida();
                 break;
-            case Command.REGISTRAR_JUGADOR:
+            case "REGISTRAR_JUGADOR":
                 handleRegistrarJugador((ReqRegistroJugador) mensaje);
+                break;
+            case "UNIRSE":
+                //handleUnirse((ReqUnirse) mensaje);
                 break;
             default:
 
@@ -45,5 +49,9 @@ public class ManejadorComando {
     private void handleRegistrarJugador(ReqRegistroJugador mensaje) {
         JugadorDTO jugador = mensaje.getJugador();
         controlador.registrarJugador(clientHandler, jugador);
+    }
+    
+    private void handleUnirse() {
+        controlador.unirse(clientHandler);
     }
 }
