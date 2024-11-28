@@ -30,9 +30,9 @@ public class ResponseManager {
             ResCrearPartida respuesta = (ResCrearPartida) mensaje;
             if (respuesta.getComando().equals("PARTIDA_CREADA")) {
                 System.out.println("La partida fue creada exitosamente.");
-                modeloMenu.updateEstadoJuego(respuesta.getComando());
-            } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
                 modeloMenu.notificar(respuesta.getComando());
+            } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
+                //modeloMenu.notificar(respuesta.getComando());
             }
         }
 

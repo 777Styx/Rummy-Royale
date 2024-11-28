@@ -28,6 +28,10 @@ public class ControladorMenu {
         modeloMenu.crearPartida(puerto);
     }
     
+    public void configurarPartida(int comodines,int rango) {
+        modeloMenu.configurarPartida(comodines, rango);
+    }
+    
     public void unirseAPartida(int puerto) {
         modeloMenu.unirseAPartida(puerto);
     }

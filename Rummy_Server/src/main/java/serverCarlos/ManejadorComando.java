@@ -2,8 +2,10 @@ package serverCarlos;
 
 import com.google.gson.Gson;
 import common.Command;
+import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import mensajes.Mensaje;
+import mensajes.ReqConfigurarPartida;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqUnirse;
 
@@ -37,6 +39,9 @@ public class ManejadorComando {
             case "UNIRSE":
                 //handleUnirse((ReqUnirse) mensaje);
                 break;
+            case "CONFIGURAR_PARTIDA":
+                handleConfigurarPartida((ReqConfigurarPartida) mensaje);
+                break;
             default:
 
         }
@@ -53,5 +58,10 @@ public class ManejadorComando {
     
     private void handleUnirse() {
         controlador.unirse(clientHandler);
+    }
+
+    private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
+        JuegoDTO juego = reqConfigurarPartida.getJuego();
+        controlador.configurarPartida(clientHandler, juego);
     }
 }

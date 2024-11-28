@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 import mensajes.Mensaje;
 import mensajes.MessageManager;
 import mensajes.ResCrearPartida;
+import mensajes.ResRegistroJugador;
 
 /**
  *
@@ -59,6 +60,17 @@ public class Server {
     }
 
     public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
+
+        if (mensaje instanceof ResRegistroJugador) {
+            for (ClientHandler client : clients) {
+                if (client != sender) {
+                    client.sendMessage(mensaje);
+                } else {
+                    client.sendMessage(mensaje);
+                }
+            }
+        }
+
         for (ClientHandler client : clients) {
             if (client != sender) {
                 client.sendMessage(mensaje);

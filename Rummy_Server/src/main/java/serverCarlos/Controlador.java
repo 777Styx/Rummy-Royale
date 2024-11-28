@@ -57,6 +57,11 @@ public class Controlador implements Observer {
         this.clientHandler = aThis;
         //expertoJuego.unirse();
     }
+    
+    public void configurarPartida(ClientHandler aThis, JuegoDTO juego) {
+        this.clientHandler = aThis;
+        expertoJuego.configurarPartida(juego);
+    }
 
     @Override
     public void update(Observable o, Object arg) {

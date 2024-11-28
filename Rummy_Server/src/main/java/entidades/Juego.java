@@ -1,14 +1,11 @@
 package entidades;
 
 import dtos.JugadorDTO;
-import dtos.ManejadorColorDTO;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import mensajes.ResCrearPartida;
-import serverCarlos.Controlador;
 
 /**
  *
@@ -17,11 +14,12 @@ import serverCarlos.Controlador;
 public class Juego extends Observable {
 
     private ArrayList<Jugador> jugadores;
+    
     private Tablero tablero;
     private boolean partidaActiva = false;
     private static Juego instance;
     private ArrayList<String> avatarsDisponibles;
-    private List<String> avatars = Arrays.asList("creeper", "pig", "steve", "villager");
+    private final List<String> avatars = Arrays.asList("creeper", "pig", "steve", "villager");
 
     private Juego() {
         this.jugadores = new ArrayList<>();

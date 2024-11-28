@@ -1,5 +1,6 @@
 package serverCarlos;
 
+import dtos.JuegoDTO;
 import entidades.Juego;
 
 /**
@@ -15,14 +16,12 @@ public class ExpertoJuego {
     }
 
     public void crearJuego() {
-
         System.out.println("Creando juego en experto");
         juego.setPartidaActiva(true);
     }
-
-    public void isEmpty() {
-        //Juego juego = juego.getInstance();
-        //return juego.getJugadores().size();
+    
+    public void configurarPartida(JuegoDTO juego) {
+        
     }
 
     public boolean hasSpace() {

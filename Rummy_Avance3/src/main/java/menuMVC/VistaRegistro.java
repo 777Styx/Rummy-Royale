@@ -40,11 +40,14 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         if (arg instanceof String) {
             String comando = (String) arg;
 
-            if (comando.equals("PARTIDA_CREADA")) {
+            if (comando.equals("PARTIDA_CONFIGURADA")) {
                 this.setVisible(true);
             }
             if (comando.equals("JUGADOR_REGISTRADO")) {
                 this.dispose();
+            }
+            if(comando.equals("JUGADOR_UNIDO")) {
+                this.setVisible(true);
             }
         }
     }

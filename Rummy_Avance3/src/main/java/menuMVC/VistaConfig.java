@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package menuMVC;
 
 import java.util.Observable;
@@ -7,19 +11,33 @@ import java.util.Observer;
  *
  * @author carlo
  */
-public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
-    
+public class VistaConfig extends javax.swing.JFrame implements Observer{
+
     int comodines;
     private static ControladorMenu controladorMenu;
-
+    
     /**
-     * Creates new form View
+     * Creates new form VistaConfig
      */
-    public VistaConfiguracion(ControladorMenu controladorMenu) {
+    public VistaConfig(ControladorMenu controladorMenu) {
         initComponents();
         this.controladorMenu = controladorMenu;
+        rango13.setSelected(true);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg instanceof String) {
+            String comando = (String) arg;
+            
+            if (comando.equals("PARTIDA_CREADA")) {
+                this.setVisible(true);
+                System.out.println("mostrando config");
+            }
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,25 +48,28 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelRound1 = new utils.PanelRound();
         comodinesTxt = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rango13 = new javax.swing.JRadioButton();
+        rango10 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lessBtn = new utils.Btn();
         moreBtn = new utils.Btn();
         btn3 = new utils.Btn();
 
-        jPanel1.setBackground(new java.awt.Color(128, 175, 167));
-        jPanel1.setMinimumSize(new java.awt.Dimension(800, 500));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(128, 175, 167));
+        jPanel2.setMinimumSize(new java.awt.Dimension(800, 500));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(233, 243, 125));
         jLabel1.setText("RUMMY ROYALE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         panelRound1.setBackground(new java.awt.Color(82, 107, 103));
         panelRound1.setRoundBottomLeft(15);
@@ -62,20 +83,22 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
         comodinesTxt.setText("4");
         panelRound1.add(comodinesTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
 
-        jRadioButton1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("1-13");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rango13.setBackground(new java.awt.Color(82, 107, 103));
+        rango13.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        rango13.setForeground(new java.awt.Color(255, 255, 255));
+        rango13.setText("1-13");
+        rango13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rango13ActionPerformed(evt);
             }
         });
-        panelRound1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        panelRound1.add(rango13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
-        jRadioButton2.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("1-10");
-        panelRound1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
+        rango10.setBackground(new java.awt.Color(82, 107, 103));
+        rango10.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        rango10.setForeground(new java.awt.Color(255, 255, 255));
+        rango10.setText("1-10");
+        panelRound1.add(rango10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +132,7 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
 
         btn3.setBackground(new java.awt.Color(132, 145, 231));
         btn3.setBorder(null);
-        btn3.setText("<html>\n<h1>Crear nuevo juego</h1>\n</html>");
+        btn3.setText("<html> <h1>Aceptar</h1> </html>");
         btn3.setBorderPainted(false);
         btn3.setColor(new java.awt.Color(132, 145, 231));
         btn3.setColorClick(new java.awt.Color(132, 118, 227));
@@ -122,23 +145,47 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
         });
         panelRound1.add(btn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 290, 50));
 
-        jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 520, 300));
+        jPanel2.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 520, 300));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rango13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rango13ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rango13ActionPerformed
 
     private void lessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessBtnActionPerformed
         if (comodines > 2) {
@@ -153,11 +200,11 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
             comodines++;
             comodinesTxt.setText(String.valueOf(comodines));
         }
-
     }//GEN-LAST:event_moreBtnActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        // TODO add your handling code here:
+        int rango = rango13.isSelected() ? 13 : 10;
+        controladorMenu.configurarPartida(comodines, rango);
     }//GEN-LAST:event_btn3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -167,21 +214,11 @@ public class VistaConfiguracion extends javax.swing.JPanel implements Observer {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JPanel jPanel2;
     private utils.Btn lessBtn;
     private utils.Btn moreBtn;
     private utils.PanelRound panelRound1;
+    private javax.swing.JRadioButton rango10;
+    private javax.swing.JRadioButton rango13;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void update(Observable o, Object arg) {
-        if (arg instanceof String) {
-            String comando = (String) arg;
-            
-            if (comando.equals("JUGADOR_REGISTRADO")) {
-                this.setVisible(true);
-            }
-        }
-    }
 }

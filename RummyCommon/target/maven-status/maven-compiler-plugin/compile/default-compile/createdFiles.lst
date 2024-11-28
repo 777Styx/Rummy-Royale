@@ -3,7 +3,6 @@ mensajes\ReqConfigurarPartida.class
 dtos\TipoFichaDTO.class
 com\mycompany\rummydominio\RummyDominio.class
 dtos\ColorCustomDTO.class
-common\NetworkMessage.class
 dtos\JuegoDTO.class
 mensajes\ResCrearPartida.class
 dtos\JugadorDTO.class
@@ -16,5 +15,6 @@ dtos\TableroDTO.class
 dtos\ManejadorColorDTO.class
 mensajes\MessageAdapter.class
 dtos\FichaDTO.class
+mensajes\ReqUnirse.class
 mensajes\ResRegistroJugador.class
 mensajes\MessageManager.class

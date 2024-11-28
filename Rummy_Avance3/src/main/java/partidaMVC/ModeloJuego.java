@@ -43,7 +43,6 @@ public class ModeloJuego extends Observable {
             jugadoresDTO.add(jugadorDTO);
             //  notificarObservadores(); // Notifica al agregar un jugador
             setChanged();
-            //notificar al que se registro
             notifyObservers("JUGADOR_REGISTRADO");
             
             //notifyObservers("NUEVO_JUGADOR");

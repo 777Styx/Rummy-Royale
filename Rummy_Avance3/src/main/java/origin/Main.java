@@ -3,7 +3,7 @@ package origin;
 import partidaMVC.ControladorJuego;
 import menuMVC.ControladorMenu;
 import menuMVC.ModeloMenu;
-import menuMVC.VistaConfiguracion;
+import menuMVC.VistaConfig;
 import menuMVC.VistaRegistro;
 import menuMVC.VistaUnirseCrear;
 import partidaMVC.ModeloJuego;
@@ -27,7 +27,7 @@ public class Main {
 
         //Crear vistas y agregar controladores
         VistaUnirseCrear vistaUnirseCrear = new VistaUnirseCrear(controladorMenu);
-        VistaConfiguracion vistaConfiguracion = new VistaConfiguracion(controladorMenu);
+        VistaConfig vistaConfiguracion = new VistaConfig(controladorMenu);
         VistaRegistro vistaRegistro = new VistaRegistro(controladorMenu);
 
         VistaJuego vistaJuego = new VistaJuego(controladorJuego);
