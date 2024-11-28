@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
+import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 
 /**
@@ -20,11 +21,23 @@ public class Juego extends Observable {
     private static Juego instance;
     private ArrayList<String> avatarsDisponibles;
     private final List<String> avatars = Arrays.asList("creeper", "pig", "steve", "villager");
+    private Mazo mazo;
+    private EstadoJuego estado;
 
+    public enum EstadoJuego  {
+        INICIO,
+        CREADO,
+        CONFIGURADO,
+        EN_CURSO,
+        FINALIZADO
+    }
+    
+    
     private Juego() {
         this.jugadores = new ArrayList<>();
         this.partidaActiva = false;
         this.avatarsDisponibles = new ArrayList<>(avatars);
+        this.estado = EstadoJuego.INICIO;
     }
 
     public static synchronized Juego getInstance() {
@@ -35,6 +48,8 @@ public class Juego extends Observable {
         return instance;
     }
 
+    
+    
     public void removerAvatar(String avatar) {
         avatarsDisponibles.remove(avatar);
     }
@@ -59,6 +74,27 @@ public class Juego extends Observable {
         return partidaActiva;
     }
 
+    public ArrayList<String> getAvatarsDisponibles() {
+        return avatarsDisponibles;
+    }
+
+    public void setAvatarsDisponibles(ArrayList<String> avatarsDisponibles) {
+        this.avatarsDisponibles = avatarsDisponibles;
+    }
+
+    public Mazo getMazo() {
+        return mazo;
+    }
+
+    public void setMazo(Mazo mazo) {
+        this.mazo = mazo;
+        this.estado = EstadoJuego.CONFIGURADO;
+        setChanged();
+        notifyObservers(new ResConfigurarPartida("PARTIDA_CONFIGURADA"));
+    }
+
+    
+    
     public synchronized void setPartidaActiva(boolean flag) {
 
         if (partidaActiva == true) {
@@ -68,6 +104,7 @@ public class Juego extends Observable {
             this.partidaActiva = flag;
             setChanged();
             notifyObservers(new ResCrearPartida("PARTIDA_CREADA"));
+            this.estado = EstadoJuego.CREADO;
         }
     }
 

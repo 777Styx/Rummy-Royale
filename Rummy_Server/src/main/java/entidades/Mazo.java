@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -9,11 +10,13 @@ import java.util.Random;
  */
 public class Mazo {
 
-    private ArrayList<IFicha> mazoFichas;
+    private List<IFicha> mazoFichas;
     private Random random;
 
-    public Mazo() {
+    public Mazo(List<IFicha> numericas, List<IFicha> comodines) {
         mazoFichas = new ArrayList<>();
+        mazoFichas.addAll(numericas);  
+        mazoFichas.addAll(comodines); 
         random = new Random();
     }
 

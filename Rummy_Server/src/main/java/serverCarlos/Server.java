@@ -70,6 +70,8 @@ public class Server {
                 }
             }
         }
+        
+        
 
         for (ClientHandler client : clients) {
             if (client != sender) {

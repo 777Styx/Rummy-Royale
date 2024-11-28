@@ -40,6 +40,11 @@ public class ModeloMenu extends Observable {
 
             case "JUGADOR_REGISTRADO":
                 System.out.println("Se crea alv");
+                break;
+            case "PARTIDA_CONFIGURADA":
+                setChanged();
+                notifyObservers(message);
+                break;
             default:
                 System.out.println("no llego nada :(");
         }

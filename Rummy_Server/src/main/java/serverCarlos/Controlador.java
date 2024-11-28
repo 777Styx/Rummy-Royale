@@ -70,11 +70,13 @@ public class Controlador implements Observer {
     }
 
     public void configurarPartida(ClientHandler aThis, JuegoDTO juego) {
+        System.out.println("cONTOrOLdOR cONfIguRANdO");
         this.clientHandler = aThis;        
         Map<String, List<IFicha>> fichas = expertoFicha.crearFichas(juego);
         List<IFicha> comodines = fichas.get("comodines");
         List<IFicha> fichasNumericas = fichas.get("fichasNumericas");
         Mazo mazo = expertoMazo.crearMazo(fichasNumericas, comodines);
+        expertoJuego.configurarPartida(mazo);
         
     }
 
@@ -88,7 +90,6 @@ public class Controlador implements Observer {
                 case "PARTIDA_CREADA":
                     server.broadcastMessage(mensaje, clientHandler);
                     break;
-
                 case "PARTIDA_NO_CREADA":
                     server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
                     break;
@@ -99,7 +100,9 @@ public class Controlador implements Observer {
                 case "PARTIDA_LLENA":
                     break;
                 case "PARTIDA_CONFIGURADA":
-                    server.broadcastMessage(new ResConfigurarPartida("PARTIDA_CONFIGURADA"), clientHandler);
+                    System.out.println("si se configuro, soy el control");
+                    server.broadcastMessage(mensaje, clientHandler);
+                    break;
                 default:
                     System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
             }

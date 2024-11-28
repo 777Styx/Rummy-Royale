@@ -6,6 +6,7 @@ package menuMVC;
 
 import java.util.Observable;
 import java.util.Observer;
+import mensajes.Mensaje;
 
 /**
  *
@@ -33,6 +34,13 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
             if (comando.equals("PARTIDA_CREADA")) {
                 this.setVisible(true);
                 System.out.println("mostrando config");
+            } 
+        }
+        
+        if(arg instanceof Mensaje) {
+            Mensaje mensaje = (Mensaje) arg;
+            if(mensaje.getComando().equals("PARTIDA_CONFIGURADA")) {
+                this.dispose();
             }
         }
     }

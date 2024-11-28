@@ -5,6 +5,7 @@
 package clienteCarlitos;
 
 import mensajes.Mensaje;
+import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
 import menuMVC.ModeloMenu;
@@ -41,6 +42,13 @@ public class ResponseManager {
             ResRegistroJugador respuesta = (ResRegistroJugador) mensaje;
             modeloMenu.seRegistroJugador();
             modeloJuego.agregarJugador(respuesta.getJugador());
+        }
+        
+        
+        if(mensaje instanceof ResConfigurarPartida) {
+            System.out.println("Cliente recibio que configuraron partida");
+            ResConfigurarPartida res = (ResConfigurarPartida) mensaje;
+            modeloMenu.notificar(res.getComando());
         }
     }
 
