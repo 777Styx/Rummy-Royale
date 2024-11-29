@@ -30,7 +30,9 @@ public class Controlador implements Observer {
     private Controlador() {
         this.expertos = new HashMap<>();
         this.expertos.put("crearPartida", new ExpertoCrearPartida());
-        this.expertos.put("configurarPartida", new ExpertoConfigurarPartida());
+        this.expertos.put("crearFichasNumericas", new ExpertoCrearFichasNumericas());
+        this.expertos.put("crearComodines", new ExpertoCrearComodines());
+        this.expertos.put("crearMazo", new ExpertoCrearMazo());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -49,7 +51,9 @@ public class Controlador implements Observer {
     
     public void configurarPartida(ClientHandler aThis, Mensaje mensaje) {
         this.clientHandler = aThis;
-        realizarAccion("configurarPartida", mensaje);
+        realizarAccion("crearFichasNumericas", mensaje);
+        realizarAccion("crearComodines", mensaje);
+        realizarAccion("crearMazo", mensaje);
     }
 
     public static synchronized Controlador getInstance() {

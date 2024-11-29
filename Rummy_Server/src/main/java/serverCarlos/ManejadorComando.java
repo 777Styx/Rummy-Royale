@@ -62,7 +62,6 @@ public class ManejadorComando {
     }
 
     private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
-        JuegoDTO juego = reqConfigurarPartida.getJuego();
-       // controlador.configurarPartida(clientHandler, juego);
+        controlador.configurarPartida(clientHandler, reqConfigurarPartida);
     }
 }

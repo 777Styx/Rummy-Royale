@@ -23,6 +23,16 @@ public class Juego extends Observable {
     private final List<String> avatars = Arrays.asList("creeper", "pig", "steve", "villager");
     private Mazo mazo;
     private EstadoJuego estado;
+    private List<IFicha> fichasNumericas = new ArrayList<>();
+    private List<IFicha> comodines = new ArrayList<>();
+
+    public List<IFicha> getComodines() {
+        return comodines;
+    }
+
+    public void setComodines(List<IFicha> comodines) {
+        this.comodines = comodines;
+    }
 
     public enum EstadoJuego  {
         INICIO,
@@ -47,8 +57,14 @@ public class Juego extends Observable {
         }
         return instance;
     }
-
     
+    public List<IFicha> getFichasNumericas() {
+        return fichasNumericas;
+    }
+
+    public void setFichasNumericas(List<IFicha> fichasNumericas) {
+        this.fichasNumericas = fichasNumericas;
+    }
     
     public void removerAvatar(String avatar) {
         avatarsDisponibles.remove(avatar);
@@ -91,12 +107,10 @@ public class Juego extends Observable {
         this.estado = EstadoJuego.CONFIGURADO;
         setChanged();
         notifyObservers(new ResConfigurarPartida("PARTIDA_CONFIGURADA"));
+        System.out.println("El mazo esta vacio?: " + mazo.estaVacio());
     }
-
-    
     
     public synchronized void setPartidaActiva(boolean flag) {
-
         if (partidaActiva == true) {
             setChanged();
             notifyObservers(new ResCrearPartida("PARTIDA_NO_CREADA"));
