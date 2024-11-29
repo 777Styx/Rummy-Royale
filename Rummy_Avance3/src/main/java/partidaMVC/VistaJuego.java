@@ -10,15 +10,22 @@ import utils.PanelRound;
  */
 public class VistaJuego extends javax.swing.JFrame implements Observer{
 
-    private ControladorJuego controlador;
+    private static ControladorJuego controlador;
+    private static VistaJuego instance;
 
+    public static VistaJuego getInstancia() {
+        if(instance == null) {
+            return new VistaJuego(controlador);
+        }
+        return instance;
+    }
+    
     /**
      * Creates new form View
      */
     public VistaJuego(ControladorJuego controlador) {
         initComponents();
         this.controlador = controlador;
-
     }
 
     /**
@@ -31,15 +38,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
     private void initComponents() {
 
         ventanaPrincipal = new javax.swing.JPanel();
-        playerNickname1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        panelRound14 = new utils.PanelRound();
         btnCombinacion = new utils.Btn();
         panelRound1 = new utils.PanelRound();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         tomarFichaBtn = new utils.Btn();
         contenedorFichas = new javax.swing.JPanel();
         panelRound13 = new utils.PanelRound();
@@ -54,52 +55,16 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
         jLabel9 = new javax.swing.JLabel();
         panelRound25 = new utils.PanelRound();
         jLabel10 = new javax.swing.JLabel();
-        panelRound26 = new utils.PanelRound();
-        panelRound27 = new utils.PanelRound();
+        jLabel1 = new javax.swing.JLabel();
+        jugador1 = new javax.swing.JLabel();
+        jugador2 = new javax.swing.JLabel();
+        jugador3 = new javax.swing.JLabel();
+        jugador4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ventanaPrincipal.setBackground(new java.awt.Color(33, 142, 64));
         ventanaPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        playerNickname1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        playerNickname1.setForeground(new java.awt.Color(255, 255, 255));
-        playerNickname1.setText("amos");
-        ventanaPrincipal.add(playerNickname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("TeLesheo");
-        ventanaPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Wilber");
-        ventanaPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("hiiramsan");
-        ventanaPrincipal.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 490, -1, -1));
-
-        panelRound14.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound14.setRoundBottomLeft(10);
-        panelRound14.setRoundBottomRight(10);
-        panelRound14.setRoundTopLeft(10);
-        panelRound14.setRoundTopRight(10);
-
-        javax.swing.GroupLayout panelRound14Layout = new javax.swing.GroupLayout(panelRound14);
-        panelRound14.setLayout(panelRound14Layout);
-        panelRound14Layout.setHorizontalGroup(
-            panelRound14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 27, Short.MAX_VALUE)
-        );
-        panelRound14Layout.setVerticalGroup(
-            panelRound14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
-        );
-
-        ventanaPrincipal.add(panelRound14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         btnCombinacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCombinacion.setText("Hacer combinación");
@@ -111,7 +76,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
                 btnCombinacionActionPerformed(evt);
             }
         });
-        ventanaPrincipal.add(btnCombinacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 130, 30));
+        ventanaPrincipal.add(btnCombinacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 130, 30));
 
         panelRound1.setRoundBottomLeft(10);
         panelRound1.setRoundBottomRight(10);
@@ -126,24 +91,19 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                .addContainerGap(293, Short.MAX_VALUE)
+                .addContainerGap(335, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addGap(260, 260, 260))
+                .addGap(258, 258, 258))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ventanaPrincipal.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 600, 240));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Turno: hiiramsan");
-        ventanaPrincipal.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        ventanaPrincipal.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 640, 330));
 
         tomarFichaBtn.setBackground(new java.awt.Color(51, 153, 255));
         tomarFichaBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +116,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
                 tomarFichaBtnActionPerformed(evt);
             }
         });
-        ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 100, 40));
+        ventanaPrincipal.add(tomarFichaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 100, 40));
 
         contenedorFichas.setBackground(new java.awt.Color(33, 142, 64));
         contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -382,48 +342,31 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
                     .addComponent(panelRound23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ventanaPrincipal.add(contenedorFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 380, 60));
+        ventanaPrincipal.add(contenedorFichas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 550, 60));
 
-        panelRound26.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound26.setRoundBottomLeft(10);
-        panelRound26.setRoundBottomRight(10);
-        panelRound26.setRoundTopLeft(10);
-        panelRound26.setRoundTopRight(10);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Jugadores");
+        ventanaPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, -1, -1));
 
-        javax.swing.GroupLayout panelRound26Layout = new javax.swing.GroupLayout(panelRound26);
-        panelRound26.setLayout(panelRound26Layout);
-        panelRound26Layout.setHorizontalGroup(
-            panelRound26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 27, Short.MAX_VALUE)
-        );
-        panelRound26Layout.setVerticalGroup(
-            panelRound26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
-        );
+        jugador1.setForeground(new java.awt.Color(255, 255, 255));
+        jugador1.setText("- - -");
+        ventanaPrincipal.add(jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, -1, -1));
 
-        ventanaPrincipal.add(panelRound26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        jugador2.setForeground(new java.awt.Color(255, 255, 255));
+        jugador2.setText("- - - ");
+        ventanaPrincipal.add(jugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, -1));
 
-        panelRound27.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound27.setRoundBottomLeft(10);
-        panelRound27.setRoundBottomRight(10);
-        panelRound27.setRoundTopLeft(10);
-        panelRound27.setRoundTopRight(10);
+        jugador3.setForeground(new java.awt.Color(255, 255, 255));
+        jugador3.setText("- - - ");
+        ventanaPrincipal.add(jugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, -1, -1));
 
-        javax.swing.GroupLayout panelRound27Layout = new javax.swing.GroupLayout(panelRound27);
-        panelRound27.setLayout(panelRound27Layout);
-        panelRound27Layout.setHorizontalGroup(
-            panelRound27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 27, Short.MAX_VALUE)
-        );
-        panelRound27Layout.setVerticalGroup(
-            panelRound27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
-        );
-
-        ventanaPrincipal.add(panelRound27, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, -1, -1));
+        jugador4.setForeground(new java.awt.Color(255, 255, 255));
+        jugador4.setText("- - - ");
+        ventanaPrincipal.add(jugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -441,7 +384,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_btnCombinacionActionPerformed
 
@@ -488,67 +430,28 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
         System.out.println("Selecciono carta");
     }//GEN-LAST:event_panelRound24KeyPressed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VistaJuego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                ControladorJuego controlador = ControladorJuego.getInstance();
-//                VistaJuego vista = new VistaJuego(controlador);
-//                vista.setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn btnCombinacion;
     private javax.swing.JPanel contenedorFichas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jugador1;
+    private javax.swing.JLabel jugador2;
+    private javax.swing.JLabel jugador3;
+    private javax.swing.JLabel jugador4;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound13;
-    private utils.PanelRound panelRound14;
     private utils.PanelRound panelRound21;
     private utils.PanelRound panelRound22;
     private utils.PanelRound panelRound23;
     private utils.PanelRound panelRound24;
     private utils.PanelRound panelRound25;
-    private utils.PanelRound panelRound26;
-    private utils.PanelRound panelRound27;
-    private javax.swing.JLabel playerNickname1;
     private utils.Btn tomarFichaBtn;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables

@@ -39,15 +39,15 @@ public class ResponseManager {
 
         // Manejar el registro de jugador
         if (mensaje instanceof ResRegistroJugador) {
-            ResRegistroJugador respuesta = (ResRegistroJugador) mensaje;
-            System.out.println("Cliente: tudo bem, novo jogador registrao");
-            System.out.println(((ResRegistroJugador) mensaje).getJugador().toString());
-            modeloMenu.seRegistroJugador();
-            modeloJuego.agregarJugador(respuesta.getJugador());
+            if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
+                System.out.println("Cliente: tudo bem, novo jogador registrao");
+                System.out.println(((ResRegistroJugador) mensaje).getJugadorNuevo());
+                modeloMenu.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
+                modeloJuego.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
+            }
         }
-        
-        
-        if(mensaje instanceof ResConfigurarPartida) {
+
+        if (mensaje instanceof ResConfigurarPartida) {
             System.out.println("Cliente recibio que configuraron partida");
             ResConfigurarPartida res = (ResConfigurarPartida) mensaje;
             modeloMenu.notificar(res.getComando());

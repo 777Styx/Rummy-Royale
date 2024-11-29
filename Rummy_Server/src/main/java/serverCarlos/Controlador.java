@@ -33,6 +33,7 @@ public class Controlador implements Observer {
         this.expertos.put("crearFichasNumericas", new ExpertoCrearFichasNumericas());
         this.expertos.put("crearComodines", new ExpertoCrearComodines());
         this.expertos.put("crearMazo", new ExpertoCrearMazo());
+        this.expertos.put("registrarJugador", new ExpertoRegistrar());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -63,18 +64,10 @@ public class Controlador implements Observer {
         return instance;
     }
 
-//    public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {
-//        this.clientHandler = aThis;
-//        if (expertoJuego.hasSpace()) {
-//            expertoJugador.registrarJugador(jugador);
-//        } else {
-//            System.out.println("NO ZE REGISTRARA NADA PORKE NO AI ESPASIO");
-//        }
-//    }
-//    public void unirse(ClientHandler aThis) {
-//        this.clientHandler = aThis;
-//        //expertoJuego.unirse();
-//    }
+    public void registrarJugador(Mensaje mensaje, ClientHandler aThis) {
+        realizarAccion("registrarJugador", mensaje);
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {
@@ -89,9 +82,7 @@ public class Controlador implements Observer {
                     server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
                     break;
                 case "JUGADOR_REGISTRADO":
-                    JugadorDTO jugadorDTO = (JugadorDTO) arg;
-                    System.out.println("SEgun, si se registro en Juego");
-                    server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
+                    server.broadcastMessage(mensaje, clientHandler);
                     break;
                 case "PARTIDA_LLENA":
                     break;
@@ -101,11 +92,6 @@ public class Controlador implements Observer {
                 default:
                     System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
             }
-        }
-
-        if (arg instanceof JugadorDTO) {
-            JugadorDTO jugadorDTO = (JugadorDTO) arg;
-            server.broadcastMessage(new ResRegistroJugador(jugadorDTO), clientHandler);
         }
     }
 }

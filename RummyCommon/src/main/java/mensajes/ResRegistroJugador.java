@@ -11,15 +11,15 @@ import dtos.JugadorDTO;
  * @author carlo
  */
 public class ResRegistroJugador extends Mensaje {
-    private final JugadorDTO jugador;
+    private final JugadorDTO jugadorNuevo;
     
-    public ResRegistroJugador(JugadorDTO jugador) {
-        super("JUGADOR_REGISTRADO");
-        this.jugador = jugador;
+    public ResRegistroJugador(String comando, JugadorDTO jugadorNuevo) {
+        super(comando);
+        this.jugadorNuevo = jugadorNuevo;
     }
 
-    public JugadorDTO getJugador() {
-        return jugador;
+    public JugadorDTO getJugadorNuevo() {
+        return jugadorNuevo;
     }
     
     

@@ -22,9 +22,10 @@ public class ModeloMenu extends Observable {
     private boolean registroVisible = false;
     private Cliente cliente;
     private static ModeloMenu instance;
+    private List<JugadorDTO> jugadores;
 
     private ModeloMenu() {
-
+        jugadores = new ArrayList<>();
     }
 
     public void notificar(String message) {
@@ -100,14 +101,24 @@ public class ModeloMenu extends Observable {
 
     public void unirseAPartida(int puerto) {
         conectar(puerto);
-
         if (cliente.isConnected()) {
             cliente.unirse();
         }
     }
 
-    public void seRegistroJugador() {
+    public List<JugadorDTO> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<JugadorDTO> jugadores) {
+        this.jugadores = jugadores;
+    }
+    
+    public void agregarJugador(JugadorDTO jugador) {
+        this.jugadores.add(jugador);
         setChanged();
         notifyObservers("JUGADOR_REGISTRADO");
     }
+    
+    
 }

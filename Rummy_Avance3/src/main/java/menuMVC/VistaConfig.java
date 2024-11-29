@@ -4,6 +4,8 @@
  */
 package menuMVC;
 
+import actualizaciones.Actualizacion;
+import actualizaciones.Vista;
 import java.util.Observable;
 import java.util.Observer;
 import mensajes.Mensaje;
@@ -25,7 +27,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
         this.controladorMenu = controladorMenu;
         rango13.setSelected(true);
     }
-
+    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof String) {
@@ -234,4 +236,6 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
     private javax.swing.JRadioButton rango10;
     private javax.swing.JRadioButton rango13;
     // End of variables declaration//GEN-END:variables
+
+   
 }

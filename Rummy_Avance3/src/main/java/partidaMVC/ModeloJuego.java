@@ -33,19 +33,15 @@ public class ModeloJuego extends Observable {
     }
 
     public static ModeloJuego getInstance() {
-
         return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
     // Añadir un jugador al juego
     public void agregarJugador(JugadorDTO jugadorDTO) {
-        if (jugadoresDTO.size() < 4) { // Máximo de 4 jugadores
+        if (jugadoresDTO.size() < 4) {
             jugadoresDTO.add(jugadorDTO);
-            //  notificarObservadores(); // Notifica al agregar un jugador
             setChanged();
             notifyObservers("JUGADOR_REGISTRADO");
-            
-            //notifyObservers("NUEVO_JUGADOR");
         }
     }
 }

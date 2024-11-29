@@ -46,22 +46,22 @@ public class ManejadorComando {
 
         }
     }
-
-    // Esto esta en ManejadorComando
+    
     private void handleCrearPartida(Mensaje mensaje) {
         controlador.crearPartida(mensaje, clientHandler);
     }
 
+    private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
+        controlador.configurarPartida(clientHandler, reqConfigurarPartida);
+    }
+    
     private void handleRegistrarJugador(ReqRegistroJugador mensaje) {
-        JugadorDTO jugador = mensaje.getJugador();
-        //controlador.registrarJugador(clientHandler, jugador);
+        controlador.registrarJugador(mensaje, clientHandler);
     }
     
     private void handleUnirse() {
         //controlador.unirse(clientHandler);
     }
 
-    private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
-        controlador.configurarPartida(clientHandler, reqConfigurarPartida);
-    }
+    
 }

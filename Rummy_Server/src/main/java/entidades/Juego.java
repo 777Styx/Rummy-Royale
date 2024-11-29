@@ -1,12 +1,16 @@
 package entidades;
 
 import dtos.JugadorDTO;
+import dtos.ManejadorColorDTO;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
+import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
+import mensajes.ResRegistroJugador;
 
 /**
  *
@@ -15,7 +19,7 @@ import mensajes.ResCrearPartida;
 public class Juego extends Observable {
 
     private ArrayList<Jugador> jugadores;
-    
+
     private Tablero tablero;
     private boolean partidaActiva = false;
     private static Juego instance;
@@ -34,15 +38,14 @@ public class Juego extends Observable {
         this.comodines = comodines;
     }
 
-    public enum EstadoJuego  {
+    public enum EstadoJuego {
         INICIO,
         CREADO,
         CONFIGURADO,
         EN_CURSO,
         FINALIZADO
     }
-    
-    
+
     private Juego() {
         this.jugadores = new ArrayList<>();
         this.partidaActiva = false;
@@ -57,7 +60,7 @@ public class Juego extends Observable {
         }
         return instance;
     }
-    
+
     public List<IFicha> getFichasNumericas() {
         return fichasNumericas;
     }
@@ -65,13 +68,39 @@ public class Juego extends Observable {
     public void setFichasNumericas(List<IFicha> fichasNumericas) {
         this.fichasNumericas = fichasNumericas;
     }
-    
+
     public void removerAvatar(String avatar) {
         avatarsDisponibles.remove(avatar);
     }
 
-    public void agregarJugador(Jugador jugador) {
-        jugadores.add(jugador);
+    public void agregarJugador(JugadorDTO jugadorDTO) {
+        if (jugadores.size() < 3) {
+            List<ManejadorColor> manejadoresColor = new ArrayList<>();
+
+            ManejadorColorDTO mc1 = jugadorDTO.getPreferenciasColor().get(0);
+            ManejadorColorDTO mc2 = jugadorDTO.getPreferenciasColor().get(1);
+            ManejadorColorDTO mc3 = jugadorDTO.getPreferenciasColor().get(2);
+            ManejadorColorDTO mc4 = jugadorDTO.getPreferenciasColor().get(3);
+
+            manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO1, new ColorCustom(new Color(mc1.getColor().getColor()))));
+            manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO2, new ColorCustom(new Color(mc2.getColor().getColor()))));
+            manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(new Color(mc3.getColor().getColor()))));
+            manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(new Color(mc4.getColor().getColor()))));
+
+            Jugador jugador = new Jugador(
+                    jugadorDTO.getNombre(),
+                    jugadorDTO.getAvatar(),
+                    manejadoresColor
+            );
+            jugadores.add(jugador);
+            removerAvatar(jugador.getAvatar());
+            notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO",jugadorDTO));
+
+        } else {
+            notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null));
+        }
+        setChanged();
+
     }
 
     public ArrayList<Jugador> getJugadores() {
@@ -109,7 +138,7 @@ public class Juego extends Observable {
         notifyObservers(new ResConfigurarPartida("PARTIDA_CONFIGURADA"));
         System.out.println("El mazo esta vacio?: " + mazo.estaVacio());
     }
-    
+
     public synchronized void setPartidaActiva(boolean flag) {
         if (partidaActiva == true) {
             setChanged();
