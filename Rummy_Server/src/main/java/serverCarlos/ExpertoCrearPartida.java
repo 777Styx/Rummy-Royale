@@ -5,6 +5,7 @@
 package serverCarlos;
 
 import entidades.Juego;
+import mensajes.Mensaje;
 
 /**
  *
@@ -13,7 +14,7 @@ import entidades.Juego;
 public class ExpertoCrearPartida implements Experto {
 
     @Override
-    public void ejecutar(Juego juego) {
+    public void ejecutar(Juego juego, Mensaje mensaje) {
         juego.setPartidaActiva(true);
     }
     

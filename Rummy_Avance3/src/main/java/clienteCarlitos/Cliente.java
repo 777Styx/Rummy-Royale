@@ -89,7 +89,6 @@ public class Cliente {
     }
 
     private class MessageListener implements Runnable {
-
         private boolean running = true;
 
         @Override

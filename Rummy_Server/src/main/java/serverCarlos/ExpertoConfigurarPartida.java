@@ -8,42 +8,47 @@ import dtos.JuegoDTO;
 import entidades.FichaComodin;
 import entidades.FichaNumerica;
 import entidades.IFicha;
+import entidades.Juego;
+import entidades.Mazo;
 import entidades.TipoFicha;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import mensajes.Mensaje;
+import mensajes.ReqConfigurarPartida;
 
 /**
  *
  * @author carlo
  */
-public class ExpertoFicha {
-    
-    
-    
-    public Map<String, List<IFicha>> crearFichas(JuegoDTO juego) {
-        List<FichaComodin> comodines = new ArrayList<>();
+public class ExpertoConfigurarPartida implements Experto {
 
-        while (comodines.size() < juego.getNumComodines()) {
+    @Override
+    public void ejecutar(Juego juego, Mensaje mensaje) {
+        
+        ReqConfigurarPartida req = (ReqConfigurarPartida) mensaje;
+        int numComodines = req.getJuego().getNumComodines();
+        int rangoFichas = req.getJuego().getRangoFichas();
+        
+        List<IFicha> comodines = new ArrayList<>();
+
+        while (comodines.size() < numComodines) {
             comodines.add(new FichaComodin());
         }
 
-        List<FichaNumerica> fichasNumericas = new ArrayList<>();
-        int rango = juego.getRangoFichas();
+        List<IFicha> fichasNumericas = new ArrayList<>();
         TipoFicha[] tiposFicha = TipoFicha.values();
 
         for (TipoFicha tipo : tiposFicha) {
-            for (int numero = 1; numero <= rango; numero++) {
+            for (int numero = 1; numero <= rangoFichas; numero++) {
                 fichasNumericas.add(new FichaNumerica(numero, tipo));
                 fichasNumericas.add(new FichaNumerica(numero, tipo));
             }
         }
-        
-        Map<String, List<IFicha>> fichas = new HashMap<>();
-        fichas.put("comodines", new ArrayList<>(comodines));
-        fichas.put("fichasNumericas", new ArrayList<>(fichasNumericas));
 
-        return fichas;
+        Mazo mazo = new Mazo(fichasNumericas, comodines);
+        juego.setMazo(mazo);
     }
+    
 }

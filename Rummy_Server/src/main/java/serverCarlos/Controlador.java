@@ -30,33 +30,35 @@ public class Controlador implements Observer {
     private Controlador() {
         this.expertos = new HashMap<>();
         this.expertos.put("crearPartida", new ExpertoCrearPartida());
+        this.expertos.put("configurarPartida", new ExpertoConfigurarPartida());
     }
 
-    public void realizarAccion(String accion) {
+    public void realizarAccion(String accion, Mensaje mensaje) {
         Experto experto = expertos.get(accion);
         if (experto != null) {
-            experto.ejecutar(juego);
+            experto.ejecutar(juego, mensaje);
         } else {
             throw new IllegalArgumentException("Acción desconocida: " + accion);
         }
     }
-    
+
     public void crearPartida(Mensaje mensaje, ClientHandler aThis) {
         this.clientHandler = aThis;
-        realizarAccion("crearPartida");
-        
+        realizarAccion("crearPartida", mensaje);
     }
     
-    
-    
+    public void configurarPartida(ClientHandler aThis, Mensaje mensaje) {
+        this.clientHandler = aThis;
+        realizarAccion("configurarPartida", mensaje);
+    }
+
     public static synchronized Controlador getInstance() {
         if (instance == null) {
             instance = new Controlador();
         }
         return instance;
     }
-    
-    
+
 //    public void registrarJugador(ClientHandler aThis, JugadorDTO jugador) {
 //        this.clientHandler = aThis;
 //        if (expertoJuego.hasSpace()) {
@@ -65,23 +67,10 @@ public class Controlador implements Observer {
 //            System.out.println("NO ZE REGISTRARA NADA PORKE NO AI ESPASIO");
 //        }
 //    }
-
 //    public void unirse(ClientHandler aThis) {
 //        this.clientHandler = aThis;
 //        //expertoJuego.unirse();
 //    }
-
-//    public void configurarPartida(ClientHandler aThis, JuegoDTO juego) {
-//        System.out.println("cONTOrOLdOR cONfIguRANdO");
-//        this.clientHandler = aThis;        
-//        Map<String, List<IFicha>> fichas = expertoFicha.crearFichas(juego);
-//        List<IFicha> comodines = fichas.get("comodines");
-//        List<IFicha> fichasNumericas = fichas.get("fichasNumericas");
-//        Mazo mazo = expertoMazo.crearMazo(fichasNumericas, comodines);
-//        expertoJuego.configurarPartida(mazo);
-//        
-//    }
-
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {

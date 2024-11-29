@@ -5,11 +5,12 @@
 package serverCarlos;
 
 import entidades.Juego;
+import mensajes.Mensaje;
 
 /**
  *
  * @author carlo
  */
 public interface Experto {
-    void ejecutar(Juego juego);
+    void ejecutar(Juego juego, Mensaje mensaje);
 }
