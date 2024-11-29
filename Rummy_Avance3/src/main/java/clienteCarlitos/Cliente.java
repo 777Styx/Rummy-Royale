@@ -1,8 +1,5 @@
 package clienteCarlitos;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import common.Command;
 import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import java.io.BufferedReader;
@@ -10,15 +7,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 import mensajes.Mensaje;
 import mensajes.MessageManager;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqCrearPartida;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqUnirse;
-import mensajes.ResCrearPartida;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
 
@@ -38,9 +32,7 @@ public class Cliente {
     private ResponseManager responseManager = new ResponseManager();
 
     public Cliente() {
-
         connected = false;
-
     }
 
     public boolean isConnected() {

@@ -31,7 +31,7 @@ public class ManejadorComando {
 
         switch (mensaje.getComando()) {
             case "CREAR_PARTIDA":
-                handleCrearPartida();
+                handleCrearPartida(mensaje);
                 break;
             case "REGISTRAR_JUGADOR":
                 handleRegistrarJugador((ReqRegistroJugador) mensaje);
@@ -47,21 +47,22 @@ public class ManejadorComando {
         }
     }
 
-    private void handleCrearPartida() {
-        controlador.crearJuego(clientHandler);
+    // Esto esta en ManejadorComando
+    private void handleCrearPartida(Mensaje mensaje) {
+        controlador.crearPartida(mensaje, clientHandler);
     }
 
     private void handleRegistrarJugador(ReqRegistroJugador mensaje) {
         JugadorDTO jugador = mensaje.getJugador();
-        controlador.registrarJugador(clientHandler, jugador);
+        //controlador.registrarJugador(clientHandler, jugador);
     }
     
     private void handleUnirse() {
-        controlador.unirse(clientHandler);
+        //controlador.unirse(clientHandler);
     }
 
     private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
         JuegoDTO juego = reqConfigurarPartida.getJuego();
-        controlador.configurarPartida(clientHandler, juego);
+       // controlador.configurarPartida(clientHandler, juego);
     }
 }
