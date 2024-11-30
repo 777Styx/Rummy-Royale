@@ -9,5 +9,5 @@ package actualizaciones;
  * @author carlo
  */
 public interface Vista {
-    void actualizar();
+    void actualizar(Actualizacion actualizacion);
 }

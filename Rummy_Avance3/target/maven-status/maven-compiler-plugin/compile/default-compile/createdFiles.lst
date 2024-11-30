@@ -13,16 +13,18 @@ clienteCarlitos\Cliente$MessageListener.class
 partidaMVC\VistaJuego$7.class
 origin\Main.class
 partidaMVC\VistaJuego$2.class
-actualizaciones\VistaRegistro.class
 menuMVC\VistaUnirseCrear$2.class
 menuMVC\VistaUnirseCrear.class
 menuMVC\VistaConfig$2.class
 actualizaciones\Actualizacion.class
+actualizaciones\JugadoresActualizados.class
 clienteCarlitos\ResponseManager.class
 menuMVC\VistaRegistro$ColorChooserListener.class
 menuMVC\VistaRegistro$4.class
+actualizaciones\VistaJugadores.class
 menuMVC\VistaConfig$4.class
 menuMVC\VistaRegistro$7.class
+actualizaciones\ActualizacionJugadores.class
 partidaMVC\VistaJuego$4.class
 menuMVC\ControladorMenu.class
 partidaMVC\VistaJuego$9.class
@@ -30,7 +32,6 @@ utils\Btn$1.class
 menuMVC\VistaRegistro$2.class
 partidaMVC\ControladorJuego.class
 partidaMVC\VistaJuego$1.class
-actualizaciones\VistaUnirseCrear.class
 partidaMVC\ModeloJuego.class
 menuMVC\VistaConfig$1.class
 partidaMVC\VistaJuego$8.class
@@ -39,7 +40,6 @@ menuMVC\ModeloMenu.class
 menuMVC\VistaRegistro$5.class
 partidaMVC\VistaJuego$6.class
 actualizaciones\Vista.class
-actualizaciones\VistaConfig.class
 menuMVC\VistaUnirseCrear$1.class
 partidaMVC\VistaJuego$3.class
 utils\PanelRound.class

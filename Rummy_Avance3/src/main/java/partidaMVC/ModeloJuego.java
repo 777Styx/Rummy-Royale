@@ -1,5 +1,6 @@
 package partidaMVC;
 
+import actualizaciones.JugadoresActualizados;
 import dtos.CombinacionDTO;
 import dtos.FichaDTO;
 import dtos.JugadorDTO;
@@ -16,7 +17,7 @@ import java.util.Random;
  */
 public class ModeloJuego extends Observable {
 
-    private ArrayList<JugadorDTO> jugadoresDTO;
+    private ArrayList<JugadorDTO> jugadores;
     private ArrayList<FichaDTO> fichasDTO;
     private TableroDTO tableroDTO;
     private int indiceJugadorActual;
@@ -25,7 +26,7 @@ public class ModeloJuego extends Observable {
 
     private ModeloJuego() {
 
-        jugadoresDTO = new ArrayList<>();
+        jugadores = new ArrayList<>();
         fichasDTO = new ArrayList<>();
         tableroDTO = new TableroDTO();
         indiceJugadorActual = 0;
@@ -38,10 +39,8 @@ public class ModeloJuego extends Observable {
 
     // Añadir un jugador al juego
     public void agregarJugador(JugadorDTO jugadorDTO) {
-        if (jugadoresDTO.size() < 4) {
-            jugadoresDTO.add(jugadorDTO);
-            setChanged();
-            notifyObservers("JUGADOR_REGISTRADO");
-        }
+        jugadores.add(jugadorDTO);
+        setChanged();
+        notifyObservers(new JugadoresActualizados(this.jugadores));
     }
 }

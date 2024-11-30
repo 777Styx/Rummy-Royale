@@ -4,11 +4,13 @@
  */
 package actualizaciones;
 
+import dtos.JugadorDTO;
+import java.util.List;
+
 /**
  *
  * @author carlo
  */
-public interface VistaRegistro {
-    void mostrarRegistro();
-    void ocultarRegistro();
+public interface VistaJugadores extends Vista{
+    void mostrarJugadores(List<JugadorDTO> jugadores);
 }

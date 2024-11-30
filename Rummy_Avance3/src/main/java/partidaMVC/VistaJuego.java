@@ -1,5 +1,9 @@
 package partidaMVC;
 
+import actualizaciones.Actualizacion;
+import actualizaciones.VistaJugadores;
+import dtos.JugadorDTO;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import utils.PanelRound;
@@ -8,18 +12,53 @@ import utils.PanelRound;
  *
  * @author carlo
  */
-public class VistaJuego extends javax.swing.JFrame implements Observer{
+public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJugadores {
 
     private static ControladorJuego controlador;
     private static VistaJuego instance;
 
     public static VistaJuego getInstancia() {
-        if(instance == null) {
+        if (instance == null) {
             return new VistaJuego(controlador);
         }
         return instance;
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+//        if (arg instanceof String) {
+//            String comando = (String) arg;
+//            if (comando.equals("JUGADOR_REGISTRADO")) {
+//                //this.setVisible(true);
+//            }
+//        }
+
+        if (arg instanceof Actualizacion) {
+            Actualizacion actualizacion = (Actualizacion) arg;
+            actualizacion.aplicar(this);
+            System.out.println("Hubo actualizacion pa");
+        }
+    }
+
+    @Override
+    public void actualizar(Actualizacion actualizacion) {
+        actualizacion.aplicar(this);
+    }
+
+    public void mostrarJugadores(List<JugadorDTO> jugadores) {
+    String j1 = jugadores.size() > 0 && jugadores.get(0) != null ? jugadores.get(0).getNombre() : "- - -";
+    jugador1.setText(j1);
     
+    String j2 = jugadores.size() > 1 && jugadores.get(1) != null ? jugadores.get(1).getNombre() : "- - -";
+    jugador2.setText(j2);
+    
+    String j3 = jugadores.size() > 2 && jugadores.get(2) != null ? jugadores.get(2).getNombre() : "- - -";
+    jugador3.setText(j3);
+    
+    String j4 = jugadores.size() > 3 && jugadores.get(3) != null ? jugadores.get(3).getNombre() : "- - -";
+    jugador4.setText(j4);
+}
+
     /**
      * Creates new form View
      */
@@ -456,13 +495,4 @@ public class VistaJuego extends javax.swing.JFrame implements Observer{
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if (arg instanceof String) {
-            String comando = (String) arg;
-            if (comando.equals("JUGADOR_REGISTRADO")) {
-                this.setVisible(true);
-            }
-        }
-    }
 }

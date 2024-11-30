@@ -4,6 +4,8 @@
  */
 package actualizaciones;
 
+import partidaMVC.VistaJuego;
+
 /**
  *
  * @author carlo

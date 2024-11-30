@@ -28,9 +28,6 @@ public class ExpertoRegistrar implements Experto {
     public void ejecutar(Juego juego, Mensaje mensaje) {
         ReqRegistroJugador req = (ReqRegistroJugador) mensaje;
         JugadorDTO jugadorDTO = req.getJugador();
-        
-        
-        
         juego.agregarJugador(jugadorDTO);
     }
     

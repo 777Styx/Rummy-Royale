@@ -4,11 +4,12 @@
  */
 package actualizaciones;
 
+import partidaMVC.VistaJuego;
+
 /**
  *
  * @author carlo
  */
-public interface VistaConfig extends Vista{
-    void mostrarConfig();
-    void ocultarConfig();
+public interface ActualizacionJugadores extends Actualizacion {
+    void aplicar(VistaJugadores vista);
 }
