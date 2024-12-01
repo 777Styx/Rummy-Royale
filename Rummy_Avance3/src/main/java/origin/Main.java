@@ -1,5 +1,6 @@
 package origin;
 
+import javax.swing.SwingUtilities;
 import partidaMVC.ControladorJuego;
 import menuMVC.ControladorMenu;
 import menuMVC.ModeloMenu;
@@ -31,6 +32,7 @@ public class Main {
         VistaRegistro vistaRegistro = new VistaRegistro(controladorMenu);
 
         VistaJuego vistaJuego = new VistaJuego(controladorJuego);
+        
 
         //Se agregan los observadores
         modeloMenu.addObserver(vistaUnirseCrear);
@@ -38,7 +40,7 @@ public class Main {
         modeloMenu.addObserver(vistaRegistro);
 
         modeloJuego.addObserver(vistaJuego);
-
+        
         //Mostramos la primera vista
         java.awt.EventQueue.invokeLater(() -> {
             vistaUnirseCrear.setVisible(true);

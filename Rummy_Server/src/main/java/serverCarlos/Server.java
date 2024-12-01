@@ -9,6 +9,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import mensajes.Mensaje;
+import mensajes.ResConfigurarPartida;
+import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
 
 /**
@@ -56,25 +58,31 @@ public class Server {
 
     public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
 
+//        if (mensaje instanceof ResRegistroJugador) {
+//            for (ClientHandler client : clients) {
+//                if (client != sender) {
+//                    client.sendMessage(mensaje);
+//                } else {
+//                    client.sendMessage(mensaje);
+//                }
+//            }
+//        }
         if (mensaje instanceof ResRegistroJugador) {
             for (ClientHandler client : clients) {
-                if (client != sender) {
-                    client.sendMessage(mensaje);
-                } else {
+                if (client == sender) {
                     client.sendMessage(mensaje);
                 }
             }
-        }
-        
-        
-
-        for (ClientHandler client : clients) {
-            if (client != sender) {
+        } else if(mensaje instanceof ResCrearPartida) {
+            for(ClientHandler client : clients) {
                 client.sendMessage(mensaje);
-            } else {
+            }
+        } else if(mensaje instanceof ResConfigurarPartida) {
+            for (ClientHandler client : clients) {
                 client.sendMessage(mensaje);
             }
         }
+
     }
 
     public void addClient(ClientHandler client) {

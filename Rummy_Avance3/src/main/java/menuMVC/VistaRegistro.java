@@ -420,14 +420,6 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_avatar3ActionPerformed
 
-    private String obtenerAvatarSeleccionado() {
-        if (avatar1.isSelected()) {
-            return "avatar1";
-        } else if (avatar2.isSelected()) {
-            return "avatar2";
-        }
-        return null;
-    }
 
     /**
      * @param args the command line arguments

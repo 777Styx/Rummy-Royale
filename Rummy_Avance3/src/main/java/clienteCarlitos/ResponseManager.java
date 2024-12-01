@@ -19,7 +19,6 @@ public class ResponseManager {
 
     private ModeloMenu modeloMenu;
     private ModeloJuego modeloJuego;
-    // aqui ira lo de MessageListener
 
     ResponseManager() {
         modeloMenu = ModeloMenu.getInstance();
@@ -30,18 +29,17 @@ public class ResponseManager {
         if (mensaje instanceof ResCrearPartida) {
             ResCrearPartida respuesta = (ResCrearPartida) mensaje;
             if (respuesta.getComando().equals("PARTIDA_CREADA")) {
-                System.out.println("La partida fue creada exitosamente.");
                 modeloMenu.notificar(respuesta.getComando());
             } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
                 //modeloMenu.notificar(respuesta.getComando());
+                
+                // Manejar que no se creo
             }
         }
-
-        // Manejar el registro de jugador
+        
         if (mensaje instanceof ResRegistroJugador) {
             if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
                 System.out.println("Cliente: tudo bem, novo jogador registrao");
-                System.out.println(((ResRegistroJugador) mensaje).getJugadorNuevo());
                 modeloMenu.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
                 modeloJuego.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
             }

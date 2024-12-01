@@ -22,6 +22,7 @@ public class JugadoresActualizados implements ActualizacionJugadores {
 
     @Override
     public void aplicar(VistaJugadores vista) {
+        System.out.println("JUGADORESACTUALIZADOS: ESTOY mostrando JUGDAORES");
         vista.mostrarJugadores(jugadores);
     }
 

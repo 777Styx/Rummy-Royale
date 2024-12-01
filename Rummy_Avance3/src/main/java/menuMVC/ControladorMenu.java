@@ -4,6 +4,7 @@ import clienteCarlitos.Cliente;
 import dtos.JuegoDTO;
 import java.awt.Color;
 import java.util.Observable;
+import javax.swing.SwingUtilities;
 import partidaMVC.ControladorJuego;
 import partidaMVC.ModeloJuego;
 import partidaMVC.VistaJuego;
@@ -41,6 +42,7 @@ public class ControladorMenu {
     
     public void mostrarTablero() {
         VistaJuego vistaJuego = VistaJuego.getInstancia();
-        vistaJuego.setVisible(true);
+        SwingUtilities.invokeLater(() -> vistaJuego.setVisible(true));
+
     }
 }

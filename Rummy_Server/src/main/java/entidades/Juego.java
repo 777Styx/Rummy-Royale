@@ -94,13 +94,11 @@ public class Juego extends Observable {
             );
             jugadores.add(jugador);
             removerAvatar(jugador.getAvatar());
-            System.out.println("Soy Juego: si se registro un jugador");
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO",jugadorDTO));
         } else {
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null));
-            System.out.println("Soy Juego: no se registro un jugador");
         }
 
     }

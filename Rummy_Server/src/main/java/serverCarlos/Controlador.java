@@ -84,22 +84,12 @@ public class Controlador implements Observer {
                     break;
                 case "JUGADOR_REGISTRADO":
                     server.broadcastMessage(mensaje, clientHandler);
-                    System.out.println("soy controlador y recibi que hay nuevo jugador, ya mande al cliente");
                     break;
                 case "PARTIDA_CONFIGURADA":
                     server.broadcastMessage(mensaje, clientHandler);
                     break;
                 default:
                     System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
-            }
-        }
-        
-        if(arg instanceof ResRegistroJugador) {
-            Mensaje mensaje = (Mensaje) arg;
-            
-            if(mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
-                server.broadcastMessage(mensaje, clientHandler);
-                System.out.println("Ahora bien, sufrir de mas");
             }
         }
     }
