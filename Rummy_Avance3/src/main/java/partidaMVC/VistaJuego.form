@@ -60,7 +60,11 @@
                           </Group>
                       </Group>
                       <Component id="btnCombinacion" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="tomarFichaBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="tomarFichaBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="txtJugador1" min="-2" pref="71" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="contenedorFichas" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -82,9 +86,14 @@
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   <Component id="btnCombinacion" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="tomarFichaBtn" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="contenedorFichas" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="tomarFichaBtn" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="contenedorFichas" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtJugador1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -546,6 +555,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JTextField" name="txtJugador1">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -38,39 +38,79 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         actualizacion.aplicar(this);
     }
 
+//    @Override
+//    public void mostrarJugadores(List<JugadorDTO> jugadores) {
+//        if (!SwingUtilities.isEventDispatchThread()) {
+//            System.err.println("¡El código no está corriendo en el EDT!");
+//        }
+//
+//        String j1 = jugadores.size() > 0 && jugadores.get(0) != null ? jugadores.get(0).getNombre() : "- - -";
+//        jugador1.setText(j1);
+//        jugador1.revalidate();
+//        jugador1.repaint();
+//
+//        String j2 = jugadores.size() > 1 && jugadores.get(1) != null ? jugadores.get(1).getNombre() : "- - -";
+//        jugador2.setText(j2);
+//
+//        String j3 = jugadores.size() > 2 && jugadores.get(2) != null ? jugadores.get(2).getNombre() : "- - -";
+//        jugador3.setText(j3);
+//
+//        String j4 = jugadores.size() > 3 && jugadores.get(3) != null ? jugadores.get(3).getNombre() : "- - -";
+//        jugador4.setText(j4);
+//
+//        this.revalidate();
+//        this.repaint();
+//
+//        if (ventanaPrincipal != null) {
+//            ventanaPrincipal.revalidate();
+//            ventanaPrincipal.repaint();
+//            panelJugadores.revalidate();
+//            panelJugadores.repaint();
+//
+//        }
+//        System.out.println("Esto es lo que hay en j1: " + j1);
+//        System.out.println("Esto es lo que hay en jugador1: " + jugador1.getText());
+//        txtJugador1.setText(jugador1.getText());
+//        txtJugador1.updateUI();
+//    }
     @Override
     public void mostrarJugadores(List<JugadorDTO> jugadores) {
+        new Thread(() -> {
+            // Asegúrate de que estamos en el Event Dispatch Thread
+            if (!SwingUtilities.isEventDispatchThread()) {
+                SwingUtilities.invokeLater(() -> mostrarJugadores(jugadores));
+                return;
+            }
 
-        if (!SwingUtilities.isEventDispatchThread()) {
-            System.err.println("¡El código no está corriendo en el EDT!");
-        }
+            // Actualiza los nombres de los jugadores
+            String j1 = jugadores.size() > 0 && jugadores.get(0) != null ? jugadores.get(0).getNombre() : "- - -";
+            String j2 = jugadores.size() > 1 && jugadores.get(1) != null ? jugadores.get(1).getNombre() : "- - -";
+            String j3 = jugadores.size() > 2 && jugadores.get(2) != null ? jugadores.get(2).getNombre() : "- - -";
+            String j4 = jugadores.size() > 3 && jugadores.get(3) != null ? jugadores.get(3).getNombre() : "- - -";
 
-        String j1 = jugadores.size() > 0 && jugadores.get(0) != null ? jugadores.get(0).getNombre() : "- - -";
-        jugador1.setText(j1);
-        jugador1.revalidate();
-        jugador1.repaint();
+            // Actualiza los componentes de la interfaz de usuario
+            jugador1.setText(j1);
+            jugador2.setText(j2);
+            jugador3.setText(j3);
+            jugador4.setText(j4);
 
-        String j2 = jugadores.size() > 1 && jugadores.get(1) != null ? jugadores.get(1).getNombre() : "- - -";
-        jugador2.setText(j2);
+            jugador1.revalidate();
+            jugador2.revalidate();
+            jugador3.revalidate();
+            jugador4.revalidate();
 
-        String j3 = jugadores.size() > 2 && jugadores.get(2) != null ? jugadores.get(2).getNombre() : "- - -";
-        jugador3.setText(j3);
+            // Actualiza txtJugador1 con el nombre de jugador1
+            txtJugador1.setText(j1);
+            txtJugador1.revalidate();
+            txtJugador1.repaint();
 
-        String j4 = jugadores.size() > 3 && jugadores.get(3) != null ? jugadores.get(3).getNombre() : "- - -";
-        jugador4.setText(j4);
+            this.revalidate();
+            this.repaint();
 
-        this.revalidate();
-        this.repaint();
-
-        if (ventanaPrincipal != null) {
-            ventanaPrincipal.revalidate();
-            ventanaPrincipal.repaint();
-            panelJugadores.revalidate();
-            panelJugadores.repaint();
-        }
-
-        System.out.println("Esto es lo que hay en j1: " + j1);
-        System.out.println("Esto es lo que hay en jugador1: " + jugador1.getText());
+            // Información de depuración
+            System.out.println("Esto es lo que hay en j1: " + j1);
+            System.out.println("Esto es lo que hay en jugador1: " + jugador1.getText());
+        }).start();
     }
 
     /**
@@ -114,6 +154,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         jugador2 = new javax.swing.JLabel();
         jugador3 = new javax.swing.JLabel();
         jugador4 = new javax.swing.JLabel();
+        txtJugador1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -427,7 +468,10 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
                                 .addGap(28, 28, 28)
                                 .addComponent(panelJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152)
+                        .addComponent(txtJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         ventanaPrincipalLayout.setVerticalGroup(
@@ -444,9 +488,12 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
                 .addGap(10, 10, 10)
                 .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -535,6 +582,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
     private utils.PanelRound panelRound24;
     private utils.PanelRound panelRound25;
     private utils.Btn tomarFichaBtn;
+    private javax.swing.JTextField txtJugador1;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
 
