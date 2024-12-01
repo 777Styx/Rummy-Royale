@@ -17,17 +17,12 @@ import utils.PanelRound;
 public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJugadores {
 
     private static ControladorJuego controlador;
-    private static VistaJuego instance;
-    //just random
-    private List<JugadorDTO> jugadores;
 
-    public static synchronized VistaJuego getInstancia() {
-        if (instance == null) {
-            return new VistaJuego(controlador);
-        }
-        return instance;
+    public VistaJuego(ControladorJuego controlador) {
+        initComponents();
+        this.controlador = controlador;
     }
-
+    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Actualizacion) {
@@ -70,11 +65,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         }
         System.out.println("Esto es lo que hay en j1: " + j1);
         System.out.println("Esto es lo que hay en jugador1: " + jugador1.getText());
-        
-        SwingUtilities.invokeLater(() -> {
-        this.repaint();
-        this.revalidate();
-    });
 
     }
 //    @Override
@@ -120,11 +110,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
     /**
      * Creates new form View
      */
-    public VistaJuego(ControladorJuego controlador) {
-        initComponents();
-        this.controlador = controlador;
-        this.jugadores = new ArrayList<>();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

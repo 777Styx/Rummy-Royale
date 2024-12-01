@@ -23,15 +23,15 @@ public class Main {
         ControladorMenu controladorMenu = new ControladorMenu(modeloMenu);
 
         // Modelo y Controlador de JuegoMVC
-        ModeloJuego modeloJuego = ModeloJuego.getInstance();
-        ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
+        //ModeloJuego modeloJuego = ModeloJuego.getInstance();
+        //ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
 
         //Crear vistas y agregar controladores
         VistaUnirseCrear vistaUnirseCrear = new VistaUnirseCrear(controladorMenu);
         VistaConfig vistaConfiguracion = new VistaConfig(controladorMenu);
         VistaRegistro vistaRegistro = new VistaRegistro(controladorMenu);
 
-        VistaJuego vistaJuego = new VistaJuego(controladorJuego);
+        //VistaJuego vistaJuego = new VistaJuego(controladorJuego);
         
 
         //Se agregan los observadores
@@ -39,7 +39,7 @@ public class Main {
         modeloMenu.addObserver(vistaConfiguracion);
         modeloMenu.addObserver(vistaRegistro);
 
-        modeloJuego.addObserver(vistaJuego);
+        //modeloJuego.addObserver(vistaJuego);
         
         //Mostramos la primera vista
         java.awt.EventQueue.invokeLater(() -> {

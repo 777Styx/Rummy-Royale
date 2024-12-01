@@ -41,8 +41,10 @@ public class ControladorMenu {
     }
     
     public void mostrarTablero() {
-        
-        VistaJuego vistaJuego = VistaJuego.getInstancia();
-        SwingUtilities.invokeLater(() -> vistaJuego.setVisible(true));
+        ModeloJuego modeloJuego = ModeloJuego.getInstance();
+        ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
+        VistaJuego vistaJuego = new VistaJuego(controladorJuego);
+        modeloJuego.addObserver(vistaJuego);
+        vistaJuego.setVisible(true);
     }
 }
