@@ -22,7 +22,7 @@ public class Main {
         ModeloMenu modeloMenu = ModeloMenu.getInstance();
         ControladorMenu controladorMenu = new ControladorMenu(modeloMenu);
 
-        // Modelo y Controlador de partidaMVC
+        // Modelo y Controlador de JuegoMVC
         ModeloJuego modeloJuego = ModeloJuego.getInstance();
         ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
 
