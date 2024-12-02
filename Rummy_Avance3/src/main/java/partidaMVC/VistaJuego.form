@@ -47,31 +47,30 @@
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="contenedorFichas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Component id="panelRound1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="35" max="32767" attributes="0"/>
-                                  <Component id="panelJugadores" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jugador1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="jugador3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jugador2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jugador4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnCombinacion" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Component id="tomarFichaBtn" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="contenedorFichas" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCombinacion" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="tomarFichaBtn" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -84,8 +83,14 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="panelJugadores" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jugador1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jugador2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jugador3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jugador4" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -529,32 +534,38 @@
             <Property name="text" type="java.lang.String" value="Jugadores"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelJugadores">
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="jugador1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="q"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jugador2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="k"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jugador3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="l"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jugador4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="p"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
+        <Component class="javax.swing.JLabel" name="jugador1">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="q"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jugador2">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="k"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jugador3">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="l"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jugador4">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="p"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

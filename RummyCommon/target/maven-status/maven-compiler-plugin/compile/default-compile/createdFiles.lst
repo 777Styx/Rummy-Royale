@@ -13,6 +13,7 @@ mensajes\Mensaje.class
 dtos\CombinacionDTO.class
 common\Command.class
 dtos\TableroDTO.class
+mensajes\ResUnirse.class
 dtos\ManejadorColorDTO.class
 mensajes\MessageAdapter.class
 dtos\FichaDTO.class

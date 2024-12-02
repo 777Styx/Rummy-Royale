@@ -11,6 +11,6 @@ import java.util.List;
  *
  * @author carlo
  */
-public interface VistaJugadores extends Vista{
+public interface ViewJuego extends Vista{
     void mostrarJugadores(List<JugadorDTO> jugadores);
 }

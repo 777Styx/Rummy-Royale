@@ -4,20 +4,22 @@
  */
 package mensajes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author carlo
  */
-public class ResConfigurarPartida extends Mensaje {
+public class ResUnirse extends Mensaje{
     
     private List<String> avatarsDisponibles;
     
-    public ResConfigurarPartida(String comando) {
+    public ResUnirse(String comando) {
         super(comando);
+        this.avatarsDisponibles = new ArrayList<>();
     }
-    
+
     public List<String> getAvatarsDisponibles() {
         return avatarsDisponibles;
     }
@@ -25,5 +27,6 @@ public class ResConfigurarPartida extends Mensaje {
     public void setAvatarsDisponibles(List<String> avatarsDisponibles) {
         this.avatarsDisponibles = avatarsDisponibles;
     }
+    
     
 }

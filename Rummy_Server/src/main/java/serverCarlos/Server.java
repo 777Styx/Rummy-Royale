@@ -12,6 +12,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResUnirse;
 
 /**
  *
@@ -58,15 +59,6 @@ public class Server {
 
     public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
 
-//        if (mensaje instanceof ResRegistroJugador) {
-//            for (ClientHandler client : clients) {
-//                if (client != sender) {
-//                    client.sendMessage(mensaje);
-//                } else {
-//                    client.sendMessage(mensaje);
-//                }
-//            }
-//        }
         if (mensaje instanceof ResRegistroJugador) {
             for (ClientHandler client : clients) {
                 if (client == sender) {
@@ -81,8 +73,13 @@ public class Server {
             for (ClientHandler client : clients) {
                 client.sendMessage(mensaje);
             }
+        } else if(mensaje instanceof ResUnirse) {
+            for (ClientHandler client : clients) {
+                if (client == sender) {
+                    client.sendMessage(mensaje);
+                }
+            }
         }
-
     }
 
     public void addClient(ClientHandler client) {

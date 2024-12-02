@@ -11,6 +11,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResUnirse;
 
 /**
  *
@@ -93,6 +94,7 @@ public class Juego extends Observable {
                     manejadoresColor
             );
             jugadores.add(jugador);
+            System.out.println("Lista de Jugadores en Server: ");
             removerAvatar(jugador.getAvatar());
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO",jugadorDTO));
@@ -103,6 +105,18 @@ public class Juego extends Observable {
 
     }
 
+    public void unirse() {
+        if(this.estado.equals(EstadoJuego.CONFIGURADO)) {
+            setChanged();
+            ResUnirse res = new ResUnirse("JUGADOR_UNIDO");
+            res.setAvatarsDisponibles(avatarsDisponibles);
+            notifyObservers(res);
+        } else {
+            setChanged();
+            notifyObservers(new ResUnirse("JUGADOR_NO_UNIDO"));
+        }
+    }
+    
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
@@ -135,8 +149,9 @@ public class Juego extends Observable {
         this.mazo = mazo;
         this.estado = EstadoJuego.CONFIGURADO;
         setChanged();
-        notifyObservers(new ResConfigurarPartida("PARTIDA_CONFIGURADA"));
-        System.out.println("El mazo esta vacio?: " + mazo.estaVacio());
+        ResConfigurarPartida res = new ResConfigurarPartida("PARTIDA_CONFIGURADA");
+        res.setAvatarsDisponibles(avatarsDisponibles);
+        notifyObservers(res);
     }
 
     public synchronized void setPartidaActiva(boolean flag) {

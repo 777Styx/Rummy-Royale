@@ -4,12 +4,13 @@
  */
 package actualizaciones;
 
-import partidaMVC.VistaJuego;
+import dtos.JugadorDTO;
+import java.util.List;
 
 /**
  *
  * @author carlo
  */
-public interface ActualizacionJugadores extends Actualizacion {
-    void aplicar(VistaJugadores vista);
+public interface ViewRegistro extends Vista{
+    void mostrarAvatars(List<String> avatars);
 }

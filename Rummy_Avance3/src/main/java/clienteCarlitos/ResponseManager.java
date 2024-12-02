@@ -8,6 +8,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResUnirse;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
 
@@ -27,28 +28,25 @@ public class ResponseManager {
 
     protected void handleResponse(Mensaje mensaje) {
         if (mensaje instanceof ResCrearPartida) {
-            ResCrearPartida respuesta = (ResCrearPartida) mensaje;
-            if (respuesta.getComando().equals("PARTIDA_CREADA")) {
-                modeloMenu.notificar(respuesta.getComando());
-            } else if (respuesta.getComando().equals("PARTIDA_NO_CREADA")) {
-                //modeloMenu.notificar(respuesta.getComando());
-                
-                // Manejar que no se creo
-            }
+            ResCrearPartida res = (ResCrearPartida) mensaje;
+            modeloMenu.notificar(res);
         }
-        
+
         if (mensaje instanceof ResRegistroJugador) {
             if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
-                System.out.println("Cliente: tudo bem, novo jogador registrao");
-                modeloMenu.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
-                modeloJuego.agregarJugador(((ResRegistroJugador) mensaje).getJugadorNuevo());
+                    modeloMenu.agregarJugador(mensaje);
+                    modeloJuego.agregarJugador(mensaje);
             }
         }
 
         if (mensaje instanceof ResConfigurarPartida) {
-            System.out.println("Cliente recibio que configuraron partida");
             ResConfigurarPartida res = (ResConfigurarPartida) mensaje;
-            modeloMenu.notificar(res.getComando());
+            modeloMenu.notificar(res);
+        }
+        
+        if(mensaje instanceof ResUnirse) {
+            ResUnirse res = (ResUnirse) mensaje;
+            modeloMenu.notificar(res);
         }
     }
 

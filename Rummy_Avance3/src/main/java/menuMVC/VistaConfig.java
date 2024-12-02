@@ -30,8 +30,8 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
     
     @Override
     public void update(Observable o, Object arg) {
-        if (arg instanceof String) {
-            String comando = (String) arg;
+        if (arg instanceof Mensaje) {
+            String comando = (String) ((Mensaje) arg).getComando();
             
             if (comando.equals("PARTIDA_CREADA")) {
                 this.setVisible(true);

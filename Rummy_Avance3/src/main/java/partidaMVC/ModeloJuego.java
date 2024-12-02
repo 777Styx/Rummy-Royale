@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 import java.util.Random;
+import mensajes.Mensaje;
+import mensajes.ResRegistroJugador;
 
 /**
  *
@@ -38,8 +40,9 @@ public class ModeloJuego extends Observable {
     }
 
     // Añadir un jugador al juego
-    public void agregarJugador(JugadorDTO jugadorDTO) {
-        jugadores.add(jugadorDTO);
+    public void agregarJugador(Mensaje mensaje) {
+        ResRegistroJugador res = (ResRegistroJugador) mensaje;
+        jugadores.add(res.getJugadorNuevo());
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
     }

@@ -37,7 +37,7 @@ public class ManejadorComando {
                 handleRegistrarJugador((ReqRegistroJugador) mensaje);
                 break;
             case "UNIRSE":
-                //handleUnirse((ReqUnirse) mensaje);
+                handleUnirse((ReqUnirse) mensaje);
                 break;
             case "CONFIGURAR_PARTIDA":
                 handleConfigurarPartida((ReqConfigurarPartida) mensaje);
@@ -59,8 +59,8 @@ public class ManejadorComando {
         controlador.registrarJugador(mensaje, clientHandler);
     }
     
-    private void handleUnirse() {
-        //controlador.unirse(clientHandler);
+    private void handleUnirse(ReqUnirse mensaje) {
+        controlador.unirse(mensaje, clientHandler);
     }
 
     

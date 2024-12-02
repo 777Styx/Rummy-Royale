@@ -1,5 +1,6 @@
 package menuMVC;
 
+import actualizaciones.AvatarsActualizados;
 import clienteCarlitos.Cliente;
 import dtos.ColorCustomDTO;
 import dtos.JuegoDTO;
@@ -11,6 +12,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import mensajes.Mensaje;
+import mensajes.ResConfigurarPartida;
+import mensajes.ResRegistroJugador;
+import mensajes.ResUnirse;
 
 /**
  *
@@ -28,21 +33,36 @@ public class ModeloMenu extends Observable {
         jugadores = new ArrayList<>();
     }
 
-    public void notificar(String message) {
-        switch (message) {
+    public void notificar(Mensaje message) {
+        
+        System.out.println("Estoy obteniendo un: " + message.getComando());
+        
+        switch (message.getComando()) {
             case "PARTIDA_CREADA":
-                System.out.println("Se creo una partida, soy chileno");
                 setChanged();
                 notifyObservers(message);
                 break;
             case "PARTIDA_NO_CREADA":
-                System.out.println("Ya estaba creada una partida");
+                setChanged();
+                notifyObservers(message);
                 break;
-
             case "JUGADOR_REGISTRADO":
-                System.out.println("Se crea alv");
                 break;
             case "PARTIDA_CONFIGURADA":
+                setChanged();
+                notifyObservers(message);
+                ResConfigurarPartida res = (ResConfigurarPartida) message;
+                setChanged();
+                notifyObservers(new AvatarsActualizados(res.getAvatarsDisponibles()));
+                break;
+            case "JUGADOR_UNIDO":
+                setChanged();
+                notifyObservers(message);
+                ResUnirse res2 = (ResUnirse) message;
+                setChanged();
+                notifyObservers(new AvatarsActualizados(res2.getAvatarsDisponibles()));
+                break;
+            case "JUGADOR_NO_UNIDO":
                 setChanged();
                 notifyObservers(message);
                 break;
@@ -114,10 +134,11 @@ public class ModeloMenu extends Observable {
         this.jugadores = jugadores;
     }
     
-    public void agregarJugador(JugadorDTO jugador) {
-        this.jugadores.add(jugador);
+    public void agregarJugador(Mensaje mensaje) {
+        ResRegistroJugador res = (ResRegistroJugador) mensaje;
+        this.jugadores.add(res.getJugadorNuevo());
         setChanged();
-        notifyObservers("JUGADOR_REGISTRADO");
+        notifyObservers(mensaje);
     }
     
     

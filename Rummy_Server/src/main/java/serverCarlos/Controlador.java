@@ -34,6 +34,7 @@ public class Controlador implements Observer {
         this.expertos.put("crearComodines", new ExpertoCrearComodines());
         this.expertos.put("crearMazo", new ExpertoCrearMazo());
         this.expertos.put("registrarJugador", new ExpertoRegistrar());
+        this.expertos.put("unirse", new ExpertoUnirse());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -65,7 +66,13 @@ public class Controlador implements Observer {
     }
 
     public void registrarJugador(Mensaje mensaje, ClientHandler aThis) {
+        this.clientHandler = aThis;
         realizarAccion("registrarJugador", mensaje);
+    }
+    
+    public void unirse(Mensaje mensaje, ClientHandler aThis) {
+        this.clientHandler = aThis;
+        realizarAccion("unirse", mensaje);
     }
     
     @Override
@@ -73,24 +80,31 @@ public class Controlador implements Observer {
         if (arg instanceof Mensaje) {
             Mensaje mensaje = (Mensaje) arg;
             
-            System.out.println("CONTROLADOR esta recibiendo esto" + mensaje.getComando());
+            System.out.println("CONTROLADOR esta recibiendo esto: " + mensaje.getComando());
             
-            switch (mensaje.getComando()) {
-                case "PARTIDA_CREADA":
-                    server.broadcastMessage(mensaje, clientHandler);
-                    break;
-                case "PARTIDA_NO_CREADA":
-                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
-                    break;
-                case "JUGADOR_REGISTRADO":
-                    server.broadcastMessage(mensaje, clientHandler);
-                    break;
-                case "PARTIDA_CONFIGURADA":
-                    server.broadcastMessage(mensaje, clientHandler);
-                    break;
-                default:
-                    System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
-            }
+            server.broadcastMessage(mensaje, clientHandler);
+            
+            
+            // me di cuenta muy tarde que este puto swithc no servia pa una puta mierda
+            
+//            switch (mensaje.getComando()) {
+//                case "PARTIDA_CREADA":
+//                    server.broadcastMessage(mensaje, clientHandler);
+//                    break;
+//                case "PARTIDA_NO_CREADA":
+//                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
+//                    break;
+//                case "JUGADOR_REGISTRADO":
+//                    server.broadcastMessage(mensaje, clientHandler);
+//                    break;
+//                case "PARTIDA_CONFIGURADA":
+//                    server.broadcastMessage(mensaje, clientHandler);
+//                    break;
+//                case "JUGADOR_UNIDO":
+//                    server.broadcastMessage(mensaje, clientHandler);
+//                default:
+//                    System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
+//            }
         }
     }
 }

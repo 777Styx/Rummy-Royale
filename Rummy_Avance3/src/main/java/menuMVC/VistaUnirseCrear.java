@@ -20,6 +20,25 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     public VistaUnirseCrear(ControladorMenu controladorMenu) {
         initComponents();
         this.controladorMenu = controladorMenu;
+        panelError.setVisible(false);
+    }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg instanceof Mensaje) {
+            String comando = (String) ((Mensaje) arg).getComando();
+            if (comando.equals("PARTIDA_CREADA")) {
+                this.dispose();
+            } else if(comando.equals("PARTIDA_NO_CREADA")) {
+                errorMsg.setText("Ya existe una partida creada. Intenta unirte");
+                panelError.setVisible(true);
+            } else if(comando.equals("JUGADOR_UNIDO")) {
+                this.dispose();
+            } else if(comando.equals("JUGADOR_NO_UNIDO")) {
+                errorMsg.setText("Partida no configurada o ya iniciada");
+                panelError.setVisible(true);
+            }
+        }
     }
 
     /**
@@ -32,6 +51,9 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        panelError = new utils.PanelRound();
+        removeError = new javax.swing.JButton();
+        errorMsg = new javax.swing.JLabel();
         btnJoin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         puertoTxt = new javax.swing.JTextField();
@@ -44,6 +66,48 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelError.setBackground(new java.awt.Color(255, 255, 255));
+        panelError.setRoundBottomLeft(20);
+        panelError.setRoundBottomRight(20);
+        panelError.setRoundTopLeft(20);
+        panelError.setRoundTopRight(20);
+
+        removeError.setText("Aceptar");
+        removeError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeErrorActionPerformed(evt);
+            }
+        });
+
+        errorMsg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        errorMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMsg.setText("Ya existe una partida creada. Intenta unirte");
+
+        javax.swing.GroupLayout panelErrorLayout = new javax.swing.GroupLayout(panelError);
+        panelError.setLayout(panelErrorLayout);
+        panelErrorLayout.setHorizontalGroup(
+            panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelErrorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(removeError, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(144, 144, 144))
+            .addGroup(panelErrorLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(errorMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        panelErrorLayout.setVerticalGroup(
+            panelErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelErrorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(errorMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removeError, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+
+        jPanel1.add(panelError, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 390, 160));
 
         btnJoin.setText("JOIN");
         btnJoin.addActionListener(new java.awt.event.ActionListener() {
@@ -109,28 +173,25 @@ public class VistaUnirseCrear extends javax.swing.JFrame implements Observer {
         controladorMenu.crearPartida(Integer.parseInt(puertoTxt.getText()));
     }//GEN-LAST:event_btnStart1ActionPerformed
 
+    private void removeErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeErrorActionPerformed
+        // TODO add your handling code here:
+        panelError.setVisible(false);
+        puertoTxt.setText("");
+    }//GEN-LAST:event_removeErrorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnJoin;
     private javax.swing.JButton btnStart1;
+    private javax.swing.JLabel errorMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private utils.PanelRound panelError;
     private javax.swing.JTextField puertoTxt;
+    private javax.swing.JButton removeError;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if (arg instanceof String) {
-
-            String comando = (String) arg;
-            if (comando.equals("PARTIDA_CREADA")) {
-                this.dispose();
-            }
-            if (comando.equals("JUEGO_EXISTENTE")) {
-
-            }
-        }
-    }
+    
 
 }

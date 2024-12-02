@@ -1,7 +1,7 @@
 package partidaMVC;
 
 import actualizaciones.Actualizacion;
-import actualizaciones.VistaJugadores;
+import actualizaciones.ViewJuego;
 import dtos.JugadorDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import utils.PanelRound;
  *
  * @author carlo
  */
-public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJugadores {
+public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJuego {
 
     private static ControladorJuego controlador;
 
@@ -59,8 +59,8 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         if (ventanaPrincipal != null) {
             ventanaPrincipal.revalidate();
             ventanaPrincipal.repaint();
-            panelJugadores.revalidate();
-            panelJugadores.repaint();
+//            panelJugadores.revalidate();
+//            panelJugadores.repaint();
 
         }
         System.out.println("Esto es lo que hay en j1: " + j1);
@@ -140,7 +140,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         panelRound25 = new utils.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        panelJugadores = new javax.swing.JPanel();
         jugador1 = new javax.swing.JLabel();
         jugador2 = new javax.swing.JLabel();
         jugador3 = new javax.swing.JLabel();
@@ -429,17 +428,17 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Jugadores");
 
+        jugador1.setForeground(new java.awt.Color(255, 255, 255));
         jugador1.setText("q");
-        panelJugadores.add(jugador1);
 
+        jugador2.setForeground(new java.awt.Color(255, 255, 255));
         jugador2.setText("k");
-        panelJugadores.add(jugador2);
 
+        jugador3.setForeground(new java.awt.Color(255, 255, 255));
         jugador3.setText("l");
-        panelJugadores.add(jugador3);
 
+        jugador4.setForeground(new java.awt.Color(255, 255, 255));
         jugador4.setText("p");
-        panelJugadores.add(jugador4);
 
         javax.swing.GroupLayout ventanaPrincipalLayout = new javax.swing.GroupLayout(ventanaPrincipal);
         ventanaPrincipal.setLayout(ventanaPrincipalLayout);
@@ -449,23 +448,23 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
                 .addGap(10, 10, 10)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                        .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                         .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(jLabel1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaPrincipalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                                .addComponent(panelJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))))
-                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jugador1)
+                                    .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jugador3)
+                                        .addComponent(jugador2)
+                                        .addComponent(jugador4))))))
+                    .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         ventanaPrincipalLayout.setVerticalGroup(
             ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,8 +475,14 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(panelJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jugador1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jugador2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jugador3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jugador4)))
                 .addGap(10, 10, 10)
                 .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -563,7 +568,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, VistaJug
     private javax.swing.JLabel jugador2;
     private javax.swing.JLabel jugador3;
     private javax.swing.JLabel jugador4;
-    private javax.swing.JPanel panelJugadores;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound13;
     private utils.PanelRound panelRound21;
