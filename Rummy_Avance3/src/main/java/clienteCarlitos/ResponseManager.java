@@ -34,8 +34,8 @@ public class ResponseManager {
 
         if (mensaje instanceof ResRegistroJugador) {
             if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
-                    modeloMenu.agregarJugador(mensaje);
-                    modeloJuego.agregarJugador(mensaje);
+                    modeloMenu.actualizarJugadores(mensaje);
+                    modeloJuego.actualizarJugadores(mensaje);
             }
         }
 

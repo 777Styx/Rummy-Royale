@@ -19,8 +19,8 @@ import mensajes.ResRegistroJugador;
  */
 public class ModeloJuego extends Observable {
 
-    private ArrayList<JugadorDTO> jugadores;
-    private ArrayList<FichaDTO> fichasDTO;
+    private List<JugadorDTO> jugadores;
+    private List<FichaDTO> fichasDTO;
     private TableroDTO tableroDTO;
     private int indiceJugadorActual;
     private Random random;
@@ -39,10 +39,13 @@ public class ModeloJuego extends Observable {
         return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
-    // Añadir un jugador al juego
-    public void agregarJugador(Mensaje mensaje) {
+    public void actualizarJugadores(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
-        jugadores.add(res.getJugadorNuevo());
+        System.out.println("Jugadores que llegaron a ModeloJuego: ");
+        for(JugadorDTO j : res.getJugadores()){
+            System.out.println(j.getNombre());
+        }
+        this.jugadores = res.getJugadores();
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
     }

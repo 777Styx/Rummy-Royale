@@ -5,21 +5,22 @@
 package mensajes;
 
 import dtos.JugadorDTO;
+import java.util.List;
 
 /**
  *
  * @author carlo
  */
 public class ResRegistroJugador extends Mensaje {
-    private final JugadorDTO jugadorNuevo;
+    private final List<JugadorDTO> jugadores;
     
-    public ResRegistroJugador(String comando, JugadorDTO jugadorNuevo) {
+    public ResRegistroJugador(String comando, List<JugadorDTO> jugadores) {
         super(comando);
-        this.jugadorNuevo = jugadorNuevo;
+        this.jugadores = jugadores;
     }
 
-    public JugadorDTO getJugadorNuevo() {
-        return jugadorNuevo;
+    public List<JugadorDTO> getJugadores() {
+        return jugadores;
     }
     
     

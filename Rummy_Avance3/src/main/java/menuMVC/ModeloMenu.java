@@ -134,9 +134,9 @@ public class ModeloMenu extends Observable {
         this.jugadores = jugadores;
     }
     
-    public void agregarJugador(Mensaje mensaje) {
+    public void actualizarJugadores(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
-        this.jugadores.add(res.getJugadorNuevo());
+        this.jugadores = res.getJugadores();
         setChanged();
         notifyObservers(mensaje);
     }

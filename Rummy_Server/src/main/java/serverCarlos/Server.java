@@ -61,19 +61,17 @@ public class Server {
 
         if (mensaje instanceof ResRegistroJugador) {
             for (ClientHandler client : clients) {
-                if (client == sender) {
-                    client.sendMessage(mensaje);
-                }
-            }
-        } else if(mensaje instanceof ResCrearPartida) {
-            for(ClientHandler client : clients) {
                 client.sendMessage(mensaje);
             }
-        } else if(mensaje instanceof ResConfigurarPartida) {
+        } else if (mensaje instanceof ResCrearPartida) {
             for (ClientHandler client : clients) {
                 client.sendMessage(mensaje);
             }
-        } else if(mensaje instanceof ResUnirse) {
+        } else if (mensaje instanceof ResConfigurarPartida) {
+            for (ClientHandler client : clients) {
+                client.sendMessage(mensaje);
+            }
+        } else if (mensaje instanceof ResUnirse) {
             for (ClientHandler client : clients) {
                 if (client == sender) {
                     client.sendMessage(mensaje);

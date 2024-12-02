@@ -63,8 +63,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 //            panelJugadores.repaint();
 
         }
-        System.out.println("Esto es lo que hay en j1: " + j1);
-        System.out.println("Esto es lo que hay en jugador1: " + jugador1.getText());
 
     }
 //    @Override
