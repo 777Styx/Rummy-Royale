@@ -41,10 +41,6 @@ public class ModeloJuego extends Observable {
 
     public void actualizarJugadores(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
-        System.out.println("Jugadores que llegaron a ModeloJuego: ");
-        for(JugadorDTO j : res.getJugadores()){
-            System.out.println(j.getNombre());
-        }
         this.jugadores = res.getJugadores();
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));

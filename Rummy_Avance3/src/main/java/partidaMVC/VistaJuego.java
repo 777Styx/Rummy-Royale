@@ -15,12 +15,21 @@ import utils.PanelRound;
  * @author carlo
  */
 public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJuego {
-
+    private static VistaJuego instance;
+    
+    
     private static ControladorJuego controlador;
 
     public VistaJuego(ControladorJuego controlador) {
         initComponents();
         this.controlador = controlador;
+    }
+    
+    public static VistaJuego getInstance(ControladorJuego controlador) {
+        if (instance == null) {
+            instance = new VistaJuego(controlador);
+        }
+        return instance;
     }
     
     @Override

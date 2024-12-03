@@ -1,10 +1,7 @@
 package menuMVC;
 
-import clienteCarlitos.Cliente;
 import dtos.JuegoDTO;
 import java.awt.Color;
-import java.util.Observable;
-import javax.swing.SwingUtilities;
 import partidaMVC.ControladorJuego;
 import partidaMVC.ModeloJuego;
 import partidaMVC.VistaJuego;
@@ -43,8 +40,23 @@ public class ControladorMenu {
     public void mostrarTablero() {
         ModeloJuego modeloJuego = ModeloJuego.getInstance();
         ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
-        VistaJuego vistaJuego = new VistaJuego(controladorJuego);
+        VistaJuego vistaJuego = VistaJuego.getInstance(controladorJuego);
         modeloJuego.addObserver(vistaJuego);
         vistaJuego.setVisible(true);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
