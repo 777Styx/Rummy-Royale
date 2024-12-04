@@ -4,6 +4,7 @@
  */
 package Server;
 
+import dtos.JugadorDTO;
 import entidades.Juego;
 import mensajes.Mensaje;
 import mensajes.ReqSolicitarInicio;
@@ -17,6 +18,8 @@ public class ExpertoSolicitarInicio implements Experto {
     @Override
     public void ejecutar(Juego juego, Mensaje mensaje) {
         ReqSolicitarInicio req = (ReqSolicitarInicio) mensaje;
+        JugadorDTO jugadorDTO = req.getJugador();
+        juego.solicitarInicio(jugadorDTO);
     }
     
 }

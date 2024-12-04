@@ -27,21 +27,11 @@ public class Cliente {
     private PrintWriter out;
     private BufferedReader in;
     private boolean connected;
-    private ModeloMenu modeloMenu;
-    private ModeloJuego modeloJuego;
     private MessageListener messageListener;
     private ResponseManager responseManager = new ResponseManager();
-    private static Cliente instance;
 
     public Cliente() {
         connected = false;
-    }
-
-    public static synchronized Cliente getInstance() {
-        if (instance == null) {
-            instance = new Cliente();
-        }
-        return instance;
     }
 
     public boolean isConnected() {

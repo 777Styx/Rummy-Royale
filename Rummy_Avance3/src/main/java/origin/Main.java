@@ -1,5 +1,6 @@
 package origin;
 
+import Cliente.Cliente;
 import javax.swing.SwingUtilities;
 import partidaMVC.ControladorJuego;
 import menuMVC.ControladorMenu;
@@ -17,9 +18,11 @@ import partidaMVC.VistaJuego;
 public class Main {
 
     public static void main(String[] args) {
-
+        
+        Cliente cliente = new Cliente();
+        
         // Modelo y Controlador de menuMVC
-        ModeloMenu modeloMenu = ModeloMenu.getInstance();
+        ModeloMenu modeloMenu = ModeloMenu.getInstance(cliente);
         ControladorMenu controladorMenu = new ControladorMenu(modeloMenu);
 
         // Modelo y Controlador de JuegoMVC

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import utils.PanelRound;
 
@@ -92,6 +93,27 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         ImageIcon avatarIcon = new ImageIcon(getClass().getClassLoader().getResource("imgs/" + jugador.getAvatar() + ".png"));
         avatarLabel.setIcon(avatarIcon);
         jugadorLabel.setText(jugador.getNombre());
+    }
+    
+    @Override
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(
+            this,
+            mensaje,
+            "Mensaje",
+            JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+    @Override
+    public void mostrarSolicitudInicio(String solicitante) {
+        int respuesta = JOptionPane.showConfirmDialog(
+        this, solicitante + "ha solicitado iniciar el juego, Estads de acuerdo?", 
+                "Solicitud Inicio de Juego", 
+                JOptionPane.YES_NO_OPTION);
+        
+        boolean aceptar = (respuesta == JOptionPane.YES_OPTION);
+        System.out.println("REspuesta de este jugador: " + aceptar);
     }
 
     /**
@@ -656,4 +678,5 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private utils.Btn tomarFichaBtn;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
+
 }

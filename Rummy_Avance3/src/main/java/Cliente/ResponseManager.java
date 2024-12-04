@@ -8,6 +8,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
@@ -48,6 +49,11 @@ public class ResponseManager {
         if(mensaje instanceof ResUnirse) {
             ResUnirse res = (ResUnirse) mensaje;
             modeloMenu.notificar(res);
+        }
+        
+        if(mensaje instanceof ResSolicitarInicio) {
+            ResSolicitarInicio res = (ResSolicitarInicio) mensaje;
+            modeloJuego.notificar(res);
         }
     }
 

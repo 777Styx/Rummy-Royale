@@ -35,6 +35,7 @@ public class Controlador implements Observer {
         this.expertos.put("crearMazo", new ExpertoCrearMazo());
         this.expertos.put("registrarJugador", new ExpertoRegistrar());
         this.expertos.put("unirse", new ExpertoUnirse());
+        this.expertos.put("solicitarInicio", new ExpertoSolicitarInicio());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -85,7 +86,7 @@ public class Controlador implements Observer {
         if (arg instanceof Mensaje) {
             Mensaje mensaje = (Mensaje) arg;
             
-            System.out.println("CONTROLADOR esta recibiendo esto: " + mensaje.getComando());
+            System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
             
             server.broadcastMessage(mensaje, clientHandler);
             

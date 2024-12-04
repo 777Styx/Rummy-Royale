@@ -10,6 +10,7 @@ dtos\JugadorDTO.class
 dtos\MazoDTO.class
 mensajes\ReqRegistroJugador.class
 mensajes\Mensaje.class
+mensajes\ResSolicitarInicio.class
 dtos\CombinacionDTO.class
 common\Command.class
 dtos\TableroDTO.class
@@ -17,6 +18,7 @@ mensajes\ResUnirse.class
 dtos\ManejadorColorDTO.class
 mensajes\MessageAdapter.class
 dtos\FichaDTO.class
+mensajes\ReqSolicitarInicio.class
 mensajes\ReqUnirse.class
 mensajes\ResRegistroJugador.class
 mensajes\MessageManager.class

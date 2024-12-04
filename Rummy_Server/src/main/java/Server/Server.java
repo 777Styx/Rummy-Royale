@@ -12,6 +12,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
 
 /**
@@ -74,6 +75,12 @@ public class Server {
         } else if (mensaje instanceof ResUnirse) {
             for (ClientHandler client : clients) {
                 if (client == sender) {
+                    client.sendMessage(mensaje);
+                }
+            }
+        } else if(mensaje instanceof ResSolicitarInicio) {
+            for (ClientHandler client : clients) {
+                if (client != sender) {
                     client.sendMessage(mensaje);
                 }
             }

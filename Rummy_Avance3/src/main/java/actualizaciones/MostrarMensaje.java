@@ -4,23 +4,21 @@
  */
 package actualizaciones;
 
-import dtos.JugadorDTO;
-
 /**
  *
  * @author carlo
  */
-public class JugadorDataActualizada implements ActualizacionJuego {
+public class MostrarMensaje implements ActualizacionJuego {
 
-    private JugadorDTO jugador;
+    private String mensaje;
 
-    public JugadorDataActualizada(JugadorDTO jugador) {
-        this.jugador = jugador;
+    public MostrarMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
-
+    
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.mostrarJugadorData(jugador);
+        vista.mostrarMensaje(mensaje);
     }
 
     @Override
@@ -29,4 +27,6 @@ public class JugadorDataActualizada implements ActualizacionJuego {
             aplicar((ViewJuego) vista);
         }
     }
+    
 }
+

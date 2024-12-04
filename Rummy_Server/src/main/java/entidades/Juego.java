@@ -8,11 +8,13 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.UUID;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
+import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
 
 /**
@@ -32,7 +34,11 @@ public class Juego extends Observable {
     private EstadoJuego estado;
     private List<IFicha> fichasNumericas = new ArrayList<>();
     private List<IFicha> comodines = new ArrayList<>();
-
+    private boolean solicitudEnCurso;
+    private UUID idSolicitudInicio;
+    private Map<Jugador, Boolean> respuestasSolicitud;
+    
+    
     public List<IFicha> getComodines() {
         return comodines;
     }
@@ -54,6 +60,7 @@ public class Juego extends Observable {
         this.partidaActiva = false;
         this.avatarsDisponibles = new ArrayList<>(avatars);
         this.estado = EstadoJuego.INICIO;
+        this.solicitudEnCurso = false;
     }
 
     public static synchronized Juego getInstance() {
@@ -62,18 +69,6 @@ public class Juego extends Observable {
             System.out.println("Nueva instancia de Juego creada.");
         }
         return instance;
-    }
-
-    public List<IFicha> getFichasNumericas() {
-        return fichasNumericas;
-    }
-
-    public void setFichasNumericas(List<IFicha> fichasNumericas) {
-        this.fichasNumericas = fichasNumericas;
-    }
-
-    public void removerAvatar(String avatar) {
-        avatarsDisponibles.remove(avatar);
     }
 
     public synchronized void agregarJugador(JugadorDTO jugadorDTO) {
@@ -126,7 +121,7 @@ public class Juego extends Observable {
 
     }
 
-    public void unirse() {
+    public synchronized void unirse() {
         if (this.estado.equals(EstadoJuego.CONFIGURADO)) {
             setChanged();
             ResUnirse res = new ResUnirse("JUGADOR_UNIDO");
@@ -138,6 +133,37 @@ public class Juego extends Observable {
         }
     }
 
+    public synchronized void solicitarInicio(JugadorDTO solicitante) {
+        if(solicitudEnCurso) {
+            ResSolicitarInicio res = new ResSolicitarInicio("SOLICITUD_EN_CURSO");
+            setChanged();
+            notifyObservers(res);
+        }
+        
+        solicitudEnCurso = true;
+        idSolicitudInicio = UUID.randomUUID();
+        
+        
+        ResSolicitarInicio res = new ResSolicitarInicio("SOLICITUD_ENVIADA");
+        res.setSolicitante(solicitante);
+        setChanged();
+        notifyObservers(res);
+        
+        
+    }
+    
+    public List<IFicha> getFichasNumericas() {
+        return fichasNumericas;
+    }
+
+    public void setFichasNumericas(List<IFicha> fichasNumericas) {
+        this.fichasNumericas = fichasNumericas;
+    }
+
+    public void removerAvatar(String avatar) {
+        avatarsDisponibles.remove(avatar);
+    }
+    
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }

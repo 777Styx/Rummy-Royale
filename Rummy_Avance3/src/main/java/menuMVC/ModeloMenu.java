@@ -29,8 +29,8 @@ public class ModeloMenu extends Observable {
     private static ModeloMenu instance;
     private List<JugadorDTO> jugadores;
 
-    private ModeloMenu() {
-        this.cliente = Cliente.getInstance();
+    private ModeloMenu(Cliente cliente) {
+        this.cliente = cliente;
         jugadores = new ArrayList<>();
     }
 
@@ -73,13 +73,16 @@ public class ModeloMenu extends Observable {
 
     }
 
-    public static ModeloMenu getInstance() {
-        return instance == null ? (instance = new ModeloMenu()) : instance;
+    public static synchronized ModeloMenu getInstance(Cliente cliente) {
+        if (instance == null) {
+            instance = new ModeloMenu(cliente);
+        }
+        return instance;
     }
-
+    
     private void conectar(int puerto) {
         try {
-            cliente.connectToServer(puerto);
+            this.cliente.connectToServer(puerto);
         } catch (Exception e) {
             e.printStackTrace();
         }

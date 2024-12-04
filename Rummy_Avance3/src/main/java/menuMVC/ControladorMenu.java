@@ -38,7 +38,7 @@ public class ControladorMenu {
     }
     
     public void mostrarTablero() {
-        ModeloJuego modeloJuego = ModeloJuego.getInstance();
+        ModeloJuego modeloJuego = ModeloJuego.getInstance(cliente);
         ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
         VistaJuego vistaJuego = VistaJuego.getInstance(controladorJuego);
         modeloJuego.addObserver(vistaJuego);
