@@ -30,6 +30,7 @@ public class ModeloMenu extends Observable {
     private List<JugadorDTO> jugadores;
 
     private ModeloMenu() {
+        this.cliente = Cliente.getInstance();
         jugadores = new ArrayList<>();
     }
 
@@ -77,7 +78,6 @@ public class ModeloMenu extends Observable {
     }
 
     private void conectar(int puerto) {
-        cliente = new Cliente();
         try {
             cliente.connectToServer(puerto);
         } catch (Exception e) {

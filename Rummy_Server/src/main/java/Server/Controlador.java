@@ -75,6 +75,11 @@ public class Controlador implements Observer {
         realizarAccion("unirse", mensaje);
     }
     
+    public void solicitarInicio(Mensaje mensaje,ClientHandler aThis) {
+        this.clientHandler = aThis;
+        realizarAccion("solicitarInicio", mensaje);
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {

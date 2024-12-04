@@ -12,6 +12,7 @@ import mensajes.MessageManager;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqCrearPartida;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqSolicitarInicio;
 import mensajes.ReqUnirse;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
@@ -30,10 +31,17 @@ public class Cliente {
     private ModeloJuego modeloJuego;
     private MessageListener messageListener;
     private ResponseManager responseManager = new ResponseManager();
-    private Cliente cliente;
+    private static Cliente instance;
 
     public Cliente() {
         connected = false;
+    }
+
+    public static synchronized Cliente getInstance() {
+        if (instance == null) {
+            instance = new Cliente();
+        }
+        return instance;
     }
 
     public boolean isConnected() {
@@ -53,9 +61,9 @@ public class Cliente {
             e.printStackTrace();
             System.out.println("No se pudo conectar al servidor");
         }
-        
+
     }
-    
+
     public void desconectar() throws IOException {
         if (isConnected()) {
             socket.close();
@@ -76,11 +84,10 @@ public class Cliente {
         sendMessage(peticion);
     }
 
-    
-    public void unirse(){
+    public void unirse() {
         sendMessage(new ReqUnirse());
     }
-    
+
     public void registrarJugador(JugadorDTO jugador) {
         sendMessage(new ReqRegistroJugador(jugador));
     }
@@ -90,10 +97,11 @@ public class Cliente {
     }
 
     public void solicitarInicio(JugadorDTO jugador) {
-        
+        sendMessage(new ReqSolicitarInicio(jugador));
     }
-    
+
     private class MessageListener implements Runnable {
+
         private boolean running = true;
 
         @Override

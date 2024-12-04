@@ -7,6 +7,7 @@ import dtos.JugadorDTO;
 import mensajes.Mensaje;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqSolicitarInicio;
 import mensajes.ReqUnirse;
 
 /**
@@ -42,9 +43,15 @@ public class ManejadorComando {
             case "CONFIGURAR_PARTIDA":
                 handleConfigurarPartida((ReqConfigurarPartida) mensaje);
                 break;
+            case "SOLICITAR_INICIO":
+                handleSolicitarInicio((ReqSolicitarInicio) mensaje);
             default:
 
         }
+    }
+    
+    private void handleSolicitarInicio(Mensaje mensaje) {
+        controlador.solicitarInicio(mensaje, clientHandler);
     }
     
     private void handleCrearPartida(Mensaje mensaje) {

@@ -37,6 +37,7 @@ public class ModeloJuego extends Observable {
         tableroDTO = new TableroDTO();
         indiceJugadorActual = 0;
         random = new Random();
+        this.cliente = Cliente.getInstance();
     }
 
     public static ModeloJuego getInstance() {
@@ -54,7 +55,9 @@ public class ModeloJuego extends Observable {
     }
     
     public void solicitarInicio() {
-        
+        if(cliente.isConnected()) {
+            cliente.solicitarInicio(jugador);
+        }
     }
 
     public List<JugadorDTO> getJugadores() {
