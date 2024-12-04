@@ -1,5 +1,6 @@
 package partidaMVC;
 
+import Cliente.Cliente;
 import dtos.FichaDTO;
 import dtos.JugadorDTO;
 import java.util.List;
@@ -15,27 +16,39 @@ public class ControladorJuego {
     // Modelo que contiene la logica del juego
     private static ModeloJuego modeloJuego;
     // Vista que presenta la interfaz de usuario
-    private VistaJuego view;
+    private VistaJuego vistaJuego;
 
     /**
      * Constructor
      *
      * @param modeloJuego
      */
+    public ControladorJuego() {
+
+    }
+
     public ControladorJuego(ModeloJuego modeloJuego) {
         this.modeloJuego = modeloJuego;
     }
 
-    public static ControladorJuego getInstance(ModeloJuego modelojuego) {
-        return controlador == null ? controlador = new ControladorJuego(modeloJuego) : controlador;
+    public static ControladorJuego getInstance() {
+        return controlador == null ? controlador = new ControladorJuego() : controlador;
+    }
+
+    public void inicializar(Cliente cliente) {
+        this.modeloJuego = ModeloJuego.getInstance();
+        this.modeloJuego.setCliente(cliente);
+        this.vistaJuego = new VistaJuego(this.controlador);
+        this.modeloJuego.addObserver(vistaJuego);
+        this.vistaJuego.setVisible(true);
     }
 
     public void setModel(ModeloJuego model) {
         this.modeloJuego = modeloJuego;
     }
-    
-    public void setView(VistaJuego view) {
-        this.view = view;
+
+    public void setvistaJuego(VistaJuego vistaJuego) {
+        this.vistaJuego = vistaJuego;
     }
 
     public void solicitarInicio() {

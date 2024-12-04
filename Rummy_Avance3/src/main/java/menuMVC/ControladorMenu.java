@@ -28,35 +28,22 @@ public class ControladorMenu {
     public void crearPartida(int puerto) {
         modeloMenu.crearPartida(puerto);
     }
-    
-    public void configurarPartida(int comodines,int rango) {
+
+    public void configurarPartida(int comodines, int rango) {
         modeloMenu.configurarPartida(comodines, rango);
     }
-    
+
     public void unirseAPartida(int puerto) {
         modeloMenu.unirseAPartida(puerto);
     }
-    
+
     public void mostrarTablero() {
-        ModeloJuego modeloJuego = ModeloJuego.getInstance(cliente);
-        ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
-        VistaJuego vistaJuego = VistaJuego.getInstance(controladorJuego);
-        modeloJuego.addObserver(vistaJuego);
-        vistaJuego.setVisible(true);
+//        ModeloJuego modeloJuego = ModeloJuego.getInstance(cliente);
+//        ControladorJuego controladorJuego = new ControladorJuego(modeloJuego);
+//        VistaJuego vistaJuego = VistaJuego.getInstance(controladorJuego);
+//        modeloJuego.addObserver(vistaJuego);
+//        vistaJuego.setVisible(true);
+        ControladorJuego controladorJuego = ControladorJuego.getInstance();
+        controladorJuego.inicializar(this.modeloMenu.getCliente());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

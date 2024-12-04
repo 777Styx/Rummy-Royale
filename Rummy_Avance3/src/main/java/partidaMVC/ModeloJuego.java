@@ -32,10 +32,17 @@ public class ModeloJuego extends Observable {
     private static ModeloJuego instance;
     private JugadorDTO jugador;
     private Cliente cliente;
-    
 
-    private ModeloJuego(Cliente cliente) {
-        this.cliente = cliente;
+//    private ModeloJuego(Cliente cliente) {
+//        this.cliente = cliente;
+//        jugadores = new ArrayList<>();
+//        fichasDTO = new ArrayList<>();
+//        tableroDTO = new TableroDTO();
+//        indiceJugadorActual = 0;
+//        random = new Random();
+//    }
+    private ModeloJuego() {
+
         jugadores = new ArrayList<>();
         fichasDTO = new ArrayList<>();
         tableroDTO = new TableroDTO();
@@ -43,8 +50,8 @@ public class ModeloJuego extends Observable {
         random = new Random();
     }
 
-    public static ModeloJuego getInstance(Cliente cliente) {
-        return instance == null ? (instance = new ModeloJuego(cliente)) : instance;
+    public static ModeloJuego getInstance() {
+        return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
     public void actualizarEstado(Mensaje mensaje) {
@@ -56,9 +63,9 @@ public class ModeloJuego extends Observable {
         setChanged();
         notifyObservers(new JugadorDataActualizada(this.jugador));
     }
-    
+
     public void solicitarInicio() {
-        if(cliente.isConnected()) {
+        if (cliente.isConnected()) {
             cliente.solicitarInicio(jugador);
         }
     }
@@ -103,6 +110,10 @@ public class ModeloJuego extends Observable {
         this.random = random;
     }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public JugadorDTO obtenerJugadorPorId(String id) {
         for (JugadorDTO jugador : jugadores) {
             if (jugador.getId().equals(id)) {
@@ -111,16 +122,16 @@ public class ModeloJuego extends Observable {
         }
         return null;
     }
-    
+
     public void notificar(Mensaje message) {
-        
+
         System.out.println("Estoy obteniendo un: " + message.getComando());
         switch (message.getComando()) {
             case "SOLICITUD_ENVIADA":
                 setChanged();
                 notifyObservers(new MostrarMensaje("Alguien ya solicito iniciar juego"));
                 break;
-            case "SOLCITUD_EN_CURSO": 
+            case "SOLCITUD_EN_CURSO":
                 ResSolicitarInicio res = (ResSolicitarInicio) message;
                 setChanged();
                 notifyObservers(new MostrarSolicitudInicio(res.getSolicitante().getNombre()));

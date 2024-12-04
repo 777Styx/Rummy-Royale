@@ -29,15 +29,19 @@ public class ModeloMenu extends Observable {
     private static ModeloMenu instance;
     private List<JugadorDTO> jugadores;
 
-    private ModeloMenu(Cliente cliente) {
-        this.cliente = cliente;
+//    private ModeloMenu(Cliente cliente) {
+//        this.cliente = cliente;
+//        jugadores = new ArrayList<>();
+//    }
+    private ModeloMenu() {
+
         jugadores = new ArrayList<>();
     }
 
     public void notificar(Mensaje message) {
-        
+
         System.out.println("Estoy obteniendo un: " + message.getComando());
-        
+
         switch (message.getComando()) {
             case "PARTIDA_CREADA":
                 setChanged();
@@ -73,13 +77,13 @@ public class ModeloMenu extends Observable {
 
     }
 
-    public static synchronized ModeloMenu getInstance(Cliente cliente) {
+    public static synchronized ModeloMenu getInstance() {
         if (instance == null) {
-            instance = new ModeloMenu(cliente);
+            instance = new ModeloMenu();
         }
         return instance;
     }
-    
+
     private void conectar(int puerto) {
         try {
             this.cliente.connectToServer(puerto);
@@ -97,14 +101,14 @@ public class ModeloMenu extends Observable {
         }
     }
 
-    public void configurarPartida(int comodines, int rango){
+    public void configurarPartida(int comodines, int rango) {
         JuegoDTO juego = new JuegoDTO();
         juego.setNumComodines(comodines);
         juego.setRangoFichas(rango);
         cliente.configurarPartida(juego);
-        
+
     }
-    
+
     public void registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
 
         List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
@@ -136,13 +140,19 @@ public class ModeloMenu extends Observable {
     public void setJugadores(List<JugadorDTO> jugadores) {
         this.jugadores = jugadores;
     }
-    
+
     public void actualizarJugadores(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
         this.jugadores = res.getJugadores();
         setChanged();
         notifyObservers(mensaje);
     }
-    
-    
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
