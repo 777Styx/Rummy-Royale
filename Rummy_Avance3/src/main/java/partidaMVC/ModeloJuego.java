@@ -25,9 +25,9 @@ public class ModeloJuego extends Observable {
     private int indiceJugadorActual;
     private Random random;
     private static ModeloJuego instance;
+    private String avatarJugador;
 
     private ModeloJuego() {
-
         jugadores = new ArrayList<>();
         fichasDTO = new ArrayList<>();
         tableroDTO = new TableroDTO();
@@ -45,4 +45,62 @@ public class ModeloJuego extends Observable {
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
     }
+
+    public List<JugadorDTO> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<JugadorDTO> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public List<FichaDTO> getFichasDTO() {
+        return fichasDTO;
+    }
+
+    public void setFichasDTO(List<FichaDTO> fichasDTO) {
+        this.fichasDTO = fichasDTO;
+    }
+
+    public TableroDTO getTableroDTO() {
+        return tableroDTO;
+    }
+
+    public void setTableroDTO(TableroDTO tableroDTO) {
+        this.tableroDTO = tableroDTO;
+    }
+
+    public int getIndiceJugadorActual() {
+        return indiceJugadorActual;
+    }
+
+    public void setIndiceJugadorActual(int indiceJugadorActual) {
+        this.indiceJugadorActual = indiceJugadorActual;
+    }
+
+    public Random getRandom() {
+        return random;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    public String getAvatarJugador() {
+        return avatarJugador;
+    }
+
+    public void setAvatarJugador(String avatarJugador) {
+        this.avatarJugador = avatarJugador;
+    }
+
+    public JugadorDTO obtenerJugadorPorAvatar(String avatar) {
+        for (JugadorDTO jugador : jugadores) {
+            if (jugador.getAvatar().equals(avatar)) {
+                return jugador;
+            }
+        }
+        return null;
+    }
+
 }

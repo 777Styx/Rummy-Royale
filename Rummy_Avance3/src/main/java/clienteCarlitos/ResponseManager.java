@@ -36,6 +36,7 @@ public class ResponseManager {
             if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
                     modeloMenu.actualizarJugadores(mensaje);
                     modeloJuego.actualizarJugadores(mensaje);
+                    modeloJuego.setAvatarJugador(((ResRegistroJugador) mensaje).getAvatarJugadorNuevo());
             }
         }
 

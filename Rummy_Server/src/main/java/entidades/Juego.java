@@ -94,12 +94,10 @@ public class Juego extends Observable {
                     jugadorDTO.getAvatar(),
                     manejadoresColor
             );
+            
             this.jugadores.add(jugador);
-            System.out.println("Lista de Jugadores en Server: ");
-            for (Jugador j : this.jugadores) {
-                System.out.println("Jugador: " + j.getNombre() + ", Avatar: " + j.getAvatar());
-            }
             removerAvatar(jugador.getAvatar());
+            
             List<JugadorDTO> jugadoresDTO = new ArrayList<>();
             for (Jugador j : this.jugadores) {
                 JugadorDTO jDTO = new JugadorDTO();
@@ -114,10 +112,10 @@ public class Juego extends Observable {
                 jugadoresDTO.add(jDTO);
             }
             setChanged();
-            notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO));
+            notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO, jugador.getAvatar()));
         } else {
             setChanged();
-            notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null));
+            notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null, null));
         }
 
     }

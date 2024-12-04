@@ -68,9 +68,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         if (ventanaPrincipal != null) {
             ventanaPrincipal.revalidate();
             ventanaPrincipal.repaint();
-//            panelJugadores.revalidate();
-//            panelJugadores.repaint();
-
         }
 
     }
@@ -151,6 +148,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         jugador2 = new javax.swing.JLabel();
         jugador3 = new javax.swing.JLabel();
         jugador4 = new javax.swing.JLabel();
+        btn1 = new utils.Btn();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -436,16 +434,22 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         jLabel1.setText("Jugadores");
 
         jugador1.setForeground(new java.awt.Color(255, 255, 255));
+        jugador1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugador1.setText("q");
 
         jugador2.setForeground(new java.awt.Color(255, 255, 255));
+        jugador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugador2.setText("k");
 
         jugador3.setForeground(new java.awt.Color(255, 255, 255));
+        jugador3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugador3.setText("l");
 
         jugador4.setForeground(new java.awt.Color(255, 255, 255));
+        jugador4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugador4.setText("p");
+
+        btn1.setText("Estoy listo");
 
         javax.swing.GroupLayout ventanaPrincipalLayout = new javax.swing.GroupLayout(ventanaPrincipal);
         ventanaPrincipal.setLayout(ventanaPrincipalLayout);
@@ -455,23 +459,32 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
                 .addGap(10, 10, 10)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                        .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel1))
-                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jugador1)
+                            .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(205, 205, 205))
+                                .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jugador3)
-                                        .addComponent(jugador2)
-                                        .addComponent(jugador4))))))
-                    .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                                        .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                            .addGap(50, 50, 50)
+                                            .addComponent(jLabel1))
+                                        .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                            .addGap(74, 74, 74)
+                                            .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jugador1)
+                                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jugador3)
+                                                    .addComponent(jugador2)
+                                                    .addComponent(jugador4))))))))
+                        .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         ventanaPrincipalLayout.setVerticalGroup(
             ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,8 +507,11 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
                 .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -506,7 +522,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ventanaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ventanaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -561,6 +579,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     }//GEN-LAST:event_panelRound24KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private utils.Btn btn1;
     private utils.Btn btnCombinacion;
     private javax.swing.JPanel contenedorFichas;
     private javax.swing.JLabel jLabel1;
