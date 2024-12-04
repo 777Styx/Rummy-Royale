@@ -36,6 +36,7 @@ public class Controlador implements Observer {
         this.expertos.put("registrarJugador", new ExpertoRegistrar());
         this.expertos.put("unirse", new ExpertoUnirse());
         this.expertos.put("solicitarInicio", new ExpertoSolicitarInicio());
+        this.expertos.put("responderSolicitudInicio", new ExpertoResponderSolicitudInicio());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -79,6 +80,11 @@ public class Controlador implements Observer {
     public void solicitarInicio(Mensaje mensaje,ClientHandler aThis) {
         this.clientHandler = aThis;
         realizarAccion("solicitarInicio", mensaje);
+    }
+    
+    public void responderSolicitudInicio(Mensaje mensaje, ClientHandler aThis) {
+        this.clientHandler = aThis;
+        realizarAccion("responderSolicitudInicio", mensaje);
     }
     
     @Override

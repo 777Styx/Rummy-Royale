@@ -7,6 +7,7 @@ import dtos.JugadorDTO;
 import mensajes.Mensaje;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
 import mensajes.ReqUnirse;
 
@@ -45,9 +46,17 @@ public class ManejadorComando {
                 break;
             case "SOLICITAR_INICIO":
                 handleSolicitarInicio((ReqSolicitarInicio) mensaje);
+                break;
+            case "RESPONDER_SOLICITUD_INICIO":
+                handleResponderSolicitudInicio((ReqResponderSolicitudInicio) mensaje);
+                break;
             default:
 
         }
+    }
+    
+    private void handleResponderSolicitudInicio(Mensaje mensaje) {
+        controlador.responderSolicitudInicio(mensaje, clientHandler);
     }
     
     private void handleSolicitarInicio(Mensaje mensaje) {

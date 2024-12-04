@@ -4,20 +4,14 @@
  */
 package mensajes;
 
-import java.io.Serializable;
-
 /**
  *
  * @author carlo
  */
-public abstract class Mensaje implements Serializable {
-    private String comando;
-
-    public Mensaje(String comando) {
-        this.comando = comando;
+public class ResResponderSolicitudInicio extends Mensaje {
+    
+    public ResResponderSolicitudInicio(String comando) {
+        super(comando);
     }
-
-    public String getComando() {
-        return comando;
-    }  
+    
 }

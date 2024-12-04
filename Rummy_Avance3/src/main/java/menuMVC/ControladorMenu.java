@@ -1,6 +1,7 @@
 package menuMVC;
 
 import dtos.JuegoDTO;
+import dtos.JugadorDTO;
 import java.awt.Color;
 import partidaMVC.ControladorJuego;
 import partidaMVC.ModeloJuego;
@@ -19,10 +20,9 @@ public class ControladorMenu {
         this.modeloMenu = modeloMenu;
 
     }
-
-    public void crearJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
-        modeloMenu.registrarJugador(nombre, avatar, color1, color2, color3, color4);
-
+    
+    public void crearJugador(JugadorDTO jugador) {
+        modeloMenu.registrarJugador(jugador);
     }
 
     public void crearPartida(int puerto) {

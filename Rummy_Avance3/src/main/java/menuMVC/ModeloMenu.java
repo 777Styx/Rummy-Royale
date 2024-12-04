@@ -109,21 +109,8 @@ public class ModeloMenu extends Observable {
 
     }
 
-    public void registrarJugador(String nombre, String avatar, Color color1, Color color2, Color color3, Color color4) {
-
-        List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(color1.getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2, new ColorCustomDTO(color2.getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3, new ColorCustomDTO(color3.getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4, new ColorCustomDTO(color4.getRGB())));
-        JugadorDTO jugador = new JugadorDTO();
-
-        jugador.setNombre(nombre);
-        jugador.setAvatar(avatar);
-        jugador.setPreferenciasColor(manejadoresColor);
-
+    public void registrarJugador(JugadorDTO jugador) {
         cliente.registrarJugador(jugador);
-
     }
 
     public void unirseAPartida(int puerto) {

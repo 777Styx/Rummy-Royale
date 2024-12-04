@@ -38,7 +38,7 @@ public class ControladorJuego {
     public void inicializar(Cliente cliente) {
         this.modeloJuego = ModeloJuego.getInstance();
         this.modeloJuego.setCliente(cliente);
-        this.vistaJuego = new VistaJuego(this.controlador);
+        this.vistaJuego = VistaJuego.getInstance(controlador);
         this.modeloJuego.addObserver(vistaJuego);
         this.vistaJuego.setVisible(true);
     }
@@ -53,5 +53,9 @@ public class ControladorJuego {
 
     public void solicitarInicio() {
         modeloJuego.solicitarInicio();
+    }
+    
+    public void responderSolicitudInicio(boolean res) {
+        modeloJuego.responderSolicitudInicio(res);
     }
 }

@@ -114,6 +114,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         
         boolean aceptar = (respuesta == JOptionPane.YES_OPTION);
         System.out.println("REspuesta de este jugador: " + aceptar);
+        controlador.responderSolicitudInicio(aceptar);
     }
 
     /**

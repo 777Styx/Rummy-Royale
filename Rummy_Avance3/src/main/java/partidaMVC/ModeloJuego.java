@@ -54,7 +54,7 @@ public class ModeloJuego extends Observable {
         return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
-    public void actualizarEstado(Mensaje mensaje) {
+    public void actualizarJugadores(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
         this.jugadores = res.getJugadores();
         this.jugador = obtenerJugadorPorId(res.getJugadorNuevoID());
@@ -64,9 +64,24 @@ public class ModeloJuego extends Observable {
         notifyObservers(new JugadorDataActualizada(this.jugador));
     }
 
+    public void actualizarJugadorNuevo(Mensaje mensaje) {
+        ResRegistroJugador res = (ResRegistroJugador) mensaje;
+        this.jugadores = res.getJugadores();
+        setChanged();
+        notifyObservers(new JugadoresActualizados(this.jugadores));
+        
+        
+    }
+
     public void solicitarInicio() {
         if (cliente.isConnected()) {
             cliente.solicitarInicio(jugador);
+        }
+    }
+    
+    public void responderSolicitudInicio(boolean res) {
+        if(cliente.isConnected()) {
+            cliente.responderSolicitudInicio(res, this.jugador);
         }
     }
 
@@ -128,13 +143,14 @@ public class ModeloJuego extends Observable {
         System.out.println("Estoy obteniendo un: " + message.getComando());
         switch (message.getComando()) {
             case "SOLICITUD_ENVIADA":
-                setChanged();
-                notifyObservers(new MostrarMensaje("Alguien ya solicito iniciar juego"));
-                break;
-            case "SOLCITUD_EN_CURSO":
                 ResSolicitarInicio res = (ResSolicitarInicio) message;
                 setChanged();
                 notifyObservers(new MostrarSolicitudInicio(res.getSolicitante().getNombre()));
+                break;
+            case "SOLCITUD_EN_CURSO":
+                setChanged();
+                notifyObservers(new MostrarMensaje("Alguien ya solicito iniciar juego"));
+                break;
             default:
                 System.out.println("no llego nada :(");
         }

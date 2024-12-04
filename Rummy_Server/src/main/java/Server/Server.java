@@ -19,6 +19,7 @@ import mensajes.ResUnirse;
  *
  * @author carlo
  */
+
 public class Server {
 
     private static Server instance;
@@ -61,8 +62,17 @@ public class Server {
     public void broadcastMessage(Mensaje mensaje, ClientHandler sender) {
 
         if (mensaje instanceof ResRegistroJugador) {
+            ResRegistroJugador res = (ResRegistroJugador) mensaje;
+            
+            ResRegistroJugador resClientes = new ResRegistroJugador("JUGADOR_NUEVO", res.getJugadores(), res.getJugadorNuevoID());
             for (ClientHandler client : clients) {
-                client.sendMessage(mensaje);
+                if(client == sender) {
+                    client.sendMessage(mensaje);
+                } else {
+                    
+                    client.sendMessage(resClientes);
+                }
+                
             }
         } else if (mensaje instanceof ResCrearPartida) {
             for (ClientHandler client : clients) {

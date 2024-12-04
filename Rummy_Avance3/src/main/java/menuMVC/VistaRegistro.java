@@ -6,6 +6,10 @@ package menuMVC;
 
 import actualizaciones.Actualizacion;
 import actualizaciones.ViewRegistro;
+import dtos.ColorCustomDTO;
+import dtos.JugadorDTO;
+import dtos.ManejadorColorDTO;
+import dtos.TipoFichaDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -362,9 +366,19 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer, ViewR
 
         String nombre = nombreTxt.getText();
         String avatarSeleccionado = avatarComboBox.getSelectedItem().toString();
-        controladorMenu.crearJugador(nombre, avatarSeleccionado, colorSeleccionado1, colorSeleccionado2, colorSeleccionado3, colorSeleccionado4);
+        
+        List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(colorPanel1.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2, new ColorCustomDTO(colorPanel2.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3, new ColorCustomDTO(colorPanel3.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4, new ColorCustomDTO(colorPanel4.getBackground().getRGB())));
+        JugadorDTO jugador = new JugadorDTO();
 
-
+        jugador.setNombre(nombre);
+        jugador.setAvatar(avatarSeleccionado);
+        jugador.setPreferenciasColor(manejadoresColor);
+        
+        controladorMenu.crearJugador(jugador);
     }//GEN-LAST:event_startBtnActionPerformed
 
 

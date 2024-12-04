@@ -37,12 +37,14 @@ public class MessageAdapter implements JsonSerializer<Mensaje>, JsonDeserializer
                 case "CONFIGURAR_PARTIDA" -> ReqConfigurarPartida.class;
                 case "UNIRSE" -> ReqUnirse.class;
                 case "SOLICITAR_INICIO" -> ReqSolicitarInicio.class;
+                case "RESPONDER_SOLICITUD_INICIO" -> ReqResponderSolicitudInicio.class;
                  // responses
                 case "PARTIDA_CREADA", "PARTIDA_NO_CREADA" -> ResCrearPartida.class; 
                 case "SOLICITUD_ENVIADA", "SOLICITUD_EN_CURSO" -> ResSolicitarInicio.class;
                 case "PARTIDA_CONFIGURADA" -> ResConfigurarPartida.class;
-                case "JUGADOR_REGISTRADO" -> ResRegistroJugador.class;
+                case "JUGADOR_REGISTRADO", "JUGADOR_NO_REGISTRADO", "JUGADOR_NUEVO" -> ResRegistroJugador.class;
                 case "JUGADOR_UNIDO", "JUGADOR_NO_UNIDO" -> ResUnirse.class;
+                
                  
                 default -> throw new JsonParseException("Comando desconocido: " + comando);
             };

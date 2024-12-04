@@ -12,6 +12,7 @@ import mensajes.MessageManager;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqCrearPartida;
 import mensajes.ReqRegistroJugador;
+import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
 import mensajes.ReqUnirse;
 import menuMVC.ModeloMenu;
@@ -90,8 +91,11 @@ public class Cliente {
         sendMessage(new ReqSolicitarInicio(jugador));
     }
 
+    public void responderSolicitudInicio(Boolean res, JugadorDTO jugador) {
+        sendMessage(new ReqResponderSolicitudInicio(res, jugador));
+    }
+    
     private class MessageListener implements Runnable {
-
         private boolean running = true;
 
         @Override

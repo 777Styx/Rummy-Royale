@@ -7,10 +7,12 @@ import dtos.TipoFichaDTO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.UUID;
+import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
@@ -35,10 +37,9 @@ public class Juego extends Observable {
     private List<IFicha> fichasNumericas = new ArrayList<>();
     private List<IFicha> comodines = new ArrayList<>();
     private boolean solicitudEnCurso;
-    private UUID idSolicitudInicio;
-    private Map<Jugador, Boolean> respuestasSolicitud;
-    
-    
+    private UUID idSolicitudInicio; // por si hay que diferenciar las solicitudes, no creo
+    private Map<JugadorDTO, Boolean> respuestasSolicitud;
+
     public List<IFicha> getComodines() {
         return comodines;
     }
@@ -61,6 +62,7 @@ public class Juego extends Observable {
         this.avatarsDisponibles = new ArrayList<>(avatars);
         this.estado = EstadoJuego.INICIO;
         this.solicitudEnCurso = false;
+        this.respuestasSolicitud = new HashMap<>();
     }
 
     public static synchronized Juego getInstance() {
@@ -85,19 +87,16 @@ public class Juego extends Observable {
             manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(new Color(mc3.getColor().getColor()))));
             manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(new Color(mc4.getColor().getColor()))));
 
-            
-            
-            
             Jugador jugador = new Jugador(
                     jugadorDTO.getNombre(),
                     jugadorDTO.getAvatar(),
                     manejadoresColor,
                     generarIdJugador(jugadorDTO.getNombre())
             );
-            
+
             this.jugadores.add(jugador);
             removerAvatar(jugador.getAvatar());
-            
+
             List<JugadorDTO> jugadoresDTO = new ArrayList<>();
             for (Jugador j : this.jugadores) {
                 JugadorDTO jDTO = new JugadorDTO();
@@ -134,24 +133,44 @@ public class Juego extends Observable {
     }
 
     public synchronized void solicitarInicio(JugadorDTO solicitante) {
-        if(solicitudEnCurso) {
+        if (solicitudEnCurso) {
+            System.out.println("hay una soliciutd en curso");
             ResSolicitarInicio res = new ResSolicitarInicio("SOLICITUD_EN_CURSO");
             setChanged();
             notifyObservers(res);
+        } else {
+            solicitudEnCurso = true;
+            idSolicitudInicio = UUID.randomUUID();
+            ResSolicitarInicio res2 = new ResSolicitarInicio("SOLICITUD_ENVIADA");
+            res2.setSolicitante(solicitante);
+            setChanged();
+            notifyObservers(res2);
+        }
+    }
+    
+    public synchronized void manejarRespuestasConfirmacion(JugadorDTO jugador, Boolean respuesta) {
+        if(!solicitudEnCurso) {
+            System.out.println("no hay solicitud en cursooo");
+            return;
+        } 
+        
+        respuestasSolicitud.put(jugador, respuesta);
+        if(respuestasSolicitud.size() == jugadores.size() - 1) {
+            boolean todosAceptaron = respuestasSolicitud.values().stream().allMatch(r -> r);
+            if(todosAceptaron) {
+                System.out.println("INICIO DE JUEGOOOOOO");
+            } else {
+                System.out.println("No todos aceptaron");
+            }
+            
+            respuestasSolicitud.clear();
+            solicitudEnCurso = false;
         }
         
-        solicitudEnCurso = true;
-        idSolicitudInicio = UUID.randomUUID();
-        
-        
-        ResSolicitarInicio res = new ResSolicitarInicio("SOLICITUD_ENVIADA");
-        res.setSolicitante(solicitante);
-        setChanged();
-        notifyObservers(res);
         
         
     }
-    
+
     public List<IFicha> getFichasNumericas() {
         return fichasNumericas;
     }
@@ -163,7 +182,7 @@ public class Juego extends Observable {
     public void removerAvatar(String avatar) {
         avatarsDisponibles.remove(avatar);
     }
-    
+
     public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
@@ -217,5 +236,5 @@ public class Juego extends Observable {
         String salt = UUID.randomUUID().toString().substring(0, 8);
         return nombreJugador + "_" + salt;
     }
-    
+
 }
