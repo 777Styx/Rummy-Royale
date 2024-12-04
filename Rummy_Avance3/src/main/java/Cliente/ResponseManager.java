@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clienteCarlitos;
+package Cliente;
 
 import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
@@ -35,8 +35,8 @@ public class ResponseManager {
         if (mensaje instanceof ResRegistroJugador) {
             if (mensaje.getComando().equals("JUGADOR_REGISTRADO")) {
                     modeloMenu.actualizarJugadores(mensaje);
-                    modeloJuego.actualizarJugadores(mensaje);
-                    modeloJuego.setAvatarJugador(((ResRegistroJugador) mensaje).getAvatarJugadorNuevo());
+                    modeloJuego.actualizarEstado(mensaje);
+                    //modeloJuego.setAvatarJugador(((ResRegistroJugador) mensaje).getAvatarJugadorNuevo());
             }
         }
 

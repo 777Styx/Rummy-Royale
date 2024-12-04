@@ -12,7 +12,16 @@ public class JugadorDTO {
     private List<ManejadorColorDTO> preferenciasColor;
     private ArrayList<FichaDTO> mano;
     private String avatar;
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public JugadorDTO() {
     }
 
@@ -47,8 +56,6 @@ public class JugadorDTO {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-    
-    
     
     public void agregarFicha(FichaDTO remove) {
         

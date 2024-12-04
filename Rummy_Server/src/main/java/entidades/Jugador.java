@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Jugador {
 
+    private String id;
     private String nombre;
     private List<ManejadorColor> preferenciasColor;
     private ArrayList<IFicha> mano;
@@ -19,11 +20,12 @@ public class Jugador {
 
     }
 
-    public Jugador(String nombre, String avatar,  List<ManejadorColor> preferenciasColor) {
+    public Jugador(String nombre, String avatar,  List<ManejadorColor> preferenciasColor, String id) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.preferenciasColor = preferenciasColor;
         this.mano = new ArrayList<>();
+        this.id = id;
     }
 
     /**
@@ -95,6 +97,16 @@ public class Jugador {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
     
     
 

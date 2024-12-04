@@ -1,4 +1,4 @@
-package clienteCarlitos;
+package Cliente;
 
 import dtos.JuegoDTO;
 import dtos.JugadorDTO;
@@ -30,6 +30,7 @@ public class Cliente {
     private ModeloJuego modeloJuego;
     private MessageListener messageListener;
     private ResponseManager responseManager = new ResponseManager();
+    private Cliente cliente;
 
     public Cliente() {
         connected = false;
@@ -88,6 +89,10 @@ public class Cliente {
         sendMessage(new ReqConfigurarPartida(configuracion));
     }
 
+    public void solicitarInicio(JugadorDTO jugador) {
+        
+    }
+    
     private class MessageListener implements Runnable {
         private boolean running = true;
 

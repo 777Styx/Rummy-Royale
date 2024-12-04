@@ -13,20 +13,20 @@ import java.util.List;
  */
 public class ResRegistroJugador extends Mensaje {
     private final List<JugadorDTO> jugadores;
-    private final String avatarJugadorNuevo;
+    private final String jugadorNuevoID;
     
-    public ResRegistroJugador(String comando, List<JugadorDTO> jugadores, String avatarJugadorNuevo) {
+    public ResRegistroJugador(String comando, List<JugadorDTO> jugadores, String jugadorNuevoID) {
         super(comando);
         this.jugadores = jugadores;
-        this.avatarJugadorNuevo = avatarJugadorNuevo;
+        this.jugadorNuevoID = jugadorNuevoID;
     }
 
     public List<JugadorDTO> getJugadores() {
         return jugadores;
     }
 
-    public String getAvatarJugadorNuevo() {
-        return avatarJugadorNuevo;
+    public String getJugadorNuevoID() {
+        return jugadorNuevoID;
     }
     
 }

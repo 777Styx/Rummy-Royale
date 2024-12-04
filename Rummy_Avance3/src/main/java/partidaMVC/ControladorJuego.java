@@ -56,4 +56,8 @@ public class ControladorJuego {
     public void setView(VistaJuego view) {
         this.view = view;
     }
+    
+    public void solicitarInicio() {
+        modeloJuego.solicitarInicio();
+    }
 }

@@ -1,4 +1,4 @@
-package serverCarlos;
+package Server;
 
 import dtos.JuegoDTO;
 import entidades.FichaNumerica;

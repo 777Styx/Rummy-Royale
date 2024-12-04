@@ -1,4 +1,4 @@
-package serverCarlos;
+package Server;
 
 import entidades.FichaComodin;
 import entidades.IFicha;

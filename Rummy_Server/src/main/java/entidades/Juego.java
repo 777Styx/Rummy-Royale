@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
+import java.util.UUID;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
@@ -89,10 +90,14 @@ public class Juego extends Observable {
             manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO3, new ColorCustom(new Color(mc3.getColor().getColor()))));
             manejadoresColor.add(new ManejadorColor(TipoFicha.TIPO4, new ColorCustom(new Color(mc4.getColor().getColor()))));
 
+            
+            
+            
             Jugador jugador = new Jugador(
                     jugadorDTO.getNombre(),
                     jugadorDTO.getAvatar(),
-                    manejadoresColor
+                    manejadoresColor,
+                    generarIdJugador(jugadorDTO.getNombre())
             );
             
             this.jugadores.add(jugador);
@@ -109,10 +114,11 @@ public class Juego extends Observable {
                 jDTO.setNombre(j.getNombre());
                 jDTO.setAvatar(j.getAvatar());
                 jDTO.setPreferenciasColor(mColores);
+                jDTO.setId(j.getId());
                 jugadoresDTO.add(jDTO);
             }
             setChanged();
-            notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO, jugador.getAvatar()));
+            notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO, jugador.getId()));
         } else {
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null, null));
@@ -181,4 +187,9 @@ public class Juego extends Observable {
         }
     }
 
+    public String generarIdJugador(String nombreJugador) {
+        String salt = UUID.randomUUID().toString().substring(0, 8);
+        return nombreJugador + "_" + salt;
+    }
+    
 }

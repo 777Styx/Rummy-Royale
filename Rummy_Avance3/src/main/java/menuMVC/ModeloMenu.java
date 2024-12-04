@@ -1,7 +1,7 @@
 package menuMVC;
 
 import actualizaciones.AvatarsActualizados;
-import clienteCarlitos.Cliente;
+import Cliente.Cliente;
 import dtos.ColorCustomDTO;
 import dtos.JuegoDTO;
 import dtos.JugadorDTO;

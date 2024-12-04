@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface ViewJuego extends Vista{
     void mostrarJugadores(List<JugadorDTO> jugadores);
+    void mostrarJugadorData(JugadorDTO jugador);
 }

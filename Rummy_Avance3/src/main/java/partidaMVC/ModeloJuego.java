@@ -1,5 +1,7 @@
 package partidaMVC;
 
+import Cliente.Cliente;
+import actualizaciones.JugadorDataActualizada;
 import actualizaciones.JugadoresActualizados;
 import dtos.CombinacionDTO;
 import dtos.FichaDTO;
@@ -25,7 +27,9 @@ public class ModeloJuego extends Observable {
     private int indiceJugadorActual;
     private Random random;
     private static ModeloJuego instance;
-    private String avatarJugador;
+    private JugadorDTO jugador;
+    private Cliente cliente;
+    
 
     private ModeloJuego() {
         jugadores = new ArrayList<>();
@@ -39,11 +43,18 @@ public class ModeloJuego extends Observable {
         return instance == null ? (instance = new ModeloJuego()) : instance;
     }
 
-    public void actualizarJugadores(Mensaje mensaje) {
+    public void actualizarEstado(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
         this.jugadores = res.getJugadores();
+        this.jugador = obtenerJugadorPorId(res.getJugadorNuevoID());
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
+        setChanged();
+        notifyObservers(new JugadorDataActualizada(this.jugador));
+    }
+    
+    public void solicitarInicio() {
+        
     }
 
     public List<JugadorDTO> getJugadores() {
@@ -86,17 +97,9 @@ public class ModeloJuego extends Observable {
         this.random = random;
     }
 
-    public String getAvatarJugador() {
-        return avatarJugador;
-    }
-
-    public void setAvatarJugador(String avatarJugador) {
-        this.avatarJugador = avatarJugador;
-    }
-
-    public JugadorDTO obtenerJugadorPorAvatar(String avatar) {
+    public JugadorDTO obtenerJugadorPorId(String id) {
         for (JugadorDTO jugador : jugadores) {
-            if (jugador.getAvatar().equals(avatar)) {
+            if (jugador.getId().equals(id)) {
                 return jugador;
             }
         }
