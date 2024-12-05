@@ -12,23 +12,15 @@ import expertos.ExpertoCrearPartida;
 import expertos.ExpertoRepartirFichas;
 import expertos.ExpertoRegistrar;
 import expertos.ExpertoEmpezarPartida;
-import dtos.JuegoDTO;
-import dtos.JugadorDTO;
-import entidades.IFicha;
 import entidades.Juego;
-import entidades.Mazo;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Queue;
 import mensajes.Mensaje;
 import mensajes.ReqIniciarPartida;
-import mensajes.ResCrearPartida;
-import mensajes.ResRegistroJugador;
 
 /**
  *
