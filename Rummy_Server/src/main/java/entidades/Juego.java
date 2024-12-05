@@ -5,6 +5,14 @@ import dtos.FichaDTO;
 import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;
 import dtos.TipoFichaDTO;
+import static dtos.TipoFichaDTO.TIPO1DTO;
+import static dtos.TipoFichaDTO.TIPO2DTO;
+import static dtos.TipoFichaDTO.TIPO3DTO;
+import static dtos.TipoFichaDTO.TIPO4DTO;
+import static entidades.TipoFicha.TIPO1;
+import static entidades.TipoFicha.TIPO2;
+import static entidades.TipoFicha.TIPO3;
+import static entidades.TipoFicha.TIPO4;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +54,7 @@ public class Juego extends Observable {
     private boolean partidaEmpezada = false;
     private int indiceJugadorActual;
     private List<Jugador> turnos;
-    
+
     public List<IFicha> getComodines() {
         return comodines;
     }
@@ -106,8 +114,8 @@ public class Juego extends Observable {
             List<JugadorDTO> jugadoresDTO = obtenerJugadoresDTO();
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO, jugador.getId()));
-            
-            if(jugadores.size() == 4) {
+
+            if (jugadores.size() == 4) {
                 // iniciar partida aqui tmb
             }
         } else {
@@ -144,84 +152,96 @@ public class Juego extends Observable {
             notifyObservers(res2);
         }
     }
-    
+
     public synchronized void manejarRespuestasConfirmacion(JugadorDTO jugador, Boolean respuesta) {
-        if(!solicitudEnCurso) {
+        if (!solicitudEnCurso) {
             System.out.println("no hay solicitud en cursooo");
             return;
-        } 
-        
+        }
+
         respuestasSolicitud.put(jugador, respuesta);
-        if(respuestasSolicitud.size() == jugadores.size() - 1) {
+        if (respuestasSolicitud.size() == jugadores.size() - 1) {
             boolean todosAceptaron = respuestasSolicitud.values().stream().allMatch(r -> r);
-            if(todosAceptaron) {
+            if (todosAceptaron) {
                 setChanged();
                 notifyObservers(new ResResponderSolicitudInicio("TODOS_ACEPTARON"));
             } else {
                 System.out.println("No todos aceptaron");
                 // manejar que no todos aceptaron
             }
-            
+
             respuestasSolicitud.clear();
             solicitudEnCurso = false;
         }
     }
-    
-    public void repartirFichas(){
-        for(Jugador jugador : jugadores) {
+
+    public void repartirFichas() {
+        for (Jugador jugador : jugadores) {
             ArrayList<IFicha> manoJugador = new ArrayList<>();
-            while(manoJugador.size() < 13) {
+            while (manoJugador.size() < 13) {
                 manoJugador.add(this.mazo.tomarFicha());
             }
-            
+
             jugador.setMano(manoJugador);
-            System.out.println("numero de cartas que tiene " + jugador.getNombre()+ ": " + manoJugador.size());
+            System.out.println("numero de cartas que tiene " + jugador.getNombre() + ": " + manoJugador.size());
         }
     }
-    
+
     public List<JugadorDTO> obtenerJugadoresDTO() {
         List<JugadorDTO> jugadoresDTO = new ArrayList<>();
-            for (Jugador j : this.jugadores) {
-                JugadorDTO jDTO = new JugadorDTO();
-                List<ManejadorColorDTO> mColores = new ArrayList<>();
-                mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(j.getPreferenciasColor().get(0).getColor().getColor().getRGB())));
-                mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(j.getPreferenciasColor().get(1).getColor().getColor().getRGB())));
-                mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(j.getPreferenciasColor().get(2).getColor().getColor().getRGB())));
-                mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(j.getPreferenciasColor().get(3).getColor().getColor().getRGB())));
-                jDTO.setNombre(j.getNombre());
-                jDTO.setAvatar(j.getAvatar());
-                jDTO.setPreferenciasColor(mColores);
-                jDTO.setId(j.getId());
-                jugadoresDTO.add(jDTO);
-                List<FichaDTO> fichas = obtenerMazoJugadorDTO(j);
-                jDTO.setMano((ArrayList<FichaDTO>) fichas);
-            }
-            return jugadoresDTO;
+        for (Jugador j : this.jugadores) {
+            JugadorDTO jDTO = new JugadorDTO();
+            List<ManejadorColorDTO> mColores = new ArrayList<>();
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(0).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(1).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(2).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(3).getColor().getColor().getRGB())));
+            jDTO.setNombre(j.getNombre());
+            jDTO.setAvatar(j.getAvatar());
+            jDTO.setPreferenciasColor(mColores);
+            jDTO.setId(j.getId());
+            jugadoresDTO.add(jDTO);
+            List<FichaDTO> fichas = obtenerMazoJugadorDTO(j);
+            jDTO.setMano((ArrayList<FichaDTO>) fichas);
+        }
+        return jugadoresDTO;
     }
-    
+
     public void empezarPartida() {
         this.estado = EstadoJuego.EN_PROGRESO;
         ResIniciarPartida res = new ResIniciarPartida("PARTIDA_INICIADA", obtenerJugadoresDTO(), this.indiceJugadorActual);
         setChanged();
         notifyObservers(res);
-        
+
     }
-    
+
     public List<FichaDTO> obtenerMazoJugadorDTO(Jugador jugador) {
         List<IFicha> mazoJugador = jugador.getMano();
         List<FichaDTO> mazoJugadorDTO = new ArrayList<>();
-
+        TipoFichaDTO tipoFichaDTO = null;
         for (IFicha ficha : mazoJugador) {
             FichaDTO fichaDTO = new FichaDTO();
             fichaDTO.setNumero(ficha.getNumero());
-            fichaDTO.setTipo((TipoFicha) ficha.getTipo());
+            if (ficha.getTipo() == TIPO1) {
+                tipoFichaDTO = TIPO1DTO;
+            }
+            if (ficha.getTipo() == TIPO2) {
+                tipoFichaDTO = TIPO2DTO;
+            }
+            if (ficha.getTipo() == TIPO3) {
+                tipoFichaDTO = TIPO3DTO;
+            }
+            if (ficha.getTipo() == TIPO4) {
+                tipoFichaDTO = TIPO4DTO;
+            }
+            fichaDTO.setTipo(tipoFichaDTO);
             fichaDTO.setComodin(ficha.isComodin());
             mazoJugadorDTO.add(fichaDTO);
         }
 
         return mazoJugadorDTO;
     }
-    
+
     public void asignarTurnos() {
         turnos = new ArrayList<>(jugadores);
         indiceJugadorActual = 0;
@@ -230,7 +250,7 @@ public class Juego extends Observable {
     public void avanzarTurno() {
         indiceJugadorActual = (indiceJugadorActual + 1) % turnos.size();
     }
-    
+
     public boolean estaConfigurado() {
         return configurado;
     }
@@ -240,18 +260,17 @@ public class Juego extends Observable {
         setChanged();
         notifyObservers(mensaje);
     }
-    
+
     public boolean partidaEstaEmpezada() {
         return partidaEmpezada;
     }
-    
-    public void setPartidaEmpezada(boolean partidaEmpezada,Mensaje mensaje) {
+
+    public void setPartidaEmpezada(boolean partidaEmpezada, Mensaje mensaje) {
         this.partidaEmpezada = partidaEmpezada;
         setChanged();
         notifyObservers(mensaje);
     }
 
-    
     public List<IFicha> getFichasNumericas() {
         return fichasNumericas;
     }

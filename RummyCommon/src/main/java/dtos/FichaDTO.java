@@ -9,6 +9,7 @@ package dtos;
  * @author carlo
  */
 public class FichaDTO {
+
     private int numero;
     private TipoFichaDTO tipo;
     private boolean comodin;
@@ -36,6 +37,5 @@ public class FichaDTO {
     public void setComodin(boolean comodin) {
         this.comodin = comodin;
     }
-    
-    
+
 }
