@@ -9,6 +9,7 @@ import mensajes.ReqPasarTurno;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
+import mensajes.ReqTomarFicha;
 import mensajes.ReqUnirse;
 
 /**
@@ -53,9 +54,15 @@ public class ManejadorComando {
             case "PASAR_TURNO":
                 handlePasarTurno((ReqPasarTurno) mensaje);
                 break;
+            case "TOMAR_FICHA":
+                handleTomarFicha((ReqTomarFicha) mensaje);
             default:
 
         }
+    }
+    
+    public void handleTomarFicha(Mensaje mensaje) {
+        controlador.tomarFicha(mensaje, clientHandler);
     }
     
     public void handlePasarTurno(Mensaje mensaje) {

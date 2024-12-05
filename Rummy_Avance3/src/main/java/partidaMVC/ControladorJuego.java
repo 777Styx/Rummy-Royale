@@ -62,4 +62,8 @@ public class ControladorJuego {
     public void pasarTurno() {
         modeloJuego.pasarTurno();
     }
+    
+    public void tomarFicha(){
+        modeloJuego.tomarFicha();
+    }
 }

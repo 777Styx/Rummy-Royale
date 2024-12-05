@@ -14,6 +14,7 @@ import expertos.ExpertoRegistrar;
 import expertos.ExpertoEmpezarPartida;
 import entidades.Juego;
 import expertos.ExpertoPasarTurno;
+import expertos.ExpertoTomarFicha;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -51,6 +52,7 @@ public class Controlador implements Observer {
         this.expertos.put("asignarTurnos", new ExpertoAsignarTurnos());
         this.expertos.put("empezarPartida", new ExpertoEmpezarPartida());
         this.expertos.put("pasarTurno", new ExpertoPasarTurno());
+        this.expertos.put("tomarFicha", new ExpertoTomarFicha());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -123,6 +125,11 @@ public class Controlador implements Observer {
 
     public void pasarTurno(Mensaje mensaje, ClientHandler aThis) {
         realizarAccion("pasarTurno", mensaje);
+    }
+    
+    public void tomarFicha(Mensaje mensaje, ClientHandler aThis){
+        this.clientHandler = aThis;
+        realizarAccion("tomarFicha", mensaje);
     }
     
     @Override

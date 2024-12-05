@@ -120,6 +120,12 @@ public class ModeloJuego extends Observable {
             cliente.pasarTurno();
         }
     }
+    
+    public void tomarFicha() {
+        if(cliente.isConnected()) {
+            cliente.tomarFicha(this.jugador);
+        }
+    }
 
     public List<JugadorDTO> getJugadores() {
         return jugadores;

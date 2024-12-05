@@ -513,7 +513,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
         System.out.println("tomare ficha");
-
+        controlador.tomarFicha();
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
     private void solicitarInicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarInicioBtnActionPerformed

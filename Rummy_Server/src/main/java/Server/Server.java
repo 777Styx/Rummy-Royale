@@ -99,11 +99,10 @@ public class Server {
             for (ClientHandler client : clients) {
                 client.sendMessage(mensaje);
             }
-        } else if(mensaje instanceof ResPasarTurno) {
+        } else if (mensaje instanceof ResPasarTurno) {
             for (ClientHandler client : clients) {
-                if (client != sender) {
-                    client.sendMessage(mensaje);
-                }
+                client.sendMessage(mensaje);
+
             }
         }
     }

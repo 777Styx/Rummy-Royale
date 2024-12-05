@@ -15,6 +15,7 @@ import mensajes.ReqPasarTurno;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
+import mensajes.ReqTomarFicha;
 import mensajes.ReqUnirse;
 import menuMVC.ModeloMenu;
 import partidaMVC.ModeloJuego;
@@ -98,6 +99,10 @@ public class Cliente {
     
     public void pasarTurno(){
         sendMessage(new ReqPasarTurno());
+    }
+    
+    public void tomarFicha(JugadorDTO jugador){
+        sendMessage(new ReqTomarFicha(jugador));
     }
     
     private class MessageListener implements Runnable {

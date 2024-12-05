@@ -39,6 +39,7 @@ public class MessageAdapter implements JsonSerializer<Mensaje>, JsonDeserializer
                 case "SOLICITAR_INICIO" -> ReqSolicitarInicio.class;
                 case "RESPONDER_SOLICITUD_INICIO" -> ReqResponderSolicitudInicio.class;
                 case "PASAR_TURNO" -> ReqPasarTurno.class;
+                case "TOMAR_FICHA" -> ReqTomarFicha.class;
                  // responses
                 case "PARTIDA_CREADA", "PARTIDA_NO_CREADA" -> ResCrearPartida.class; 
                 case "SOLICITUD_ENVIADA", "SOLICITUD_EN_CURSO" -> ResSolicitarInicio.class;

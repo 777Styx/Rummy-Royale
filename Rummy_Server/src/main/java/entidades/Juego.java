@@ -378,6 +378,24 @@ public class Juego extends Observable {
         notifyObservers(new ResPasarTurno(obtenerJugadoresDTO(), this.indiceJugadorActual, obtenerTableroDTO()));
     }
 
+    public void tomarFicha(JugadorDTO jugadorDTO) {
+        IFicha ficha = mazo.tomarFicha();
+        if (ficha == null) {
+            throw new IllegalStateException("No se pudo tomar ficha");
+        }
+
+        for (Jugador jugador : jugadores) {
+            if (jugador.getId().equals(jugadorDTO.getId())) {
+                jugador.getMano().add(ficha);
+                break;
+            }
+        }
+        
+        setChanged();
+        notifyObservers(new ResPasarTurno(obtenerJugadoresDTO(), this.indiceJugadorActual, obtenerTableroDTO()));
+
+    }
+
     public String generarIdJugador(String nombreJugador) {
         String salt = UUID.randomUUID().toString().substring(0, 8);
         return nombreJugador + "_" + salt;

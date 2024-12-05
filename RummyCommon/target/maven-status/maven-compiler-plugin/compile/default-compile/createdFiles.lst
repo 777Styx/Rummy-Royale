@@ -20,6 +20,7 @@ mensajes\ReqPasarTurno.class
 com\mycompany\rummydominio\RummyDominio.class
 mensajes\ResPasarTurno.class
 dtos\JugadorDTO.class
+mensajes\ReqTomarFicha.class
 mensajes\ReqRegistroJugador.class
 mensajes\ReqResponderSolicitudInicio.class
 dtos\CombinacionDTO.class
