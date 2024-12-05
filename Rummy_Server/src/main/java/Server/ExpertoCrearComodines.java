@@ -16,6 +16,7 @@ public class ExpertoCrearComodines implements Experto {
 
     @Override
     public void ejecutar(Juego juego, Mensaje mensaje) {
+        System.out.println("estoy creando comodines");
         ReqConfigurarPartida req = (ReqConfigurarPartida) mensaje;
         int numComodines = req.getJuego().getNumComodines();
         List<IFicha> comodines = new ArrayList<>();
@@ -25,7 +26,7 @@ public class ExpertoCrearComodines implements Experto {
         }
 
         juego.setComodines(comodines);
-        juego.setConfigurado(false);
+        juego.setConfigurado(false, mensaje);
 
     }
 

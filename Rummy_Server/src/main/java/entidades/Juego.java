@@ -189,10 +189,10 @@ public class Juego extends Observable {
         return configurado;
     }
 
-    public void setConfigurado(boolean configurado) {
+    public void setConfigurado(boolean configurado, Mensaje mensaje) {
         this.configurado = configurado;
-        setChanged(); 
-        notifyObservers();
+        setChanged();
+        notifyObservers(mensaje);
     }
 
     

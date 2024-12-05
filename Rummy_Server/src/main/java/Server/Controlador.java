@@ -113,13 +113,17 @@ public class Controlador implements Observer {
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {
             Mensaje mensaje = (Mensaje) arg;
-            System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
-            server.broadcastMessage(mensaje, clientHandler);
-        } else if (arg instanceof Juego) {
-            Juego juego = (Juego) arg;
-            if (!juego.estaConfigurado()) {
-                ejecutarSiguienteAccion((Mensaje) arg);
+            if (mensaje.getComando().equals("CONFIGURAR_PARTIDA")) {
+                if (!juego.estaConfigurado()) {
+                    ejecutarSiguienteAccion(mensaje);
+                } else {
+                    System.out.println("El juego ya esta configurado");
+                }
+            } else {
+                System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
+                server.broadcastMessage(mensaje, clientHandler);
             }
+
         }
     }
 }

@@ -19,7 +19,7 @@ public class ExpertoCrearMazo implements Experto {
 
         Mazo mazo = new Mazo(fichasNumericas, comodines);
         juego.setMazo(mazo);
-        juego.setConfigurado(true);
+        juego.setConfigurado(true, mensaje);
     }
     
 }

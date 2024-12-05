@@ -34,7 +34,7 @@ public class ExpertoCrearFichasNumericas implements Experto {
         }
         
         juego.setFichasNumericas(fichasNumericas);
-        juego.setConfigurado(false);
+        juego.setConfigurado(false, mensaje);
         
     }
     
