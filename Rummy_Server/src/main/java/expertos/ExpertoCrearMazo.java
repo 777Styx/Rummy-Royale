@@ -1,4 +1,4 @@
-package Server;
+package expertos;
 
 import entidades.IFicha;
 import entidades.Juego;

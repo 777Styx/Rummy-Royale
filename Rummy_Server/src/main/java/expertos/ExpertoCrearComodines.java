@@ -1,4 +1,4 @@
-package Server;
+package expertos;
 
 import entidades.FichaComodin;
 import entidades.IFicha;

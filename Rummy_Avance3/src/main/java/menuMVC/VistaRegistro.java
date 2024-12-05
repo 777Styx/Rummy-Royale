@@ -368,10 +368,10 @@ public class VistaRegistro extends javax.swing.JFrame implements Observer, ViewR
         String avatarSeleccionado = avatarComboBox.getSelectedItem().toString();
         
         List<ManejadorColorDTO> manejadoresColor = new ArrayList<>();
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1, new ColorCustomDTO(colorPanel1.getBackground().getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2, new ColorCustomDTO(colorPanel2.getBackground().getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3, new ColorCustomDTO(colorPanel3.getBackground().getRGB())));
-        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4, new ColorCustomDTO(colorPanel4.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(colorPanel1.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2DTO, new ColorCustomDTO(colorPanel2.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3DTO, new ColorCustomDTO(colorPanel3.getBackground().getRGB())));
+        manejadoresColor.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4DTO, new ColorCustomDTO(colorPanel4.getBackground().getRGB())));
         JugadorDTO jugador = new JugadorDTO();
 
         jugador.setNombre(nombre);

@@ -1,4 +1,4 @@
-package Server;
+package expertos;
 
 import dtos.JuegoDTO;
 import entidades.FichaNumerica;

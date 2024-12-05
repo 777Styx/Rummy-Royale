@@ -1,4 +1,4 @@
-package Server;
+package expertos;
 
 import entidades.Juego;
 import mensajes.Mensaje;

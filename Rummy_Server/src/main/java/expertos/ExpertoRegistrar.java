@@ -1,4 +1,4 @@
-package Server;
+package expertos;
 
 import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;

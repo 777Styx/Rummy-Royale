@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Server;
+package expertos;
 
 import entidades.Juego;
 import mensajes.Mensaje;
@@ -11,11 +11,11 @@ import mensajes.Mensaje;
  *
  * @author carlo
  */
-public class ExpertoAsignarTurnos implements Experto {
+public class ExpertoRepartirFichas implements Experto {
 
     @Override
     public void ejecutar(Juego juego, Mensaje mensaje) {
-        juego.asignarTurnos();
+        juego.repartirFichas();
         juego.setPartidaEmpezada(false, mensaje);
     }
     
