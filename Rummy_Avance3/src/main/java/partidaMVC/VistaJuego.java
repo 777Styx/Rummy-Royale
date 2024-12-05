@@ -2,13 +2,19 @@ package partidaMVC;
 
 import actualizaciones.Actualizacion;
 import actualizaciones.ViewJuego;
+import dtos.FichaDTO;
 import dtos.JugadorDTO;
+import dtos.ManejadorColorDTO;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import utils.PanelRound;
 
@@ -116,7 +122,46 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         System.out.println("REspuesta de este jugador: " + aceptar);
         controlador.responderSolicitudInicio(aceptar);
     }
+    
+     @Override
+    public void mostrarMano(JugadorDTO jugador) {
+        
+        List<FichaDTO> fichas = jugador.getMano();
+        List<ManejadorColorDTO> preferenciasColor = jugador.getPreferenciasColor();
+        
+        contenedorFichas.removeAll();
 
+        for (FichaDTO ficha : fichas) {
+            JLabel fichaLabel = new JLabel();
+            fichaLabel.setOpaque(true);
+            fichaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            fichaLabel.setPreferredSize(new Dimension(50, 70));
+
+            if (ficha.isComodin()) {
+                fichaLabel.setBackground(Color.WHITE);
+                fichaLabel.setText("C");
+            } else {
+                Color colorFicha = obtenerColorFicha(ficha.getTipo(), preferenciasColor);
+                fichaLabel.setBackground(colorFicha);
+                fichaLabel.setText(String.valueOf(ficha.getNumero()));
+            }
+
+            contenedorFichas.add(fichaLabel);
+        }
+
+        contenedorFichas.revalidate();
+        contenedorFichas.repaint();
+    }
+
+    private Color obtenerColorFicha(TipoFichaDTO tipo, List<ManejadorColorDTO> preferenciasColor) {
+        for (ManejadorColorDTO manejadorColor : preferenciasColor) {
+            if (manejadorColor.getTipo().equals(tipo)) {
+                return new Color(manejadorColor.getColor().getRgb());
+            }
+        }
+        return Color.GRAY; // Color por defecto si no se encuentra la preferencia
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,18 +177,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         jLabel11 = new javax.swing.JLabel();
         tomarFichaBtn = new utils.Btn();
         contenedorFichas = new javax.swing.JPanel();
-        panelRound13 = new utils.PanelRound();
-        jLabel5 = new javax.swing.JLabel();
-        panelRound21 = new utils.PanelRound();
-        jLabel6 = new javax.swing.JLabel();
-        panelRound22 = new utils.PanelRound();
-        jLabel7 = new javax.swing.JLabel();
-        panelRound23 = new utils.PanelRound();
-        jLabel8 = new javax.swing.JLabel();
-        panelRound24 = new utils.PanelRound();
-        jLabel9 = new javax.swing.JLabel();
-        panelRound25 = new utils.PanelRound();
-        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jugador1 = new javax.swing.JLabel();
         jugador2 = new javax.swing.JLabel();
@@ -212,230 +245,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 
         contenedorFichas.setBackground(new java.awt.Color(204, 255, 204));
         contenedorFichas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        panelRound13.setBackground(new java.awt.Color(0, 51, 204));
-        panelRound13.setRoundBottomLeft(10);
-        panelRound13.setRoundBottomRight(10);
-        panelRound13.setRoundTopLeft(10);
-        panelRound13.setRoundTopRight(10);
-        panelRound13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelRound13MouseClicked(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("5");
-
-        javax.swing.GroupLayout panelRound13Layout = new javax.swing.GroupLayout(panelRound13);
-        panelRound13.setLayout(panelRound13Layout);
-        panelRound13Layout.setHorizontalGroup(
-            panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound13Layout.setVerticalGroup(
-            panelRound13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound13Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        panelRound21.setBackground(new java.awt.Color(51, 255, 51));
-        panelRound21.setRoundBottomLeft(10);
-        panelRound21.setRoundBottomRight(10);
-        panelRound21.setRoundTopLeft(10);
-        panelRound21.setRoundTopRight(10);
-        panelRound21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelRound21MouseClicked(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("2");
-
-        javax.swing.GroupLayout panelRound21Layout = new javax.swing.GroupLayout(panelRound21);
-        panelRound21.setLayout(panelRound21Layout);
-        panelRound21Layout.setHorizontalGroup(
-            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound21Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound21Layout.setVerticalGroup(
-            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound21Layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        panelRound22.setBackground(new java.awt.Color(255, 0, 0));
-        panelRound22.setRoundBottomLeft(10);
-        panelRound22.setRoundBottomRight(10);
-        panelRound22.setRoundTopLeft(10);
-        panelRound22.setRoundTopRight(10);
-        panelRound22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelRound22MouseClicked(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("5");
-
-        javax.swing.GroupLayout panelRound22Layout = new javax.swing.GroupLayout(panelRound22);
-        panelRound22.setLayout(panelRound22Layout);
-        panelRound22Layout.setHorizontalGroup(
-            panelRound22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound22Layout.setVerticalGroup(
-            panelRound22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound22Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        panelRound23.setBackground(new java.awt.Color(255, 0, 0));
-        panelRound23.setRoundBottomLeft(10);
-        panelRound23.setRoundBottomRight(10);
-        panelRound23.setRoundTopLeft(10);
-        panelRound23.setRoundTopRight(10);
-        panelRound23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelRound23MouseClicked(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("6");
-
-        javax.swing.GroupLayout panelRound23Layout = new javax.swing.GroupLayout(panelRound23);
-        panelRound23.setLayout(panelRound23Layout);
-        panelRound23Layout.setHorizontalGroup(
-            panelRound23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound23Layout.setVerticalGroup(
-            panelRound23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound23Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        panelRound24.setBackground(new java.awt.Color(255, 204, 0));
-        panelRound24.setRoundBottomLeft(10);
-        panelRound24.setRoundBottomRight(10);
-        panelRound24.setRoundTopLeft(10);
-        panelRound24.setRoundTopRight(10);
-        panelRound24.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                panelRound24KeyPressed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("8");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelRound24Layout = new javax.swing.GroupLayout(panelRound24);
-        panelRound24.setLayout(panelRound24Layout);
-        panelRound24Layout.setHorizontalGroup(
-            panelRound24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound24Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound24Layout.setVerticalGroup(
-            panelRound24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound24Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        panelRound25.setBackground(new java.awt.Color(0, 51, 204));
-        panelRound25.setRoundBottomLeft(10);
-        panelRound25.setRoundBottomRight(10);
-        panelRound25.setRoundTopLeft(10);
-        panelRound25.setRoundTopRight(10);
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("8");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelRound25Layout = new javax.swing.GroupLayout(panelRound25);
-        panelRound25.setLayout(panelRound25Layout);
-        panelRound25Layout.setHorizontalGroup(
-            panelRound25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound25Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        panelRound25Layout.setVerticalGroup(
-            panelRound25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound25Layout.createSequentialGroup()
-                .addComponent(jLabel10)
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout contenedorFichasLayout = new javax.swing.GroupLayout(contenedorFichas);
-        contenedorFichas.setLayout(contenedorFichasLayout);
-        contenedorFichasLayout.setHorizontalGroup(
-            contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorFichasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRound13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(panelRound21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(panelRound22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(panelRound23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(panelRound24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(panelRound25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
-        );
-        contenedorFichasLayout.setVerticalGroup(
-            contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorFichasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contenedorFichasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelRound13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRound21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRound22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRound23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRound24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRound25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -587,7 +396,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ventanaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
@@ -606,41 +415,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta ");
-    }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void panelRound13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound13MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_panelRound13MouseClicked
-
-    private void panelRound21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound21MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_panelRound21MouseClicked
-
-    private void panelRound22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound22MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_panelRound22MouseClicked
-
-    private void panelRound23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound23MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_panelRound23MouseClicked
-
-    private void panelRound24KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelRound24KeyPressed
-        // TODO add your handling code here:
-        System.out.println("Selecciono carta");
-    }//GEN-LAST:event_panelRound24KeyPressed
-
     private void solicitarInicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarInicioBtnActionPerformed
         // TODO add your handling code here:
         controlador.solicitarInicio();
@@ -655,26 +429,14 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private utils.Btn btnCombinacion;
     private javax.swing.JPanel contenedorFichas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jugador1;
     private javax.swing.JLabel jugador2;
     private javax.swing.JLabel jugador3;
     private javax.swing.JLabel jugador4;
     private javax.swing.JLabel jugadorLabel;
     private utils.PanelRound panelRound1;
-    private utils.PanelRound panelRound13;
-    private utils.PanelRound panelRound21;
-    private utils.PanelRound panelRound22;
-    private utils.PanelRound panelRound23;
-    private utils.PanelRound panelRound24;
-    private utils.PanelRound panelRound25;
     private utils.Btn solicitarInicioBtn;
     private utils.Btn tomarFichaBtn;
     private javax.swing.JPanel ventanaPrincipal;

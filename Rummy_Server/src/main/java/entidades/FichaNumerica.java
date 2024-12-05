@@ -1,5 +1,6 @@
 package entidades;
 
+import dtos.TipoFichaDTO;
 import java.awt.Color;
 
 /**

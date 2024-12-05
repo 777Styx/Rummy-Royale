@@ -3,6 +3,7 @@ package partidaMVC;
 import Cliente.Cliente;
 import actualizaciones.JugadorDataActualizada;
 import actualizaciones.JugadoresActualizados;
+import actualizaciones.MostrarMano;
 import actualizaciones.MostrarMensaje;
 import actualizaciones.MostrarSolicitudInicio;
 import dtos.CombinacionDTO;
@@ -153,7 +154,7 @@ public class ModeloJuego extends Observable {
                 break;
             case "PARTIDA_INICIADA":
                 setChanged();
-                notifyObservers();
+                notifyObservers(new MostrarMano(this.jugador));
             default:
                 System.out.println("no llego nada :(");
         }

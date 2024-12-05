@@ -1,6 +1,7 @@
 package entidades;
 
 import dtos.ColorCustomDTO;
+import dtos.FichaDTO;
 import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;
 import dtos.TipoFichaDTO;
@@ -192,6 +193,8 @@ public class Juego extends Observable {
                 jDTO.setPreferenciasColor(mColores);
                 jDTO.setId(j.getId());
                 jugadoresDTO.add(jDTO);
+                List<FichaDTO> fichas = obtenerMazoJugadorDTO(j);
+                jDTO.setMano((ArrayList<FichaDTO>) fichas);
             }
             return jugadoresDTO;
     }
@@ -202,6 +205,21 @@ public class Juego extends Observable {
         setChanged();
         notifyObservers(res);
         
+    }
+    
+    public List<FichaDTO> obtenerMazoJugadorDTO(Jugador jugador) {
+        List<IFicha> mazoJugador = jugador.getMano();
+        List<FichaDTO> mazoJugadorDTO = new ArrayList<>();
+
+        for (IFicha ficha : mazoJugador) {
+            FichaDTO fichaDTO = new FichaDTO();
+            fichaDTO.setNumero(ficha.getNumero());
+            fichaDTO.setTipo((TipoFicha) ficha.getTipo());
+            fichaDTO.setComodin(ficha.isComodin());
+            mazoJugadorDTO.add(fichaDTO);
+        }
+
+        return mazoJugadorDTO;
     }
     
     public void asignarTurnos() {
