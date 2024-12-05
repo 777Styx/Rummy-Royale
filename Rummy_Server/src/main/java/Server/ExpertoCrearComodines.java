@@ -23,10 +23,10 @@ public class ExpertoCrearComodines implements Experto {
         while (comodines.size() < numComodines) {
             comodines.add(new FichaComodin());
         }
-        
-        juego.setComodines(comodines);
 
-        
+        juego.setComodines(comodines);
+        juego.setConfigurado(false);
+
     }
-    
+
 }

@@ -7,10 +7,12 @@ import entidades.Juego;
 import entidades.Mazo;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Queue;
 import mensajes.Mensaje;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
@@ -26,6 +28,8 @@ public class Controlador implements Observer {
     Server server = Server.getInstance();
     private Map<String, Experto> expertos;
     Juego juego = Juego.getInstance();
+    // blackboard vFinal
+    private Queue<String> accionesPendientes = new LinkedList<>();
 
     private Controlador() {
         this.expertos = new HashMap<>();
@@ -48,16 +52,28 @@ public class Controlador implements Observer {
         }
     }
 
+    //bb v2
+    private void ejecutarSiguienteAccion(Mensaje mensaje) {
+        if (!accionesPendientes.isEmpty()) {
+            String accion = accionesPendientes.poll();
+            realizarAccion(accion, mensaje);
+        } else {
+            System.out.println("Todas las acciones han sido completadas.");
+        }
+    }
+
     public void crearPartida(Mensaje mensaje, ClientHandler aThis) {
         this.clientHandler = aThis;
         realizarAccion("crearPartida", mensaje);
     }
 
-    public void configurarPartida(ClientHandler aThis, Mensaje mensaje) {
+    public void iniciarConfiguracionPartida(ClientHandler aThis, Mensaje mensaje) {
         this.clientHandler = aThis;
-        realizarAccion("crearFichasNumericas", mensaje);
-        realizarAccion("crearComodines", mensaje);
-        realizarAccion("crearMazo", mensaje);
+        accionesPendientes.add("crearFichasNumericas");
+        accionesPendientes.add("crearComodines");
+        accionesPendientes.add("crearMazo");
+
+        ejecutarSiguienteAccion(mensaje);
     }
 
     public static synchronized Controlador getInstance() {
@@ -99,10 +115,10 @@ public class Controlador implements Observer {
             Mensaje mensaje = (Mensaje) arg;
             System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
             server.broadcastMessage(mensaje, clientHandler);
-        } else if(arg instanceof String) {
-            String mensaje = (String) arg;
-            if(mensaje.equals("INICIANDO_JUEGO")) {
-                iniciarPartida();
+        } else if (arg instanceof Juego) {
+            Juego juego = (Juego) arg;
+            if (!juego.estaConfigurado()) {
+                ejecutarSiguienteAccion((Mensaje) arg);
             }
         }
     }

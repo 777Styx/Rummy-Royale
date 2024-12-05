@@ -26,7 +26,6 @@ import mensajes.ResUnirse;
 public class Juego extends Observable {
 
     private ArrayList<Jugador> jugadores;
-
     private Tablero tablero;
     private boolean partidaActiva = false;
     private static Juego instance;
@@ -39,6 +38,7 @@ public class Juego extends Observable {
     private boolean solicitudEnCurso;
     private UUID idSolicitudInicio; // por si hay que diferenciar las solicitudes, no creo
     private Map<JugadorDTO, Boolean> respuestasSolicitud;
+    private boolean configurado = false;
     
     public List<IFicha> getComodines() {
         return comodines;
@@ -185,6 +185,17 @@ public class Juego extends Observable {
         }
     }
 
+    public boolean estaConfigurado() {
+        return configurado;
+    }
+
+    public void setConfigurado(boolean configurado) {
+        this.configurado = configurado;
+        setChanged(); 
+        notifyObservers();
+    }
+
+    
     public List<IFicha> getFichasNumericas() {
         return fichasNumericas;
     }
@@ -228,9 +239,9 @@ public class Juego extends Observable {
     public void setMazo(Mazo mazo) {
         this.mazo = mazo;
         this.estado = EstadoJuego.CONFIGURADO;
-        setChanged();
         ResConfigurarPartida res = new ResConfigurarPartida("PARTIDA_CONFIGURADA");
         res.setAvatarsDisponibles(avatarsDisponibles);
+        setChanged();
         notifyObservers(res);
     }
 

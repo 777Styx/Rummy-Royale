@@ -67,7 +67,7 @@ public class ManejadorComando {
     }
 
     private void handleConfigurarPartida(ReqConfigurarPartida reqConfigurarPartida) {
-        controlador.configurarPartida(clientHandler, reqConfigurarPartida);
+        controlador.iniciarConfiguracionPartida(clientHandler, reqConfigurarPartida);
     }
     
     private void handleRegistrarJugador(ReqRegistroJugador mensaje) {

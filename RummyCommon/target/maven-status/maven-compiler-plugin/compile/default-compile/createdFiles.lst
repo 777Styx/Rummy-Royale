@@ -6,7 +6,6 @@ mensajes\ResCrearPartida.class
 dtos\MazoDTO.class
 mensajes\Mensaje.class
 mensajes\ResSolicitarInicio.class
-common\Command.class
 dtos\TableroDTO.class
 mensajes\MessageAdapter.class
 mensajes\ReqSolicitarInicio.class

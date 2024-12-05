@@ -18,6 +18,7 @@ public class ExpertoCrearFichasNumericas implements Experto {
 
     @Override
     public void ejecutar(Juego juego, Mensaje mensaje) {
+        System.out.println("Estoy creando fichas numericas");
         ReqConfigurarPartida req = (ReqConfigurarPartida) mensaje;
         int rangoFichas = req.getJuego().getRangoFichas();
         
@@ -33,6 +34,7 @@ public class ExpertoCrearFichasNumericas implements Experto {
         }
         
         juego.setFichasNumericas(fichasNumericas);
+        juego.setConfigurado(false);
         
     }
     
