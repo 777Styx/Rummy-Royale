@@ -1,6 +1,8 @@
 package partidaMVC;
 
 import Cliente.Cliente;
+import actualizaciones.ActualizarDarTurno;
+import actualizaciones.ConfigurarAmbiente;
 import actualizaciones.JugadorDataActualizada;
 import actualizaciones.JugadoresActualizados;
 import actualizaciones.MostrarMano;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Random;
 import mensajes.Mensaje;
+import mensajes.ResIniciarPartida;
 import mensajes.ResRegistroJugador;
 import mensajes.ResSolicitarInicio;
 
@@ -64,14 +67,45 @@ public class ModeloJuego extends Observable {
         setChanged();
         notifyObservers(new JugadorDataActualizada(this.jugador));
     }
+    
+    public void actualizarDataTurno(Mensaje mensaje) {
+        ResIniciarPartida res = (ResIniciarPartida) mensaje;
+        this.jugadores = res.getJugadores();
+        this.jugador = obtenerJugadorPorId(this.jugador.getId());
+        setChanged();
+        notifyObservers(new JugadoresActualizados(this.jugadores));
+        setChanged();
+        notifyObservers(new JugadorDataActualizada(this.jugador));
+        // actualizar turno aqui abajo
+        verificarTurno();
+        
+        
+        // luego tmb actualizar tablero
+    }
+    
+    public void configurarAmbiente(){
+        setChanged();
+        notifyObservers(new ConfigurarAmbiente(jugadores.get(indiceJugadorActual)));
+    }
+    
+    public void actualizarMazoJugador() {
+        setChanged();
+        notifyObservers(new MostrarMano(this.jugador));
+    }
 
     public void actualizarJugadorNuevo(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
         this.jugadores = res.getJugadores();
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
-        
-        
+    }
+    
+    public void verificarTurno() {
+        JugadorDTO jugadorActual = jugadores.get(indiceJugadorActual);
+        if (jugadorActual.equals(jugador)) {
+            setChanged();
+            notifyObservers(new ActualizarDarTurno());
+        }
     }
 
     public void solicitarInicio() {
@@ -153,8 +187,8 @@ public class ModeloJuego extends Observable {
                 notifyObservers(new MostrarMensaje("Alguien ya solicito iniciar juego"));
                 break;
             case "PARTIDA_INICIADA":
-                setChanged();
-                notifyObservers(new MostrarMano(this.jugador));
+                
+                break;
             default:
                 System.out.println("no llego nada :(");
         }

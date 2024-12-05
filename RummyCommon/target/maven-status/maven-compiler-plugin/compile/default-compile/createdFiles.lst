@@ -4,6 +4,7 @@ mensajes\ResResponderSolicitudInicio.class
 dtos\JuegoDTO.class
 mensajes\ResCrearPartida.class
 dtos\MazoDTO.class
+dtos\IFicha.class
 mensajes\Mensaje.class
 mensajes\ResSolicitarInicio.class
 mensajes\ReqIniciarPartida.class

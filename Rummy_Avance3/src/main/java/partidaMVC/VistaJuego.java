@@ -5,6 +5,7 @@ import actualizaciones.ViewJuego;
 import dtos.FichaDTO;
 import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;
+import dtos.TipoFichaDTO;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -31,6 +32,12 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     public VistaJuego(ControladorJuego controlador) {
         initComponents();
         this.controlador = controlador;
+        esTuTurnoLabel.setVisible(false);
+        
+        btnCombinacion.setEnabled(false);
+        tomarFichaBtn.setEnabled(false);
+        pasarTurnoBtn.setVisible(false);
+        pasarTurnoBtn.setEnabled(false);
     }
 
     public static VistaJuego getInstance(ControladorJuego controlador) {
@@ -65,6 +72,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         if (jugadores.size() > 0 && jugadores.get(0) != null) {
             ImageIcon avatarIcon = new ImageIcon(getClass().getClassLoader().getResource("imgs/" + jugadores.get(0).getAvatar() + ".png"));
             avatarJ1.setIcon(avatarIcon);
+            cartasJ1.setText(jugadores.get(0).getMano() != null ? String.valueOf(jugadores.get(0).getMano().size()) : "");
+        } else {
+            cartasJ1.setText("");
         }
 
         String j2 = jugadores.size() > 1 && jugadores.get(1) != null ? jugadores.get(1).getNombre() : "- - -";
@@ -72,6 +82,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         if (jugadores.size() > 1 && jugadores.get(1) != null) {
             ImageIcon avatarIcon = new ImageIcon(getClass().getClassLoader().getResource("imgs/" + jugadores.get(1).getAvatar() + ".png"));
             avatarJ2.setIcon(avatarIcon);
+            cartasJ2.setText(jugadores.get(1).getMano() != null ? String.valueOf(jugadores.get(1).getMano().size()) : "");
+        } else {
+            cartasJ2.setText("");
         }
 
         String j3 = jugadores.size() > 2 && jugadores.get(2) != null ? jugadores.get(2).getNombre() : "- - -";
@@ -79,6 +92,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         if (jugadores.size() > 2 && jugadores.get(2) != null) {
             ImageIcon avatarIcon = new ImageIcon(getClass().getClassLoader().getResource("imgs/" + jugadores.get(2).getAvatar() + ".png"));
             avatarJ3.setIcon(avatarIcon);
+            cartasJ3.setText(jugadores.get(2).getMano() != null ? String.valueOf(jugadores.get(2).getMano().size()) : "");
+        } else {
+            cartasJ3.setText("");
         }
 
         String j4 = jugadores.size() > 3 && jugadores.get(3) != null ? jugadores.get(3).getNombre() : "- - -";
@@ -86,6 +102,9 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         if (jugadores.size() > 3 && jugadores.get(3) != null) {
             ImageIcon avatarIcon = new ImageIcon(getClass().getClassLoader().getResource("imgs/" + jugadores.get(3).getAvatar() + ".png"));
             avatarJ4.setIcon(avatarIcon);
+            cartasJ4.setText(jugadores.get(3).getMano() != null ? String.valueOf(jugadores.get(3).getMano().size()) : "");
+        } else {
+            cartasJ4.setText("");
         }
 
         if (ventanaPrincipal != null) {
@@ -100,35 +119,34 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         avatarLabel.setIcon(avatarIcon);
         jugadorLabel.setText(jugador.getNombre());
     }
-    
+
     @Override
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(
-            this,
-            mensaje,
-            "Mensaje",
-            JOptionPane.INFORMATION_MESSAGE
+                this,
+                mensaje,
+                "Mensaje",
+                JOptionPane.INFORMATION_MESSAGE
         );
     }
 
     @Override
     public void mostrarSolicitudInicio(String solicitante) {
         int respuesta = JOptionPane.showConfirmDialog(
-        this, solicitante + "ha solicitado iniciar el juego, Estads de acuerdo?", 
-                "Solicitud Inicio de Juego", 
+                this, solicitante + " ha solicitado iniciar el juego, Estas de acuerdo?",
+                "Solicitud Inicio de Juego",
                 JOptionPane.YES_NO_OPTION);
-        
+
         boolean aceptar = (respuesta == JOptionPane.YES_OPTION);
-        System.out.println("REspuesta de este jugador: " + aceptar);
         controlador.responderSolicitudInicio(aceptar);
     }
-    
-     @Override
+
+    @Override
     public void mostrarMano(JugadorDTO jugador) {
-        
+
         List<FichaDTO> fichas = jugador.getMano();
         List<ManejadorColorDTO> preferenciasColor = jugador.getPreferenciasColor();
-        
+
         contenedorFichas.removeAll();
 
         for (FichaDTO ficha : fichas) {
@@ -136,14 +154,17 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
             fichaLabel.setOpaque(true);
             fichaLabel.setHorizontalAlignment(SwingConstants.CENTER);
             fichaLabel.setPreferredSize(new Dimension(50, 70));
+            
 
             if (ficha.isComodin()) {
                 fichaLabel.setBackground(Color.WHITE);
                 fichaLabel.setText("C");
+                //System.out.println("[C]");
             } else {
                 Color colorFicha = obtenerColorFicha(ficha.getTipo(), preferenciasColor);
                 fichaLabel.setBackground(colorFicha);
                 fichaLabel.setText(String.valueOf(ficha.getNumero()));
+                //System.out.println("[" + ficha.getTipo() + ":" + ficha.getNumero() + "]");
             }
 
             contenedorFichas.add(fichaLabel);
@@ -155,11 +176,24 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 
     private Color obtenerColorFicha(TipoFichaDTO tipo, List<ManejadorColorDTO> preferenciasColor) {
         for (ManejadorColorDTO manejadorColor : preferenciasColor) {
-            if (manejadorColor.getTipo().equals(tipo)) {
-                return new Color(manejadorColor.getColor().getRgb());
+            if (manejadorColor.getTipoFicha().equals(tipo)) {
+                return new Color(manejadorColor.getColor().getColor());
             }
         }
-        return Color.GRAY; // Color por defecto si no se encuentra la preferencia
+        return Color.GRAY;
+    }
+
+    @Override
+    public void configurarAmbiente(JugadorDTO jugador) {
+        turnoLabel.setText(jugador.getNombre());
+    }
+
+    @Override
+    public void actualizarDarTurno() {
+        btnCombinacion.setEnabled(true);
+        tomarFichaBtn.setEnabled(true);
+        esTuTurnoLabel.setVisible(true);
+        pasarTurnoBtn.setEnabled(true);
     }
     
     /**
@@ -190,6 +224,14 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         avatarJ2 = new javax.swing.JLabel();
         avatarJ3 = new javax.swing.JLabel();
         avatarJ4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        turnoLabel = new javax.swing.JLabel();
+        cartasJ1 = new javax.swing.JLabel();
+        cartasJ2 = new javax.swing.JLabel();
+        cartasJ3 = new javax.swing.JLabel();
+        cartasJ4 = new javax.swing.JLabel();
+        esTuTurnoLabel = new javax.swing.JLabel();
+        pasarTurnoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -293,48 +335,94 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         avatarJ4.setForeground(new java.awt.Color(255, 255, 255));
         avatarJ4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Turno: ");
+
+        turnoLabel.setForeground(new java.awt.Color(255, 255, 255));
+
+        cartasJ1.setForeground(new java.awt.Color(255, 255, 255));
+        cartasJ1.setText("-");
+
+        cartasJ2.setForeground(new java.awt.Color(255, 255, 255));
+        cartasJ2.setText("-");
+
+        cartasJ3.setForeground(new java.awt.Color(255, 255, 255));
+        cartasJ3.setText("-");
+
+        cartasJ4.setForeground(new java.awt.Color(255, 255, 255));
+        cartasJ4.setText("-");
+
+        esTuTurnoLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        esTuTurnoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        esTuTurnoLabel.setText("Es tu turno! haz algo jaja");
+
+        pasarTurnoBtn.setText("Pasar turno");
+        pasarTurnoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasarTurnoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ventanaPrincipalLayout = new javax.swing.GroupLayout(ventanaPrincipal);
         ventanaPrincipal.setLayout(ventanaPrincipalLayout);
         ventanaPrincipalLayout.setHorizontalGroup(
             ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                .addGap(12, 12, Short.MAX_VALUE)
+                .addGap(15, 15, Short.MAX_VALUE)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                                .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(408, 408, 408)
+                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jugador2)
+                                            .addComponent(jugador1)
+                                            .addComponent(jugador3)
+                                            .addComponent(jugador4))
+                                        .addGap(23, 23, 23)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cartasJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cartasJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cartasJ3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cartasJ4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24))
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(tomarFichaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(392, 392, 392))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaPrincipalLayout.createSequentialGroup()
-                                .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pasarTurnoBtn)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jugadorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(esTuTurnoLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(turnoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(66, 66, 66)
                                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(avatarJ1)
                                     .addComponent(avatarJ2)
                                     .addComponent(avatarJ3)
-                                    .addComponent(avatarJ4))
-                                .addGap(17, 17, 17)))
-                        .addGap(16, 16, 16)
-                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jugador2)
-                                    .addComponent(jugador1)
-                                    .addComponent(jugador3)
-                                    .addComponent(jugador4))
-                                .addGap(23, 23, 23))))
-                    .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ventanaPrincipalLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(avatarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jugadorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                                    .addComponent(avatarJ4))))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventanaPrincipalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(solicitarInicioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,23 +440,32 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
                         .addGap(18, 18, 18)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jugador1)
-                            .addComponent(avatarJ1))
+                            .addComponent(avatarJ1)
+                            .addComponent(cartasJ1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jugador2)
-                            .addComponent(avatarJ2))
+                            .addComponent(avatarJ2)
+                            .addComponent(cartasJ2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jugador3)
-                            .addComponent(avatarJ3))
+                            .addComponent(avatarJ3)
+                            .addComponent(cartasJ3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jugador4)
-                            .addComponent(avatarJ4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                            .addComponent(avatarJ4)
+                            .addComponent(cartasJ4))))
+                .addGap(18, 18, 18)
+                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(turnoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCombinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tomarFichaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pasarTurnoBtn))
                 .addGap(18, 18, 18)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contenedorFichas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,8 +473,10 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(17, 17, 17))
+                        .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(esTuTurnoLabel))
+                        .addGap(16, 16, 16))
                     .addGroup(ventanaPrincipalLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -396,7 +495,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ventanaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();
@@ -404,14 +503,11 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCombinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCombinacionActionPerformed
-
+        System.out.println("hare combinacion");
     }//GEN-LAST:event_btnCombinacionActionPerformed
 
     private void tomarFichaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tomarFichaBtnActionPerformed
-        // hola?
-        // controlDeck controlChip = new controlDeck();
-        // controlChip.generateChip();
-        //controlador.tomarFicha();
+        System.out.println("tomare ficha");
 
     }//GEN-LAST:event_tomarFichaBtnActionPerformed
 
@@ -420,6 +516,11 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         controlador.solicitarInicio();
     }//GEN-LAST:event_solicitarInicioBtnActionPerformed
 
+    private void pasarTurnoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarTurnoBtnActionPerformed
+        // TODO add your handling code here:
+        System.out.println("pasando turno");
+    }//GEN-LAST:event_pasarTurnoBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel avatarJ1;
     private javax.swing.JLabel avatarJ2;
@@ -427,19 +528,29 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private javax.swing.JLabel avatarJ4;
     private javax.swing.JLabel avatarLabel;
     private utils.Btn btnCombinacion;
+    private javax.swing.JLabel cartasJ1;
+    private javax.swing.JLabel cartasJ2;
+    private javax.swing.JLabel cartasJ3;
+    private javax.swing.JLabel cartasJ4;
     private javax.swing.JPanel contenedorFichas;
+    private javax.swing.JLabel esTuTurnoLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jugador1;
     private javax.swing.JLabel jugador2;
     private javax.swing.JLabel jugador3;
     private javax.swing.JLabel jugador4;
     private javax.swing.JLabel jugadorLabel;
     private utils.PanelRound panelRound1;
+    private javax.swing.JButton pasarTurnoBtn;
     private utils.Btn solicitarInicioBtn;
     private utils.Btn tomarFichaBtn;
+    private javax.swing.JLabel turnoLabel;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
+
+    
 
 }

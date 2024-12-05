@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
+import mensajes.ResIniciarPartida;
 import mensajes.ResRegistroJugador;
 import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
@@ -19,7 +20,6 @@ import mensajes.ResUnirse;
  *
  * @author carlo
  */
-
 public class Server {
 
     private static Server instance;
@@ -63,16 +63,16 @@ public class Server {
 
         if (mensaje instanceof ResRegistroJugador) {
             ResRegistroJugador res = (ResRegistroJugador) mensaje;
-            
+
             ResRegistroJugador resClientes = new ResRegistroJugador("JUGADOR_NUEVO", res.getJugadores(), res.getJugadorNuevoID());
             for (ClientHandler client : clients) {
-                if(client == sender) {
+                if (client == sender) {
                     client.sendMessage(mensaje);
                 } else {
-                    
+
                     client.sendMessage(resClientes);
                 }
-                
+
             }
         } else if (mensaje instanceof ResCrearPartida) {
             for (ClientHandler client : clients) {
@@ -88,11 +88,15 @@ public class Server {
                     client.sendMessage(mensaje);
                 }
             }
-        } else if(mensaje instanceof ResSolicitarInicio) {
+        } else if (mensaje instanceof ResSolicitarInicio) {
             for (ClientHandler client : clients) {
                 if (client != sender) {
                     client.sendMessage(mensaje);
                 }
+            }
+        } else if (mensaje instanceof ResIniciarPartida) {
+            for (ClientHandler client : clients) {
+                client.sendMessage(mensaje);
             }
         }
     }

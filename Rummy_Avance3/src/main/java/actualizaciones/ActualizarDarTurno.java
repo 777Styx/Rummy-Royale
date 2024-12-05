@@ -4,24 +4,15 @@
  */
 package actualizaciones;
 
-import dtos.JugadorDTO;
-import java.util.List;
-
 /**
  *
  * @author carlo
  */
-public class MostrarMano implements ActualizacionJuego {
+public class ActualizarDarTurno implements ActualizacionJuego {
 
-    private JugadorDTO jugador;
-
-    public MostrarMano(JugadorDTO jugador) {
-        this.jugador = jugador;
-    }
-    
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.mostrarMano(jugador);
+        vista.actualizarDarTurno();
     }
 
     @Override
@@ -30,5 +21,5 @@ public class MostrarMano implements ActualizacionJuego {
             aplicar((ViewJuego) vista);
         }
     }
-    
+
 }

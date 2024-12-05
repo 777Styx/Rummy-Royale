@@ -61,9 +61,9 @@ public class ResponseManager {
         if(mensaje instanceof ResIniciarPartida) {
             Mensaje res = (ResIniciarPartida) mensaje;
             if(res.getComando().equals("PARTIDA_INICIADA")) {
-                modeloJuego.actualizarJugadores(mensaje);
-                
-                modeloJuego.notificar(res);
+                modeloJuego.actualizarDataTurno(mensaje);
+                modeloJuego.actualizarMazoJugador();
+                modeloJuego.configurarAmbiente();
             }
         }
     }

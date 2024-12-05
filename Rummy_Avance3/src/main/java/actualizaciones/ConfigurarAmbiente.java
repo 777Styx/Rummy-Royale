@@ -5,23 +5,22 @@
 package actualizaciones;
 
 import dtos.JugadorDTO;
-import java.util.List;
 
 /**
  *
  * @author carlo
  */
-public class MostrarMano implements ActualizacionJuego {
+public class ConfigurarAmbiente implements ActualizacionJuego {
 
     private JugadorDTO jugador;
 
-    public MostrarMano(JugadorDTO jugador) {
+    public ConfigurarAmbiente(JugadorDTO jugador) {
         this.jugador = jugador;
     }
     
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.mostrarMano(jugador);
+        vista.configurarAmbiente(jugador);
     }
 
     @Override

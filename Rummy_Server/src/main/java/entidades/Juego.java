@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.UUID;
 import mensajes.Mensaje;
-import mensajes.ReqIniciarPartida;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResIniciarPartida;
@@ -178,7 +177,7 @@ public class Juego extends Observable {
     public void repartirFichas() {
         for (Jugador jugador : jugadores) {
             ArrayList<IFicha> manoJugador = new ArrayList<>();
-            while (manoJugador.size() < 13) {
+            while (manoJugador.size() < 14) {
                 manoJugador.add(this.mazo.tomarFicha());
             }
 
@@ -193,9 +192,9 @@ public class Juego extends Observable {
             JugadorDTO jDTO = new JugadorDTO();
             List<ManejadorColorDTO> mColores = new ArrayList<>();
             mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(0).getColor().getColor().getRGB())));
-            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(1).getColor().getColor().getRGB())));
-            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(2).getColor().getColor().getRGB())));
-            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO1DTO, new ColorCustomDTO(j.getPreferenciasColor().get(3).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO2DTO, new ColorCustomDTO(j.getPreferenciasColor().get(1).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO3DTO, new ColorCustomDTO(j.getPreferenciasColor().get(2).getColor().getColor().getRGB())));
+            mColores.add(new ManejadorColorDTO(TipoFichaDTO.TIPO4DTO, new ColorCustomDTO(j.getPreferenciasColor().get(3).getColor().getColor().getRGB())));
             jDTO.setNombre(j.getNombre());
             jDTO.setAvatar(j.getAvatar());
             jDTO.setPreferenciasColor(mColores);
