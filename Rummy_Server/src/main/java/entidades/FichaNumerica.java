@@ -21,7 +21,13 @@ public class FichaNumerica implements IFicha {
         return numero;
     }
 
-    public TipoFicha getTipoFicha() {
+    @Override
+    public TipoFicha getTipo() {
         return tipoFicha;
+    }
+
+    @Override
+    public boolean isComodin() {
+        return false;
     }
 }

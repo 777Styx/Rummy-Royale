@@ -14,8 +14,8 @@ public class FichaComodin implements IFicha {
     }
 
     @Override
-    public TipoFichaDTO getTipo() {
-        return TipoFichaDTO.TIPO1;
+    public TipoFicha getTipo() {
+        return TipoFicha.TIPO1;
     }
 
     @Override
