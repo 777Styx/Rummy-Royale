@@ -2,7 +2,6 @@ package Server;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import common.Command;
 import dtos.JugadorDTO;
 import java.io.BufferedReader;
 import java.io.IOException;

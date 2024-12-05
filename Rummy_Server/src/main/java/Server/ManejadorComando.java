@@ -1,7 +1,6 @@
 package Server;
 
 import com.google.gson.Gson;
-import common.Command;
 import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import mensajes.Mensaje;

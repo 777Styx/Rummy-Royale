@@ -52,7 +52,7 @@ public class Controlador implements Observer {
         this.clientHandler = aThis;
         realizarAccion("crearPartida", mensaje);
     }
-    
+
     public void configurarPartida(ClientHandler aThis, Mensaje mensaje) {
         this.clientHandler = aThis;
         realizarAccion("crearFichasNumericas", mensaje);
@@ -71,52 +71,39 @@ public class Controlador implements Observer {
         this.clientHandler = aThis;
         realizarAccion("registrarJugador", mensaje);
     }
-    
+
     public void unirse(Mensaje mensaje, ClientHandler aThis) {
         this.clientHandler = aThis;
         realizarAccion("unirse", mensaje);
     }
-    
-    public void solicitarInicio(Mensaje mensaje,ClientHandler aThis) {
+
+    public void solicitarInicio(Mensaje mensaje, ClientHandler aThis) {
         this.clientHandler = aThis;
         realizarAccion("solicitarInicio", mensaje);
     }
-    
+
     public void responderSolicitudInicio(Mensaje mensaje, ClientHandler aThis) {
         this.clientHandler = aThis;
         realizarAccion("responderSolicitudInicio", mensaje);
     }
-    
+
+    public void iniciarPartida() {
+        realizarAccion("repartirFichas", null);
+        realizarAccion("asignarTurnos", null);
+        realizarAccion("empezarPartida", null);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {
             Mensaje mensaje = (Mensaje) arg;
-            
             System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
-            
             server.broadcastMessage(mensaje, clientHandler);
-            
-            
-            // me di cuenta muy tarde que este puto swithc no servia pa una puta mierda
-            
-//            switch (mensaje.getComando()) {
-//                case "PARTIDA_CREADA":
-//                    server.broadcastMessage(mensaje, clientHandler);
-//                    break;
-//                case "PARTIDA_NO_CREADA":
-//                    server.broadcastMessage(new ResCrearPartida("PARTIDA_NO_CREADA"), clientHandler);
-//                    break;
-//                case "JUGADOR_REGISTRADO":
-//                    server.broadcastMessage(mensaje, clientHandler);
-//                    break;
-//                case "PARTIDA_CONFIGURADA":
-//                    server.broadcastMessage(mensaje, clientHandler);
-//                    break;
-//                case "JUGADOR_UNIDO":
-//                    server.broadcastMessage(mensaje, clientHandler);
-//                default:
-//                    System.out.println("Mensaje no reconocido (BBControlador): " + mensaje);
-//            }
+        } else if(arg instanceof String) {
+            String mensaje = (String) arg;
+            if(mensaje.equals("INICIANDO_JUEGO")) {
+                iniciarPartida();
+            }
         }
     }
 }

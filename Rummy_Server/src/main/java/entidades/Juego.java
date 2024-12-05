@@ -39,7 +39,7 @@ public class Juego extends Observable {
     private boolean solicitudEnCurso;
     private UUID idSolicitudInicio; // por si hay que diferenciar las solicitudes, no creo
     private Map<JugadorDTO, Boolean> respuestasSolicitud;
-
+    
     public List<IFicha> getComodines() {
         return comodines;
     }
@@ -52,7 +52,7 @@ public class Juego extends Observable {
         INICIO,
         CREADO,
         CONFIGURADO,
-        EN_CURSO,
+        EN_PROGRESO,
         FINALIZADO
     }
 
@@ -93,7 +93,6 @@ public class Juego extends Observable {
                     manejadoresColor,
                     generarIdJugador(jugadorDTO.getNombre())
             );
-
             this.jugadores.add(jugador);
             removerAvatar(jugador.getAvatar());
 
@@ -113,6 +112,10 @@ public class Juego extends Observable {
             }
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_REGISTRADO", jugadoresDTO, jugador.getId()));
+            
+            if(jugadores.size() == 4) {
+                // iniciar partida aqui tmb
+            }
         } else {
             setChanged();
             notifyObservers(new ResRegistroJugador("JUGADOR_NO_REGISTRADO", null, null));
@@ -159,6 +162,8 @@ public class Juego extends Observable {
             boolean todosAceptaron = respuestasSolicitud.values().stream().allMatch(r -> r);
             if(todosAceptaron) {
                 System.out.println("INICIO DE JUEGOOOOOO");
+                setChanged();
+                notifyObservers("INICIANDO_JUEGO");
             } else {
                 System.out.println("No todos aceptaron");
             }
@@ -166,9 +171,18 @@ public class Juego extends Observable {
             respuestasSolicitud.clear();
             solicitudEnCurso = false;
         }
-        
-        
-        
+    }
+    
+    public void repartirFichas(){
+        for(Jugador jugador : jugadores) {
+            ArrayList<IFicha> manoJugador = new ArrayList<>();
+            while(manoJugador.size() < 13) {
+                manoJugador.add(this.mazo.tomarFicha());
+            }
+            
+            jugador.setMano(manoJugador);
+            System.out.println("numero de cartas que tiene " + jugador.getNombre()+ ": " + manoJugador.size());
+        }
     }
 
     public List<IFicha> getFichasNumericas() {
