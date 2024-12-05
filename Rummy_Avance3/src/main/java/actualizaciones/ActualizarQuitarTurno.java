@@ -4,18 +4,22 @@
  */
 package actualizaciones;
 
+import dtos.JugadorDTO;
+
 /**
  *
  * @author carlo
  */
 public class ActualizarQuitarTurno implements ActualizacionJuego {
 
-    public ActualizarQuitarTurno() {
+    private JugadorDTO jugador;
+    public ActualizarQuitarTurno(JugadorDTO jugador) {
+        this.jugador = jugador;
     }
     
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.actualizarQuitarTurno();
+        vista.actualizarQuitarTurno(jugador);
     }
 
     @Override

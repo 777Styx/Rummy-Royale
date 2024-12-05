@@ -18,5 +18,5 @@ public interface ViewJuego extends Vista{
     void mostrarSolicitudInicio(String solicitante);
     void mostrarMano(JugadorDTO jugador);
     void actualizarDarTurno(JugadorDTO jugador);
-    void actualizarQuitarTurno();
+    void actualizarQuitarTurno(JugadorDTO jugador);
 }

@@ -171,6 +171,8 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
 
         contenedorFichas.revalidate();
         contenedorFichas.repaint();
+        solicitarInicioBtn.setVisible(false);
+        solicitarInicioBtn.setEnabled(false);
     }
 
     private Color obtenerColorFicha(TipoFichaDTO tipo, List<ManejadorColorDTO> preferenciasColor) {
@@ -193,12 +195,13 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     }
 
     @Override
-    public void actualizarQuitarTurno() {
+    public void actualizarQuitarTurno(JugadorDTO jugador) {
         btnCombinacion.setEnabled(false);
         tomarFichaBtn.setEnabled(false);
         esTuTurnoLabel.setVisible(false);
         pasarTurnoBtn.setEnabled(false);
         pasarTurnoBtn.setVisible(false);
+        turnoLabel.setText(jugador.getNombre());
     }
 
     /**
