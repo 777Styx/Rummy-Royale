@@ -7,6 +7,7 @@ package Cliente;
 import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
+import mensajes.ResIniciarPartida;
 import mensajes.ResRegistroJugador;
 import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
@@ -55,6 +56,13 @@ public class ResponseManager {
         if(mensaje instanceof ResSolicitarInicio) {
             ResSolicitarInicio res = (ResSolicitarInicio) mensaje;
             modeloJuego.notificar(res);
+        }
+        
+        if(mensaje instanceof ResIniciarPartida) {
+            Mensaje res = (ResIniciarPartida) mensaje;
+            if(res.getComando().equals("PARTIDA_INICIADA")) {
+                modeloJuego.notificar(res);
+            }
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Queue;
 import mensajes.Mensaje;
+import mensajes.ReqIniciarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResRegistroJugador;
 
@@ -41,6 +42,9 @@ public class Controlador implements Observer {
         this.expertos.put("unirse", new ExpertoUnirse());
         this.expertos.put("solicitarInicio", new ExpertoSolicitarInicio());
         this.expertos.put("responderSolicitudInicio", new ExpertoResponderSolicitudInicio());
+        this.expertos.put("repartirFichas", new ExpertoRepartirFichas());
+        this.expertos.put("asignarTurnos", new ExpertoAsignarTurnos());
+        this.expertos.put("empezarPartida", new ExpertoEmpezarPartida());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -67,7 +71,7 @@ public class Controlador implements Observer {
         realizarAccion("crearPartida", mensaje);
     }
 
-    public void iniciarConfiguracionPartida(ClientHandler aThis, Mensaje mensaje) {
+    public void triggerConfiguracionPartida(ClientHandler aThis, Mensaje mensaje) {
         this.clientHandler = aThis;
         accionesPendientes.add("crearFichasNumericas");
         accionesPendientes.add("crearComodines");
@@ -103,10 +107,12 @@ public class Controlador implements Observer {
         realizarAccion("responderSolicitudInicio", mensaje);
     }
 
-    public void iniciarPartida() {
-        realizarAccion("repartirFichas", null);
-        realizarAccion("asignarTurnos", null);
-        realizarAccion("empezarPartida", null);
+    public void triggerIniciarPartida(Mensaje mensaje) {
+        accionesPendientes.add("repartirFichas");
+        accionesPendientes.add("asignarTurnos");
+        accionesPendientes.add("empezarPartida");
+        
+        ejecutarSiguienteAccion(mensaje);
     }
 
     @Override
@@ -119,7 +125,18 @@ public class Controlador implements Observer {
                 } else {
                     System.out.println("El juego ya esta configurado");
                 }
-            } else {
+            } else if(mensaje.getComando().equals("INICIAR_PARTIDA")) {
+                if(!juego.partidaEstaEmpezada()) {
+                    ejecutarSiguienteAccion(mensaje);
+                } else {
+                    System.out.println("Juego ya esta empezado!!!!!");
+                }
+            } else if(mensaje.getComando().equals("TODOS_ACEPTARON")) {
+                triggerIniciarPartida(new ReqIniciarPartida());
+            }
+            
+            
+            else {
                 System.out.println("Controlador esta recibiendo esto: " + mensaje.getComando());
                 server.broadcastMessage(mensaje, clientHandler);
             }

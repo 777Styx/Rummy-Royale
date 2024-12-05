@@ -26,6 +26,7 @@ public class VistaConfig extends javax.swing.JFrame implements Observer{
         initComponents();
         this.controladorMenu = controladorMenu;
         rango13.setSelected(true);
+        comodines = 4;
     }
     
     @Override

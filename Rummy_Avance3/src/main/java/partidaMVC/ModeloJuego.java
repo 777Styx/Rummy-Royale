@@ -151,6 +151,9 @@ public class ModeloJuego extends Observable {
                 setChanged();
                 notifyObservers(new MostrarMensaje("Alguien ya solicito iniciar juego"));
                 break;
+            case "PARTIDA_INICIADA":
+                setChanged();
+                notifyObservers();
             default:
                 System.out.println("no llego nada :(");
         }

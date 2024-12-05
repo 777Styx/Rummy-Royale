@@ -11,11 +11,11 @@ import mensajes.Mensaje;
  *
  * @author carlo
  */
-public class ExpertoRepartirFichas implements Experto {
+public class ExpertoAsignarTurnos implements Experto {
 
     @Override
     public void ejecutar(Juego juego, Mensaje mensaje) {
-        juego.repartirFichas();
+        juego.asignarTurnos();
         juego.setPartidaEmpezada(false, mensaje);
     }
     

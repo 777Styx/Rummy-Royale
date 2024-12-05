@@ -6,6 +6,7 @@ mensajes\ResCrearPartida.class
 dtos\MazoDTO.class
 mensajes\Mensaje.class
 mensajes\ResSolicitarInicio.class
+mensajes\ReqIniciarPartida.class
 dtos\TableroDTO.class
 mensajes\MessageAdapter.class
 mensajes\ReqSolicitarInicio.class
@@ -13,6 +14,7 @@ mensajes\MessageManager.class
 mensajes\ResConfigurarPartida.class
 mensajes\ReqCrearPartida.class
 mensajes\ReqConfigurarPartida.class
+mensajes\ResIniciarPartida.class
 com\mycompany\rummydominio\RummyDominio.class
 dtos\JugadorDTO.class
 mensajes\ReqRegistroJugador.class
