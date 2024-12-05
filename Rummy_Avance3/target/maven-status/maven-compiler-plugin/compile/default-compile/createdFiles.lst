@@ -1,4 +1,5 @@
 menuMVC\VistaConfig$3.class
+actualizaciones\ActualizarQuitarTurno.class
 actualizaciones\ViewJuego.class
 actualizaciones\MostrarMano.class
 menuMVC\VistaRegistro$1.class
@@ -26,12 +27,14 @@ menuMVC\VistaRegistro$3.class
 menuMVC\VistaRegistro.class
 actualizaciones\ActualizacionRegistro.class
 actualizaciones\MostrarMensaje.class
+actualizaciones\ActualizarDarTurno.class
 actualizaciones\MostrarSolicitudInicio.class
 menuMVC\VistaConfig$2.class
 actualizaciones\Actualizacion.class
 actualizaciones\JugadoresActualizados.class
 Cliente\Cliente$MessageListener.class
 Cliente\Cliente.class
+partidaMVC\VistaJuego$4.class
 menuMVC\ControladorMenu.class
 utils\Btn$1.class
 menuMVC\VistaRegistro$2.class

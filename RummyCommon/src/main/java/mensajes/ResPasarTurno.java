@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author carlo
  */
-public class ResIniciarPartida extends Mensaje {
+public class ResPasarTurno extends Mensaje{
     
     private final List<JugadorDTO> jugadores;
     private final int indiceActual;
     private final TableroDTO tableroDTO;
     
-    public ResIniciarPartida(String comando, List<JugadorDTO> jugadores, int indiceActual, TableroDTO tableroDTO) {
-        super(comando);
+    public ResPasarTurno(List<JugadorDTO> jugadores, int indiceActual, TableroDTO tableroDTO) {
+        super("TURNO_PASADO");
         this.jugadores = jugadores;
         this.indiceActual = indiceActual;
         this.tableroDTO = tableroDTO;
@@ -36,4 +36,8 @@ public class ResIniciarPartida extends Mensaje {
     public TableroDTO getTableroDTO() {
         return tableroDTO;
     }
+    
+    
+    
+    
 }

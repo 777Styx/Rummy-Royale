@@ -58,4 +58,8 @@ public class ControladorJuego {
     public void responderSolicitudInicio(boolean res) {
         modeloJuego.responderSolicitudInicio(res);
     }
+    
+    public void pasarTurno() {
+        modeloJuego.pasarTurno();
+    }
 }

@@ -11,6 +11,7 @@ import mensajes.Mensaje;
 import mensajes.MessageManager;
 import mensajes.ReqConfigurarPartida;
 import mensajes.ReqCrearPartida;
+import mensajes.ReqPasarTurno;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
@@ -93,6 +94,10 @@ public class Cliente {
 
     public void responderSolicitudInicio(Boolean res, JugadorDTO jugador) {
         sendMessage(new ReqResponderSolicitudInicio(res, jugador));
+    }
+    
+    public void pasarTurno(){
+        sendMessage(new ReqPasarTurno());
     }
     
     private class MessageListener implements Runnable {

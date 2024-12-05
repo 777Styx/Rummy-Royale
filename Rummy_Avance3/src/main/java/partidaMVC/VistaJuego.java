@@ -184,17 +184,25 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     }
 
     @Override
-    public void configurarAmbiente(JugadorDTO jugador) {
-        turnoLabel.setText(jugador.getNombre());
-    }
-
-    @Override
-    public void actualizarDarTurno() {
+    public void actualizarDarTurno(JugadorDTO jugador) {
         btnCombinacion.setEnabled(true);
         tomarFichaBtn.setEnabled(true);
         esTuTurnoLabel.setVisible(true);
         pasarTurnoBtn.setEnabled(true);
+        pasarTurnoBtn.setVisible(true);
+        turnoLabel.setText(jugador.getNombre());
     }
+    
+     @Override
+    public void actualizarQuitarTurno() {
+        btnCombinacion.setEnabled(false);
+        tomarFichaBtn.setEnabled(false);
+        esTuTurnoLabel.setVisible(false);
+        pasarTurnoBtn.setEnabled(false);
+        pasarTurnoBtn.setVisible(false);
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -458,8 +466,8 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
                             .addComponent(avatarJ4)
                             .addComponent(cartasJ4))))
                 .addGap(18, 18, 18)
-                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(turnoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ventanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -519,6 +527,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private void pasarTurnoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarTurnoBtnActionPerformed
         // TODO add your handling code here:
         System.out.println("pasando turno");
+        controlador.pasarTurno();
     }//GEN-LAST:event_pasarTurnoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -550,7 +559,5 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private javax.swing.JLabel turnoLabel;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
-
-    
-
+ 
 }

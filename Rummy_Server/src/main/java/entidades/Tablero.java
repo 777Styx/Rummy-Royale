@@ -12,10 +12,10 @@ import java.util.List;
 
 public class Tablero {
 
-    private List<Combinacion> combinaciones; // Lista para almacenar combinaciones
+    private List<Combinacion> combinaciones; 
 
     public Tablero() {
-        combinaciones = new ArrayList<>(); // Inicializa la lista de combinaciones
+        combinaciones = new ArrayList<>();
     }
 
     /**

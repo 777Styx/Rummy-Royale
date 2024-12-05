@@ -13,6 +13,7 @@ import expertos.ExpertoRepartirFichas;
 import expertos.ExpertoRegistrar;
 import expertos.ExpertoEmpezarPartida;
 import entidades.Juego;
+import expertos.ExpertoPasarTurno;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -49,6 +50,7 @@ public class Controlador implements Observer {
         this.expertos.put("repartirFichas", new ExpertoRepartirFichas());
         this.expertos.put("asignarTurnos", new ExpertoAsignarTurnos());
         this.expertos.put("empezarPartida", new ExpertoEmpezarPartida());
+        this.expertos.put("pasarTurno", new ExpertoPasarTurno());
     }
 
     public void realizarAccion(String accion, Mensaje mensaje) {
@@ -119,6 +121,10 @@ public class Controlador implements Observer {
         ejecutarSiguienteAccion(mensaje);
     }
 
+    public void pasarTurno(Mensaje mensaje, ClientHandler aThis) {
+        realizarAccion("pasarTurno", mensaje);
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Mensaje) {
@@ -129,13 +135,18 @@ public class Controlador implements Observer {
                 } else {
                     System.out.println("El juego ya esta configurado");
                 }
-            } else if(mensaje.getComando().equals("INICIAR_PARTIDA")) {
+            } 
+            
+            
+            if(mensaje.getComando().equals("INICIAR_PARTIDA")) {
                 if(!juego.partidaEstaEmpezada()) {
                     ejecutarSiguienteAccion(mensaje);
                 } else {
                     System.out.println("Juego ya esta empezado!!!!!");
                 }
-            } else if(mensaje.getComando().equals("TODOS_ACEPTARON")) {
+            }
+            
+            if(mensaje.getComando().equals("TODOS_ACEPTARON")) {
                 triggerIniciarPartida(new ReqIniciarPartida());
             }
             

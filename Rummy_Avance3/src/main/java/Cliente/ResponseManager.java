@@ -8,6 +8,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResIniciarPartida;
+import mensajes.ResPasarTurno;
 import mensajes.ResRegistroJugador;
 import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
@@ -59,12 +60,22 @@ public class ResponseManager {
         }
         
         if(mensaje instanceof ResIniciarPartida) {
-            Mensaje res = (ResIniciarPartida) mensaje;
+            ResIniciarPartida res = (ResIniciarPartida) mensaje;
             if(res.getComando().equals("PARTIDA_INICIADA")) {
-                modeloJuego.actualizarDataTurno(mensaje);
+                modeloJuego.actualizarData(res.getJugadores());
                 modeloJuego.actualizarMazoJugador();
-                modeloJuego.configurarAmbiente();
+                modeloJuego.verificarTurno();
+                modeloJuego.actualizarTablero(res.getTableroDTO());
             }
+        }
+        
+        if(mensaje instanceof ResPasarTurno){
+            ResPasarTurno res = (ResPasarTurno) mensaje;
+            modeloJuego.avanzarTurno();
+            modeloJuego.actualizarData(res.getJugadores());
+            modeloJuego.actualizarMazoJugador();
+            modeloJuego.verificarTurno();
+            modeloJuego.actualizarTablero(res.getTableroDTO());
         }
     }
 

@@ -7,12 +7,20 @@ import java.util.List;
  * @author julli
  */
 public class TableroDTO {
+    private List<CombinacionDTO> combinaciones;
 
+    public TableroDTO() {
+    }
+    
     public void agregarCombinacion(CombinacionDTO combinacionDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.combinaciones.add(combinacionDTO);
+    }
+    
+    public List<CombinacionDTO> getCombinaciones() {
+        return combinaciones;
     }
 
-    public List<CombinacionDTO> obtenerCombinaciones() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setCombinaciones(List<CombinacionDTO> combinaciones) {
+        this.combinaciones = combinaciones;
     }
 }

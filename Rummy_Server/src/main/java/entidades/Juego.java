@@ -1,9 +1,11 @@
 package entidades;
 
 import dtos.ColorCustomDTO;
+import dtos.CombinacionDTO;
 import dtos.FichaDTO;
 import dtos.JugadorDTO;
 import dtos.ManejadorColorDTO;
+import dtos.TableroDTO;
 import dtos.TipoFichaDTO;
 import static dtos.TipoFichaDTO.TIPO1DTO;
 import static dtos.TipoFichaDTO.TIPO2DTO;
@@ -25,6 +27,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResIniciarPartida;
+import mensajes.ResPasarTurno;
 import mensajes.ResRegistroJugador;
 import mensajes.ResResponderSolicitudInicio;
 import mensajes.ResSolicitarInicio;
@@ -77,6 +80,7 @@ public class Juego extends Observable {
         this.estado = EstadoJuego.INICIO;
         this.solicitudEnCurso = false;
         this.respuestasSolicitud = new HashMap<>();
+        this.tablero = new Tablero();
     }
 
     public static synchronized Juego getInstance() {
@@ -208,10 +212,9 @@ public class Juego extends Observable {
 
     public void empezarPartida() {
         this.estado = EstadoJuego.EN_PROGRESO;
-        ResIniciarPartida res = new ResIniciarPartida("PARTIDA_INICIADA", obtenerJugadoresDTO(), this.indiceJugadorActual);
+        ResIniciarPartida res = new ResIniciarPartida("PARTIDA_INICIADA", obtenerJugadoresDTO(), this.indiceJugadorActual, obtenerTableroDTO());
         setChanged();
         notifyObservers(res);
-
     }
 
     public List<FichaDTO> obtenerMazoJugadorDTO(Jugador jugador) {
@@ -237,7 +240,6 @@ public class Juego extends Observable {
             fichaDTO.setComodin(ficha.isComodin());
             mazoJugadorDTO.add(fichaDTO);
         }
-
         return mazoJugadorDTO;
     }
 
@@ -331,9 +333,52 @@ public class Juego extends Observable {
         }
     }
 
+    public TableroDTO obtenerTableroDTO() {
+        List<CombinacionDTO> combinacionesDTO = new ArrayList<>();
+
+        for (Combinacion c : this.tablero.obtenerCombinaciones()) {
+            List<FichaDTO> fichasDTO = new ArrayList<>();
+
+            for (IFicha ficha : c.getFichas()) {
+                FichaDTO fichaDTO = new FichaDTO();
+                fichaDTO.setNumero(ficha.getNumero());
+                TipoFichaDTO tipoFichaDTO = null;
+                if (ficha.getTipo() == TIPO1) {
+                    tipoFichaDTO = TIPO1DTO;
+                }
+                if (ficha.getTipo() == TIPO2) {
+                    tipoFichaDTO = TIPO2DTO;
+                }
+                if (ficha.getTipo() == TIPO3) {
+                    tipoFichaDTO = TIPO3DTO;
+                }
+                if (ficha.getTipo() == TIPO4) {
+                    tipoFichaDTO = TIPO4DTO;
+                }
+                fichaDTO.setTipo(tipoFichaDTO);
+                fichaDTO.setComodin(ficha.isComodin());
+                fichasDTO.add(fichaDTO);
+            }
+
+            CombinacionDTO cDTO = new CombinacionDTO();
+            cDTO.setFichas(fichasDTO);
+            combinacionesDTO.add(cDTO);
+        }
+
+        TableroDTO tableroDTO = new TableroDTO();
+        tableroDTO.setCombinaciones(combinacionesDTO);
+
+        return tableroDTO;
+    }
+
+    public synchronized void pasarTurno() {
+        indiceJugadorActual = (indiceJugadorActual + 1) % jugadores.size();
+        setChanged();
+        notifyObservers(new ResPasarTurno(obtenerJugadoresDTO(), this.indiceJugadorActual, obtenerTableroDTO()));
+    }
+
     public String generarIdJugador(String nombreJugador) {
         String salt = UUID.randomUUID().toString().substring(0, 8);
         return nombreJugador + "_" + salt;
     }
-
 }

@@ -4,30 +4,25 @@
  */
 package actualizaciones;
 
-import dtos.JugadorDTO;
-
 /**
  *
  * @author carlo
  */
-public class ConfigurarAmbiente implements ActualizacionJuego {
+public class ActualizarQuitarTurno implements ActualizacionJuego {
 
-    private JugadorDTO jugador;
-
-    public ConfigurarAmbiente(JugadorDTO jugador) {
-        this.jugador = jugador;
+    public ActualizarQuitarTurno() {
     }
     
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.configurarAmbiente(jugador);
+        vista.actualizarQuitarTurno();
     }
 
     @Override
     public void aplicar(Vista vista) {
         if (vista instanceof ViewJuego) {
-            aplicar((ViewJuego) vista);
-        }
+         this.aplicar((ViewJuego)vista);
+      }
     }
     
 }

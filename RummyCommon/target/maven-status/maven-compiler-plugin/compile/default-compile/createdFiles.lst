@@ -16,7 +16,9 @@ mensajes\ResConfigurarPartida.class
 mensajes\ReqCrearPartida.class
 mensajes\ReqConfigurarPartida.class
 mensajes\ResIniciarPartida.class
+mensajes\ReqPasarTurno.class
 com\mycompany\rummydominio\RummyDominio.class
+mensajes\ResPasarTurno.class
 dtos\JugadorDTO.class
 mensajes\ReqRegistroJugador.class
 mensajes\ReqResponderSolicitudInicio.class

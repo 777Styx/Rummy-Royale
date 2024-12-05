@@ -5,6 +5,7 @@ import dtos.JuegoDTO;
 import dtos.JugadorDTO;
 import mensajes.Mensaje;
 import mensajes.ReqConfigurarPartida;
+import mensajes.ReqPasarTurno;
 import mensajes.ReqRegistroJugador;
 import mensajes.ReqResponderSolicitudInicio;
 import mensajes.ReqSolicitarInicio;
@@ -49,9 +50,16 @@ public class ManejadorComando {
             case "RESPONDER_SOLICITUD_INICIO":
                 handleResponderSolicitudInicio((ReqResponderSolicitudInicio) mensaje);
                 break;
+            case "PASAR_TURNO":
+                handlePasarTurno((ReqPasarTurno) mensaje);
+                break;
             default:
 
         }
+    }
+    
+    public void handlePasarTurno(Mensaje mensaje) {
+        controlador.pasarTurno(mensaje, clientHandler);
     }
     
     private void handleResponderSolicitudInicio(Mensaje mensaje) {

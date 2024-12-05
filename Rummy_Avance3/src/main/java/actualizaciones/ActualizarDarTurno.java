@@ -4,15 +4,22 @@
  */
 package actualizaciones;
 
+import dtos.JugadorDTO;
+
 /**
  *
  * @author carlo
  */
 public class ActualizarDarTurno implements ActualizacionJuego {
 
+    public ActualizarDarTurno(JugadorDTO jugador) {
+        this.jugador = jugador;
+    }
+    private JugadorDTO jugador;
+    
     @Override
     public void aplicar(ViewJuego vista) {
-        vista.actualizarDarTurno();
+        vista.actualizarDarTurno(jugador);
     }
 
     @Override

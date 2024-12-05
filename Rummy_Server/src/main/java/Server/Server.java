@@ -12,6 +12,7 @@ import mensajes.Mensaje;
 import mensajes.ResConfigurarPartida;
 import mensajes.ResCrearPartida;
 import mensajes.ResIniciarPartida;
+import mensajes.ResPasarTurno;
 import mensajes.ResRegistroJugador;
 import mensajes.ResSolicitarInicio;
 import mensajes.ResUnirse;
@@ -97,6 +98,12 @@ public class Server {
         } else if (mensaje instanceof ResIniciarPartida) {
             for (ClientHandler client : clients) {
                 client.sendMessage(mensaje);
+            }
+        } else if(mensaje instanceof ResPasarTurno) {
+            for (ClientHandler client : clients) {
+                if (client != sender) {
+                    client.sendMessage(mensaje);
+                }
             }
         }
     }

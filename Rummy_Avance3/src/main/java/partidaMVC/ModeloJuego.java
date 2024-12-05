@@ -2,7 +2,7 @@ package partidaMVC;
 
 import Cliente.Cliente;
 import actualizaciones.ActualizarDarTurno;
-import actualizaciones.ConfigurarAmbiente;
+import actualizaciones.ActualizarQuitarTurno;
 import actualizaciones.JugadorDataActualizada;
 import actualizaciones.JugadoresActualizados;
 import actualizaciones.MostrarMano;
@@ -37,14 +37,6 @@ public class ModeloJuego extends Observable {
     private JugadorDTO jugador;
     private Cliente cliente;
 
-//    private ModeloJuego(Cliente cliente) {
-//        this.cliente = cliente;
-//        jugadores = new ArrayList<>();
-//        fichasDTO = new ArrayList<>();
-//        tableroDTO = new TableroDTO();
-//        indiceJugadorActual = 0;
-//        random = new Random();
-//    }
     private ModeloJuego() {
 
         jugadores = new ArrayList<>();
@@ -68,31 +60,22 @@ public class ModeloJuego extends Observable {
         notifyObservers(new JugadorDataActualizada(this.jugador));
     }
     
-    public void actualizarDataTurno(Mensaje mensaje) {
-        ResIniciarPartida res = (ResIniciarPartida) mensaje;
-        this.jugadores = res.getJugadores();
+    public void actualizarData(List<JugadorDTO> jugadores) {
+        this.jugadores = jugadores;
         this.jugador = obtenerJugadorPorId(this.jugador.getId());
         setChanged();
         notifyObservers(new JugadoresActualizados(this.jugadores));
         setChanged();
         notifyObservers(new JugadorDataActualizada(this.jugador));
-        // actualizar turno aqui abajo
-        verificarTurno();
-        
-        
         // luego tmb actualizar tablero
-    }
-    
-    public void configurarAmbiente(){
-        setChanged();
-        notifyObservers(new ConfigurarAmbiente(jugadores.get(indiceJugadorActual)));
+        
     }
     
     public void actualizarMazoJugador() {
         setChanged();
         notifyObservers(new MostrarMano(this.jugador));
     }
-
+    
     public void actualizarJugadorNuevo(Mensaje mensaje) {
         ResRegistroJugador res = (ResRegistroJugador) mensaje;
         this.jugadores = res.getJugadores();
@@ -104,8 +87,19 @@ public class ModeloJuego extends Observable {
         JugadorDTO jugadorActual = jugadores.get(indiceJugadorActual);
         if (jugadorActual.equals(jugador)) {
             setChanged();
-            notifyObservers(new ActualizarDarTurno());
+            notifyObservers(new ActualizarDarTurno(jugadorActual));
+        } else {
+            notifyObservers(new ActualizarQuitarTurno());
         }
+    }
+    
+    public void actualizarTablero(TableroDTO tablero) {
+        this.tableroDTO = tablero;
+    }
+    
+    public void avanzarTurno() {
+        indiceJugadorActual = (indiceJugadorActual + 1) % jugadores.size();
+        verificarTurno();
     }
 
     public void solicitarInicio() {
@@ -117,6 +111,12 @@ public class ModeloJuego extends Observable {
     public void responderSolicitudInicio(boolean res) {
         if(cliente.isConnected()) {
             cliente.responderSolicitudInicio(res, this.jugador);
+        }
+    }
+    
+    public void pasarTurno() {
+         if(cliente.isConnected()) {
+            cliente.pasarTurno();
         }
     }
 

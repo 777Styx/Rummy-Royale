@@ -8,12 +8,12 @@ import java.util.List;
  */
 public class CombinacionDTO {
 
+    private List<FichaDTO> fichas;
+    
     public boolean esValida() {
         return false;
     }
     
-    private List<FichaDTO> fichas;
-
     public CombinacionDTO() {
         // Constructor vacío necesario para deserialización
     }
@@ -36,4 +36,7 @@ public class CombinacionDTO {
                 "fichas=" + fichas +
                 '}';
     }
+    
+    
+   
 }

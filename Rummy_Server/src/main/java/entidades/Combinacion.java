@@ -47,4 +47,14 @@ public class Combinacion {
         return sb.toString();
     }
 
+    public List<IFicha> getFichas() {
+        return fichas;
+    }
+
+    public void setFichas(List<IFicha> fichas) {
+        this.fichas = fichas;
+    }
+    
+    
+
 }
