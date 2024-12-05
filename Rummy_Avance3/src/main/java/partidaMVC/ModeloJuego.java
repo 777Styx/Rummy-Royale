@@ -89,6 +89,7 @@ public class ModeloJuego extends Observable {
             setChanged();
             notifyObservers(new ActualizarDarTurno(jugadorActual));
         } else {
+            setChanged();
             notifyObservers(new ActualizarQuitarTurno());
         }
     }

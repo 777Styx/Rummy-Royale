@@ -33,7 +33,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         initComponents();
         this.controlador = controlador;
         esTuTurnoLabel.setVisible(false);
-        
+
         btnCombinacion.setEnabled(false);
         tomarFichaBtn.setEnabled(false);
         pasarTurnoBtn.setVisible(false);
@@ -154,7 +154,6 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
             fichaLabel.setOpaque(true);
             fichaLabel.setHorizontalAlignment(SwingConstants.CENTER);
             fichaLabel.setPreferredSize(new Dimension(50, 70));
-            
 
             if (ficha.isComodin()) {
                 fichaLabel.setBackground(Color.WHITE);
@@ -192,8 +191,8 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         pasarTurnoBtn.setVisible(true);
         turnoLabel.setText(jugador.getNombre());
     }
-    
-     @Override
+
+    @Override
     public void actualizarQuitarTurno() {
         btnCombinacion.setEnabled(false);
         tomarFichaBtn.setEnabled(false);
@@ -201,9 +200,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         pasarTurnoBtn.setEnabled(false);
         pasarTurnoBtn.setVisible(false);
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -528,6 +525,7 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
         // TODO add your handling code here:
         System.out.println("pasando turno");
         controlador.pasarTurno();
+      //  pasarTurnoBtn.setVisible(false);
     }//GEN-LAST:event_pasarTurnoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -559,5 +557,5 @@ public class VistaJuego extends javax.swing.JFrame implements Observer, ViewJueg
     private javax.swing.JLabel turnoLabel;
     private javax.swing.JPanel ventanaPrincipal;
     // End of variables declaration//GEN-END:variables
- 
+
 }

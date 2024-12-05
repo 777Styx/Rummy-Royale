@@ -250,6 +250,7 @@ public class Juego extends Observable {
 
     public void avanzarTurno() {
         indiceJugadorActual = (indiceJugadorActual + 1) % turnos.size();
+        System.out.println("AQUI ESTA EL INDICE ACTUAL DEL JUGADOR EN TURNO" + indiceJugadorActual);
     }
 
     public boolean estaConfigurado() {

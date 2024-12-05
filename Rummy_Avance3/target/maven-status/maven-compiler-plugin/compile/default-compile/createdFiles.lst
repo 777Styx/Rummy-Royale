@@ -20,7 +20,6 @@ menuMVC\VistaConfig$1.class
 actualizaciones\ViewRegistro.class
 menuMVC\VistaUnirseCrear$4.class
 partidaMVC\VistaJuego.class
-Cliente\ResponseManager.class
 menuMVC\VistaUnirseCrear$1.class
 partidaMVC\VistaJuego$3.class
 menuMVC\VistaRegistro$3.class
@@ -32,8 +31,6 @@ actualizaciones\MostrarSolicitudInicio.class
 menuMVC\VistaConfig$2.class
 actualizaciones\Actualizacion.class
 actualizaciones\JugadoresActualizados.class
-Cliente\Cliente$MessageListener.class
-Cliente\Cliente.class
 partidaMVC\VistaJuego$4.class
 menuMVC\ControladorMenu.class
 utils\Btn$1.class
